@@ -68,4 +68,17 @@ public class arregloGenerico<T> implements IColeccion<T> {
 		return builder.toString();
 	}
 
+
+
+	public ArrayList<T> getArreglo() {
+		return arreglo;
+	}
+
+
+
+	public void setArreglo(ArrayList<T> arreglo) {
+		this.arreglo = arreglo;
+	}
+
+	
 }

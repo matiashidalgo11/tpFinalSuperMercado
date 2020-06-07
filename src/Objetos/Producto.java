@@ -1,6 +1,6 @@
 package Objetos;
 
-public abstract class Producto {
+public  class Producto {
 	
 	public static long conteoGeneral = 0;
 	
