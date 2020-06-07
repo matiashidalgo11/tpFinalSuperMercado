@@ -16,32 +16,56 @@ public class arregloGenerico<T> implements IColeccion<T> {
 
 	@Override
 	public boolean agregar(T dato) {
-		// TODO Auto-generated method stub
-		return false;
+		
+		return arreglo.add(dato);
 	}
 
 	@Override
-	public boolean eliminar(long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean eliminar(T dato) {
+		
+		boolean resp = false;
+		if(this.existencia(dato))
+		{
+			arreglo.remove(dato);
+			resp = true;
+		}
+		
+		return resp;
 	}
 
-	@Override
-	public T buscar(long id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
-	public boolean existencia(long id) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean existencia(T dato) {
+		boolean resp = false;
+		for(T aux : arreglo)
+		{
+			if(aux.equals(dato))
+			{
+				resp = true;
+			}
+		}
+		
+		return resp;
 	}
 
 	@Override
 	public String listar() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("******Lista Arreglo******");
+		if(arreglo.size() == 0)
+		{
+			builder.append("\n*VACIO*\n");
+		}else
+		{
+			for(T aux : arreglo)
+		{
+			builder.append(aux);
+		}
+		}
+		
+		
+		return builder.toString();
 	}
 
 }
