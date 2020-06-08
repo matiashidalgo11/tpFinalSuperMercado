@@ -80,5 +80,13 @@ public class arregloGenerico<T> implements IColeccion<T> {
 		this.arreglo = arreglo;
 	}
 
+
+
+	@Override
+	public int cantidad() {
+		
+		return arreglo.size();
+	}
+
 	
 }

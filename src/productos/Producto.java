@@ -1,7 +1,5 @@
 package productos;
 
-import com.sun.xml.internal.bind.v2.runtime.RuntimeUtil.ToStringAdapter;
-
 public  class Producto {
 	
 	public static long conteoGeneral = 0;

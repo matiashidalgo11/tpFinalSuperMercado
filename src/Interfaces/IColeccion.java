@@ -6,5 +6,6 @@ public interface IColeccion<T> {
 	public boolean eliminar(T dato);
 	public boolean existencia(T dato);
 	public String listar();
+	public int cantidad();
 
 }
