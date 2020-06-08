@@ -6,7 +6,7 @@ import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
 import Objetos.DetalleCompra;
-import Objetos.Producto;
+import productos.Producto;
 
 public class testeoMati {
 

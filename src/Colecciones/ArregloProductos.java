@@ -1,6 +1,6 @@
 package Colecciones;
 
-import Objetos.Producto;
+import productos.Producto;
 
 public class ArregloProductos extends arregloGenerico<Producto> {
 
