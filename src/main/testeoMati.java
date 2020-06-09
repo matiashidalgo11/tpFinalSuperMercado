@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
+import Colecciones.mapUsuario;
 import Objetos.DetalleCompra;
 import productos.Producto;
 
@@ -22,7 +23,7 @@ public class testeoMati {
 		LocalDateTime fecharHoraActual = LocalDateTime.now();
 		System.out.println(fecharHoraActual);
 		*/
-		
+		/*
 		ArregloProductos arreglo = new ArregloProductos();
 
 		Producto a = new Producto("Papas", 12, "Lays", 12, 1);
@@ -35,6 +36,9 @@ public class testeoMati {
 		DetalleCompra detalleB = new DetalleCompra(arreglo);
 		
 		System.out.println(detalleA.equals(detalleB));
+		*/
+		
+		mapUsuario mapa = new mapUsuario();
 		
 		
 		
