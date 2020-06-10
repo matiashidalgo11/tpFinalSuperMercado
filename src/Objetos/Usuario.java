@@ -110,5 +110,20 @@ public class Usuario {
 				"Cartera:  " + cartera + "\n" ;
 	}
 	
+	public void sumarCartera(double suma)
+	{
+		this.cartera = this.cartera + suma;
+	}
+	
+	public void restarCartera(double resta)
+	{
+		if(resta <= this.cartera)
+		{
+			this.cartera = this.cartera- resta;
+		}else
+		{
+			System.out.println("\nNo hay dinero suficiente\n");
+		}
+	}
 
 }

@@ -87,6 +87,11 @@ public class arregloGenerico<T> implements IColeccion<T> {
 		
 		return arreglo.size();
 	}
+	
+	public void vaciar()
+	{
+		arreglo.clear();
+	}
 
 	
 }

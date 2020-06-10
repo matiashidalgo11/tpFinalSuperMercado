@@ -1,5 +1,7 @@
 package Objetos;
 
+import productos.Producto;
+
 public class Session {
 	
 	private Usuario user;
@@ -31,7 +33,61 @@ public class Session {
 	}
 	
 	
+	public boolean comprar() 
+	{
+			
+		boolean resp = false;
+		double montoCarrito = carrito.sumaTotalCarro();
+		double dineroDisponible = user.getCartera();
+		
+		if(montoCarrito <= dineroDisponible)
+		{
+			DetalleCompra detalle = carrito.generarDetllaCompra();
+			user.restarCartera(montoCarrito);
+			user.getHistorialCompra().agregar(detalle);
+			resp = true;
+		}
+		
+		return resp;
+	}
 	
+	public boolean agregarAlCarro(Producto p)
+	{
+		return carrito.agregar(p);
+	}
 	
+	public boolean quitarDelCarro(long id)
+	{
+		return carrito.quitar(id);
+	}
+	
+	public void cargarCartera(double carga)
+	{
+		user.sumarCartera(carga);
+	}
 
+	public boolean modificarPassword(String actual, String nuevo)
+	{
+		boolean resp = false;
+		if(actual.equals(user.getPassword()))
+		{
+			user.setPassword(nuevo);
+			resp = true;
+		}
+		
+		return resp;
+	}
+	
+	public boolean modificarNombre(String actual, String nuevo)
+	{
+		boolean resp = false;
+		if(actual.equals(user.getNombre()))
+		{
+			user.setNombre(nuevo);
+			resp = true;
+		}
+		
+		return resp;
+	}
+	
 }

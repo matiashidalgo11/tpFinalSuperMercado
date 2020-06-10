@@ -89,4 +89,8 @@ public  class mapaGenerico<K,T>  {
 		return resp;
 	}
 
+	public void vaciar()
+	{
+		mapa.clear();
+	}
 }

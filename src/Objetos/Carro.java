@@ -51,7 +51,11 @@ public class Carro {
 		return resp;
 	}
 	
-	
+	public void limpiarCarrito()
+	{
+		this.total = 0;
+		this.arreglo.vaciar();
+	}
 	
 	
 }
