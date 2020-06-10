@@ -1,5 +1,8 @@
 package productos;
 
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import Colecciones.mapaGenerico;
 
 public class MapaCategoria {
@@ -13,7 +16,19 @@ public class MapaCategoria {
 	
 	public void agregar(Long idCategoria, MapaProductos mapaNuevo )
 	{
-		mapa.agregar(idCategoria, mapaNuevo);
+		if(existencia(idCategoria))
+		{
+			MapaProductos nuevo = mapa.obtenerDato(idCategoria);
+			Iterator<Entry<Long, Producto>> it = nuevo.getIterator();
+			while(it.hasNext())
+			{
+				Entry<Long, Producto> entrada = it.next();
+				nuevo.agregar(entrada.getKey(), entrada.getValue());
+			}
+		} else {
+			
+			mapa.agregar(idCategoria, mapaNuevo);
+		}
 	}
 	
 	public void eliminar(Long idCategoria)

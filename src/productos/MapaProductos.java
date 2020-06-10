@@ -1,5 +1,7 @@
 package productos;
 
+import java.util.Iterator;
+
 import Colecciones.mapaGenerico;
 
 public class MapaProductos {
@@ -34,5 +36,10 @@ public class MapaProductos {
 	public String listar() 
 	{
 		return mapa.listar();
+	}
+	
+	public Iterator getIterator()
+	{
+		return mapa.getIterator();
 	}
 }
