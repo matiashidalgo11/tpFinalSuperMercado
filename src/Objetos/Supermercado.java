@@ -54,10 +54,9 @@ public class Supermercado {
 		return listaUsuarios.listar();
 	}
 	
-	public void agregarProducto(Producto nuevo, Long idCategoria)
+	public void agregarProducto(Long idCategoria, MapaProductos nuevoMapa)
 	{
-		listaProductos.agregar(nuevo.getIdProducto(), nuevo);
-		listaCategorias.agregar(idCategoria, listaProductos);
+		listaCategorias.agregar(idCategoria, nuevoMapa);
 	}
 	
 }

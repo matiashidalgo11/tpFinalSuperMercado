@@ -18,7 +18,7 @@ public class MapaCategoria {
 	{
 		if(existencia(idCategoria))
 		{
-			MapaProductos nuevo = mapa.obtenerDato(idCategoria);
+			MapaProductos nuevo = mapa.buscar(idCategoria);
 			Iterator<Entry<Long, Producto>> it = nuevo.getIterator();
 			while(it.hasNext())
 			{
