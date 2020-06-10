@@ -6,18 +6,16 @@ public class Session {
 	private Carro carrito;
 	
 	/**
-	 * Desarrollas esta clase, guardar o no el carro una vez que se cierre sesion y tenga productos adentro del carro
+	 * Desarrollar esta clase, guardar o no el carro una vez que se cierre sesion y tenga productos adentro del carro
 	 * 
 	 */
 	
-	public Session() {
+	public Session(Usuario user, Carro carrito) {
+		
+		this.user = user;
+		this.carrito = carrito;
 		
 	}
-	
-	
-	
-	
-	
 	
 	public Usuario getUser() {
 		return user;
@@ -31,6 +29,8 @@ public class Session {
 	public void setCarrito(Carro carrito) {
 		this.carrito = carrito;
 	}
+	
+	
 	
 	
 

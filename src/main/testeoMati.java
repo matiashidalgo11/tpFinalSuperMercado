@@ -6,7 +6,9 @@ import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
 import Colecciones.mapUsuario;
+import Colecciones.mapaGenerico;
 import Objetos.DetalleCompra;
+import Objetos.Usuario;
 import productos.Producto;
 
 public class testeoMati {
@@ -38,8 +40,21 @@ public class testeoMati {
 		System.out.println(detalleA.equals(detalleB));
 		*/
 		
-		mapUsuario mapa = new mapUsuario();
+		ArregloProductos arreglo = new ArregloProductos();
 		
+		Producto a = new Producto("Papas", 12, "Lays", 12, 1);
+		Producto b = new Producto("Paerw", 11, "sada", 5, 2);
+		
+		arreglo.agregar(a);
+		arreglo.agregar(b);
+		
+		System.out.println(arreglo.listar());
+		
+		System.out.println(arreglo.eliminar(1));
+		System.out.println(arreglo.eliminar(a));
+		//System.out.println(arreglo.eliminar(a));
+		
+		//System.out.println(arreglo.listar());
 		
 		
 	}

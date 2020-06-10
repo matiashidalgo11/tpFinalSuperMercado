@@ -1,5 +1,7 @@
 package Objetos;
 
+import Colecciones.arregloGenerico;
+
 /**
  *Falta Implementar un Historial Compra
  * @author Matias
@@ -18,7 +20,7 @@ public class Usuario {
 	private String nombre;
 	private String password;
 	private double cartera;
-	
+	private arregloGenerico<DetalleCompra> historialCompra;
 
 	
 	
@@ -28,8 +30,19 @@ public class Usuario {
 		this.password = password;
 		this.cartera = 0;
 		this.id = generadorId++;
+		historialCompra = new arregloGenerico<DetalleCompra>();
 	}
 	
+	public Usuario(String nombre, String password, double cartera, long id, arregloGenerico<DetalleCompra> historialCompra) {
+		
+		this.nombre = nombre;
+		this.password = password;
+		this.cartera = cartera;
+		this.id = id;
+		this.historialCompra = historialCompra;
+	}
+	
+
 	@Override
 	public int hashCode() {
 		
@@ -77,6 +90,14 @@ public class Usuario {
 	}
 	public void setCartera(double cartera) {
 		this.cartera = cartera;
+	}
+	
+	public arregloGenerico<DetalleCompra> getHistorialCompra() {
+		return historialCompra;
+	}
+
+	public void setHistorialCompra(arregloGenerico<DetalleCompra> historialCompra) {
+		this.historialCompra = historialCompra;
 	}
 	
 	@Override

@@ -2,7 +2,7 @@ package productos;
 
 public  class Producto {
 	
-	public static long conteoGeneral = 0;
+	public static long conteoGeneral = 1;
 	
 	private long idProducto;
 	private String nombre;
@@ -77,7 +77,7 @@ public  class Producto {
 	@Override
 	public String toString() 
 	{
-		return  "IdProducto: " + idProducto + "\n" + 
+		return  "\nIdProducto: " + idProducto + "\n" + 
 				"Nombre:     " + nombre + "\n" + 
 				"Precio:     " + precio + "\n" + 
 				"Marca:      " + marca + "\n" + 

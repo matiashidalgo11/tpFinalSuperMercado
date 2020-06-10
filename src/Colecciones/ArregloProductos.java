@@ -4,13 +4,9 @@ import productos.Producto;
 
 public class ArregloProductos extends arregloGenerico<Producto> {
 
-	
-	arregloGenerico<Producto> arreglo;
-	
+
 	public ArregloProductos() {
-		
-		arreglo = new arregloGenerico<Producto>();
-		
+		super();
 	}
 	
 	public boolean eliminar(long id)
@@ -20,7 +16,7 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 		if(this.existencia(id))
 		{
 			Producto  aux = this.buscar(id);
-			arreglo.eliminar(aux);
+			super.getArreglo().remove(aux);
 			resp = true;
 		}
 		
@@ -32,7 +28,7 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 	{
 		boolean resp = false;
 	
-		for(Producto aux : arreglo.getArreglo())
+		for(Producto aux : super.getArreglo())
 		{
 			if(aux.getIdProducto() == id)
 			{
@@ -47,7 +43,7 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 	{
 		Producto resp = null;
 		
-		for(Producto aux : arreglo.getArreglo())
+		for(Producto aux : super.getArreglo())
 		{
 			if(aux.getIdCategoria() == id)
 			{
@@ -67,7 +63,7 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 	{
 		double resp = 0;
 		
-		for(Producto aux : arreglo.getArreglo())
+		for(Producto aux : super.getArreglo())
 		{
 			resp =+ aux.getPrecio();
 		}
