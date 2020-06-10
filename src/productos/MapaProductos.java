@@ -38,6 +38,11 @@ public class MapaProductos {
 		return mapa.listar();
 	}
 	
+	public Producto obtenerProducto(Long idProducto)
+	{
+		return mapa.obtenerDato(idProducto);
+	}
+	
 	public Iterator getIterator()
 	{
 		return mapa.getIterator();

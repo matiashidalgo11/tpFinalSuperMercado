@@ -50,4 +50,14 @@ public class MapaCategoria {
 	{
 		return mapa.listar();
 	}
+	
+	public MapaProductos obtenerMapaProductos(Long idCategoria)
+	{
+		return mapa.obtenerDato(idCategoria);
+	}
+	
+	public Iterator getIterator()
+	{
+		return mapa.getIterator();
+	}
 }
