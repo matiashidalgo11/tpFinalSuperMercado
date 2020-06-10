@@ -51,9 +51,9 @@ public class MapaCategoria {
 		return mapa.listar();
 	}
 	
-	public MapaProductos obtenerMapaProductos(Long idCategoria)
+	public MapaProductos buscar(Long idCategoria)
 	{
-		return mapa.obtenerDato(idCategoria);
+		return mapa.buscar(idCategoria);
 	}
 	
 	public Iterator getIterator()
