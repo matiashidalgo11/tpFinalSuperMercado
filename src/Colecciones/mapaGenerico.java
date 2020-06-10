@@ -94,11 +94,6 @@ public  class mapaGenerico<K,T>  {
 		mapa.clear();
 	}
 	
-	public T obtenerDato(K clave)
-	{
-		return mapa.get(clave);
-	}
-	
 	public Iterator getIterator()
 	{
 		Set<Entry<K,T>> set = mapa.entrySet();
