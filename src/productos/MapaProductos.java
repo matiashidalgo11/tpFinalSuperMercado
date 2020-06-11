@@ -1,50 +1,11 @@
 package productos;
 
-import java.util.Iterator;
-
 import Colecciones.mapaGenerico;
 
-public class MapaProductos {
+public class MapaProductos extends mapaGenerico<Long, Producto> {
 
-	mapaGenerico<Long, Producto> mapa;
-	
-	public MapaProductos() 
+	public MapaProductos()
 	{
-		mapa = new mapaGenerico<Long, Producto>();
-	}
-	
-	public void agregar(Long idProducto, Producto productoNuevo) 
-	{
-		mapa.agregar(idProducto, productoNuevo);
-	}
-	
-	public void eliminar(Long idProducto) 
-	{	
-		mapa.eliminar(idProducto);
-	}
-	
-	public boolean existencia(Long idProducto) 
-	{
-		return mapa.existencia(idProducto);
-	}
-	
-	public int cantidad()
-	{
-		return mapa.cantidad();
-	}
-	
-	public String listar() 
-	{
-		return mapa.listar();
-	}
-	
-	public Producto buscar(Long idProducto)
-	{
-		return mapa.buscar(idProducto);
-	}
-	
-	public Iterator getIterator()
-	{
-		return mapa.getIterator();
+		super();
 	}
 }

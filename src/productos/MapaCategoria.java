@@ -5,16 +5,16 @@ import java.util.Map.Entry;
 
 import Colecciones.mapaGenerico;
 
-public class MapaCategoria {
+public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 
 	mapaGenerico<Long, MapaProductos> mapa;
 	
 	public MapaCategoria() 
 	{
-		mapa = new mapaGenerico<Long, MapaProductos>();
+		super();
 	}
 	
-	public void agregar(Long idCategoria, MapaProductos mapaNuevo )
+	public void agregarCategoria(Long idCategoria, MapaProductos mapaNuevo )
 	{
 		if(existencia(idCategoria))
 		{
@@ -31,33 +31,33 @@ public class MapaCategoria {
 		}
 	}
 	
-	public void eliminar(Long idCategoria)
-	{
-		mapa.eliminar(idCategoria);
-	}
-	
 	public boolean existencia(Long idCategoria)
 	{
 		return mapa.existencia(idCategoria);
 	}
 	
-	public int cantidad()
+	public void eliminarProducto(Long idCategoria, Long idProducto)
 	{
-		return mapa.cantidad();
+		MapaProductos nuevo = mapa.buscar(idCategoria);
+		nuevo.eliminar(idProducto);
+		
 	}
 	
-	public String listar()
+	public boolean existeProducto(Long idCategoria, Long idProducto)
 	{
-		return mapa.listar();
+		MapaProductos nuevo = mapa.buscar(idCategoria);
+		return nuevo.existencia(idProducto);
 	}
 	
-	public MapaProductos buscar(Long idCategoria)
+	public Producto buscarProducto(Long idCategoria, Long idProducto)
 	{
-		return mapa.buscar(idCategoria);
+		MapaProductos nuevo = mapa.buscar(idCategoria);
+		return nuevo.buscar(idProducto);
 	}
 	
-	public Iterator getIterator()
+	public String listarCategoriaProducto(Long idCategoria)
 	{
-		return mapa.getIterator();
+		MapaProductos nuevo = mapa.buscar(idCategoria);
+		return nuevo.listar();
 	}
 }
