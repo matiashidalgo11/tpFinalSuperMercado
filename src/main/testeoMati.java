@@ -20,9 +20,12 @@ public class testeoMati {
 	public static void main(String[] args) {
 
 		Usuario mati = new Usuario("Matias", "1234");
-
+		Usuario alan = new Usuario("Alan", "1234");
 		
-		Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
+		System.out.println(mati);
+		System.out.println(alan);
+		
+		/*Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
 		Producto b = new Producto("COCA", 11, "COCA COLA", 5, 2);
 		
 		Carro carrito = new Carro();
@@ -35,13 +38,12 @@ public class testeoMati {
 		sessionMati.cargarCartera(100);
 		sessionMati.comprar();
 		System.out.println(mati.getHistorialCompra().listar());
+		*/
+		mapUsuario mapaUsuario = new mapUsuario();
 		
-		MapaProductos productos = new MapaProductos();
-		Long clave = (long) 1;
-		productos.agregar(clave, a);
-		MapaCategoria categorias = new MapaCategoria();
-		System.out.println("dadasdad");
-		
+		mapaUsuario.agregar(alan.getId(), alan);
+		System.out.println(mapaUsuario.agregar(mati.getId(), mati));
+		System.out.println(mapaUsuario.listar());
 	}
 
 }

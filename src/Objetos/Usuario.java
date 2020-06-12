@@ -13,7 +13,7 @@ import Colecciones.arregloGenerico;
 	
 public class Usuario {
 	
-	private static long generadorId = 0;
+	private static long generadorId = 1;
 	
 	
 	private long id;

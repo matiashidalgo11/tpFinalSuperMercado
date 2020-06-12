@@ -50,7 +50,7 @@ public  class mapaGenerico<K,T>  {
 	{
 		boolean resp = false;
 		
-		if(existencia(clave))
+		if(!existencia(clave))
 		{
 			mapa.put(clave, dato);
 			resp = true;
