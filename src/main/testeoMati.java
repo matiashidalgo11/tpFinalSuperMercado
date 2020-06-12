@@ -11,6 +11,8 @@ import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
 import Objetos.Usuario;
+import productos.MapaCategoria;
+import productos.MapaProductos;
 import productos.Producto;
 
 public class testeoMati {
@@ -33,6 +35,12 @@ public class testeoMati {
 		sessionMati.cargarCartera(100);
 		sessionMati.comprar();
 		System.out.println(mati.getHistorialCompra().listar());
+		
+		MapaProductos productos = new MapaProductos();
+		Long clave = (long) 1;
+		productos.agregar(clave, a);
+		MapaCategoria categorias = new MapaCategoria();
+		System.out.println("dadasdad");
 		
 	}
 
