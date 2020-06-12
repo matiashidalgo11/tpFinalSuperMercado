@@ -19,7 +19,7 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 		if(existencia(idCategoria))
 		{
 			MapaProductos nuevo = buscar(idCategoria);
-			Iterator<Entry<Long, Producto>> it = nuevo.getIterator();
+			Iterator<Entry<Long, Producto>> it = mapaNuevo.getIterator();
 			while(it.hasNext())
 			{
 				Entry<Long, Producto> entrada = it.next();
@@ -33,7 +33,7 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	
 	public boolean existencia(Long idCategoria)
 	{
-		return existencia(idCategoria);
+		return super.existencia(idCategoria);
 	}
 	
 	public void eliminarProducto(Long idCategoria, Long idProducto)
@@ -53,6 +53,19 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	{
 		MapaProductos nuevo = buscar(idCategoria);
 		return nuevo.buscar(idProducto);
+	}
+	
+	public String listarCategorias()
+	{
+		StringBuilder builder = new StringBuilder();
+		Iterator<Entry<Long, MapaProductos>> it = getIterator();
+		while(it.hasNext())
+		{
+			Entry<Long, MapaProductos> entrada = it.next();
+			builder.append(entrada.getValue().listar() + "\n");
+		}
+		
+		return builder.toString();
 	}
 	
 	public String listarCategoriaProducto(Long idCategoria)
