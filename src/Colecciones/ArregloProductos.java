@@ -9,6 +9,27 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 		super();
 	}
 	
+	@Override
+	public boolean agregar(Producto dato) {
+		Producto aux;
+		boolean resp = false;
+		
+		if(this.existencia(dato.getIdProducto()))
+		{
+			aux = this.buscar(dato.getIdProducto());
+			aux.sumarStock(1);
+			
+		}else
+		{
+			aux = new Producto(dato);
+			aux.setStock(1);
+			resp = arreglo.add(aux);
+		}
+		
+		return resp;
+	}
+	
+	
 	public boolean eliminar(long id)
 	{
 		boolean resp = false;
@@ -43,9 +64,9 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 	{
 		Producto resp = null;
 		
-		for(Producto aux : super.getArreglo())
+		for(Producto aux : arreglo)
 		{
-			if(aux.getIdCategoria() == id)
+			if(aux.getIdProducto() == id)
 			{
 				resp = aux;
 			}

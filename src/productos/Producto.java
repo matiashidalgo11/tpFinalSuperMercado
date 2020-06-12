@@ -31,6 +31,17 @@ public  class Producto {
 		this.idCategoria = idCategoria;
 	}
 	
+	public Producto(Producto aux)
+	{
+		this.idProducto = aux.idProducto;
+		this.nombre = aux.nombre;
+		this.precio = aux.precio;
+		this.marca = aux.marca;
+		this.stock = aux.stock;
+		this.idCategoria = this.idCategoria;
+		
+	}
+	
 	public long getIdProducto() {
 		return idProducto;
 	}

@@ -24,8 +24,9 @@ public class Carro {
 	public boolean agregar(Producto p)
 	{
 		boolean rta = false;
-		if(arreglo.agregar(p))
-		{
+		if(p.getStock() > 0 )
+		{	
+			arreglo.agregar(p);
 			this.total += p.getPrecio();
 			rta = true;
 		}
@@ -100,6 +101,17 @@ public class Carro {
 
 	public void setArreglo(ArregloProductos arreglo) {
 		this.arreglo = arreglo;
+	}
+	
+	public boolean isEmpty()
+	{
+		boolean resp = false;
+		if(arreglo.cantidad() == 0)
+		{
+			resp = true;
+		}
+		
+		return resp;
 	}
 	
 }

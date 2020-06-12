@@ -10,12 +10,61 @@ public class Supermercado {
 
 	private mapUsuario listaUsuarios;
 	private MapaCategoria listaCategorias;
+	private mapaGenerico<Long, Carro> listaCarritos;
+	
+	Session sesionActiva;
 	
 	public Supermercado(Usuario user, Carro carrito)
 	{
 		listaUsuarios = new mapUsuario();
 		listaCategorias = new MapaCategoria();
 		
+		
+	}
+	
+	public void iniciarSession(long id)
+	{
+		
+		Usuario user = listaUsuarios.buscar(id);
+		Carro carrito;
+		
+		if(listaCarritos.existencia(id))
+		{
+			carrito = listaCarritos.buscar(id);
+			//implementar funcion para que actualice los datos del carrito con los del stock del producto
+			sesionActiva = new Session(user, carrito);
+			
+		}else
+		{
+			sesionActiva = new Session(user);
+		}
+		
+		
+	}
+	
+	public boolean inSession()
+	{
+		boolean resp = false;
+		if(sesionActiva != null)
+		{
+			resp = true;
+		}
+		
+		return resp;
+	}
+	
+	//Problema para ver como saber si hay suficiente stock para comprar.
+	public boolean comprarProductos()
+	{
+		boolean resp = false;
+		if(this.inSession() && !sesionActiva.getCarrito().isEmpty())
+		{
+			resp = sesionActiva.comprar();
+			
+		}
+		
+		
+		return resp;
 	}
 	
 	public void agregarUsuario(Usuario user)

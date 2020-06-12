@@ -19,6 +19,12 @@ public class Session {
 		
 	}
 	
+	public Session(Usuario user)
+	{
+		this.user = user;
+		this.carrito = new Carro();
+	}
+	
 	public Usuario getUser() {
 		return user;
 	}

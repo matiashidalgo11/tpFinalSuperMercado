@@ -22,28 +22,26 @@ public class testeoMati {
 		Usuario mati = new Usuario("Matias", "1234");
 		Usuario alan = new Usuario("Alan", "1234");
 		
-		System.out.println(mati);
-		System.out.println(alan);
-		
-		/*Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
+		Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
 		Producto b = new Producto("COCA", 11, "COCA COLA", 5, 2);
 		
 		Carro carrito = new Carro();
 		carrito.agregar(a);
 		carrito.agregar(b);
 		
-		Session sessionMati = new Session(mati, carrito);
-		System.out.println(sessionMati);
-		sessionMati.modificarNombre("Matias", "Pepe");
-		sessionMati.cargarCartera(100);
-		sessionMati.comprar();
-		System.out.println(mati.getHistorialCompra().listar());
-		*/
-		mapUsuario mapaUsuario = new mapUsuario();
 		
-		mapaUsuario.agregar(alan.getId(), alan);
-		System.out.println(mapaUsuario.agregar(mati.getId(), mati));
-		System.out.println(mapaUsuario.listar());
+		
+		Producto c = new Producto(a);
+		
+		ArregloProductos arregloProductos = new ArregloProductos();
+		
+		System.out.println(arregloProductos.agregar(a));
+		System.out.println(arregloProductos.agregar(b));
+		System.out.println(arregloProductos.agregar(a));
+		
+		a.setNombre("MANI");
+		System.out.println(a);
+		System.out.println(arregloProductos.listar());
 	}
 
 }
