@@ -119,6 +119,21 @@ public  class Producto {
 		return true;
 	}
 	
+	public void sumarStock(long cant)
+	{
+		this.stock += cant;
+	}
+	
+	public void restarStock(long cant)
+	{
+		if(this.stock >= cant)
+		{
+			this.stock = this.stock - cant;
+		}else
+		{
+			System.out.println("\nNo hay suficiente Stock\n");
+		}
+	}
 	
 	
 

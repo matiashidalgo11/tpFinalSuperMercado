@@ -22,16 +22,6 @@ public class DetalleCompra {
 		
 	}
 	
-	public String informacion()
-	{
-		StringBuilder builder = new StringBuilder();
-		builder.append("\nDetalle Compra: \n");
-		builder.append(productos.listar());
-		builder.append("\nMonto Total: " + montoTotal + "\n");
-		builder.append("\nFecha y Hora: " + fechaYhora + "\n");
-		
-		return builder.toString();
-	}
 
 	public ArregloProductos getProductos() {
 		return productos;
@@ -61,6 +51,18 @@ public class DetalleCompra {
 		}
 		
 		return resp;
+	}
+	
+	@Override
+	public String toString() {
+		
+		StringBuilder builder = new StringBuilder();
+		builder.append("\nDetalle Compra: \n");
+		builder.append(productos.listar());
+		builder.append("\nMonto Total: " + montoTotal + "\n");
+		builder.append("\nFecha y Hora: " + fechaYhora + "\n");
+		
+		return builder.toString();
 	}
 	
 }

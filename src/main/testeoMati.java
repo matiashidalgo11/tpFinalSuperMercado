@@ -7,7 +7,9 @@ import java.time.LocalTime;
 import Colecciones.ArregloProductos;
 import Colecciones.mapUsuario;
 import Colecciones.mapaGenerico;
+import Objetos.Carro;
 import Objetos.DetalleCompra;
+import Objetos.Session;
 import Objetos.Usuario;
 import productos.Producto;
 
@@ -15,47 +17,22 @@ public class testeoMati {
 
 	public static void main(String[] args) {
 
-		/*
-		LocalTime horaActual = LocalTime.now();
-		System.out.println(horaActual);
-		LocalDate fechaActual = LocalDate.now();
-		System.out.println(fechaActual);
-		String conversor =  fechaActual.toString();
-		System.out.println(conversor);
-		LocalDateTime fecharHoraActual = LocalDateTime.now();
-		System.out.println(fecharHoraActual);
-		*/
-		/*
-		ArregloProductos arreglo = new ArregloProductos();
+		Usuario mati = new Usuario("Matias", "1234");
 
-		Producto a = new Producto("Papas", 12, "Lays", 12, 1);
-		Producto b = new Producto("Paerw", 11, "sada", 5, 2);
-		arreglo.agregar(a);
-		arreglo.agregar(b);
 		
-		DetalleCompra detalleA = new DetalleCompra(arreglo);
-		DetalleCompra detalleAigual = detalleA;
-		DetalleCompra detalleB = new DetalleCompra(arreglo);
+		Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
+		Producto b = new Producto("COCA", 11, "COCA COLA", 5, 2);
 		
-		System.out.println(detalleA.equals(detalleB));
-		*/
+		Carro carrito = new Carro();
+		carrito.agregar(a);
+		carrito.agregar(b);
 		
-		ArregloProductos arreglo = new ArregloProductos();
-		
-		Producto a = new Producto("Papas", 12, "Lays", 12, 1);
-		Producto b = new Producto("Paerw", 11, "sada", 5, 2);
-		
-		arreglo.agregar(a);
-		arreglo.agregar(b);
-		
-		System.out.println(arreglo.listar());
-		
-		System.out.println(arreglo.eliminar(1));
-		System.out.println(arreglo.eliminar(a));
-		//System.out.println(arreglo.eliminar(a));
-		
-		//System.out.println(arreglo.listar());
-		
+		Session sessionMati = new Session(mati, carrito);
+		System.out.println(sessionMati);
+		sessionMati.modificarNombre("Matias", "Pepe");
+		sessionMati.cargarCartera(100);
+		sessionMati.comprar();
+		System.out.println(mati.getHistorialCompra().listar());
 		
 	}
 

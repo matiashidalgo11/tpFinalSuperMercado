@@ -90,4 +90,11 @@ public class Session {
 		return resp;
 	}
 	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return  "Usuario en sesion: " + user.getNombre() + "\n" + 
+				"Unidades en carro: " + carrito.cantidadProductos() + "\n";
+	}
+	
 }

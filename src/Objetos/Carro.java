@@ -20,19 +20,39 @@ public class Carro {
 		this.total = 0;
 	}
 	
+	/** falta poner condiciones para que si ya esta el mismo producto suma el stock*/
 	public boolean agregar(Producto p)
 	{
-		return arreglo.agregar(p);
+		boolean rta = false;
+		if(arreglo.agregar(p))
+		{
+			this.total += p.getPrecio();
+			rta = true;
+		}
+		
+		return rta;
 	}
 	
 	public boolean quitar(long id)
 	{
-		return arreglo.eliminar(id);
+		boolean rta = false;
+		if(arreglo.eliminar(id))
+		{
+			this.total = arreglo.sumaTotal();
+		}
+		return rta;
 	}
 	
+	
+
 	public double sumaTotalCarro()
 	{
 		return arreglo.sumaTotal();
+	}
+	
+	public int cantidadProductos()
+	{
+		return arreglo.cantidad();
 	}
 	
 	public DetalleCompra generarDetllaCompra() throws NullPointerException
@@ -57,5 +77,29 @@ public class Carro {
 		this.arreglo.vaciar();
 	}
 	
+	public String listar()
+	{
+		StringBuilder builder = new StringBuilder();
+		builder.append("Informacion Carrito");
+		if(arreglo.cantidad() > 0)
+		{
+			builder.append(arreglo.listar());
+			builder.append(total);
+		}else
+		{
+			builder.append("\nVACIO\n");
+		}
+		
+		
+		return builder.toString();
+	}
+	
+	public ArregloProductos getArreglo() {
+		return arreglo;
+	}
+
+	public void setArreglo(ArregloProductos arreglo) {
+		this.arreglo = arreglo;
+	}
 	
 }
