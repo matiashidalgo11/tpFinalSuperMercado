@@ -32,6 +32,7 @@ public class Cuenta extends JFrame {
 	private JLabel labelSaldo;
 	private JLabel agregarDinero;
 	private JTextField fieldIngresar;
+	private JLabel lblNewLabel;
 	
 	public static void main(String[] args) 
 	{
@@ -157,6 +158,19 @@ public class Cuenta extends JFrame {
 		agregarDinero.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		agregarDinero.setBounds(1142, 526, 38, 36);
 		contentPane.add(agregarDinero);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		lblNewLabel.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				new Inicio().setVisible(true);
+				setVisible(false);
+			}
+		});
+		lblNewLabel.setBounds(50, 289, 184, 47);
+		contentPane.add(lblNewLabel);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setForeground(new Color(0, 0, 0));
