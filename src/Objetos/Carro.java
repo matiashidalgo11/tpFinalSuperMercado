@@ -40,6 +40,7 @@ public class Carro {
 		if(arreglo.eliminar(id))
 		{
 			this.total = arreglo.sumaTotal();
+			rta = true;
 		}
 		return rta;
 	}
