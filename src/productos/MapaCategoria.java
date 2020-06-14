@@ -6,8 +6,6 @@ import java.util.Map.Entry;
 import Colecciones.mapaGenerico;
 
 public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
-
-//	mapaGenerico<Long, MapaProductos> mapa;
 	
 	public MapaCategoria() 
 	{
@@ -18,7 +16,13 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	{
 		if(existencia(idCategoria))
 		{
-			MapaProductos nuevo = buscar(idCategoria);
+			MapaProductos nuevo = new MapaProductos();
+			try {
+				nuevo = buscar(idCategoria);
+			} catch (NullPointerException ex) {
+				ex.printStackTrace();
+			}
+			
 			Iterator<Entry<Long, Producto>> it = mapaNuevo.getIterator();
 			while(it.hasNext())
 			{
@@ -38,21 +42,44 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	
 	public void eliminarProducto(Long idCategoria, Long idProducto)
 	{
-		MapaProductos nuevo = buscar(idCategoria);
+		MapaProductos nuevo = new MapaProductos();
+		
+		try{
+			nuevo = buscar(idCategoria);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		nuevo.eliminar(idProducto);
 		
 	}
 	
 	public boolean existeProducto(Long idCategoria, Long idProducto)
 	{
-		MapaProductos nuevo = buscar(idCategoria);
+		MapaProductos nuevo = new MapaProductos(); 
+		
+		try{
+			nuevo = buscar(idCategoria);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		return nuevo.existencia(idProducto);
 	}
 	
 	public Producto buscarProducto(Long idCategoria, Long idProducto)
 	{
-		MapaProductos nuevo = buscar(idCategoria);
-		return nuevo.buscar(idProducto);
+		MapaProductos nuevo = new MapaProductos(); 
+		Producto producto = new Producto();
+		
+		try{
+			nuevo = buscar(idCategoria);
+			producto = nuevo.buscar(idProducto);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
+		return producto;
 	}
 	
 	public String listarCategorias()
@@ -70,7 +97,14 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	
 	public String listarCategoriaProducto(Long idCategoria)
 	{
-		MapaProductos nuevo = buscar(idCategoria);
+		MapaProductos nuevo = new MapaProductos(); 
+		
+		try{
+			nuevo = buscar(idCategoria);
+		} catch (NullPointerException e) {
+			e.printStackTrace();
+		}
+		
 		return nuevo.listar();
 	}
 }
