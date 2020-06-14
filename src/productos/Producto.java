@@ -130,12 +130,24 @@ public  class Producto {
 		return true;
 	}
 	
-	public void sumarStock(long cant)
+	/**
+	 * 
+	 * @param cant es la cantidad de Stock que se va a sumar al total
+	 * @return la cantidad de Stock luego de la operacion
+	 */
+	public long sumarStock(long cant)
 	{
 		this.stock += cant;
+		
+		return this.getStock();
 	}
 	
-	public void restarStock(long cant)
+	/**
+	 * 
+	 * @param cant es la cantidad de stock que se va a restar al total
+	 * @return la cantidad de Stock luego de la operacion
+	 */
+	public long restarStock(long cant)
 	{
 		if(this.stock >= cant)
 		{
@@ -144,6 +156,8 @@ public  class Producto {
 		{
 			System.out.println("\nNo hay suficiente Stock\n");
 		}
+		
+		return this.getStock();
 	}
 	
 	
