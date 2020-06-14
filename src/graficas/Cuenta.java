@@ -19,6 +19,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
 import javax.swing.SwingConstants;
+import javax.swing.JButton;
+import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.border.BevelBorder;
 
 public class Cuenta extends JFrame {
 
@@ -61,6 +65,75 @@ public class Cuenta extends JFrame {
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JButton botonInicio = new JButton("");
+		botonInicio.setVisible(true);
+		botonInicio.setOpaque(false);
+		botonInicio.setBorder(null);
+		botonInicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonInicio.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonInicio.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				new Inicio().setVisible(true);
+				setVisible(false);
+			}
+		});
+		botonInicio.setContentAreaFilled(false);
+		botonInicio.setBounds(50, 289, 196, 51);
+		contentPane.add(botonInicio);
+		
+		JButton botonCarro = new JButton("");
+		botonCarro.setVisible(true);
+		botonCarro.setOpaque(false);
+		botonCarro.setBorder(null);
+		botonCarro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCarro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCarro.setBorder(null);
+			}
+		});
+		
+		botonCarro.setContentAreaFilled(false);
+		botonCarro.setBounds(50, 467, 196, 51);
+		contentPane.add(botonCarro);
+		
+		JButton botonHistorial = new JButton("");
+		botonHistorial.setVisible(true);
+		botonHistorial.setOpaque(false);
+		botonHistorial.setBorder(null);
+		botonHistorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonHistorial.setBorder(null);
+			}
+		});
+		
+		botonHistorial.setContentAreaFilled(false);
+		botonHistorial.setBounds(50, 347, 196, 51);
+		contentPane.add(botonHistorial);
+		
 		
 		fieldUsuario = new JTextField();
 		fieldUsuario.setCaretColor(new Color(0, 0, 0));
@@ -158,25 +231,13 @@ public class Cuenta extends JFrame {
 		agregarDinero.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		agregarDinero.setBounds(1142, 526, 38, 36);
 		contentPane.add(agregarDinero);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		lblNewLabel.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				new Inicio().setVisible(true);
-				setVisible(false);
-			}
-		});
-		lblNewLabel.setBounds(50, 289, 184, 47);
-		contentPane.add(lblNewLabel);
+
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setForeground(new Color(0, 0, 0));
 		Fondo.setFont(new Font("Tahoma", Font.PLAIN, 26));
 		Fondo.setIcon(new ImageIcon(Cuenta.class.getResource("/img/Cuenta.png")));
-		Fondo.setBounds(0, 0, 1284, 711);
+		Fondo.setBounds(0, 0, 1294, 721);
 		contentPane.add(Fondo);
 	}
 }

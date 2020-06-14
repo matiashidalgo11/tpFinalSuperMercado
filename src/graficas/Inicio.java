@@ -6,9 +6,13 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
@@ -49,9 +53,42 @@ public class Inicio extends JFrame {
 		contentPane.setLayout(null);
 		contentPane.setBackground(new Color(0,0,0,0));
 		
-		JLabel cuenta = new JLabel("");
-		cuenta.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		cuenta.addMouseListener(new MouseAdapter() {
+		JButton botonCarro = new JButton("");
+		botonCarro.setVisible(true);
+		botonCarro.setOpaque(false);
+		botonCarro.setBorder(null);
+		botonCarro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCarro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCarro.setBorder(null);
+			}
+		});
+		
+		botonCarro.setContentAreaFilled(false);
+		botonCarro.setBounds(50, 467, 196, 51);
+		contentPane.add(botonCarro);
+
+		JButton botonCuenta = new JButton("");
+		botonCuenta.setVisible(true);
+		botonCuenta.setOpaque(false);
+		botonCuenta.setBorder(null);
+		botonCuenta.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCuenta.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCuenta.setBorder(null);
+			}
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
@@ -59,12 +96,34 @@ public class Inicio extends JFrame {
 				setVisible(false);
 			}
 		});
-		cuenta.setBounds(46, 410, 192, 48);
-		contentPane.add(cuenta);
+		botonCuenta.setContentAreaFilled(false);
+		botonCuenta.setBounds(50, 407, 196, 51);
+		contentPane.add(botonCuenta);
+		
+		JButton botonHistorial = new JButton("");
+		botonHistorial.setVisible(true);
+		botonHistorial.setOpaque(false);
+		botonHistorial.setBorder(null);
+		botonHistorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonHistorial.setBorder(null);
+			}
+		});
+		
+		botonHistorial.setContentAreaFilled(false);
+		botonHistorial.setBounds(50, 347, 196, 51);
+		contentPane.add(botonHistorial);
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Inicio.png")));
-		Fondo.setBounds(0, 11, 1284, 700);
+		Fondo.setBounds(0, 0, 1294, 721);
 		contentPane.add(Fondo);
 	}
 }
