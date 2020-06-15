@@ -9,49 +9,77 @@ import javax.swing.JPanel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import Objetos.Supermercado;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.Cursor;
 
 public class Inicio extends JFrame {
 
 	private JPanel contentPane;
+	int x;
+	int y;
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio frame = new Inicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Inicio frame = new Inicio();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Inicio() {
+	public Inicio(Supermercado mercado) {
+		
 		setUndecorated(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 750);
 		setBackground(new Color(0,0,0,0));
+		setLocationRelativeTo(null);
+
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setBackground(new Color(0,0,0,0));
+		
+		
+		JLabel labelMover = new JLabel("");
+		labelMover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
+		labelMover.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
+			}
+		});
+		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		labelMover.setBounds(32, 11, 1233, 35);
+		contentPane.add(labelMover);
 		
 		JButton botonCarro = new JButton("");
 		botonCarro.setVisible(true);
@@ -92,7 +120,7 @@ public class Inicio extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				new Cuenta().setVisible(true);
+				new Cuenta(mercado).setVisible(true);
 				setVisible(false);
 			}
 		});

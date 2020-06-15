@@ -8,6 +8,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Objetos.Supermercado;
 import Objetos.Usuario;
 
 import javax.swing.JLabel;
@@ -17,6 +18,7 @@ import java.awt.Font;
 import javax.swing.JPasswordField;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
 import java.awt.Cursor;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
@@ -27,7 +29,6 @@ import javax.swing.border.BevelBorder;
 public class Cuenta extends JFrame {
 
 	private JPanel contentPane;
-	private Usuario prueba = new Usuario("Alan", "123", 0, 1, null);
 	private JPasswordField fieldContraseña;
 	private JLabel editarNombreUsuario;
 	private JTextField fieldUsuario;
@@ -37,34 +38,58 @@ public class Cuenta extends JFrame {
 	private JLabel agregarDinero;
 	private JTextField fieldIngresar;
 	private JLabel lblNewLabel;
+	int x, y;
 	
-	public static void main(String[] args) 
-	{
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Cuenta frame = new Cuenta();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) 
+//	{
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Cuenta frame = new Cuenta();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	
-	public Cuenta() 
+	public Cuenta(Supermercado mercado) 
 	{
+		
+		Usuario user = mercado.getUsuarioEnSesion();
+		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 750);
 		setBackground(new Color(0,0,0,0));
+		setLocationRelativeTo(null);
+
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		JLabel labelMover = new JLabel("");
+		labelMover.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mousePressed(MouseEvent e) {
+				x = e.getX();
+				y = e.getY();
+			}
+		});
+		labelMover.addMouseMotionListener(new MouseMotionAdapter() {
+			@Override
+			public void mouseDragged(MouseEvent e) {
+				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
+			}
+		});
+		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		labelMover.setBounds(32, 11, 1233, 35);
+		contentPane.add(labelMover);
 		
 		JButton botonInicio = new JButton("");
 		botonInicio.setVisible(true);
@@ -84,7 +109,7 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				new Inicio().setVisible(true);
+				new Inicio(mercado).setVisible(true);
 				setVisible(false);
 			}
 		});
@@ -143,7 +168,7 @@ public class Cuenta extends JFrame {
 		fieldUsuario.setEditable(false);
 		fieldUsuario.setForeground(new Color(102, 102, 102));
 		fieldUsuario.setFont(new Font("Calibri", Font.PLAIN, 23));
-		fieldUsuario.setText("Alan");
+		fieldUsuario.setText(user.getNombre());
 		fieldUsuario.setBounds(321, 121, 400, 29);
 		contentPane.add(fieldUsuario);
 		fieldUsuario.setColumns(10);
@@ -193,20 +218,20 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				prueba.setNombre(fieldUsuario.getText());
-				prueba.setPassword(fieldContraseña.getText());
+				user.setNombre(fieldUsuario.getText());
+				user.setPassword(fieldContraseña.getText());
 			}
 		});
 		botonGuardar.setBounds(836, 634, 224, 34);
 		contentPane.add(botonGuardar);
 		
-		prueba.setCartera(500);
+		user.setCartera(500);
 		labelSaldo = new JLabel("");
 		labelSaldo.setForeground(new Color(102, 102, 102));
 		labelSaldo.setFont(new Font("Calibri", Font.PLAIN, 23));
 		labelSaldo.setHorizontalAlignment(SwingConstants.CENTER);
 		labelSaldo.setBounds(876, 419, 184, 41);
-		String saldo = String.valueOf(prueba.getCartera());
+		String saldo = String.valueOf(user.getCartera());
 		labelSaldo.setText(saldo);
 		contentPane.add(labelSaldo);
 		
@@ -223,8 +248,8 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				prueba.setCartera(prueba.getCartera() + Double.valueOf(fieldIngresar.getText()));
-				labelSaldo.setText(String.valueOf(prueba.getCartera()));
+				user.setCartera(user.getCartera() + Double.valueOf(fieldIngresar.getText()));
+				labelSaldo.setText(String.valueOf(user.getCartera()));
 				fieldIngresar.setText("");
 			}
 		});

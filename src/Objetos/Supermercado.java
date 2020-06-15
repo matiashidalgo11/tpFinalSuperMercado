@@ -226,4 +226,8 @@ public class Supermercado {
 		return listaCategorias.listarCategoriaProducto(idCategoria);
 	}
 	
+	public Usuario getUsuarioEnSesion()
+	{
+		return sesionActiva.getUser();
+	}
 }

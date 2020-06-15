@@ -10,51 +10,93 @@ import Colecciones.mapaGenerico;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
+import Objetos.Supermercado;
 import Objetos.Usuario;
+import graficas.Inicio;
+import productos.Bebidas;
 import productos.MapaCategoria;
 import productos.MapaProductos;
 import productos.Producto;
+import productos.Snack;
 
 public class testeoAlan {
 
 	public static void main(String[] args) {
 		
-		Usuario mati = new Usuario("Matias", "1234");
-		Usuario alan = new Usuario("Alan", "1234");
+//		Usuario mati = new Usuario("Matias", "1234");
+//		Usuario alan = new Usuario("Alan", "1234");
+//		
+//		System.out.println(mati);
+//		System.out.println(alan);
+//		
+//		Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
+//		Producto b = new Producto("COCA", 11, "COCA COLA", 5, 2);
+//		
+//		Carro carrito = new Carro();
+//		carrito.agregar(a);
+//		carrito.agregar(b);
+//		
+//		long clave = 1;
+//		long clave2 = 2;
+//		
+//		Session sessionMati = new Session(mati, carrito);
+//		System.out.println(sessionMati);
+//		sessionMati.modificarNombre("Matias", "Pepe");
+//		sessionMati.cargarCartera(100);
+//		sessionMati.comprar();
+//		System.out.println(mati.getHistorialCompra().listar());
+//		
+//		MapaProductos productos1 = new MapaProductos();
+//		productos1.agregar(clave, a);
+//		
+//		MapaProductos productos2 = new MapaProductos();
+//		productos2.agregar(clave2, b);
+//		
+//		MapaCategoria categorias = new MapaCategoria();
+//		categorias.agregarCategoria(clave, productos1);
+//		categorias.agregarCategoria(clave, productos2);
+//		categorias.agregarCategoria(clave2, productos1);
+//		categorias.agregarCategoria(clave2, productos2);
+//		
+//		System.out.println(categorias.listarCategorias());
 		
-		System.out.println(mati);
-		System.out.println(alan);
 		
-		Producto a = new Producto("PAPAS", 12, "lAYS", 2, 1);
-		Producto b = new Producto("COCA", 11, "COCA COLA", 5, 2);
+		Usuario alan = new Usuario("Alan", "123", 500, 1, null);
 		
-		Carro carrito = new Carro();
-		carrito.agregar(a);
-		carrito.agregar(b);
+		Bebidas coca = new Bebidas("Cola", 60, "Coca", 1, 1, true, 2, "Dulce", false);
+		Bebidas jugo = new Bebidas("Jugo", 30, "Cualquiera", 1, 1, false, 2, "Dulce", false);
+		Bebidas cerveza = new Bebidas("Cerveza", 100, "Quilmes", 1, 1, false, 2, "Amargo", true);
+		Bebidas agua = new Bebidas("Agua", 50, "Mineral", 1, 1, false, 2, "Agua", false);
 		
-		long clave = 1;
-		long clave2 = 2;
+		Snack papas = new Snack("Papas Frita", 70, "Lays", 1, 2, 100);
+		Snack palitos = new Snack("Palitos", 40, "Palitos", 1, 2, 100);	
 		
-		Session sessionMati = new Session(mati, carrito);
-		System.out.println(sessionMati);
-		sessionMati.modificarNombre("Matias", "Pepe");
-		sessionMati.cargarCartera(100);
-		sessionMati.comprar();
-		System.out.println(mati.getHistorialCompra().listar());
+		MapaProductos snacks = new MapaProductos();
+		snacks.agregar(papas.getIdProducto(), papas);
+		snacks.agregar(palitos.getIdProducto(), palitos);
 		
-		MapaProductos productos1 = new MapaProductos();
-		productos1.agregar(clave, a);
-		
-		MapaProductos productos2 = new MapaProductos();
-		productos2.agregar(clave2, b);
+		MapaProductos bebidas = new MapaProductos();
+		bebidas.agregar(coca.getIdProducto(), coca);
+		bebidas.agregar(jugo.getIdProducto(), jugo);
+		bebidas.agregar(cerveza.getIdProducto(), cerveza);
+		bebidas.agregar(agua.getIdProducto(), agua);
 		
 		MapaCategoria categorias = new MapaCategoria();
-		categorias.agregarCategoria(clave, productos1);
-		categorias.agregarCategoria(clave, productos2);
-		categorias.agregarCategoria(clave2, productos1);
-		categorias.agregarCategoria(clave2, productos2);
+		categorias.agregar((long) 1, bebidas);
+		categorias.agregar((long) 2, snacks);
 		
-		System.out.println(categorias.listarCategorias());
+		Carro carrito = new Carro();
+		
+		Supermercado mercado = new Supermercado(alan, carrito);
+		mercado.agregarProducto((long) 1, bebidas);
+		mercado.agregarProducto((long) 2, snacks);
+		mercado.agregarUsuario(alan);
+		mercado.iniciarSession(1);
+//		
+//		new Inicio(mercado).setVisible(true);;
+		
+		System.out.println(mercado.listarUsuarios());
+		
 		
 //		mapUsuario mapaUsuario = new mapUsuario();
 //		
