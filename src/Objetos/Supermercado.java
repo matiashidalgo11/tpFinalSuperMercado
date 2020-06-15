@@ -1,5 +1,6 @@
 package Objetos;
 
+import Colecciones.arregloGenerico;
 import Colecciones.mapUsuario;
 import Colecciones.mapaGenerico;
 import productos.MapaCategoria;
@@ -22,24 +23,28 @@ public class Supermercado {
 		
 	}
 	
-	public void iniciarSession(long id)
+	public boolean iniciarSession(long id)
 	{
-		
-		Usuario user = listaUsuarios.buscar(id);
+		Usuario user;
 		Carro carrito;
 		
-		if(listaCarritos.existencia(id))
-		{
-			carrito = listaCarritos.buscar(id);
-			//implementar funcion para que actualice los datos del carrito con los del stock del producto
-			sesionActiva = new Session(user, carrito);
+		if (listaUsuarios.existencia(id)) {
 			
-		}else
-		{
-			sesionActiva = new Session(user);
+			user = listaUsuarios.buscar(id);
+			
+			if (listaCarritos.existencia(id)) {
+				carrito = listaCarritos.buscar(id);
+				actualizarCarro(carrito);
+				sesionActiva = new Session(user, carrito);
+
+			} else {
+				sesionActiva = new Session(user);
+			}
+			
 		}
 		
 		
+		return inSession();
 	}
 	
 	public boolean inSession()
@@ -53,7 +58,7 @@ public class Supermercado {
 		return resp;
 	}
 	
-	//Problema para ver como saber si hay suficiente stock para comprar.
+
 	public boolean comprarProductos()
 	{
 		boolean resp = false;
@@ -66,6 +71,85 @@ public class Supermercado {
 		
 		return resp;
 	}
+	
+	/**
+	 * Recibe el carro actual del usuario que esta en session y luego lo actualiza acorde a la cantidad de Stock y de productos se encuentran en la ListaCategorias
+	 * @param carrito 
+	 * podria retornar la cantidad de productos que se quitaron
+	 */
+	private void actualizarCarro(Carro carrito)
+	{
+		
+		Producto productoListado;
+		arregloGenerico<Long> idDeEliminados = new arregloGenerico<Long>();
+		
+		//Recorre todos los productos del carrito
+		for (Producto productoCarrito : carrito.getArreglo().getArreglo()) {
+			
+		//Verifica si existe el Producto que se encuentra en el carrito dentro de la Lista Principal de Productos, si no es el caso lo elimina. En cambio si es el caso verifica que el stock este sincronizado con la cantidad De Stock disponible
+			if (listaCategorias.existeProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto())) {
+				
+				productoListado = listaCategorias.buscarProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto());
+				int stockNube = igualacion((int) productoListado.getStock(), (int) productoCarrito.getStock());
+				if (stockNube < 0 && productoListado.getStock() > 0) {
+					
+					productoCarrito.restarStock(stockNube * -1);
+
+				}
+
+			} else {
+				
+				System.out.println(productoCarrito.getIdProducto());
+				idDeEliminados.agregar(productoCarrito.getIdProducto());
+
+			}
+
+					
+		}
+		
+		for(Long id : idDeEliminados.getArreglo())
+		{
+			carrito.quitar(id);
+		}
+		
+		
+
+
+	}
+	
+	/**
+	 * Compara un numero con otro
+	 * @param modelo es el principal
+	 * @param imitador es el numero que va a querer copiar al modelo
+	 * @return  Si es 0 es que son iguales.
+	 *  	    Si el numero es mayor a 0 son los numeros que le faltan al Imitador para copiar a Modelo.
+	 *  	    Si es menor que 0 son los numeros que se le tienen que restar a Imitador para igualar a Modelo.
+	 * 	 */
+	private int igualacion(int modelo, int imitador)
+	{
+		int cantidad = 0;
+		
+		if(modelo > imitador)
+		{
+			while(imitador + cantidad != modelo)
+			{
+				cantidad++;
+			}
+		}else if(modelo < imitador)
+		{
+			
+			while(imitador - cantidad != modelo)
+			{
+				cantidad++;
+			}
+			
+			cantidad = cantidad * -1;
+		}
+		
+		
+		return cantidad;
+	}
+
 	
 	public void agregarUsuario(Usuario user)
 	{

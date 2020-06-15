@@ -38,7 +38,7 @@ public  class Producto {
 		this.precio = aux.precio;
 		this.marca = aux.marca;
 		this.stock = aux.stock;
-		this.idCategoria = this.idCategoria;
+		this.idCategoria = aux.idCategoria;
 		
 	}
 	

@@ -37,8 +37,10 @@ public class Carro {
 	public boolean quitar(long id)
 	{
 		boolean rta = false;
-		if(arreglo.eliminar(id))
+		if(arreglo.existencia(id))
 		{
+			Producto aux = arreglo.buscar(id);
+			arreglo.eliminar(aux);
 			this.total = arreglo.sumaTotal();
 			rta = true;
 		}

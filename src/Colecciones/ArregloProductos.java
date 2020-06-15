@@ -37,7 +37,8 @@ public class ArregloProductos extends arregloGenerico<Producto> {
 		if(this.existencia(id))
 		{
 			Producto  aux = this.buscar(id);
-			super.getArreglo().remove(aux);
+			super.eliminar(aux);
+			//super.getArreglo().remove(aux);
 			resp = true;
 		}
 		

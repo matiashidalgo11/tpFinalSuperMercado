@@ -61,7 +61,7 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 		try{
 			nuevo = buscar(idCategoria);
 		} catch (NullPointerException e) {
-			e.printStackTrace();
+			//e.printStackTrace();
 			System.out.println("ERROR EN EXISTENCIA");
 		}
 		
