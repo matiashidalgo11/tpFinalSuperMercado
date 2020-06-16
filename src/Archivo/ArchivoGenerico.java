@@ -25,7 +25,7 @@ import Interfaces.idInterface;
  * La interface idInterface hace que cualquier objeto que la implemente tenga el metodo getIdPrincipal, para luego utilizarlo como clave, faltan mas testeos
  */
 
-public class ArchivoGenerico <K ,T extends idInterface > {
+public class ArchivoGenerico <K ,T extends idInterface<K> > {
 	
 	File archivo;
 	
@@ -58,7 +58,6 @@ public class ArchivoGenerico <K ,T extends idInterface > {
 			FileOutputStream out = new FileOutputStream(archivo);
 			ObjectOutputStream obOut = new ObjectOutputStream(out);
 			
-			System.out.println("SFSFSFS");
 			Set<Entry<K,T>> set = mapa.getMapa().entrySet();
 			Iterator<Entry<K,T>> it = set.iterator();
 			
@@ -94,6 +93,9 @@ public class ArchivoGenerico <K ,T extends idInterface > {
 		
 			System.out.println("\nSE GUARDO EL OBJETO\n");
 			
+			out.close();
+			obOut.close();
+			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -115,7 +117,7 @@ public class ArchivoGenerico <K ,T extends idInterface > {
 			while(true)
 			{
 				T dato = (T) obIn.readObject();
-				K clave = (K) dato.getIdPrincipal();
+				K clave = dato.getIdPrincipal();
 				resp.agregar(clave, dato);
 			}
 			
@@ -134,7 +136,7 @@ public class ArchivoGenerico <K ,T extends idInterface > {
 			e.printStackTrace();
 		}
 		
-		
+
 		return resp;
 	}
 

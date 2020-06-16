@@ -1,5 +1,6 @@
 package Objetos;
 
+import Archivo.ArchivoGenerico;
 import Colecciones.arregloGenerico;
 import Colecciones.mapUsuario;
 import Colecciones.mapaGenerico;
@@ -13,13 +14,21 @@ public class Supermercado {
 	private MapaCategoria listaCategorias;
 	private mapaGenerico<Long, Carro> listaCarritos;
 	
+	private ArchivoGenerico<Long, Usuario> archivoUsuario;
+	
 	Session sesionActiva;
 	
-	public Supermercado(Usuario user, Carro carrito)
+	public Supermercado()
 	{
 		listaUsuarios = new mapUsuario();
 		listaCategorias = new MapaCategoria();
+		listaCarritos = new mapaGenerico<Long, Carro>();
 		
+		sesionActiva = null;
+		
+		archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
+		listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
+		System.out.println(listaUsuarios.listar());
 		
 	}
 	
@@ -31,7 +40,7 @@ public class Supermercado {
 		if (listaUsuarios.existencia(id)) {
 			
 			user = listaUsuarios.buscar(id);
-			
+
 			if (listaCarritos.existencia(id)) {
 				carrito = listaCarritos.buscar(id);
 				actualizarCarro(carrito);
@@ -62,6 +71,7 @@ public class Supermercado {
 	public boolean comprarProductos()
 	{
 		boolean resp = false;
+		
 		if(this.inSession() && !sesionActiva.getCarrito().isEmpty())
 		{
 			resp = sesionActiva.comprar();

@@ -12,6 +12,7 @@ import Colecciones.mapaGenerico;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
+import Objetos.Supermercado;
 import Objetos.Usuario;
 import productos.Bebidas;
 import productos.MapaCategoria;
@@ -62,7 +63,7 @@ public class testeoMati {
 		*/
 		
 		ArchivoGenerico<Long,Usuario> archivoUsuario = new ArchivoGenerico<Long,Usuario>("Usuario.dat");
-		
+		/*
 		Usuario a = new Usuario("Mati", "Mati");
 		Usuario b = new Usuario("Renzo", "Renzo");
 		Usuario c = new Usuario("Pato", "Pato");
@@ -74,9 +75,16 @@ public class testeoMati {
 		
 		//System.out.println(mapaUsuario.listar());
 		
-		archivoUsuario.guardadUnidad(a);
+		archivoUsuario.guardar(mapaUsuario);
+		*/
 		mapaGenerico<Long, Usuario> mapaAux = archivoUsuario.cargar();
 		System.out.println(mapaAux.listar());
+		
+		
+		
+		//Supermercado toledo = new Supermercado();
+		//System.out.println(toledo.iniciarSession(1));
+		//System.out.println(toledo.getUsuarioEnSesion().getCartera());
 		
 	}
 	

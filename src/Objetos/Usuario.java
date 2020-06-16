@@ -77,24 +77,31 @@ public class Usuario implements idInterface<Long>, Serializable{
 	public long getId() {
 		return id;
 	}
+	
 	public void setId(long id) {
 		this.id = id;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public String getPassword() {
+	
+	private String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
+	
+	private void setPassword(String password) {
 		this.password = password;
 	}
+	
 	public double getCartera() {
 		return cartera;
 	}
+	
 	public void setCartera(double cartera) {
 		this.cartera = cartera;
 	}
@@ -139,6 +146,16 @@ public class Usuario implements idInterface<Long>, Serializable{
 		return id;
 	}
 
-	
+	public boolean cambiarPassword(String actual, String nuevo)
+	{
+		boolean resp = false;
+		if(actual.equals(getPassword()))
+		{
+			setPassword(nuevo);
+			resp = true;
+		}
+		
+		return resp;
+	}
 
 }

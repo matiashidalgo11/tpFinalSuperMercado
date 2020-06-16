@@ -74,14 +74,7 @@ public class Session {
 
 	public boolean modificarPassword(String actual, String nuevo)
 	{
-		boolean resp = false;
-		if(actual.equals(user.getPassword()))
-		{
-			user.setPassword(nuevo);
-			resp = true;
-		}
-		
-		return resp;
+		return user.cambiarPassword(actual, nuevo);
 	}
 	
 	public boolean modificarNombre(String actual, String nuevo)
