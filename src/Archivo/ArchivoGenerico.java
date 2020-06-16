@@ -13,8 +13,19 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Colecciones.mapaGenerico;
+import Interfaces.idInterface;
+/**
+ * 
+ * @author Matias
+ *
+ * @param <K> es la Clave para agregar al Mapa
+ * @param <T> es el Dato Principal que se utilizara en el Archivo
+ * 
+ * 
+ * La interface idInterface hace que cualquier objeto que la implemente tenga el metodo getIdPrincipal, para luego utilizarlo como clave, faltan mas testeos
+ */
 
-public class ArchivoGenerico <T extends Serializable , K> {
+public class ArchivoGenerico <K ,T extends idInterface > {
 	
 	File archivo;
 	
@@ -47,6 +58,7 @@ public class ArchivoGenerico <T extends Serializable , K> {
 			FileOutputStream out = new FileOutputStream(archivo);
 			ObjectOutputStream obOut = new ObjectOutputStream(out);
 			
+			System.out.println("SFSFSFS");
 			Set<Entry<K,T>> set = mapa.getMapa().entrySet();
 			Iterator<Entry<K,T>> it = set.iterator();
 			
@@ -57,6 +69,8 @@ public class ArchivoGenerico <T extends Serializable , K> {
 				obOut.writeObject(objeto);
 			}
 			
+			out.close();
+			obOut.close();
 			System.out.println("\nSE GUARDO EL MAPA\n");
 			
 		} catch (FileNotFoundException e) {
@@ -100,8 +114,9 @@ public class ArchivoGenerico <T extends Serializable , K> {
 			
 			while(true)
 			{
-				
-				//resp.agregar(clave, dato)
+				T dato = (T) obIn.readObject();
+				K clave = (K) dato.getIdPrincipal();
+				resp.agregar(clave, dato);
 			}
 			
 			
@@ -110,6 +125,11 @@ public class ArchivoGenerico <T extends Serializable , K> {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("\nARCHIVO FINALIZADO\n");
+			e.printStackTrace();
+			return resp;
+		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}

@@ -61,9 +61,22 @@ public class testeoMati {
 		System.out.println(carrito.listar());
 		*/
 		
-		//ArchivoGenerico<Usuario> archivoUsuario = new ArchivoGenerico<Usuario>("Usuario.dat");
+		ArchivoGenerico<Long,Usuario> archivoUsuario = new ArchivoGenerico<Long,Usuario>("Usuario.dat");
 		
+		Usuario a = new Usuario("Mati", "Mati");
+		Usuario b = new Usuario("Renzo", "Renzo");
+		Usuario c = new Usuario("Pato", "Pato");
 		
+		mapaGenerico<Long, Usuario> mapaUsuario = new mapaGenerico<Long, Usuario>();
+		mapaUsuario.agregar(a.getIdPrincipal(), a);
+		mapaUsuario.agregar(b.getIdPrincipal(), b);
+		mapaUsuario.agregar(c.getIdPrincipal(), c);
+		
+		//System.out.println(mapaUsuario.listar());
+		
+		archivoUsuario.guardadUnidad(a);
+		mapaGenerico<Long, Usuario> mapaAux = archivoUsuario.cargar();
+		System.out.println(mapaAux.listar());
 		
 	}
 	

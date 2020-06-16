@@ -1,8 +1,11 @@
 package Objetos;
 
+
+
 import java.io.Serializable;
 
 import Colecciones.arregloGenerico;
+import Interfaces.idInterface;
 
 /**
  *Falta Implementar un Historial Compra
@@ -13,7 +16,7 @@ import Colecciones.arregloGenerico;
  */
 
 	
-public class Usuario implements Serializable {
+public class Usuario implements idInterface<Long>, Serializable{
 	
 	private static long generadorId = 1;
 	
@@ -129,5 +132,13 @@ public class Usuario implements Serializable {
 			System.out.println("\nNo hay dinero suficiente\n");
 		}
 	}
+
+	@Override
+	public Long getIdPrincipal() {
+		// TODO Auto-generated method stub
+		return id;
+	}
+
+	
 
 }

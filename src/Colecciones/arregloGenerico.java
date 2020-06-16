@@ -1,10 +1,11 @@
 package Colecciones;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import Interfaces.IColeccion;
 
-public class arregloGenerico<T> implements IColeccion<T> {
+public class arregloGenerico<T> implements IColeccion<T>, Serializable {
 
 	ArrayList<T> arreglo;
 	
