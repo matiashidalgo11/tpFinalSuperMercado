@@ -199,7 +199,7 @@ public class Inicio extends JFrame {
 		panel.setBounds(254, 40, 1017, 641);
 		contentPane.add(panel);
 		panel.setLayout(null);
-
+		
 		crearMatrizBotones(panel, mercado);
 		
 		JLabel Fondo = new JLabel("");
@@ -208,7 +208,7 @@ public class Inicio extends JFrame {
 		contentPane.add(Fondo);
 	}
 	
-	static void crearMatrizBotones(JPanel panel, Supermercado mercado)
+	void crearMatrizBotones(JPanel panel, Supermercado mercado)
 	{
 		int x = 54;
 		int y = 52;
@@ -217,6 +217,8 @@ public class Inicio extends JFrame {
 		{
 			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1));
 			arreglo[i].setBounds(x, y, 192, 40);
+			arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
+			arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
 			panel.add(arreglo[i]);
 			x += 192 + 20;
 			
@@ -227,5 +229,25 @@ public class Inicio extends JFrame {
 			}
 		}	
 	}
+	
+	class Pulsando implements ActionListener{
+		
+		Supermercado mercado;
+		JButton button;
+		
+		public Pulsando(JButton button, Supermercado mercado) {
+			
+			this.button = button;
+			this.mercado = mercado;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+	        String actionCommand = ((JButton) e.getSource()).getActionCommand();
+	        MapaProductos productos = mercado.getCategoriaPorNombre(actionCommand);
+	        System.out.println(productos.listar());
+	    }
+		
+	}
+	
 	
 }
