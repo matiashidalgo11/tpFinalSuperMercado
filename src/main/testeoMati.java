@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import Archivo.ArchivoGenerico;
 import Colecciones.ArregloProductos;
 import Colecciones.arregloGenerico;
 import Colecciones.mapUsuario;
@@ -21,6 +22,8 @@ public class testeoMati {
 
 	public static void main(String[] args) {
 
+		
+		/*
 		Producto a = new Producto("PAPAS", 12, "lAYS", 2, (long)2);
 		Producto b = new Producto("COCA", 11, "COCA COLA", 0, (long)1);
 		Producto c = new Producto("PEPSI", 10, "PEPSICORP", 1, (long)1);
@@ -56,6 +59,9 @@ public class testeoMati {
 		
 		
 		System.out.println(carrito.listar());
+		*/
+		
+		//ArchivoGenerico<Usuario> archivoUsuario = new ArchivoGenerico<Usuario>("Usuario.dat");
 		
 		
 		

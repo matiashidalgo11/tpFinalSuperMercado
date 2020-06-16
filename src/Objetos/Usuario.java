@@ -1,5 +1,7 @@
 package Objetos;
 
+import java.io.Serializable;
+
 import Colecciones.arregloGenerico;
 
 /**
@@ -11,7 +13,7 @@ import Colecciones.arregloGenerico;
  */
 
 	
-public class Usuario {
+public class Usuario implements Serializable {
 	
 	private static long generadorId = 1;
 	
