@@ -201,8 +201,10 @@ public class Supermercado {
 		return listaUsuarios.listar();
 	}
 	
-	public void agregarProducto(Long idCategoria, MapaProductos nuevoMapa)
+	public void agregarProducto(Long idCategoria, Producto producto)
 	{
+		MapaProductos nuevoMapa = new MapaProductos();
+		nuevoMapa.agregar(producto.getIdProducto(), producto);
 		listaCategorias.agregarCategoria(idCategoria, nuevoMapa);
 	}
 	
@@ -231,9 +233,9 @@ public class Supermercado {
 		return listaCategorias.cantidad();
 	}
 	
-	public String listarCategoria()
+	public String listarCategorias()
 	{
-		return listaCategorias.listar();
+		return listaCategorias.listarCategorias();
 	}
 	
 	public String listarCategoriaEspecifica(Long idCategoria)

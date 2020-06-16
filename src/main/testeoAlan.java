@@ -74,30 +74,17 @@ public class testeoAlan {
 		
 		Lacteo leche = new Lacteo("Leche", 50, "LaSerenisima", 1, 3, "Leche");
 		
-		MapaProductos snacks = new MapaProductos();
-		snacks.agregar(papas.getIdProducto(), papas);
-		snacks.agregar(palitos.getIdProducto(), palitos);
+		Supermercado mercado = new Supermercado();
+		mercado.agregarProducto(coca.getIdCategoria(), coca);
+		mercado.agregarProducto(jugo.getIdCategoria(), jugo);
+		mercado.agregarProducto(cerveza.getIdCategoria(), cerveza);
+		mercado.agregarProducto(agua.getIdCategoria(), agua);
+		mercado.agregarProducto(papas.getIdCategoria(), papas);
+		mercado.agregarProducto(palitos.getIdCategoria(), palitos);
+		mercado.agregarProducto(leche.getIdCategoria(), leche);
 		
-		MapaProductos bebidas = new MapaProductos();
-		bebidas.agregar(coca.getIdProducto(), coca);
-		bebidas.agregar(jugo.getIdProducto(), jugo);
-		bebidas.agregar(cerveza.getIdProducto(), cerveza);
-		bebidas.agregar(agua.getIdProducto(), agua);
-		
-		MapaProductos lacteos = new MapaProductos();
-		lacteos.agregar(leche.getIdCategoria(), leche);
-		
-		MapaCategoria categorias = new MapaCategoria();
-		categorias.agregar((long) 1, bebidas);
-		categorias.agregar((long) 2, snacks);
-		categorias.agregar((long) 3, lacteos);
-		
-		Carro carrito = new Carro();
-		
-		Supermercado mercado = new Supermercado(alan, carrito);
-		mercado.agregarProducto((long) 1, bebidas);
-		mercado.agregarProducto((long) 2, snacks);
-		mercado.agregarProducto((long) 3, lacteos);
+//		System.out.println(mercado.listarCategoriaEspecifica((long) 1));
+		System.out.println(mercado.listarCategorias());
 //		mercado.agregarUsuario(alan);
 //		mercado.iniciarSession(1);
 //		
