@@ -16,6 +16,11 @@ public class Supermercado {
 	
 	private ArchivoGenerico<Long, Usuario> archivoUsuario;
 	
+	//Hay que implementarles las interfaces Serializable y idPrincipal para poder persistirlos en un archivo;
+	//private ArchivoGenerico<Long, Producto> archivoProducto;
+	//private ArchivoGenerico<Long, Carro> archivoCarro;
+	
+	
 	Session sesionActiva;
 	
 	public Supermercado()
@@ -28,7 +33,7 @@ public class Supermercado {
 		
 		archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
 		listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
-		System.out.println(listaUsuarios.listar());
+		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
 	
@@ -250,4 +255,25 @@ public class Supermercado {
 	{
 		return listaCategorias.getCategoriaPorNombre(nombre);
 	}
+
+	public Session getSesionActiva() {
+		return sesionActiva;
+	}
+	
+	/**
+	 * La funcion cargara todos los mapas desde el archivo;
+	 */
+	public void cargarDatos()
+	{
+		
+	}
+	
+	/**
+	 * La funcion guardara todos los mapas en su estado actual a sus archivos correspondientes;
+	 */
+	public void guardarDatos()
+	{
+		
+	}
+	
 }

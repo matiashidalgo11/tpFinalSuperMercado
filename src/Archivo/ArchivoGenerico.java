@@ -10,8 +10,12 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+
+
 import java.util.Set;
 
+import Colecciones.arregloGenerico;
 import Colecciones.mapaGenerico;
 import Interfaces.idInterface;
 /**
@@ -28,6 +32,7 @@ import Interfaces.idInterface;
 public class ArchivoGenerico <K ,T extends idInterface<K> > {
 	
 	File archivo;
+
 	
 	public ArchivoGenerico(String nombre) {
 		
@@ -48,8 +53,9 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 			
 		}
 		
+
+		
 	}
-	
 	
 	public void guardar(mapaGenerico<K, T> mapa)
 	{
@@ -82,43 +88,88 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		
 	}
 	
-	public void guardadUnidad(T dato)
+	public void agregarUnidad(T dato)
 	{
 
-		try {
-			FileOutputStream out = new FileOutputStream(archivo);
-			ObjectOutputStream obOut = new ObjectOutputStream(out);
-			
-			obOut.writeObject(dato);
+		ObjectOutputStream in;
 		
-			System.out.println("\nSE GUARDO EL OBJETO\n");
+		try
+		{
+			if(archivo.length() == 0)
+			{
+				in = new ObjectOutputStream(new FileOutputStream(archivo, true));
+			}else
+			{
+				in = new MiObjectOutputStream(new FileOutputStream(archivo, true));
+			}
+			 
+			in.writeObject(dato);
 			
-			out.close();
-			obOut.close();
+		}catch (IOException e) {
+			
+		}
+		
+	}
+	
+	public mapaGenerico<K, T> cargar()
+	{
+		mapaGenerico<K, T> resp = new mapaGenerico<K, T>();
+
+		
+		try {
+			
+			FileInputStream in = new FileInputStream(archivo);
+			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
+			T dato;
+			K clave;
+			while(true)
+			{
+				
+				
+				dato = (T) obIn.readObject();
+				clave = dato.getIdPrincipal();
+				
+				resp.agregar(clave, dato);
+			}
+			
+			
 			
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			System.out.println("\nARCHIVO FINALIZADO\n");
+			
+			return resp;
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+
+		return resp;
 	}
 	
-	public mapaGenerico<K, T> cargar()
+	public arregloGenerico<T> returnArregloGenerico()
 	{
-		mapaGenerico<K, T> resp = new mapaGenerico<K, T>();
+		arregloGenerico<T> resp = new arregloGenerico<T>();
+
 		
 		try {
 			
 			FileInputStream in = new FileInputStream(archivo);
-			ObjectInputStream obIn = new ObjectInputStream(in);
-			
+			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
+			T dato;
+	
 			while(true)
 			{
-				T dato = (T) obIn.readObject();
-				K clave = dato.getIdPrincipal();
-				resp.agregar(clave, dato);
+				
+				
+				dato = (T) obIn.readObject();
+
+				
+				resp.agregar(dato);
 			}
 			
 			

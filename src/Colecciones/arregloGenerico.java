@@ -53,7 +53,7 @@ public class arregloGenerico<T> implements IColeccion<T>, Serializable {
 	public String listar() {
 		
 		StringBuilder builder = new StringBuilder();
-		builder.append("******Lista Arreglo******");
+		builder.append("\n******Lista Arreglo******\n");
 		if(arreglo.size() == 0)
 		{
 			builder.append("\n*VACIO*\n");
