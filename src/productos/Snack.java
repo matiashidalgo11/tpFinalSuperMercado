@@ -51,4 +51,9 @@ public class Snack extends Producto {
 		return super.toString() + "Cantidad: " + this.cantidadG + "\n";
 	}
 	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Snack";
+	}
 }

@@ -95,4 +95,9 @@ public class Bebidas extends Producto{
 								  "Alcohol: " + this.alcohol + "\n";
 	}
 	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Bebidas";
+	}
 }

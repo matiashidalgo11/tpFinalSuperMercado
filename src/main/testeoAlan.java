@@ -14,6 +14,7 @@ import Objetos.Supermercado;
 import Objetos.Usuario;
 import graficas.Inicio;
 import productos.Bebidas;
+import productos.Lacteo;
 import productos.MapaCategoria;
 import productos.MapaProductos;
 import productos.Producto;
@@ -71,6 +72,8 @@ public class testeoAlan {
 		Snack papas = new Snack("Papas Frita", 70, "Lays", 1, 2, 100);
 		Snack palitos = new Snack("Palitos", 40, "Palitos", 1, 2, 100);	
 		
+		Lacteo leche = new Lacteo("Leche", 50, "LaSerenisima", 1, 3, "Leche");
+		
 		MapaProductos snacks = new MapaProductos();
 		snacks.agregar(papas.getIdProducto(), papas);
 		snacks.agregar(palitos.getIdProducto(), palitos);
@@ -81,22 +84,27 @@ public class testeoAlan {
 		bebidas.agregar(cerveza.getIdProducto(), cerveza);
 		bebidas.agregar(agua.getIdProducto(), agua);
 		
+		MapaProductos lacteos = new MapaProductos();
+		lacteos.agregar(leche.getIdCategoria(), leche);
+		
 		MapaCategoria categorias = new MapaCategoria();
 		categorias.agregar((long) 1, bebidas);
 		categorias.agregar((long) 2, snacks);
+		categorias.agregar((long) 3, lacteos);
 		
 		Carro carrito = new Carro();
 		
 		Supermercado mercado = new Supermercado(alan, carrito);
 		mercado.agregarProducto((long) 1, bebidas);
 		mercado.agregarProducto((long) 2, snacks);
-		mercado.agregarUsuario(alan);
-		mercado.iniciarSession(1);
+		mercado.agregarProducto((long) 3, lacteos);
+//		mercado.agregarUsuario(alan);
+//		mercado.iniciarSession(1);
 //		
 //		new Inicio(mercado).setVisible(true);;
 		
-		System.out.println(mercado.listarUsuarios());
-		
+//		System.out.println(mercado.listarUsuarios());
+//		System.out.println(mercado.getNombreCategoria((long) 1));
 		
 //		mapUsuario mapaUsuario = new mapUsuario();
 //		

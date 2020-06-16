@@ -188,7 +188,7 @@ public class Supermercado {
 	
 	public void agregarProducto(Long idCategoria, MapaProductos nuevoMapa)
 	{
-		listaCategorias.agregar(idCategoria, nuevoMapa);
+		listaCategorias.agregarCategoria(idCategoria, nuevoMapa);
 	}
 	
 	public void eliminarProducto(Long idCategoria, Long idProducto)
@@ -229,5 +229,15 @@ public class Supermercado {
 	public Usuario getUsuarioEnSesion()
 	{
 		return sesionActiva.getUser();
+	}
+	
+	public String getNombreCategoria(Long idCategoria)
+	{
+		return listaCategorias.getNombreCategoria(idCategoria);
+	}
+	
+	public MapaProductos getCategoriaPorNombre(String nombre)
+	{
+		return listaCategorias.getCategoriaPorNombre(nombre);
 	}
 }

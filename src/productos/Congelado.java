@@ -49,4 +49,9 @@ public class Congelado extends Producto{
 		return super.toString() + "Peso: " + this.peso + "\n";
 	}
 	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Congelado";
+	}
 }

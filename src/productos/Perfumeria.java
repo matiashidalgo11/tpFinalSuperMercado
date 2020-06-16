@@ -53,5 +53,9 @@ public class Perfumeria extends Producto {
 		return super.toString() + "Tipo de fragancia: " + this.tipoFragancia + "\n";
 	}
 	
-	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Perfumeria";
+	}
 }

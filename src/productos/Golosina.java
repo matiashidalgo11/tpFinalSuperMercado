@@ -50,4 +50,9 @@ public class Golosina extends Producto{
 		return super.toString() + "Cantidad: " + this.cantidad + "\n";
 	}
 	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Golosina";
+	}
 }

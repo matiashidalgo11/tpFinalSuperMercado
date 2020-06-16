@@ -160,6 +160,9 @@ public  class Producto {
 		return this.getStock();
 	}
 	
-	
+	public String getNombreCategoria()
+	{
+		return "Producto";
+	}
 
 }

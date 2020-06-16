@@ -109,7 +109,7 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				new Inicio(mercado).setVisible(true);
+				new Inicio().setVisible(true);
 				setVisible(false);
 			}
 		});

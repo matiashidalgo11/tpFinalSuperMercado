@@ -108,4 +108,34 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 		
 		return nuevo.listar();
 	}
+	
+	public String getNombreCategoria(Long idCategoria)
+	{
+		MapaProductos mapa = buscar(idCategoria);
+		Iterator<Entry<Long, Producto>> it = mapa.getIterator();
+		String nombre = "";
+		if(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			nombre = entrada.getValue().getNombreCategoria();
+		}
+		
+		return nombre;
+	}
+	
+	public MapaProductos getCategoriaPorNombre(String nombre)
+	{
+		Iterator<Entry<Long, MapaProductos>> it = getIterator();
+		MapaProductos mapaRetorno = null;
+		while(it.hasNext())
+		{
+			Entry<Long, MapaProductos> entrada = it.next();
+			if(nombre.equals(entrada.getValue().getNombreCategoria()))
+			{
+				mapaRetorno = entrada.getValue();
+			}
+		}
+		
+		return mapaRetorno;
+	}
 }

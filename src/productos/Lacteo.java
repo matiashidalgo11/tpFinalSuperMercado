@@ -52,4 +52,10 @@ public class Lacteo extends Producto {
 		return super.toString() + "Tipo: " + this.tipo + "\n";
 	}
 	
+	@Override
+	public String getNombreCategoria()
+	{
+		return "Lacteo";
+	}
+	
 }
