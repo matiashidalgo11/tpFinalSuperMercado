@@ -355,44 +355,37 @@ public class Supermercado {
 	public MapaProductos listaProductosToMap()
 	{
 		MapaProductos productos = new MapaProductos();
-		Iterator<Entry<Long, MapaProductos>> it = listaCategorias.getIterator();
+		Iterator<Entry<Long, MapaProductos>> it = listaCategorias.getIterator(); //Obtengo el iterator del mapa de categorias cargado actualmente
 		
 		while(it.hasNext())
 		{
 			Entry<Long, MapaProductos> entrada = it.next();
-			Iterator<Entry<Long, Producto>> it2 = entrada.getValue().getIterator();
-			while(it2.hasNext())
+			Iterator<Entry<Long, Producto>> it2 = entrada.getValue().getIterator(); //Obtengo cada Mapa de Productos de cada categoria
+			
+			while(it2.hasNext()) //Obtengo el iterator de cada Mapa de Productos
 			{
 				Entry<Long, Producto> entrada2 = it2.next();
-				productos.agregar(entrada2.getKey(), entrada2.getValue());
+				productos.agregar(entrada2.getKey(), entrada2.getValue()); //Guardando cada producto de todas las categorias en un unico Mapa de Productos
 			}
 		}
 		
-		return productos;
+		return productos; //Retorno el Mapa con todos los Productos
 	}
 	
 	
 	public MapaCategoria mapaToListaProductos()
 	{
-		HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa();
+		HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa(); //Obtengo el mapa con todos los productos del archivo
 		Set<Entry<Long, Producto>> set = mapax.entrySet();
-		Iterator<Entry<Long, Producto>> it = set.iterator();
+		Iterator<Entry<Long, Producto>> it = set.iterator(); //Obtengo el iterator del mapa
+		
 		MapaCategoria mapa = new MapaCategoria();
-		MapaProductos producto = new MapaProductos();
 		
 		while(it.hasNext())
 		{
 			Entry<Long, Producto> entrada = it.next();
-			producto.agregar(entrada.getKey(), entrada.getValue());
-		}
-		
-		it = producto.getIterator();
-		
-		while(it.hasNext())
-		{
-			Entry<Long, Producto> entrada = it.next();
-			Producto nuevo = entrada.getValue();
-			agregarProducto(nuevo.getIdCategoria(), entrada.getValue());
+			Producto nuevo = entrada.getValue(); //Obtengo cada producto para tener su atributo de idCategoria.
+			agregarProducto(nuevo.getIdCategoria(), entrada.getValue()); //Guardo cada producto en la categoria que le corresponde
 		}
 		
 		return mapa;
