@@ -1,5 +1,10 @@
 package Objetos;
 
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
+
 import Archivo.ArchivoGenerico;
 import Colecciones.arregloGenerico;
 import Colecciones.mapUsuario;
@@ -283,6 +288,11 @@ public class Supermercado {
 			System.out.println("\nERROR LISTACARRITOS\n");
 		}
 		
+		if(listaCategorias != null)
+		{
+			mapaToListaProductos();
+			System.out.println("\n SE CARGO LISTAPRODUCTOS");
+		}
 		
 		//arregloGenerico<Producto> arregloProducto = archivoProducto.returnArregloGenerico();
 		//FALTA UNA FUNCION PARA PASAR TODOS LOS PRODUCTOS DEL ARREGLO AL MAPA
@@ -312,6 +322,12 @@ public class Supermercado {
 		{
 			System.out.println("\nERROR LISTACARRITOS\n");
 		}
+		
+		if(listaCategorias != null)
+		{
+			archivoProducto.guardar(listaProductosToMap());
+			System.out.println("\n SE GUARDO LISTAPRODUCTOS");
+		}
 	}
 	
 	/**
@@ -335,4 +351,50 @@ public class Supermercado {
 		listaCarritos = new mapaGenerico<Long, Carro>();
 	}
 	
+	
+	public MapaProductos listaProductosToMap()
+	{
+		MapaProductos productos = new MapaProductos();
+		Iterator<Entry<Long, MapaProductos>> it = listaCategorias.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Long, MapaProductos> entrada = it.next();
+			Iterator<Entry<Long, Producto>> it2 = entrada.getValue().getIterator();
+			while(it2.hasNext())
+			{
+				Entry<Long, Producto> entrada2 = it2.next();
+				productos.agregar(entrada2.getKey(), entrada2.getValue());
+			}
+		}
+		
+		return productos;
+	}
+	
+	
+	public MapaCategoria mapaToListaProductos()
+	{
+		HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa();
+		Set<Entry<Long, Producto>> set = mapax.entrySet();
+		Iterator<Entry<Long, Producto>> it = set.iterator();
+		MapaCategoria mapa = new MapaCategoria();
+		MapaProductos producto = new MapaProductos();
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			producto.agregar(entrada.getKey(), entrada.getValue());
+		}
+		
+		it = producto.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			Producto nuevo = entrada.getValue();
+			agregarProducto(nuevo.getIdCategoria(), entrada.getValue());
+		}
+		
+		return mapa;
+	}
 }

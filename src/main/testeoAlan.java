@@ -62,27 +62,30 @@ public class testeoAlan {
 //		System.out.println(categorias.listarCategorias());
 		
 		
-		Usuario alan = new Usuario("Alan", "123", 500, 1, null);
-		
-		Bebidas coca = new Bebidas("Cola", 60, "Coca", 1, 1, true, 2, "Dulce", false);
-		Bebidas jugo = new Bebidas("Jugo", 30, "Cualquiera", 1, 1, false, 2, "Dulce", false);
-		Bebidas cerveza = new Bebidas("Cerveza", 100, "Quilmes", 1, 1, false, 2, "Amargo", true);
-		Bebidas agua = new Bebidas("Agua", 50, "Mineral", 1, 1, false, 2, "Agua", false);
-		
-		Snack papas = new Snack("Papas Frita", 70, "Lays", 1, 2, 100);
-		Snack palitos = new Snack("Palitos", 40, "Palitos", 1, 2, 100);	
-		
-		Lacteo leche = new Lacteo("Leche", 50, "LaSerenisima", 1, 3, "Leche");
+//		Usuario alan = new Usuario("Alan", "123", 500, 1, null);
+//		
+//		
+//		Bebidas coca = new Bebidas("Cola", 60, "Coca", 1, 1, true, 2, "Dulce", false);
+//		Bebidas jugo = new Bebidas("Jugo", 30, "Cualquiera", 1, 1, false, 2, "Dulce", false);
+//		Bebidas cerveza = new Bebidas("Cerveza", 100, "Quilmes", 1, 1, false, 2, "Amargo", true);
+//		Bebidas agua = new Bebidas("Agua", 50, "Mineral", 1, 1, false, 2, "Agua", false);
+//		
+//		Snack papas = new Snack("Papas Frita", 70, "Lays", 1, 2, 100);
+//		Snack palitos = new Snack("Palitos", 40, "Palitos", 1, 2, 100);	
+//		
+//		Lacteo leche = new Lacteo("Leche", 50, "LaSerenisima", 1, 3, "Leche");
 		
 		Supermercado mercado = new Supermercado();
-		mercado.agregarProducto(coca.getIdCategoria(), coca);
-		mercado.agregarProducto(jugo.getIdCategoria(), jugo);
-		mercado.agregarProducto(cerveza.getIdCategoria(), cerveza);
-		mercado.agregarProducto(agua.getIdCategoria(), agua);
-		mercado.agregarProducto(papas.getIdCategoria(), papas);
-		mercado.agregarProducto(palitos.getIdCategoria(), palitos);
-		mercado.agregarProducto(leche.getIdCategoria(), leche);
+//		mercado.agregarProducto(coca.getIdCategoria(), coca);
+//		mercado.agregarProducto(jugo.getIdCategoria(), jugo);
+//		mercado.agregarProducto(cerveza.getIdCategoria(), cerveza);
+//		mercado.agregarProducto(agua.getIdCategoria(), agua);
+//		mercado.agregarProducto(papas.getIdCategoria(), papas);
+//		mercado.agregarProducto(palitos.getIdCategoria(), palitos);
+//		mercado.agregarProducto(leche.getIdCategoria(), leche);
 		
+//		mercado.guardarDatos();
+		mercado.cargarDatos();
 //		System.out.println(mercado.listarCategoriaEspecifica((long) 1));
 		System.out.println(mercado.listarCategorias());
 //		mercado.agregarUsuario(alan);
