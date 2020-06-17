@@ -1,5 +1,8 @@
 package Objetos;
 
+import java.util.Iterator;
+import java.util.Map.Entry;
+
 import Archivo.ArchivoGenerico;
 import Colecciones.arregloGenerico;
 import Colecciones.mapUsuario;
@@ -335,4 +338,15 @@ public class Supermercado {
 		listaCarritos = new mapaGenerico<Long, Carro>();
 	}
 	
+	public void mapaToListaProductos()
+	{
+		MapaProductos mapaProductos = (MapaProductos) archivoProducto.cargar();
+		Iterator<Entry<Long, Producto>> it = mapaProductos.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			agregarProducto(entrada.getKey(), entrada.getValue());
+		}
+	}
 }
