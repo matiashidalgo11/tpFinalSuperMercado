@@ -25,4 +25,21 @@ public class MapaProductos extends mapaGenerico<Long, Producto> {
 		
 		return nombre;
 	}
+	
+	public Long getIdMasAlto()
+	{
+		Iterator<Entry<Long, Producto>> it = getIterator();
+		long id = 0;
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			if(entrada.getValue().getIdProducto() > id)
+			{
+				id = entrada.getValue().getIdProducto();
+			}
+		}
+		
+		return id;
+	}
 }

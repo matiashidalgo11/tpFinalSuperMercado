@@ -138,4 +138,21 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 		
 		return mapaRetorno;
 	}
+	
+	public Long getIdMasAlto()
+	{
+		Iterator<Entry<Long, MapaProductos>> it = getIterator();
+		long id = 0;
+		
+		while(it.hasNext())
+		{
+			Entry<Long, MapaProductos> entrada = it.next();
+			if(entrada.getValue().getIdMasAlto() > id)
+			{
+				id = entrada.getValue().getIdMasAlto();
+			}
+		}
+		
+		return id;
+	}
 }
