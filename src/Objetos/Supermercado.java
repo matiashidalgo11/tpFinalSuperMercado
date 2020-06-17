@@ -31,12 +31,18 @@ public class Supermercado {
 	
 	public Supermercado()
 	{
-		inicializarMapas();
 		inicializarArchivos();
+		inicializarMapas();
 		sesionActiva = null;
 		cargarDatos();
 		
 		System.out.println(listaUsuarios.listar());
+		/*
+		System.out.println("\n**********************************************\n");
+		System.out.println(listaCategorias.listarCategorias());
+		System.out.println("\n**********************************************\n");
+		System.out.println(listaCarritos.listar());
+		*/
 		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
@@ -175,9 +181,9 @@ public class Supermercado {
 	}
 
 	
-	public void agregarUsuario(Usuario user)
+	public boolean agregarUsuario(Usuario user)
 	{
-		listaUsuarios.agregar(user.getId(), user);
+		return listaUsuarios.agregar(user.getId(), user);
 	}
 	
 	public void eliminarUsuario(Usuario user)
@@ -278,7 +284,9 @@ public class Supermercado {
 	{
 		if(listaUsuarios != null)
 		{
+			this.listaUsuarios.vaciar();
 			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
+			Usuario.generadorId = listaUsuarios.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAUSUARIOS\n");
 		}else
 		{
@@ -287,7 +295,9 @@ public class Supermercado {
 		
 		if(listaCarritos != null)
 		{
+			this.listaCarritos.vaciar();
 			listaCarritos.setMapa(archivoCarro.cargar().getMapa());
+			
 			System.out.println("\n SE CARGO LISTACARRITOS \n");
 		}else
 		{
@@ -297,6 +307,7 @@ public class Supermercado {
 		if(listaCategorias != null)
 		{
 			mapaToListaProductos();
+			Producto.conteoGeneral = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAPRODUCTOS");
 		}
 		
@@ -339,7 +350,7 @@ public class Supermercado {
 	/**
 	 * Funcion que inicializa todos los Archivos del Programa
 	 */
-	public void inicializarArchivos()
+	private void inicializarArchivos()
 	{
 		archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
 		archivoProducto = new ArchivoGenerico<Long, Producto>("Producto.dat");
@@ -350,14 +361,14 @@ public class Supermercado {
 	/**
 	 * Inicializa los mapas principales de la clase
 	 */
-	public void inicializarMapas()
+	private void inicializarMapas()
 	{
 		listaUsuarios = new MapaUsuario();
 		listaCategorias = new MapaCategoria();
 		listaCarritos = new MapaCarro();
 	}
 	
-	
+	//Funcion deberia estar en MapaProductos, recibier por parametro la listaCategoria
 	public MapaProductos listaProductosToMap()
 	{
 		MapaProductos productos = new MapaProductos();

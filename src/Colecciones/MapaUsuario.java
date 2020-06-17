@@ -13,7 +13,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	
 	public MapaUsuario() {
 		super();
-		Usuario.generadorId = this.getIdMasAlto();
+		
 	}
 	
 	public boolean existencia(String nombre)

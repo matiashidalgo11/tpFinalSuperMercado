@@ -131,7 +131,15 @@ public class Carro implements Serializable, idInterface<Long>{
 	@Override
 	public Long getIdPrincipal() {
 		
-		return null;
+		return this.idCarro;
+	}
+	
+	@Override
+	public String toString() {
+		
+		return "\nCarro de User id " + this.idCarro + "\n" +  
+				"Cantidad Productos: " + this.cantidadProductos() + "\n" + 
+				"Total: " + this.total + "\n";
 	}
 	
 }

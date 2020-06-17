@@ -11,7 +11,6 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 	public MapaCategoria() 
 	{
 		super();
-		Producto.conteoGeneral = this.getIdMasAlto();
 	}
 	
 	public void agregarCategoria(Long idCategoria, MapaProductos mapaNuevo )
