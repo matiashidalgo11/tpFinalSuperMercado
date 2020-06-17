@@ -15,24 +15,22 @@ public class Supermercado {
 	private mapaGenerico<Long, Carro> listaCarritos;
 	
 	private ArchivoGenerico<Long, Usuario> archivoUsuario;
-	
+	private ArchivoGenerico<Long, Producto> archivoProducto;
+	private ArchivoGenerico<Long, Carro> archivoCarro;
 	//Hay que implementarles las interfaces Serializable y idPrincipal para poder persistirlos en un archivo;
-	//private ArchivoGenerico<Long, Producto> archivoProducto;
-	//private ArchivoGenerico<Long, Carro> archivoCarro;
+	
 	
 	
 	Session sesionActiva;
 	
 	public Supermercado()
 	{
-		listaUsuarios = new mapUsuario();
-		listaCategorias = new MapaCategoria();
-		listaCarritos = new mapaGenerico<Long, Carro>();
-		
+		inicializarMapas();
+		inicializarArchivos();
 		sesionActiva = null;
+		cargarDatos();
 		
-		archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
-		listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
+		System.out.println(listaUsuarios.listar());
 		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
@@ -263,10 +261,32 @@ public class Supermercado {
 	}
 	
 	/**
-	 * La funcion cargara todos los mapas desde el archivo;
+	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados)
 	 */
 	public void cargarDatos()
 	{
+		if(listaUsuarios != null)
+		{
+			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
+			System.out.println("\n SE CARGO LISTAUSUARIOS\n");
+		}else
+		{
+			System.out.println("\nERROR LISTAUSUARIOS\n");
+		}
+		
+		if(listaCarritos != null)
+		{
+			listaCarritos.setMapa(archivoCarro.cargar().getMapa());
+			System.out.println("\n SE CARGO LISTACARRITOS \n");
+		}else
+		{
+			System.out.println("\nERROR LISTACARRITOS\n");
+		}
+		
+		
+		//arregloGenerico<Producto> arregloProducto = archivoProducto.returnArregloGenerico();
+		//FALTA UNA FUNCION PARA PASAR TODOS LOS PRODUCTOS DEL ARREGLO AL MAPA
+		
 		
 	}
 	
@@ -275,7 +295,44 @@ public class Supermercado {
 	 */
 	public void guardarDatos()
 	{
+		if(listaUsuarios != null)
+		{
+			archivoUsuario.guardar(listaUsuarios);
+			System.out.println("\n SE GUARDO LISTAUSUARIOS\n");
+		}else
+		{
+			System.out.println("\nERROR LISTAUSUARIOS\n");
+		}
 		
+		if(listaCarritos != null)
+		{
+			archivoCarro.guardar(listaCarritos);
+			System.out.println("\n SE GUARDO LISTACARRITOS \n");
+		}else
+		{
+			System.out.println("\nERROR LISTACARRITOS\n");
+		}
+	}
+	
+	/**
+	 * Funcion que inicializa todos los Archivos del Programa
+	 */
+	public void inicializarArchivos()
+	{
+		archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
+		archivoProducto = new ArchivoGenerico<Long, Producto>("Producto.dat");
+		archivoCarro = new ArchivoGenerico<Long, Carro>("Carro.dat");
+		
+	}
+	
+	/**
+	 * Inicializa los mapas principales de la clase
+	 */
+	public void inicializarMapas()
+	{
+		listaUsuarios = new mapUsuario();
+		listaCategorias = new MapaCategoria();
+		listaCarritos = new mapaGenerico<Long, Carro>();
 	}
 	
 }

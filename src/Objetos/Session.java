@@ -22,7 +22,7 @@ public class Session {
 	public Session(Usuario user)
 	{
 		this.user = user;
-		this.carrito = new Carro();
+		this.carrito = new Carro(user.getIdPrincipal());
 	}
 	
 	public Usuario getUser() {

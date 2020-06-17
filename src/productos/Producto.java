@@ -1,6 +1,10 @@
 package productos;
 
-public  class Producto {
+import java.io.Serializable;
+
+import Interfaces.idInterface;
+
+public  class Producto implements Serializable, idInterface<Long>{
 	
 	public static long conteoGeneral = 1;
 	
@@ -163,6 +167,12 @@ public  class Producto {
 	public String getNombreCategoria()
 	{
 		return "Producto";
+	}
+
+	@Override
+	public Long getIdPrincipal() {
+		
+		return this.idProducto;
 	}
 
 }

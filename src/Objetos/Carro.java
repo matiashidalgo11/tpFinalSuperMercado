@@ -1,26 +1,37 @@
 package Objetos;
 
+import java.io.Serializable;
+
 import Colecciones.ArregloProductos;
 import Colecciones.arregloGenerico;
+import Interfaces.idInterface;
 import productos.Producto;
 
-public class Carro {
+/**
+ * 
+ * @author Matias
+ * Contiene un ArregloProductos, y el Id al cual pertence a un Usuario que lo este Utilizando
+ */
+public class Carro implements Serializable, idInterface<Long>{
 	
 	private double total;
 	private ArregloProductos arreglo;
+	private long idCarro;
 	
-	public Carro(ArregloProductos arreglo) {
+	public Carro(ArregloProductos arreglo, long id) {
 		
 		this.arreglo = arreglo;
 		this.total = arreglo.sumaTotal();
+		this.idCarro = id;
 	}
 
-	public Carro() {
+	public Carro(long id) {
 		arreglo = new ArregloProductos();
 		this.total = 0;
+		this.idCarro = id;
 	}
 	
-	/** falta poner condiciones para que si ya esta el mismo producto suma el stock*/
+
 	public boolean agregar(Producto p)
 	{
 		boolean rta = false;
@@ -115,6 +126,12 @@ public class Carro {
 		}
 		
 		return resp;
+	}
+
+	@Override
+	public Long getIdPrincipal() {
+		
+		return null;
 	}
 	
 }

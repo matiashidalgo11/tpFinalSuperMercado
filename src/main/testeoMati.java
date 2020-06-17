@@ -64,9 +64,6 @@ public class testeoMati {
 		/*
 		ArchivoGenerico<Long,Usuario> archivoUsuario = new ArchivoGenerico<Long,Usuario>("Usuario.dat");
 		
-		Usuario a = new Usuario("Mati", "Mati");
-		Usuario b = new Usuario("Renzo", "Renzo");
-		Usuario c = new Usuario("Pato", "Pato");
 		
 		mapaGenerico<Long, Usuario> mapaUsuario = new mapaGenerico<Long, Usuario>();
 		mapaUsuario.agregar(a.getIdPrincipal(), a);
@@ -79,17 +76,21 @@ public class testeoMati {
 		
 		*/
 		
+		Usuario a = new Usuario("Mati", "Mati");
+		Usuario b = new Usuario("Renzo", "Renzo");
+		Usuario c = new Usuario("Pato", "Pato");
 		
 		
 		Supermercado toledo = new Supermercado();
-		System.out.println(toledo.iniciarSession(5));
-		System.out.println(toledo.getUsuarioEnSesion().getCartera());
-		Producto producto = new Producto("COCA", 100, "COCA-COLA", 10, 1);
-		MapaProductos bebidas = new MapaProductos();
-		bebidas.agregar(producto.getIdProducto(), producto);
-		toledo.agregarProducto((long)1, bebidas);
-		toledo.getSesionActiva().agregarAlCarro(producto);
-		System.out.println(toledo.getSesionActiva().getCarrito().listar());
+		/*
+		toledo.agregarUsuario(a);
+		toledo.agregarUsuario(b);
+		toledo.agregarUsuario(c);
+		
+		toledo.guardarDatos();
+		*/
+		
+		
 		
 		
 		
