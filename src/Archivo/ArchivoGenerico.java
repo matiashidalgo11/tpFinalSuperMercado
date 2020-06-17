@@ -15,8 +15,8 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
-import Colecciones.arregloGenerico;
-import Colecciones.mapaGenerico;
+import Colecciones.ArregloGenerico;
+import Colecciones.MapaGenerico;
 import Interfaces.idInterface;
 /**
  * 
@@ -57,7 +57,7 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		
 	}
 	
-	public void guardar(mapaGenerico<K, T> mapa)
+	public void guardar(MapaGenerico<K, T> mapa)
 	{
 		
 		try {
@@ -111,9 +111,9 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		
 	}
 	
-	public mapaGenerico<K, T> cargar()
+	public MapaGenerico<K, T> cargar()
 	{
-		mapaGenerico<K, T> resp = new mapaGenerico<K, T>();
+		MapaGenerico<K, T> resp = new MapaGenerico<K, T>();
 
 		
 		try {
@@ -151,9 +151,9 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		return resp;
 	}
 	
-	public arregloGenerico<T> returnArregloGenerico()
+	public ArregloGenerico<T> returnArregloGenerico()
 	{
-		arregloGenerico<T> resp = new arregloGenerico<T>();
+		ArregloGenerico<T> resp = new ArregloGenerico<T>();
 
 		
 		try {

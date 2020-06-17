@@ -4,7 +4,7 @@ package Objetos;
 
 import java.io.Serializable;
 
-import Colecciones.arregloGenerico;
+import Colecciones.ArregloGenerico;
 import Interfaces.idInterface;
 
 /**
@@ -18,14 +18,14 @@ import Interfaces.idInterface;
 	
 public class Usuario implements idInterface<Long>, Serializable{
 	
-	private static long generadorId = 1;
+	public static long generadorId = 1;
 	
 	
 	private long id;
 	private String nombre;
 	private String password;
 	private double cartera;
-	private arregloGenerico<DetalleCompra> historialCompra;
+	private ArregloGenerico<DetalleCompra> historialCompra;
 
 	
 	
@@ -35,10 +35,10 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.password = password;
 		this.cartera = 0;
 		this.id = generadorId++;
-		historialCompra = new arregloGenerico<DetalleCompra>();
+		historialCompra = new ArregloGenerico<DetalleCompra>();
 	}
 	
-	public Usuario(String nombre, String password, double cartera, long id, arregloGenerico<DetalleCompra> historialCompra) {
+	public Usuario(String nombre, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra) {
 		
 		this.nombre = nombre;
 		this.password = password;
@@ -106,11 +106,11 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.cartera = cartera;
 	}
 	
-	public arregloGenerico<DetalleCompra> getHistorialCompra() {
+	public ArregloGenerico<DetalleCompra> getHistorialCompra() {
 		return historialCompra;
 	}
 
-	public void setHistorialCompra(arregloGenerico<DetalleCompra> historialCompra) {
+	public void setHistorialCompra(ArregloGenerico<DetalleCompra> historialCompra) {
 		this.historialCompra = historialCompra;
 	}
 	

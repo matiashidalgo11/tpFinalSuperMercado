@@ -6,18 +6,19 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Archivo.ArchivoGenerico;
-import Colecciones.arregloGenerico;
-import Colecciones.mapUsuario;
-import Colecciones.mapaGenerico;
+import Colecciones.ArregloGenerico;
+import Colecciones.MapaUsuario;
+import Colecciones.MapaCarro;
+import Colecciones.MapaGenerico;
 import productos.MapaCategoria;
 import productos.MapaProductos;
 import productos.Producto;
 
 public class Supermercado {
 
-	private mapUsuario listaUsuarios;
+	private MapaUsuario listaUsuarios;
 	private MapaCategoria listaCategorias;
-	private mapaGenerico<Long, Carro> listaCarritos;
+	private MapaCarro listaCarritos;
 	
 	private ArchivoGenerico<Long, Usuario> archivoUsuario;
 	private ArchivoGenerico<Long, Producto> archivoProducto;
@@ -50,12 +51,16 @@ public class Supermercado {
 			user = listaUsuarios.buscar(id);
 
 			if (listaCarritos.existencia(id)) {
+				
 				carrito = listaCarritos.buscar(id);
 				actualizarCarro(carrito);
 				sesionActiva = new Session(user, carrito);
 
 			} else {
+				
 				sesionActiva = new Session(user);
+				long clave = sesionActiva.getCarrito().getIdPrincipal();
+				listaCarritos.agregar(clave, sesionActiva.getCarrito());
 			}
 			
 		}
@@ -95,11 +100,12 @@ public class Supermercado {
 	 * @param carrito 
 	 * podria retornar la cantidad de productos que se quitaron
 	 */
+	
 	private void actualizarCarro(Carro carrito)
 	{
 		
 		Producto productoListado;
-		arregloGenerico<Long> idDeEliminados = new arregloGenerico<Long>();
+		ArregloGenerico<Long> idDeEliminados = new ArregloGenerico<Long>();
 		
 		//Recorre todos los productos del carrito
 		for (Producto productoCarrito : carrito.getArreglo().getArreglo()) {
@@ -294,8 +300,7 @@ public class Supermercado {
 			System.out.println("\n SE CARGO LISTAPRODUCTOS");
 		}
 		
-		//arregloGenerico<Producto> arregloProducto = archivoProducto.returnArregloGenerico();
-		//FALTA UNA FUNCION PARA PASAR TODOS LOS PRODUCTOS DEL ARREGLO AL MAPA
+	
 		
 		
 	}
@@ -316,6 +321,7 @@ public class Supermercado {
 		
 		if(listaCarritos != null)
 		{
+			listaCarritos.eliminarCarrosVacios();
 			archivoCarro.guardar(listaCarritos);
 			System.out.println("\n SE GUARDO LISTACARRITOS \n");
 		}else
@@ -346,9 +352,9 @@ public class Supermercado {
 	 */
 	public void inicializarMapas()
 	{
-		listaUsuarios = new mapUsuario();
+		listaUsuarios = new MapaUsuario();
 		listaCategorias = new MapaCategoria();
-		listaCarritos = new mapaGenerico<Long, Carro>();
+		listaCarritos = new MapaCarro();
 	}
 	
 	

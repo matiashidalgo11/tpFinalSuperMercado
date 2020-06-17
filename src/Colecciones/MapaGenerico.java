@@ -7,11 +7,11 @@ import java.util.Set;
 
 import Interfaces.IColeccion;
 
-public  class mapaGenerico<K,T>  {
+public  class MapaGenerico<K,T>  {
 
 	private HashMap<K, T> mapa;
 	
-	public mapaGenerico() {
+	public MapaGenerico() {
 		mapa = new HashMap<K,T>();
 	}
 	

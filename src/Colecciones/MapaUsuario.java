@@ -4,13 +4,16 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
+import Interfaces.IdMaximo;
 import Objetos.Usuario;
+import productos.Producto;
 
-public class mapUsuario extends mapaGenerico<Long, Usuario> {
+public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo{
 
 	
-	public mapUsuario() {
+	public MapaUsuario() {
 		super();
+		Usuario.generadorId = this.getIdMasAlto();
 	}
 	
 	public boolean existencia(String nombre)
@@ -54,6 +57,27 @@ public class mapUsuario extends mapaGenerico<Long, Usuario> {
 		}
 		
 		return resp;
+	}
+
+	@Override
+	public Long getIdMasAlto() {
+		
+		long id = 1;
+		
+		Set<Entry<Long, Usuario>> set = super.getMapa().entrySet();
+		Iterator<Entry<Long, Usuario>> it = set.iterator();
+		while(it.hasNext())
+		{
+			Entry<Long, Usuario> entrada = it.next();
+			long aux = entrada.getKey();
+			if(aux > id)
+			{
+				id = aux;
+			}
+			
+		}
+		
+		return id;
 	}
 
 	

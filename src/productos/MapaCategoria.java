@@ -3,13 +3,15 @@ package productos;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import Colecciones.mapaGenerico;
+import Colecciones.MapaGenerico;
+import Interfaces.IdMaximo;
 
-public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
+public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements IdMaximo{
 	
 	public MapaCategoria() 
 	{
 		super();
+		Producto.conteoGeneral = this.getIdMasAlto();
 	}
 	
 	public void agregarCategoria(Long idCategoria, MapaProductos mapaNuevo )
@@ -142,7 +144,7 @@ public class MapaCategoria extends mapaGenerico<Long, MapaProductos>{
 	public Long getIdMasAlto()
 	{
 		Iterator<Entry<Long, MapaProductos>> it = getIterator();
-		long id = 0;
+		long id = 1;
 		
 		while(it.hasNext())
 		{

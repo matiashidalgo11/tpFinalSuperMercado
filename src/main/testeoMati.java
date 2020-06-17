@@ -6,9 +6,9 @@ import java.time.LocalTime;
 
 import Archivo.ArchivoGenerico;
 import Colecciones.ArregloProductos;
-import Colecciones.arregloGenerico;
-import Colecciones.mapUsuario;
-import Colecciones.mapaGenerico;
+import Colecciones.ArregloGenerico;
+import Colecciones.MapaUsuario;
+import Colecciones.MapaGenerico;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;

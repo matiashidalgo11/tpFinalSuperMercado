@@ -3,7 +3,7 @@ package Objetos;
 import java.io.Serializable;
 
 import Colecciones.ArregloProductos;
-import Colecciones.arregloGenerico;
+import Colecciones.ArregloGenerico;
 import Interfaces.idInterface;
 import productos.Producto;
 

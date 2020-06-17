@@ -7,7 +7,7 @@ import productos.Producto;
  * @author Matias
  * Clase en la cual contiene un arreglo de productos, donde si se quiere agregar el mismo Producto solo va a sumar el Stock;
  */
-public class ArregloProductos extends arregloGenerico<Producto> {
+public class ArregloProductos extends ArregloGenerico<Producto> {
 
 
 	public ArregloProductos() {

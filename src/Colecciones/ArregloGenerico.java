@@ -5,11 +5,11 @@ import java.util.ArrayList;
 
 import Interfaces.IColeccion;
 
-public class arregloGenerico<T> implements IColeccion<T>, Serializable {
+public class ArregloGenerico<T> implements IColeccion<T>, Serializable {
 
 	ArrayList<T> arreglo;
 	
-	public arregloGenerico() {
+	public ArregloGenerico() {
 		arreglo = new ArrayList<T>();
 	}
 	

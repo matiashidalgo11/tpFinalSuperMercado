@@ -5,8 +5,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
-import Colecciones.mapUsuario;
-import Colecciones.mapaGenerico;
+import Colecciones.MapaUsuario;
+import Colecciones.MapaGenerico;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
