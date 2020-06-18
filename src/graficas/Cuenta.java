@@ -168,7 +168,7 @@ public class Cuenta extends JFrame {
 		fieldUsuario.setEditable(false);
 		fieldUsuario.setForeground(new Color(102, 102, 102));
 		fieldUsuario.setFont(new Font("Calibri", Font.PLAIN, 23));
-		fieldUsuario.setText(user.getNombre());
+		fieldUsuario.setText(user.getUserName());
 		fieldUsuario.setBounds(321, 121, 400, 29);
 		contentPane.add(fieldUsuario);
 		fieldUsuario.setColumns(10);
@@ -218,7 +218,7 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				user.setNombre(fieldUsuario.getText());
+				user.setUserName(fieldUsuario.getText());
 				user.setPassword(fieldContraseña.getText());
 			}
 		});

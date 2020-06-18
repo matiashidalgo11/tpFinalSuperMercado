@@ -22,29 +22,45 @@ public class Usuario implements idInterface<Long>, Serializable{
 	
 	
 	private long id;
-	private String nombre;
+	private String userName;
 	private String password;
 	private double cartera;
 	private ArregloGenerico<DetalleCompra> historialCompra;
+	private String nombre;
+	private String apellido;
+	private int edad;
+	private long telefono;
 
 	
 	
-	public Usuario(String nombre, String password) {
+	public Usuario(String userName, String password, String nombre, String apellido, int edad, long telefono) {
 		
-		this.nombre = nombre;
+		this.userName = userName;
 		this.password = password;
 		this.cartera = 0;
 		this.id = generadorId++;
 		historialCompra = new ArregloGenerico<DetalleCompra>();
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.telefono = telefono;
 	}
 	
-	public Usuario(String nombre, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra) {
+	/**
+	 *	Constructor para clonar objeto.
+	 * 
+	 */
+	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, long telefono) {
 		
-		this.nombre = nombre;
+		this.userName = userName;
 		this.password = password;
 		this.cartera = cartera;
 		this.id = id;
 		this.historialCompra = historialCompra;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.edad = edad;
+		this.telefono = telefono;
 	}
 	
 
@@ -66,7 +82,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 		}
 		
 		Usuario aux = (Usuario) obj;
-		if(aux.getNombre() == this.getNombre())
+		if(aux.getUserName() == this.getUserName())
 		{
 			resp = true;
 		}
@@ -74,20 +90,21 @@ public class Usuario implements idInterface<Long>, Serializable{
 		return resp;
 	}
 
-	public long getId() {
+	private long getId() {
 		return id;
 	}
 	
-	public void setId(long id) {
+	private void setId(long id) {
 		this.id = id;
 	}
 	
-	public String getNombre() {
-		return nombre;
+	
+	public String getUserName() {
+		return userName;
 	}
 	
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
+	public void setUserName(String nombre) {
+		this.userName = nombre;
 	}
 	
 	private String getPassword() {
@@ -119,9 +136,10 @@ public class Usuario implements idInterface<Long>, Serializable{
 		
 		return  "\n" +
 				"idUsuario " + id + "\n" +
-				"Nombre:   " + nombre + "\n" +
+				"Nombre:   " + userName + "\n" +
 				"Password: " + password + "\n" + 
-				"Cartera:  " + cartera + "\n" ;
+				"Cartera:  " + cartera + "\n" +
+				"Informacion Personal: " + this.nombre + " " + this.apellido + " " + this.edad + "\n";
 	}
 	
 	public void sumarCartera(double suma)
@@ -143,9 +161,16 @@ public class Usuario implements idInterface<Long>, Serializable{
 	@Override
 	public Long getIdPrincipal() {
 		// TODO Auto-generated method stub
-		return id;
+		return this.id;
 	}
 
+	/**
+	 * Funcion para que solo se modifique el password sabiendo el actual, solo se ingresa el password en el constructor
+	 * 
+	 * @param actual password actual ingresado por interface
+	 * @param nuevo password nuevo ingresado por interface
+	 * @return si se cambio correctamente
+	 */
 	public boolean cambiarPassword(String actual, String nuevo)
 	{
 		boolean resp = false;

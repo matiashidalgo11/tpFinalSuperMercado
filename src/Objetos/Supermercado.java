@@ -86,7 +86,6 @@ public class Supermercado {
 		return resp;
 	}
 	
-
 	public boolean comprarProductos()
 	{
 		boolean resp = false;
@@ -106,7 +105,6 @@ public class Supermercado {
 	 * @param carrito 
 	 * podria retornar la cantidad de productos que se quitaron
 	 */
-	
 	private void actualizarCarro(Carro carrito)
 	{
 		
@@ -183,22 +181,22 @@ public class Supermercado {
 	
 	public boolean agregarUsuario(Usuario user)
 	{
-		return listaUsuarios.agregar(user.getId(), user);
+		return listaUsuarios.agregar(user.getIdPrincipal(), user);
 	}
 	
 	public void eliminarUsuario(Usuario user)
 	{
-		listaUsuarios.eliminar(user.getId());
+		listaUsuarios.eliminar(user.getIdPrincipal());
 	}
 	
 	public boolean existeUsuario(Usuario user)
 	{
-		return listaUsuarios.existencia(user.getId());
+		return listaUsuarios.existencia(user.getIdPrincipal());
 	}
 	
 	public Usuario buscarUsuario(Usuario user)
 	{
-		return listaUsuarios.buscar(user.getId());
+		return listaUsuarios.buscar(user.getIdPrincipal());
 	}
 	
 	public void vaciarListaUsuarios()
@@ -284,7 +282,7 @@ public class Supermercado {
 	{
 		if(listaUsuarios != null)
 		{
-			this.listaUsuarios.vaciar();
+			//this.listaUsuarios.vaciar(); limpiar el mapa si esta lleno pero puede borrar datos que no se guardaror
 			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
 			Usuario.generadorId = listaUsuarios.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAUSUARIOS\n");
@@ -295,7 +293,7 @@ public class Supermercado {
 		
 		if(listaCarritos != null)
 		{
-			this.listaCarritos.vaciar();
+			//this.listaCarritos.vaciar();
 			listaCarritos.setMapa(archivoCarro.cargar().getMapa());
 			
 			System.out.println("\n SE CARGO LISTACARRITOS \n");

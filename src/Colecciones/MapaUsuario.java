@@ -26,7 +26,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		{
 			Entry<Long, Usuario> entrada = it.next();
 			Usuario aux = entrada.getValue();
-			if(nombre.equals(aux.getNombre()))
+			if(nombre.equals(aux.getUserName()))
 			{
 				resp = true;
 			}
@@ -44,7 +44,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		{
 			Entry<Long, Usuario> entrada = it.next();
 			Usuario aux = entrada.getValue();
-			if(aux.getNombre().equals(nombre))
+			if(aux.getUserName().equals(nombre))
 			{
 				resp = aux;
 			}

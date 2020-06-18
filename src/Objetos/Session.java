@@ -12,6 +12,11 @@ public class Session {
 	 * 
 	 */
 	
+	/**
+	 * Si existiera un carro ya guardado en el sistema con su misma id lo agregaria a la Session del usuario
+	 * @param user
+	 * @param carrito
+	 */
 	public Session(Usuario user, Carro carrito) {
 		
 		this.user = user;
@@ -19,6 +24,10 @@ public class Session {
 		
 	}
 	
+	/**
+	 * Crea una Session con un Usuario ya creado pero con un Carro Vacio
+	 * @param user
+	 */
 	public Session(Usuario user)
 	{
 		this.user = user;
@@ -80,9 +89,9 @@ public class Session {
 	public boolean modificarNombre(String actual, String nuevo)
 	{
 		boolean resp = false;
-		if(actual.equals(user.getNombre()))
+		if(actual.equals(user.getUserName()))
 		{
-			user.setNombre(nuevo);
+			user.setUserName(nuevo);
 			resp = true;
 		}
 		
@@ -92,7 +101,7 @@ public class Session {
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub
-		return  "Usuario en sesion: " + user.getNombre() + "\n" + 
+		return  "Usuario en sesion: " + user.getUserName() + "\n" + 
 				"Unidades en carro: " + carrito.cantidadProductos() + "\n";
 	}
 	

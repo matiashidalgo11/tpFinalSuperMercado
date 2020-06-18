@@ -111,6 +111,7 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		
 	}
 	
+
 	public MapaGenerico<K, T> cargar()
 	{
 		MapaGenerico<K, T> resp = new MapaGenerico<K, T>();
@@ -151,6 +152,10 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		return resp;
 	}
 	
+	/**Si no se utiliza borrar
+	 * 
+	 * @return un arregloGenerico
+	 */
 	public ArregloGenerico<T> returnArregloGenerico()
 	{
 		ArregloGenerico<T> resp = new ArregloGenerico<T>();

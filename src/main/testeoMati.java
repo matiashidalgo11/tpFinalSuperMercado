@@ -80,26 +80,9 @@ public class testeoMati {
 		
 		
 		Supermercado toledo = new Supermercado();
-		/*
-		Usuario a = new Usuario("David", "Mati");
-		Usuario b = new Usuario("Gonzalo", "Renzo");
-		Usuario c = new Usuario("Pato", "Pato");
 		
-		System.out.println(a);
 		
-		System.out.println(toledo.agregarUsuario(a));
-		toledo.agregarUsuario(b);
-		toledo.agregarUsuario(c);
 		
-		System.out.println(toledo.iniciarSession((long)1));
-		Producto aP = new Producto("PAPAS", 12, "lAYS", 2, (long)2);
-		toledo.getSesionActiva().agregarAlCarro(aP);
-		toledo.getSesionActiva().cargarCartera((double)100);
-		
-	
-		toledo.guardarDatos();
-		
-		*/
 		
 		
 		
