@@ -23,20 +23,23 @@ public  class MapaGenerico<K,T>  {
 		this.mapa = mapa;
 	}
 
-	public String listar()
-	{
+	public String listar() {
 		StringBuilder builder = new StringBuilder();
-		
+
 		builder.append("\n*****Contenido*****\n");
-		Set<Entry<K,T>> set = mapa.entrySet();
-		Iterator<Entry<K,T>> it = set.iterator();
-		while(it.hasNext())
-		{
-			Entry<K,T> entrada = it.next();
-			T aux = entrada.getValue();
-			builder.append(aux);
-		}
 		
+		if (mapa.size() == 0) {
+			builder.append("\n       VACIO\n");
+		} else {
+			Set<Entry<K, T>> set = mapa.entrySet();
+			Iterator<Entry<K, T>> it = set.iterator();
+			while (it.hasNext()) {
+				Entry<K, T> entrada = it.next();
+				T aux = entrada.getValue();
+				builder.append(aux);
+			}
+		}
+
 		return builder.toString();
 		
 	}

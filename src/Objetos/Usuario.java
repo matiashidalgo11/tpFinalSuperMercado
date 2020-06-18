@@ -18,7 +18,7 @@ import Interfaces.idInterface;
 	
 public class Usuario implements idInterface<Long>, Serializable{
 	
-	public static long generadorId = 1;
+	public static long generadorId = 0;
 	
 	
 	private long id;
@@ -38,12 +38,14 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.userName = userName;
 		this.password = password;
 		this.cartera = 0;
-		this.id = generadorId++;
+		this.id = generadorId + 1;
 		historialCompra = new ArregloGenerico<DetalleCompra>();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.telefono = telefono;
+		
+		this.generadorId ++;
 	}
 	
 	/**
@@ -79,13 +81,16 @@ public class Usuario implements idInterface<Long>, Serializable{
 		if(!(obj instanceof Usuario))
 		{
 			return false;
+		}else
+		{
+			Usuario aux = (Usuario) obj;
+			if(aux.getUserName() == this.getUserName())
+			{
+			resp = true;
+			}
 		}
 		
-		Usuario aux = (Usuario) obj;
-		if(aux.getUserName() == this.getUserName())
-		{
-			resp = true;
-		}
+		
 			
 		return resp;
 	}

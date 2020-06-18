@@ -8,6 +8,7 @@ import java.util.Set;
 import Archivo.ArchivoGenerico;
 import Colecciones.ArregloGenerico;
 import Colecciones.MapaUsuario;
+import Interfaces.idInterface;
 import Colecciones.MapaCarro;
 import Colecciones.MapaGenerico;
 import productos.MapaCategoria;
@@ -59,7 +60,7 @@ public class Supermercado {
 			if (listaCarritos.existencia(id)) {
 				
 				carrito = listaCarritos.buscar(id);
-				actualizarCarro(carrito);
+				Carro.actualizarCarro(carrito, listaCategorias);
 				sesionActiva = new Session(user, carrito);
 
 			} else {
@@ -100,88 +101,18 @@ public class Supermercado {
 		return resp;
 	}
 	
-	/**
-	 * Recibe el carro actual del usuario que esta en session y luego lo actualiza acorde a la cantidad de Stock y de productos se encuentran en la ListaCategorias
-	 * @param carrito 
-	 * podria retornar la cantidad de productos que se quitaron
-	 */
-	private void actualizarCarro(Carro carrito)
-	{
-		
-		Producto productoListado;
-		ArregloGenerico<Long> idDeEliminados = new ArregloGenerico<Long>();
-		
-		//Recorre todos los productos del carrito
-		for (Producto productoCarrito : carrito.getArreglo().getArreglo()) {
-			
-		//Verifica si existe el Producto que se encuentra en el carrito dentro de la Lista Principal de Productos, si no es el caso lo elimina. En cambio si es el caso verifica que el stock este sincronizado con la cantidad De Stock disponible
-			if (listaCategorias.existeProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto())) {
-				
-				productoListado = listaCategorias.buscarProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto());
-				int stockNube = igualacion((int) productoListado.getStock(), (int) productoCarrito.getStock());
-				if (stockNube < 0 && productoListado.getStock() > 0) {
-					
-					productoCarrito.restarStock(stockNube * -1);
-
-				}
-
-			} else {
-				
-				System.out.println(productoCarrito.getIdProducto());
-				idDeEliminados.agregar(productoCarrito.getIdProducto());
-
-			}
-
-					
-		}
-		
-		for(Long id : idDeEliminados.getArreglo())
-		{
-			carrito.quitar(id);
-		}
-		
-		
-
-
-	}
 	
-	/**
-	 * Compara un numero con otro
-	 * @param modelo es el principal
-	 * @param imitador es el numero que va a querer copiar al modelo
-	 * @return  Si es 0 es que son iguales.
-	 *  	    Si el numero es mayor a 0 son los numeros que le faltan al Imitador para copiar a Modelo.
-	 *  	    Si es menor que 0 son los numeros que se le tienen que restar a Imitador para igualar a Modelo.
-	 * 	 */
-	private int igualacion(int modelo, int imitador)
-	{
-		int cantidad = 0;
-		
-		if(modelo > imitador)
-		{
-			while(imitador + cantidad != modelo)
-			{
-				cantidad++;
-			}
-		}else if(modelo < imitador)
-		{
-			
-			while(imitador - cantidad != modelo)
-			{
-				cantidad++;
-			}
-			
-			cantidad = cantidad * -1;
-		}
-		
-		
-		return cantidad;
-	}
-
 	
 	public boolean agregarUsuario(Usuario user)
 	{
-		return listaUsuarios.agregar(user.getIdPrincipal(), user);
+		boolean resp = false;
+		if(user != null)
+		{
+			 listaUsuarios.agregar(user.getIdPrincipal(), user);
+			 this.guardarUnidad(user);
+			 resp = true;
+		}
+		return resp;
 	}
 	
 	public void eliminarUsuario(Usuario user)
@@ -276,7 +207,7 @@ public class Supermercado {
 	}
 	
 	/**
-	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados)
+	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados). La idea es utilizarla solo al principio del programa.
 	 */
 	public void cargarDatos()
 	{
@@ -284,7 +215,7 @@ public class Supermercado {
 		{
 			//this.listaUsuarios.vaciar(); limpiar el mapa si esta lleno pero puede borrar datos que no se guardaror
 			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
-			Usuario.generadorId = listaUsuarios.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
+			Usuario.generadorId = listaUsuarios.getIdMasAlto();//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAUSUARIOS\n");
 		}else
 		{
@@ -315,7 +246,7 @@ public class Supermercado {
 	}
 	
 	/**
-	 * La funcion guardara todos los mapas en su estado actual a sus archivos correspondientes;
+	 * La funcion guardara todos los mapas en su estado actual a sus archivos correspondientes. La idea es utilizarla al final del Programa
 	 */
 	public void guardarDatos()
 	{
@@ -342,6 +273,21 @@ public class Supermercado {
 		{
 			archivoProducto.guardar(listaProductosToMap());
 			System.out.println("\n SE GUARDO LISTAPRODUCTOS");
+		}
+	}
+	
+	/**
+	 * Funcion que guarde dependiendo del dato una Unidad de Usuario, Producto o Carro. Es para que si el programa esta mucho tiempo abierto, se mantenga con el archivo lo mas actualizada posible sin tener que ir guardando y cargando todo de una
+	 */
+	public void guardarUnidad(idInterface<Long> dato)
+	{
+		if(dato instanceof Usuario)
+		{
+			archivoUsuario.agregarUnidad((Usuario)dato);
+			System.out.println("\n Se guardo exitosamente \n");
+		}else
+		{
+			System.out.println("\nERROR\n");
 		}
 	}
 	
@@ -405,4 +351,10 @@ public class Supermercado {
 		
 		return mapa;
 	}
+	
+	
+	
+
+
+	
 }

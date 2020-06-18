@@ -1,7 +1,11 @@
 package Objetos;
 
 import productos.Producto;
-
+/**
+ * Clase que une un Usuario con un Carro, dependiendo del dinero que tenga en la Cartera el Usuario podra comprar o no lo que se encuentra en el Carrito. 
+ * @author Matias
+ *
+ */
 public class Session {
 	
 	private Usuario user;
@@ -47,7 +51,11 @@ public class Session {
 		this.carrito = carrito;
 	}
 	
-	
+	/**
+	 * Funcion Principal que tiene en cuenta el dinero en la Cartera del Usuario, y el monto total del Carrito, luego se resta el dinero de la cartera, y se agrega el detalle de compra al Usuario
+	 * 
+	 * @return si se hizo efectiva la compra (true) o no (false)
+	 */
 	public boolean comprar() 
 	{
 			

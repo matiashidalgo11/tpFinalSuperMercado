@@ -16,6 +16,18 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		
 	}
 	
+	/**
+	 * Esta funcion agregar al mapa solo si el Id y el userName son distintos
+	 * @param user
+	 * @return si se agrego (true) o no (false)
+	 */
+	public boolean agregarUsuario(Usuario user)
+	{
+		boolean resp = false;
+		
+		return resp;
+	}
+	
 	public boolean existencia(String nombre)
 	{
 		boolean resp = false;
@@ -62,7 +74,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	@Override
 	public Long getIdMasAlto() {
 		
-		long id = 1;
+		long id = 0;
 		
 		Set<Entry<Long, Usuario>> set = super.getMapa().entrySet();
 		Iterator<Entry<Long, Usuario>> it = set.iterator();

@@ -80,7 +80,10 @@ public class testeoMati {
 		
 		
 		Supermercado toledo = new Supermercado();
-		
+		Usuario aux = new Usuario("Matias11", "Matias11", "Matias", "Hidalgo", 21, 123456789);
+		System.out.println(aux);
+		System.out.println(Usuario.generadorId);
+		//System.out.println(toledo.agregarUsuario(aux));
 		
 		
 		

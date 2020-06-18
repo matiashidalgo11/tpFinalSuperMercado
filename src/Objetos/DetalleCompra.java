@@ -5,6 +5,11 @@ import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
 
+/**
+ *	La Clase guarda en si misma Los productos que se compraron, el monto total y la fecha y hora en la que se creo. Es un registro de lo que se Compro 
+ * @author Matias
+ *
+ */
 public class DetalleCompra {
 	
 	private ArregloProductos productos;
