@@ -43,9 +43,23 @@ public class testeoMati {
 		System.out.println(mapaUsuario.listar());
 		*/
 		
-		Supermercado toledo = new Supermercado();
-		//System.out.println(toledo.agregarUsuario(a));
-		//System.out.println(toledo.agregarUsuario(a));
+		
+		//Supermercado toledo = new Supermercado();
+		/*
+		System.out.println("\n EL USUARIO QUE SE AGREGAR A SUPERMERCADOO ES: ");
+		
+		System.out.println(a);
+		System.out.println(toledo.agregarUsuario(a));
+		*/
+		//Usuario a = new Usuario("Matias", "1234", "Matias", "Hidalgo", 21, (long)123456);
+		Usuario b = new Usuario("Pepe", "4321", "Pepe", "Pipo", 15, (long)654321);
+		
+		
+		ArchivoGenerico<Long, Usuario> archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
+		archivoUsuario.guardarUnidad(b);
+		System.out.println(archivoUsuario.getArchivo().length());
+		ArregloGenerico<Usuario> arreglo = archivoUsuario.returnArregloGenerico();
+		System.out.println(arreglo.listar());
 	}
 	
 	

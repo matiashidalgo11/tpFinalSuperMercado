@@ -1,5 +1,6 @@
 package Objetos;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -10,7 +11,7 @@ import Colecciones.ArregloProductos;
  * @author Matias
  *
  */
-public class DetalleCompra {
+public class DetalleCompra implements Serializable{
 	
 	private ArregloProductos productos;
 	private double montoTotal;

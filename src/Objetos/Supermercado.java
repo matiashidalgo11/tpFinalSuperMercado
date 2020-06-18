@@ -38,7 +38,7 @@ public class Supermercado {
 		cargarDatos();
 		
 		System.out.println(listaUsuarios.listar());
-		System.out.println(listaCategorias.listarCategorias());
+		//System.out.println(listaCategorias.listarCategorias());
 		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
@@ -110,6 +110,10 @@ public class Supermercado {
 		{
 			 resp = listaUsuarios.agregarUsuario(user);
 			
+			 //borrar
+			 System.out.println("\n EL USUARIO QUE ESTA EN EL METODO AGREGAR USUARIO ES : ");
+			 System.out.println(user);
+			 
 			 if(resp == true)
 			 {
 				  this.guardarUnidad(user);
@@ -284,11 +288,14 @@ public class Supermercado {
 	/**
 	 * Funcion que guarde dependiendo del dato una Unidad de Usuario, Producto o Carro. Es para que si el programa esta mucho tiempo abierto, se mantenga con el archivo lo mas actualizada posible sin tener que ir guardando y cargando todo de una
 	 */
-	public void guardarUnidad(idInterface<Long> dato)
+	public void guardarUnidad(Object dato)
 	{
 		if(dato instanceof Usuario)
 		{
-			archivoUsuario.agregarUnidad((Usuario)dato);
+			Usuario aux = (Usuario)dato;
+			//borrar
+			System.out.println("\nEL USUARIO QUE SE GUARDA EN EL ARCHIVO ES : " + aux);
+			archivoUsuario.guardarUnidad(aux);
 			System.out.println("\n Se guardo exitosamente \n");
 		}else
 		{

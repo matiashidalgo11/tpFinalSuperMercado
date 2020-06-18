@@ -29,7 +29,7 @@ import Interfaces.idInterface;
  * La interface idInterface hace que cualquier objeto que la implemente tenga el metodo getIdPrincipal, para luego utilizarlo como clave, faltan mas testeos
  */
 
-public class ArchivoGenerico <K ,T extends idInterface<K> > {
+public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializable{
 	
 	File archivo;
 
@@ -88,29 +88,45 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 		
 	}
 	
-	public void agregarUnidad(T dato)
+	public void guardarUnidad(T dato)
 	{
 
-		ObjectOutputStream in;
+
 		
 		try
 		{
-			if(archivo.length() == 0)
+			if(archivo.length() == 0 )
 			{
-				in = new ObjectOutputStream(new FileOutputStream(archivo, true));
+				ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(archivo, true));
+				ob.writeObject(dato);
+				ob.close();
+				System.out.println(dato);
+				System.out.println("\nSE GUARDO EN OBJECT\n");
 			}else
 			{
-				in = new MiObjectOutputStream(new FileOutputStream(archivo, true));
+				AppendableObjectOutputStream apO = new AppendableObjectOutputStream(new FileOutputStream(archivo, true), archivo.exists());
+				apO.writeObject(dato);
+				apO.close();
+				System.out.println(dato);
+				System.out.println("\nSE GUARDO EN APPENDABLEOBJECT\n");
 			}
-			 
-			in.writeObject(dato);
+			
 			
 		}catch (IOException e) {
+			System.out.println("\nERROR AL GUARDAR LA UNIDAD\n");
 			
 		}
 		
 	}
 	
+
+	public File getArchivo() {
+		return archivo;
+	}
+
+	public void setArchivo(File archivo) {
+		this.archivo = archivo;
+	}
 
 	public MapaGenerico<K, T> cargar()
 	{
@@ -118,7 +134,7 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 
 		
 		try {
-			
+			//borrar de mas
 			FileInputStream in = new FileInputStream(archivo);
 			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
 			T dato;
@@ -164,14 +180,16 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 			
 			FileInputStream in = new FileInputStream(archivo);
 			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
-			T dato;
+			
 	
 			while(true)
 			{
 				
 				
-				dato = (T) obIn.readObject();
-
+				T dato = (T) obIn.readObject();
+				//borrar
+				System.out.println("EL DATO QUE SE CARGO DEL ARCHIVO Y SE GUARDA EN EL ARREGLO ES : ");
+				System.out.println(dato);
 				
 				resp.agregar(dato);
 			}

@@ -8,7 +8,7 @@ import Colecciones.ArregloGenerico;
 import Interfaces.idInterface;
 
 /**
- *Falta Implementar un Historial Compra
+
  * @author Matias
  * @version 0.0.1
  * 
@@ -18,6 +18,12 @@ import Interfaces.idInterface;
 	
 public class Usuario implements idInterface<Long>, Serializable{
 	
+	/**
+	 * Identificador unico para saber que es una Clase Usuario
+	 */
+	private static final long serialVersionUID = 1L;
+
+
 	public static long generadorId = 0;
 	
 	
@@ -38,7 +44,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.userName = userName;
 		this.password = password;
 		this.cartera = 0;
-		this.id = generadorId + 1;
+		this.id = generadorId + (long)1;
 		historialCompra = new ArregloGenerico<DetalleCompra>();
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -48,6 +54,8 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.generadorId ++;
 	}
 	
+
+
 	/**
 	 *	Constructor para clonar objeto.
 	 * 
@@ -65,13 +73,24 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.telefono = telefono;
 	}
 	
-
+	
+	public Usuario() {
+		this.userName = "";
+		this.password = "";
+		this.cartera = 0;
+		this.id = 0;
+		this.historialCompra = null;
+		this.nombre = "";
+		this.apellido = "";
+		this.edad = 0;
+		this.telefono = 0;
+	}
 	
 
 	@Override
 	public int hashCode() {
 		
-		return 1;
+		return 0;
 	}
 
 	@Override
@@ -89,52 +108,11 @@ public class Usuario implements idInterface<Long>, Serializable{
 			resp = true;
 			}
 		}
-		
-		
 			
 		return resp;
 	}
 
-	private long getId() {
-		return id;
-	}
 	
-	public void setId(long id) {
-		this.id = id;
-	}
-	
-	
-	public String getUserName() {
-		return userName;
-	}
-	
-	public void setUserName(String nombre) {
-		this.userName = nombre;
-	}
-	
-	private String getPassword() {
-		return password;
-	}
-	
-	private void setPassword(String password) {
-		this.password = password;
-	}
-	
-	public double getCartera() {
-		return cartera;
-	}
-	
-	public void setCartera(double cartera) {
-		this.cartera = cartera;
-	}
-	
-	public ArregloGenerico<DetalleCompra> getHistorialCompra() {
-		return historialCompra;
-	}
-
-	public void setHistorialCompra(ArregloGenerico<DetalleCompra> historialCompra) {
-		this.historialCompra = historialCompra;
-	}
 	
 	@Override
 	public String toString() {
@@ -144,7 +122,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 				"Nombre:   " + userName + "\n" +
 				"Password: " + password + "\n" + 
 				"Cartera:  " + cartera + "\n" +
-				"Informacion Personal: " + this.nombre + " " + this.apellido + " " + this.edad + "\n";
+				"Informacion Personal: " + this.nombre + " " + this.apellido + " " + this.edad +" " +this.telefono +"\n";
 	}
 	
 	public void sumarCartera(double suma)
@@ -166,7 +144,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 	@Override
 	public Long getIdPrincipal() {
 		// TODO Auto-generated method stub
-		return this.id;
+		return this.getId();
 	}
 
 	/**
@@ -188,4 +166,132 @@ public class Usuario implements idInterface<Long>, Serializable{
 		return resp;
 	}
 
+
+
+	public static long getGeneradorId() {
+		return generadorId;
+	}
+
+
+
+	public static void setGeneradorId(long generadorId) {
+		Usuario.generadorId = generadorId;
+	}
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	public String getUserName() {
+		return userName;
+	}
+
+
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+	public double getCartera() {
+		return cartera;
+	}
+
+
+
+	public void setCartera(double cartera) {
+		this.cartera = cartera;
+	}
+
+
+
+	public ArregloGenerico<DetalleCompra> getHistorialCompra() {
+		return historialCompra;
+	}
+
+
+
+	public void setHistorialCompra(ArregloGenerico<DetalleCompra> historialCompra) {
+		this.historialCompra = historialCompra;
+	}
+
+
+
+	public String getNombre() {
+		return nombre;
+	}
+
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+
+	public int getEdad() {
+		return edad;
+	}
+
+
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+
+
+	public long getTelefono() {
+		return telefono;
+	}
+
+
+
+	public void setTelefono(long telefono) {
+		this.telefono = telefono;
+	}
+
+
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	
+	
 }
