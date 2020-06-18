@@ -24,11 +24,19 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	public boolean agregarUsuario(Usuario user)
 	{
 		boolean resp = false;
+		if(!(super.existencia(user.getIdPrincipal())))
+		{
+			if(!(existencia(user.getUserName())))
+			{
+				resp = super.agregar(user.getIdPrincipal(), user);
+
+			}
+		}
 		
 		return resp;
 	}
 	
-	public boolean existencia(String nombre)
+	public boolean existencia(String userName)
 	{
 		boolean resp = false;
 		Set <Entry<Long, Usuario>> set = super.getMapa().entrySet(); 
@@ -38,7 +46,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		{
 			Entry<Long, Usuario> entrada = it.next();
 			Usuario aux = entrada.getValue();
-			if(nombre.equals(aux.getUserName()))
+			if(userName.equals(aux.getUserName()))
 			{
 				resp = true;
 			}
@@ -47,7 +55,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		return resp;
 	}
 	
-	public Usuario buscar (String nombre) throws NullPointerException
+	public Usuario buscar (String userName) throws NullPointerException
 	{
 		Usuario resp = null;
 		Set<Entry<Long, Usuario>> set = super.getMapa().entrySet();
@@ -56,7 +64,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 		{
 			Entry<Long, Usuario> entrada = it.next();
 			Usuario aux = entrada.getValue();
-			if(aux.getUserName().equals(nombre))
+			if(aux.getUserName().equals(userName))
 			{
 				resp = aux;
 			}

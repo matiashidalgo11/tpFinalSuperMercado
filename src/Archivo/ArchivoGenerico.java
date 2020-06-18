@@ -129,8 +129,7 @@ public class ArchivoGenerico <K ,T extends idInterface<K> > {
 				
 				dato = (T) obIn.readObject();
 				clave = dato.getIdPrincipal();
-				
-				resp.agregar(clave, dato);
+				System.out.println(resp.agregar(clave, dato));
 			}
 			
 			

@@ -38,12 +38,7 @@ public class Supermercado {
 		cargarDatos();
 		
 		System.out.println(listaUsuarios.listar());
-		/*
-		System.out.println("\n**********************************************\n");
 		System.out.println(listaCategorias.listarCategorias());
-		System.out.println("\n**********************************************\n");
-		System.out.println(listaCarritos.listar());
-		*/
 		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
@@ -102,15 +97,24 @@ public class Supermercado {
 	}
 	
 	
-	
+	/**
+	 * Agrega un Usuario al mapa y tambien lo agrega al Archivo
+	 * 
+	 * @param user
+	 * @return
+	 */
 	public boolean agregarUsuario(Usuario user)
 	{
 		boolean resp = false;
 		if(user != null)
 		{
-			 listaUsuarios.agregar(user.getIdPrincipal(), user);
-			 this.guardarUnidad(user);
-			 resp = true;
+			 resp = listaUsuarios.agregarUsuario(user);
+			
+			 if(resp == true)
+			 {
+				  this.guardarUnidad(user);
+			 }	
+
 		}
 		return resp;
 	}
@@ -215,6 +219,7 @@ public class Supermercado {
 		{
 			//this.listaUsuarios.vaciar(); limpiar el mapa si esta lleno pero puede borrar datos que no se guardaror
 			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
+			System.out.println("\n EL ID MAS ALTO DE LISTAUSUARIOS ES: " + listaUsuarios.getIdMasAlto());
 			Usuario.generadorId = listaUsuarios.getIdMasAlto();//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAUSUARIOS\n");
 		}else
