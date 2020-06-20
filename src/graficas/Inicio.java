@@ -29,6 +29,10 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.Cursor;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.MatteBorder;
+import javax.swing.UIManager;
+import java.awt.Font;
 
 public class Inicio extends JFrame {
 
@@ -39,60 +43,23 @@ public class Inicio extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Inicio frame = new Inicio();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Inicio frame = new Inicio();
+//					frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	/**
 	 * Create the frame.
 	 */
-	public Inicio() {
-		
-		Usuario alan = new Usuario("Alan", "123", 500, 1, null);
-		
-		Bebidas coca = new Bebidas("Cola", 60, "Coca", 1, 1, true, 2, "Dulce", false);
-		Bebidas jugo = new Bebidas("Jugo", 30, "Cualquiera", 1, 1, false, 2, "Dulce", false);
-		Bebidas cerveza = new Bebidas("Cerveza", 100, "Quilmes", 1, 1, false, 2, "Amargo", true);
-		Bebidas agua = new Bebidas("Agua", 50, "Mineral", 1, 1, false, 2, "Agua", false);
-		
-		Snack papas = new Snack("Papas Frita", 70, "Lays", 1, 2, 100);
-		Snack palitos = new Snack("Palitos", 40, "Palitos", 1, 2, 100);	
-		
-		Lacteo leche = new Lacteo("Leche", 50, "LaSerenisima", 1, 3, "Leche");
-		
-		MapaProductos lacteos = new MapaProductos();
-		lacteos.agregar(leche.getIdCategoria(), leche);
-		
-		MapaProductos snacks = new MapaProductos();
-		snacks.agregar(papas.getIdProducto(), papas);
-		snacks.agregar(palitos.getIdProducto(), palitos);
-		
-		MapaProductos bebidas = new MapaProductos();
-		bebidas.agregar(coca.getIdProducto(), coca);
-		bebidas.agregar(jugo.getIdProducto(), jugo);
-		bebidas.agregar(cerveza.getIdProducto(), cerveza);
-		bebidas.agregar(agua.getIdProducto(), agua);
-		
-		MapaCategoria categorias = new MapaCategoria();
-		categorias.agregar((long) 1, bebidas);
-		categorias.agregar((long) 2, snacks);
-		categorias.agregar((long) 3, lacteos);
-		
-		Carro carrito = new Carro();
-		
-		Supermercado mercado = new Supermercado(alan, carrito);
-		mercado.agregarProducto((long) 1, bebidas);
-		mercado.agregarProducto((long) 2, snacks);
-		mercado.agregarProducto((long) 3, lacteos);
+	public Inicio(Supermercado mercado) {
 		
 		setUndecorated(true);
 		setResizable(false);
@@ -123,6 +90,19 @@ public class Inicio extends JFrame {
 				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
 			}
 		});
+		
+		JButton btnNewButton = new JButton("X");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				System.exit(0);
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton.setBackground(new Color(192, 192, 192));
+		btnNewButton.setForeground(new Color(0, 0, 0));
+		btnNewButton.setBounds(1194, 14, 46, 26);
+		contentPane.add(btnNewButton);
 		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 		labelMover.setBounds(32, 11, 1233, 35);
 		contentPane.add(labelMover);
@@ -196,6 +176,8 @@ public class Inicio extends JFrame {
 		contentPane.add(botonHistorial);
 		
 		JPanel panel = new JPanel();
+		panel.setBorder(null);
+		panel.setOpaque(false);
 		panel.setBounds(254, 40, 1017, 641);
 		contentPane.add(panel);
 		panel.setLayout(null);
@@ -215,8 +197,12 @@ public class Inicio extends JFrame {
 		JButton arreglo[] = new JButton[mercado.cantidadCategorias()];
 		for(int i = 0; i < mercado.cantidadCategorias(); i++)
 		{
-			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1));
+			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1) + "s");
 			arreglo[i].setBounds(x, y, 192, 40);
+			arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+			arreglo[i].setForeground(new Color(255, 255, 255));
+			arreglo[i].setBackground(new Color(0, 102, 255));
+			arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
 			arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
 			arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
 			panel.add(arreglo[i]);
@@ -248,6 +234,4 @@ public class Inicio extends JFrame {
 	    }
 		
 	}
-	
-	
 }

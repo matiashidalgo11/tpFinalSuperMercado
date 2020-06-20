@@ -87,7 +87,8 @@ public class testeoAlan {
 //		mercado.guardarDatos();
 		mercado.cargarDatos();
 //		System.out.println(mercado.listarCategoriaEspecifica((long) 1));
-		System.out.println(mercado.listarCategorias());
+//		System.out.println(mercado.listarCategorias());
+		new Inicio(mercado).setVisible(true);
 //		mercado.agregarUsuario(alan);
 //		mercado.iniciarSession(1);
 //		
