@@ -51,15 +51,19 @@ public class testeoMati {
 		System.out.println(a);
 		System.out.println(toledo.agregarUsuario(a));
 		*/
-		//Usuario a = new Usuario("Matias", "1234", "Matias", "Hidalgo", 21, (long)123456);
-		Usuario b = new Usuario("Pepe", "4321", "Pepe", "Pipo", 15, (long)654321);
+		Usuario a = new Usuario("MatiasGamer", "1234", "Matias", "Hidalgo", 21, "123456");
+		Usuario b = new Usuario("PepeGamer", "123", "Pepe", "Pepito", 21, "45235874");
 		
 		
-		ArchivoGenerico<Long, Usuario> archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
-		archivoUsuario.guardarUnidad(b);
-		System.out.println(archivoUsuario.getArchivo().length());
-		ArregloGenerico<Usuario> arreglo = archivoUsuario.returnArregloGenerico();
-		System.out.println(arreglo.listar());
+//		ArchivoGenerico<Long, Usuario> archivoUsuario = new ArchivoGenerico<Long, Usuario>("Usuario.dat");
+//		archivoUsuario.guardarUnidad(a);
+//		archivoUsuario.guardarUnidad(b);
+//		System.out.println(archivoUsuario.getArchivo().length());
+//		ArregloGenerico<Usuario> arreglo = archivoUsuario.returnArregloGenerico();
+//		System.out.println(arreglo.listar());
+		
+		Supermercado mercado = new Supermercado();
+//		System.out.println(mercado.listarUsuarios());
 	}
 	
 	

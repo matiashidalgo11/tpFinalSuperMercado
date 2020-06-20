@@ -1,5 +1,6 @@
 package Archivo;
 
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -199,6 +200,9 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (EOFException e) {
+			e.printStackTrace();
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("\nARCHIVO FINALIZADO\n");

@@ -35,11 +35,11 @@ public class Usuario implements idInterface<Long>, Serializable{
 	private String nombre;
 	private String apellido;
 	private int edad;
-	private long telefono;
+	private String telefono;
 
 	
 	
-	public Usuario(String userName, String password, String nombre, String apellido, int edad, long telefono) {
+	public Usuario(String userName, String password, String nombre, String apellido, int edad, String telefono) {
 		
 		this.userName = userName;
 		this.password = password;
@@ -60,7 +60,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 	 *	Constructor para clonar objeto.
 	 * 
 	 */
-	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, long telefono) {
+	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, String telefono) {
 		
 		this.userName = userName;
 		this.password = password;
@@ -83,7 +83,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.nombre = "";
 		this.apellido = "";
 		this.edad = 0;
-		this.telefono = 0;
+		this.telefono = "";
 	}
 	
 
@@ -276,13 +276,13 @@ public class Usuario implements idInterface<Long>, Serializable{
 
 
 
-	public long getTelefono() {
+	public String getTelefono() {
 		return telefono;
 	}
 
 
 
-	public void setTelefono(long telefono) {
+	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
 
