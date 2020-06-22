@@ -13,6 +13,12 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		super();
 	}
 	
+	public String getNombreProducto(int i)
+	{
+		Producto nuevo = buscar((long)i);
+		return nuevo.getNombre();
+	}
+	
 	public String getNombreCategoria()
 	{
 		Iterator<Entry<Long, Producto>> it = getIterator();
@@ -33,6 +39,23 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		long id = 1;
 		
 		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			if(entrada.getValue().getIdProducto() > id)
+			{
+				id = entrada.getValue().getIdProducto();
+			}
+		}
+		
+		return id;
+	}
+	
+	public Long getPrimerId()
+	{
+		Iterator<Entry<Long, Producto>> it = getIterator();
+		long id = 0;
+		
+		if(it.hasNext())
 		{
 			Entry<Long, Producto> entrada = it.next();
 			if(entrada.getValue().getIdProducto() > id)

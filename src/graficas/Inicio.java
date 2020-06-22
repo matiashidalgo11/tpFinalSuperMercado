@@ -90,22 +90,34 @@ public class Inicio extends JFrame {
 				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
 			}
 		});
-		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-		labelMover.setBounds(32, 11, 1233, 35);
-		contentPane.add(labelMover);
 		
-		JButton btnNewButton = new JButton("X");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton botonSalir = new JButton("X");
+		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		botonSalir.setBackground(new Color(192, 192, 192));
+		botonSalir.setForeground(new Color(0, 0, 0));
+		botonSalir.setBounds(1194, 14, 46, 26);
+		botonSalir.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonSalir.setBackground(Color.red);
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonSalir.setBackground(new Color(192, 192, 192));
+			}
+		});
+		botonSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
 				System.exit(0);
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		btnNewButton.setBackground(new Color(192, 192, 192));
-		btnNewButton.setForeground(new Color(0, 0, 0));
-		btnNewButton.setBounds(1194, 14, 46, 26);
-		contentPane.add(btnNewButton);
+		contentPane.add(botonSalir);
+		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
+		labelMover.setBounds(32, 11, 1233, 35);
+		contentPane.add(labelMover);
 		
 		
 		JButton botonCarro = new JButton("");
@@ -184,6 +196,7 @@ public class Inicio extends JFrame {
 		panel.setLayout(null);
 		
 		crearMatrizBotones(panel, mercado);
+
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Inicio.png")));
@@ -193,13 +206,13 @@ public class Inicio extends JFrame {
 	
 	void crearMatrizBotones(JPanel panel, Supermercado mercado)
 	{
-		int x = 54;
-		int y = 52;
+		int x = 150;
+		int y = 61;
 		JButton arreglo[] = new JButton[mercado.cantidadCategorias()];
 		for(int i = 0; i < mercado.cantidadCategorias(); i++)
 		{
 			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1) + "s");
-			arreglo[i].setBounds(x, y, 192, 40);
+			arreglo[i].setBounds(x, y, 316, 67);
 			arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
 			arreglo[i].setForeground(new Color(255, 255, 255));
 			arreglo[i].setBackground(new Color(0, 102, 255));
@@ -207,12 +220,12 @@ public class Inicio extends JFrame {
 			arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
 			arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
 			panel.add(arreglo[i]);
-			x += 192 + 20;
+			x += 316 + 20;
 			
-			if(i == 4) 
+			if(i == 1) 
 			{
-				x = 54;
-				y += 40 + 20;
+				x = 150;
+				y += 67 + 20;
 			}
 		}	
 	}

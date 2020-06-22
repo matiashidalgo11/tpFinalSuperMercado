@@ -251,42 +251,40 @@ public class Cuenta extends JFrame {
 		contentPane.add(fieldContraseña);
 		
 		editarNombreUsuario = new JLabel("");
+		editarNombreUsuario.setBounds(743, 117, 38, 35);
 		editarNombreUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editarNombreUsuario.addMouseListener(new EditarField(fieldUsuario));
+		contentPane.add(editarNombreUsuario);
 		
 		editarContraseña = new JLabel("");
+		editarContraseña.setBounds(742, 220, 38, 35);	
 		editarContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editarContraseña.addMouseListener(new EditarField(fieldContraseña));
+		contentPane.add(editarContraseña);
 		
 		editarNombre = new JLabel("");
+		editarNombre.setBounds(742, 327, 38, 35);
 		editarNombre.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editarNombre.addMouseListener(new EditarField(fieldNombre));
+		contentPane.add(editarNombre);
 		
 		editarApellido = new JLabel("");
+		editarApellido.setBounds(742, 431, 38, 35);
 		editarApellido.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editarApellido.addMouseListener(new EditarField(fieldApellido));
+		contentPane.add(editarApellido);
 		
 		editarEdad = new JLabel("");
 		editarEdad.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		editarEdad.setBounds(742, 535, 38, 35);
 		editarEdad.addMouseListener(new EditarField(fieldEdad));
+		contentPane.add(editarEdad);
 		
 		editarTelefono = new JLabel("");
+		editarTelefono.setBounds(742, 636, 38, 35);
 		editarTelefono.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		editarTelefono.addMouseListener(new EditarField(fieldTelefono));
-		
-		editarApellido.setBounds(742, 431, 38, 35);
-		editarEdad.setBounds(742, 535, 38, 35);
-		editarNombre.setBounds(742, 327, 38, 35);
-		editarContraseña.setBounds(742, 220, 38, 35);	
-		editarNombreUsuario.setBounds(743, 117, 38, 35);
-		editarTelefono.setBounds(742, 636, 38, 35);
-		
-		contentPane.add(editarNombreUsuario);
 		contentPane.add(editarTelefono);
-		contentPane.add(editarEdad);
-		contentPane.add(editarApellido);		
-		contentPane.add(editarContraseña);
-		contentPane.add(editarNombre);
 		
 		botonGuardar = new JLabel("");
 		botonGuardar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));

@@ -4,17 +4,22 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Objetos.Supermercado;
+import graficas.Inicio.Pulsando;
 import productos.MapaProductos;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -171,13 +176,68 @@ public class Productos extends JFrame {
 		contentPane.add(botonHistorial);
 		
 		
+		JPanel panel = new JPanel();
+		panel.setIgnoreRepaint(true);
+		panel.setBorder(null);
+		panel.setBounds(259, 64, 1017, 627);
+		contentPane.add(panel);
 		
-		
+		System.out.println(productos.listar());
+		crearMatrizBotones(panel, productos);
+		panel.setLayout(null);
 		
 		JLabel fondo = new JLabel("");
+		fondo.setIgnoreRepaint(true);
 		fondo.setBounds(5, 5, 1290, 740);
 		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos.png")));
 		contentPane.add(fondo);
 	}
-
+	
+	void crearMatrizBotones(JPanel panel, MapaProductos productos)
+	{
+		int x = 150;
+		int y = 61;
+		JButton arreglo[] = new JButton[productos.cantidad()];
+		int primerId = Long.valueOf(productos.getPrimerId()).intValue();
+		
+		for(int i = primerId ; i < productos.cantidad(); i++)
+		{
+			arreglo[i] = new JButton(productos.getNombreProducto(i));
+			arreglo[i].setBounds(x, y, 316, 67);
+			arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+			arreglo[i].setForeground(new Color(255, 255, 255));
+			arreglo[i].setBackground(new Color(0, 102, 255));
+			arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
+			arreglo[i].setActionCommand(productos.getNombreProducto(i));
+			arreglo[i].addActionListener(new Pulsando(arreglo[i], productos));
+			panel.add(arreglo[i]);
+			x += 316 + 20;
+			
+			if(i == 1) 
+			{
+				x = 150;
+				y += 67 + 20;
+			}
+		}	
+	}
+	
+	class Pulsando implements ActionListener{
+		
+		MapaProductos productos;
+		JButton button;
+		
+		public Pulsando(JButton button, MapaProductos productos) {
+			
+			this.button = button;
+			this.productos = productos;
+		}
+		
+		public void actionPerformed(ActionEvent e) {
+	        String actionCommand = ((JButton) e.getSource()).getActionCommand();
+//	        MapaProductos productos = mercado.getCategoriaPorNombre(actionCommand);
+//	        setVisible(false);
+//	        new Productos(mercado, productos).setVisible(true);
+	    }
+		
+	}
 }
