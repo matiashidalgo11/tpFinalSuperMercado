@@ -64,7 +64,7 @@ public class Inicio extends JFrame {
 		setUndecorated(true);
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1300, 750);
+		setBounds(100, 100, 1300, 750); //Tamaño por defecto del JFrame
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
 
@@ -145,7 +145,8 @@ public class Inicio extends JFrame {
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
-		botonCuenta.addMouseListener(new MouseAdapter() {
+		botonCuenta.addMouseListener(new MouseAdapter() 
+		{
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
@@ -200,7 +201,7 @@ public class Inicio extends JFrame {
 		
 		JLabel Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Inicio.png")));
-		Fondo.setBounds(0, 0, 1294, 721);
+		Fondo.setBounds(0, 0, 1294, 721); //Tamaño por defecto del fondo 
 		contentPane.add(Fondo);
 	}
 	
@@ -209,6 +210,7 @@ public class Inicio extends JFrame {
 		int x = 150;
 		int y = 61;
 		JButton arreglo[] = new JButton[mercado.cantidadCategorias()];
+		
 		for(int i = 0; i < mercado.cantidadCategorias(); i++)
 		{
 			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1) + "s");
@@ -220,6 +222,7 @@ public class Inicio extends JFrame {
 			arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
 			arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
 			panel.add(arreglo[i]);
+			
 			x += 316 + 20;
 			
 			if(i == 1) 
@@ -241,7 +244,8 @@ public class Inicio extends JFrame {
 			this.mercado = mercado;
 		}
 		
-		public void actionPerformed(ActionEvent e) {
+		public void actionPerformed(ActionEvent e) 
+		{
 	        String actionCommand = ((JButton) e.getSource()).getActionCommand();
 	        MapaProductos productos = mercado.getCategoriaPorNombre(actionCommand);
 	        setVisible(false);
