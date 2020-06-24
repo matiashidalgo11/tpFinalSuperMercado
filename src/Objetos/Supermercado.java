@@ -47,6 +47,7 @@ public class Supermercado {
 	{
 		Usuario user;
 		Carro carrito;
+
 		
 		if (listaUsuarios.existencia(id)) {
 			
@@ -131,6 +132,11 @@ public class Supermercado {
 	public boolean existeUsuario(Usuario user)
 	{
 		return listaUsuarios.existencia(user.getIdPrincipal());
+	}
+	
+	public boolean existeUsuario(String userName)
+	{
+		return listaUsuarios.existencia(userName);
 	}
 	
 	public Usuario buscarUsuario(Usuario user)
@@ -301,6 +307,8 @@ public class Supermercado {
 		{
 			System.out.println("\nERROR\n");
 		}
+		//DESARROLLAR PARA PRODUCTO Y CARRITO
+		
 	}
 	
 	/**
