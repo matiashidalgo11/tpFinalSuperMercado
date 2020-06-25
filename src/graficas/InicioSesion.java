@@ -1,0 +1,154 @@
+package graficas;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.SoftBevelBorder;
+
+import Objetos.Supermercado;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class InicioSesion extends JFrame {
+
+	private JPanel contentPane;
+	private JLabel Fondo;
+	private JTextField txtNombreUser;
+	private JPasswordField txtPassword;
+	private JButton btnIniciar;
+	private Supermercado superAux;
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					Supermercado aux = new Supermercado();
+					InicioSesion frame = new InicioSesion(aux);
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public InicioSesion(Supermercado superAux) {
+		this.superAux = superAux;
+		initComponents();
+		accionesBotones();
+	}
+	private void initComponents() {
+		configuracionGeneral();
+		configuracionTxt();
+		configuracionBotones();
+		
+		Fondo();
+	}
+	
+	public void configuracionGeneral()
+	{
+		setUndecorated(true);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 1300, 750);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBackground(new Color(0,0,0,0));
+		setBackground(new Color(0,0,0,0));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+	}
+	
+	public void Fondo()
+	{
+		
+		Fondo = new JLabel("");
+		Fondo.setForeground(new Color(0, 0, 0));
+		Fondo.setFont(new Font("Tahoma", Font.PLAIN, 26));
+		Fondo.setIcon(new ImageIcon(Principal.class.getResource("/img/Inicio Sesion.png")));
+		Fondo.setBounds(0, 0, 1300, 750);
+		contentPane.add(Fondo);
+	}
+	
+	public void configuracionTxt()
+	{
+		txtNombreUser = new JTextField();
+		txtNombreUser.setOpaque(false);
+		txtNombreUser.setForeground(new Color(102, 102, 102));
+		txtNombreUser.setFont(new Font("Calibri", Font.PLAIN, 23));
+		txtNombreUser.setEditable(true);
+		txtNombreUser.setColumns(10);
+		txtNombreUser.setCaretColor(Color.BLACK);
+		txtNombreUser.setBorder(null);
+		txtNombreUser.setBackground(Color.WHITE);
+		txtNombreUser.setBounds(554, 216, 224, 35);
+		contentPane.add(txtNombreUser);
+		
+		txtPassword = new JPasswordField();
+		txtPassword.setSelectionColor(new Color(51, 204, 255));
+		txtPassword.setOpaque(false);
+		txtPassword.setForeground(new Color(102, 102, 102));
+		txtPassword.setFont(new Font("Calibri", Font.PLAIN, 24));
+		txtPassword.setEditable(true);
+		txtPassword.setColumns(10);
+		txtPassword.setBorder(null);
+		txtPassword.setBackground(Color.WHITE);
+		txtPassword.setBounds(554, 336, 224, 35);
+		contentPane.add(txtPassword);
+	}
+
+	public void configuracionBotones() {
+
+		// Siguiente boton
+		btnIniciar = new JButton("");
+		btnIniciar.setVisible(true);
+		btnIniciar.setOpaque(false);
+		btnIniciar.setBorder(null);
+
+		// Totalmente Transparente
+		btnIniciar.setContentAreaFilled(false);
+		btnIniciar.setBorderPainted(false);
+
+		btnIniciar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) {
+				btnIniciar.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+				btnIniciar.setBorder(null);
+			}
+		});
+
+		btnIniciar.setBounds(509, 414, 159, 48);
+		contentPane.add(btnIniciar);
+	}
+	
+	public void accionesBotones()
+	{
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
+}

@@ -182,6 +182,10 @@ public class Principal extends JFrame {
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
+				InicioSesion iniciar = new InicioSesion(superAux);
+				iniciar.setVisible(true);
+				dispose();
+				
 			}
 		});
 		

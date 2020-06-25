@@ -144,6 +144,11 @@ public class Supermercado {
 		return listaUsuarios.buscar(user.getIdPrincipal());
 	}
 	
+	public Usuario buscarUsuario(String userName)
+	{
+		return listaUsuarios.buscar(userName);
+	}
+	
 	public void vaciarListaUsuarios()
 	{
 		listaUsuarios.vaciar();
@@ -294,7 +299,7 @@ public class Supermercado {
 	/**
 	 * Funcion que guarde dependiendo del dato una Unidad de Usuario, Producto o Carro. Es para que si el programa esta mucho tiempo abierto, se mantenga con el archivo lo mas actualizada posible sin tener que ir guardando y cargando todo de una
 	 */
-	public void guardarUnidad(Object dato)
+	private void guardarUnidad(Object dato)
 	{
 		if(dato instanceof Usuario)
 		{
@@ -303,11 +308,21 @@ public class Supermercado {
 			System.out.println("\nEL USUARIO QUE SE GUARDA EN EL ARCHIVO ES : " + aux);
 			archivoUsuario.guardarUnidad(aux);
 			System.out.println("\n Se guardo exitosamente \n");
+			
+		}else if(dato instanceof Producto)
+		{
+			Producto aux = (Producto) dato;
+			archivoProducto.guardarUnidad(aux);
+			
+		}else if (dato instanceof Carro)
+		{
+			Carro aux = (Carro) dato;
+			archivoCarro.guardarUnidad(aux);
 		}else
 		{
-			System.out.println("\nERROR\n");
+			System.out.println("EL Dato no corresponde a un Archivo disponible");
 		}
-		//DESARROLLAR PARA PRODUCTO Y CARRITO
+
 		
 	}
 	

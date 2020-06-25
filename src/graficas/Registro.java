@@ -19,6 +19,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Objetos.Supermercado;
+import Objetos.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JButton;
@@ -35,6 +36,8 @@ public class Registro extends JFrame {
 	private JTextField txtNombre;
 	private JTextField txtApellido;
 	private Supermercado superAux;
+	private JTextField txtTelefono;
+	private JTextField txtEdad;
 	
 	public Supermercado getSuperAux() {
 		return superAux;
@@ -205,8 +208,32 @@ public class Registro extends JFrame {
 		txtApellido.setCaretColor(Color.BLACK);
 		txtApellido.setBorder(null);
 		txtApellido.setBackground(Color.WHITE);
-		txtApellido.setBounds(564, 519, 623, 35);
+		txtApellido.setBounds(551, 469, 623, 35);
 		contentPane.add(txtApellido);
+		
+		txtTelefono = new JTextField();
+		txtTelefono.setOpaque(false);
+		txtTelefono.setForeground(new Color(102, 102, 102));
+		txtTelefono.setFont(new Font("Calibri", Font.PLAIN, 23));
+		txtTelefono.setEditable(true);
+		txtTelefono.setColumns(10);
+		txtTelefono.setCaretColor(Color.BLACK);
+		txtTelefono.setBorder(null);
+		txtTelefono.setBackground(Color.WHITE);
+		txtTelefono.setBounds(67, 590, 350, 35);
+		contentPane.add(txtTelefono);
+		
+		txtEdad = new JTextField();
+		txtEdad.setOpaque(false);
+		txtEdad.setForeground(new Color(102, 102, 102));
+		txtEdad.setFont(new Font("Calibri", Font.PLAIN, 23));
+		txtEdad.setEditable(true);
+		txtEdad.setColumns(10);
+		txtEdad.setCaretColor(Color.BLACK);
+		txtEdad.setBorder(null);
+		txtEdad.setBackground(Color.WHITE);
+		txtEdad.setBounds(67, 636, 400, 29);
+		contentPane.add(txtEdad);
 		
 	}
 	
@@ -227,10 +254,17 @@ public class Registro extends JFrame {
 				if(superAux.existeUsuario(txtNombreUser.getText()))
 				{
 					System.out.println("EXISTE USUARIO");
-				}else
-				{
 					
+				}else if(txtNombreUser.getText().equals(txtNombre.getText()))
+				{
+					System.out.println("No se puede colocar el Mismo nombre para Usuario y nombre");
+				}else
+				{	
+					Usuario nuevo = new Usuario(txtNombreUser.getText(), txtPassword.getText(), txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtEdad.getText()), txtTelefono.getText());
+					superAux.agregarUsuario(nuevo);
+					Principal p = new Principal(superAux);
 				}
+				
 				
 			}
 		});
