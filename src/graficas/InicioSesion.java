@@ -1,6 +1,5 @@
 package graficas;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
@@ -18,7 +17,11 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import Excepciones.CamposVacios;
+import Excepciones.LoginIncorrecto;
 import Objetos.Supermercado;
+import Objetos.Usuario;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
@@ -55,12 +58,13 @@ public class InicioSesion extends JFrame {
 		this.superAux = superAux;
 		initComponents();
 		accionesBotones();
+		
 	}
+	
 	private void initComponents() {
 		configuracionGeneral();
 		configuracionTxt();
 		configuracionBotones();
-		
 		Fondo();
 	}
 	
@@ -91,8 +95,9 @@ public class InicioSesion extends JFrame {
 	public void configuracionTxt()
 	{
 		txtNombreUser = new JTextField();
+		txtNombreUser.setDisabledTextColor(Color.GRAY);
 		txtNombreUser.setOpaque(false);
-		txtNombreUser.setForeground(new Color(102, 102, 102));
+		txtNombreUser.setForeground(Color.GRAY);
 		txtNombreUser.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtNombreUser.setEditable(true);
 		txtNombreUser.setColumns(10);
@@ -145,10 +150,57 @@ public class InicioSesion extends JFrame {
 	
 	public void accionesBotones()
 	{
+		//Incompleto
 		btnIniciar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
+				try {
+
+					if (txtNombreUser.getText().length() == 0 && txtPassword.getText().length() == 0) {
+						
+						throw new CamposVacios("UserName , Password" ,txtNombreUser, txtPassword);
+						
+					}else if(txtNombreUser.getText().length() == 0 )
+					{
+						throw new CamposVacios("UserName",txtNombreUser, txtPassword);
+						
+					}else if(txtPassword.getText().length() == 0)
+					{
+						throw new CamposVacios("Password",txtNombreUser, txtPassword);
+						
+					}else if(!superAux.existeUsuario(txtNombreUser.getText()))
+					{
+						throw new LoginIncorrecto("El usuario no existe", txtNombreUser, txtPassword);
+					}else 
+					{
+						Usuario aux = superAux.buscarUsuario(txtNombreUser.getText());
+						
+						if(!aux.getPassword().equals(txtPassword.getText()))
+						{
+							throw new LoginIncorrecto("Password", txtPassword);
+						}else
+						{
+							superAux.iniciarSession(aux.getIdPrincipal());
+							Inicio iniciar = new Inicio(superAux);
+							iniciar.setVisible(true);
+							dispose();
+						}
+					}
+
+				} catch (CamposVacios c) {
+					System.out.println(c.getMessage());
+	
+					
+				} catch (LoginIncorrecto e1) {
+					e1.printStackTrace();
+					
+				}
+
 			}
 		});
+		
 	}
+	
+	
+	
 }

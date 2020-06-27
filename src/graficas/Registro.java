@@ -237,6 +237,7 @@ public class Registro extends JFrame {
 		
 	}
 	
+	//Agrega excepciones
 	public void accionesBotones()
 	{
 		btnCancelar.addActionListener(new ActionListener() {

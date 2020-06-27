@@ -110,10 +110,6 @@ public class Supermercado {
 		if(user != null)
 		{
 			 resp = listaUsuarios.agregarUsuario(user);
-			
-			 //borrar
-			 System.out.println("\n EL USUARIO QUE ESTA EN EL METODO AGREGAR USUARIO ES : ");
-			 System.out.println(user);
 			 
 			 if(resp == true)
 			 {
