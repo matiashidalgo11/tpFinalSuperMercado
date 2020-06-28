@@ -18,9 +18,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Excepciones.CamposVacios;
+import Excepciones.LoginAdmin;
 import Excepciones.LoginIncorrecto;
 import Objetos.Supermercado;
 import Objetos.Usuario;
+import graficasAdmin.Admin;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -33,6 +35,9 @@ public class InicioSesion extends JFrame {
 	private JPasswordField txtPassword;
 	private JButton btnIniciar;
 	private Supermercado superAux;
+	
+	private static String ADMIN_NAME = "admin";
+	private static String ADMIN_PASSWORD = "1234";
 
 	/**
 	 * Launch the application.
@@ -168,6 +173,10 @@ public class InicioSesion extends JFrame {
 					{
 						throw new CamposVacios("Password",txtNombreUser, txtPassword);
 						
+					}else if(txtNombreUser.getText().equals(ADMIN_NAME) && txtPassword.getText().equals(ADMIN_PASSWORD))
+					{
+						throw new LoginAdmin();
+						
 					}else if(!superAux.existeUsuario(txtNombreUser.getText()))
 					{
 						throw new LoginIncorrecto("El usuario no existe", txtNombreUser, txtPassword);
@@ -194,6 +203,12 @@ public class InicioSesion extends JFrame {
 				} catch (LoginIncorrecto e1) {
 					e1.printStackTrace();
 					
+				} catch (LoginAdmin e1) {
+					
+					e1.printStackTrace();
+					Admin nuevo = new Admin(superAux);
+					nuevo.setVisible(true);
+					dispose();
 				}
 
 			}
