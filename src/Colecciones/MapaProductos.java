@@ -3,6 +3,7 @@ package Colecciones;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import ColeccionesGenericas.MapaGenerico;
 import Interfaces.IdMaximo;
 import Productos.Producto;
 

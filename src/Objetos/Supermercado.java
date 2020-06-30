@@ -6,13 +6,13 @@ import java.util.Map.Entry;
 import java.util.Set;
 
 import Archivo.ArchivoGenerico;
-import Colecciones.ArregloGenerico;
 import Colecciones.MapaUsuario;
+import ColeccionesGenericas.ArregloGenerico;
+import ColeccionesGenericas.MapaGenerico;
 import Interfaces.idInterface;
 import Productos.Producto;
 import Colecciones.MapaCarro;
 import Colecciones.MapaCategoria;
-import Colecciones.MapaGenerico;
 import Colecciones.MapaProductos;
 
 public class Supermercado {

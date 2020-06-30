@@ -1,4 +1,4 @@
-package Colecciones;
+package ColeccionesGenericas;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +7,7 @@ import Interfaces.IColeccion;
 
 public class ArregloGenerico<T> implements IColeccion<T>, Serializable {
 
-	ArrayList<T> arreglo;
+	protected ArrayList<T> arreglo;
 	
 	public ArregloGenerico() {
 		arreglo = new ArrayList<T>();

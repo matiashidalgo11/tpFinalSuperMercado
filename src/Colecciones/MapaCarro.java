@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import ColeccionesGenericas.ArregloGenerico;
+import ColeccionesGenericas.MapaGenerico;
 import Interfaces.IdMaximo;
 
 import java.util.Set;

@@ -16,8 +16,8 @@ import java.util.Map.Entry;
 
 import java.util.Set;
 
-import Colecciones.ArregloGenerico;
-import Colecciones.MapaGenerico;
+import ColeccionesGenericas.ArregloGenerico;
+import ColeccionesGenericas.MapaGenerico;
 import Interfaces.idInterface;
 /**
  * 

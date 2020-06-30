@@ -1,5 +1,6 @@
 package Colecciones;
 
+import ColeccionesGenericas.ArregloGenerico;
 import Productos.*;
 
 

@@ -2,9 +2,12 @@ package Objetos;
 
 import java.io.Serializable;
 
+import org.json.JSONObject;
+
 import Colecciones.ArregloProductos;
 import Colecciones.MapaCategoria;
-import Colecciones.ArregloGenerico;
+import ColeccionesGenericas.ArregloGenerico;
+import Interfaces.JsonFunciones;
 import Interfaces.idInterface;
 import Productos.Producto;
 
@@ -13,11 +16,18 @@ import Productos.Producto;
  * @author Matias
  * Contiene un ArregloProductos, y el Id al cual pertence a un Usuario que lo este Utilizando.
  */
-public class Carro implements Serializable, idInterface<Long>{
+public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	
 	private double total;
 	private ArregloProductos arreglo;
 	private long idCarro;
+	
+	/**
+	 * Identificador unico para saber que es una Clase Usuario
+	 */
+	public static String CLAVE_ID = "idCarro";
+	public static String CLAVE_ARREGLOPRODUCTOS = "arregloProductos";
+	public static String CLAVE_TOTAL = "montoTotal";
 	
 	public Carro(ArregloProductos arreglo, long id) {
 		
@@ -228,6 +238,12 @@ public class Carro implements Serializable, idInterface<Long>{
 		
 		
 		return cantidad;
+	}
+
+	@Override
+	public JSONObject toJson() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	

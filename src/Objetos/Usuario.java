@@ -4,7 +4,10 @@ package Objetos;
 
 import java.io.Serializable;
 
-import Colecciones.ArregloGenerico;
+import org.json.JSONObject;
+
+import ColeccionesGenericas.ArregloGenerico;
+import Interfaces.JsonFunciones;
 import Interfaces.idInterface;
 
 /**
@@ -16,7 +19,7 @@ import Interfaces.idInterface;
  */
 
 	
-public class Usuario implements idInterface<Long>, Serializable{
+public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	
 	/**
 	 * Identificador unico para saber que es una Clase Usuario
@@ -37,6 +40,17 @@ public class Usuario implements idInterface<Long>, Serializable{
 	private int edad;
 	private String telefono;
 	private boolean activo;
+	
+	//Referencias para construir el JSON
+	
+	public static String CLAVE_ID = "idUsuario";
+	public static String CLAVE_USERNAME = "userName";
+	public static String CLAVE_PASSWORD = "password";
+	public static String CLAVE_CARTERA = "cartera";
+	public static String CLAVE_HISTORIALCOMPRA = "historialCompra";
+	public static String CLAVE_NOMBRE = "nombre";
+	public static String CLAVE_TELEFONO = "telefono";
+	public static String CLAVE_ACTIVO = "activo";
 	
 	
 	public Usuario(String userName, String password, String nombre, String apellido, int edad, String telefono) {
@@ -292,6 +306,18 @@ public class Usuario implements idInterface<Long>, Serializable{
 
 	public void setActivo(boolean activo) {
 		this.activo = activo;
+	}
+
+
+
+	@Override
+	public JSONObject toJson() {
+		
+		JSONObject resp = new JSONObject();
+		
+		
+		
+		return resp;
 	}
 
 	

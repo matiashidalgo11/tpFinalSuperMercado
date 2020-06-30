@@ -2,6 +2,9 @@ package Colecciones;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import ColeccionesGenericas.MapaGenerico;
+
 import java.util.Set;
 
 import Interfaces.IdMaximo;
