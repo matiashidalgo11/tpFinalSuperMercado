@@ -1,8 +1,9 @@
-package productos;
+package Productos;
 
 public class Golosina extends Producto{
 
 	private int cantidad;
+	public static long ID_CATEGORIA_GOLOSINA = 5;
 	
 	public Golosina() 
 	{
@@ -10,13 +11,22 @@ public class Golosina extends Producto{
 		cantidad = 0;
 	}
 
-	public Golosina(String nombre, double precio, String marca, long stock,
-			long idCategoria, int cantidad) 
+	public Golosina(String nombre, double precio, String marca, long stock, long idCategoria, int cantidad) 
 	{
-		super(nombre, precio, marca, stock, idCategoria);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_GOLOSINA);
 		this.cantidad = cantidad;
 	}
 
+	/**
+	 * Constructor para Clonar
+	 * @param dato
+	 */
+	public Golosina(Golosina dato)
+	{
+		super(dato);
+		this.cantidad = dato.getCantidad();
+	}
+	
 	public int getCantidad() {
 		return cantidad;
 	}

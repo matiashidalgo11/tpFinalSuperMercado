@@ -9,11 +9,11 @@ import Archivo.ArchivoGenerico;
 import Colecciones.ArregloGenerico;
 import Colecciones.MapaUsuario;
 import Interfaces.idInterface;
+import Productos.Producto;
 import Colecciones.MapaCarro;
+import Colecciones.MapaCategoria;
 import Colecciones.MapaGenerico;
-import productos.MapaCategoria;
-import productos.MapaProductos;
-import productos.Producto;
+import Colecciones.MapaProductos;
 
 public class Supermercado {
 
@@ -62,7 +62,7 @@ public class Supermercado {
 			} else {
 				
 				sesionActiva = new Session(user);
-				long clave = sesionActiva.getCarrito().getIdPrincipal();
+				long clave = sesionActiva.getCarrito().getId();
 				listaCarritos.agregar(clave, sesionActiva.getCarrito());
 			}
 			
@@ -122,12 +122,12 @@ public class Supermercado {
 	
 	public void eliminarUsuario(Usuario user)
 	{
-		listaUsuarios.eliminar(user.getIdPrincipal());
+		listaUsuarios.eliminar(user.getId());
 	}
 	
 	public boolean existeUsuario(Usuario user)
 	{
-		return listaUsuarios.existencia(user.getIdPrincipal());
+		return listaUsuarios.existencia(user.getId());
 	}
 	
 	public boolean existeUsuario(String userName)
@@ -137,7 +137,7 @@ public class Supermercado {
 	
 	public Usuario buscarUsuario(Usuario user)
 	{
-		return listaUsuarios.buscar(user.getIdPrincipal());
+		return listaUsuarios.buscar(user.getId());
 	}
 	
 	public Usuario buscarUsuario(String userName)
@@ -163,23 +163,23 @@ public class Supermercado {
 	public void agregarProducto(Long idCategoria, Producto producto)
 	{
 		MapaProductos nuevoMapa = new MapaProductos();
-		nuevoMapa.agregar(producto.getIdProducto(), producto);
+		nuevoMapa.agregar(producto.getId(), producto);
 		listaCategorias.agregarCategoria(idCategoria, nuevoMapa);
 	}
 	
-	public void eliminarProducto(Long idCategoria, Long idProducto)
+	public void eliminarProducto(Long idProducto)
 	{
-		listaCategorias.eliminarProducto(idCategoria, idProducto);
+		listaCategorias.eliminarProducto(idProducto);
 	}
 	
-	public void existeProducto(Long idCategoria, Long idProducto)
+	public void existeProducto( Long idProducto)
 	{
-		listaCategorias.existeProducto(idCategoria, idProducto);
+		listaCategorias.existeProducto(idProducto);
 	}
 	
-	public Producto buscarProducto(Long idCategoria, Long idProducto)
+	public Producto buscarProducto(Long idProducto)
 	{
-		return listaCategorias.buscarProducto(idCategoria, idProducto);
+		return listaCategorias.buscarProducto(idProducto);
 	}
 	
 	public void vaciarListaCategoria()
@@ -252,7 +252,7 @@ public class Supermercado {
 		if(listaCategorias != null)
 		{
 			mapaToListaProductos();
-			Producto.conteoGeneral = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
+			Producto.generadorId = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAPRODUCTOS");
 		}
 		

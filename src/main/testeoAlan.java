@@ -5,20 +5,20 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 import Colecciones.ArregloProductos;
+import Colecciones.MapaCategoria;
 import Colecciones.MapaUsuario;
 import Colecciones.MapaGenerico;
+import Colecciones.MapaProductos;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
+import Productos.Bebidas;
+import Productos.Lacteo;
+import Productos.Producto;
+import Productos.Snack;
 import graficas.Inicio;
-import productos.Bebidas;
-import productos.Lacteo;
-import productos.MapaCategoria;
-import productos.MapaProductos;
-import productos.Producto;
-import productos.Snack;
 
 public class testeoAlan {
 

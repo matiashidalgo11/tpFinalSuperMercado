@@ -1,6 +1,6 @@
 package Objetos;
 
-import productos.Producto;
+import Productos.Producto;
 /**
  * Clase que une un Usuario con un Carro, dependiendo del dinero que tenga en la Cartera el Usuario podra comprar o no lo que se encuentra en el Carrito. 
  * @author Matias
@@ -35,7 +35,7 @@ public class Session {
 	public Session(Usuario user)
 	{
 		this.user = user;
-		this.carrito = new Carro(user.getIdPrincipal());
+		this.carrito = new Carro(user.getId());
 	}
 	
 	public Usuario getUser() {
@@ -89,6 +89,9 @@ public class Session {
 		user.sumarCartera(carga);
 	}
 
+	/*
+	 * Funciones para Borrar
+	 * 
 	public boolean modificarPassword(String actual, String nuevo)
 	{
 		return user.cambiarPassword(actual, nuevo);
@@ -105,6 +108,7 @@ public class Session {
 		
 		return resp;
 	}
+	*/
 	
 	@Override
 	public String toString() {

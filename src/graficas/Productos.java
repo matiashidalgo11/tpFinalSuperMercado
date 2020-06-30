@@ -18,9 +18,10 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import Colecciones.MapaProductos;
 import Objetos.Supermercado;
 import graficas.Inicio.Pulsando;
-import productos.MapaProductos;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

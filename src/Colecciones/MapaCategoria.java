@@ -1,10 +1,11 @@
-package productos;
+package Colecciones;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
+import java.util.Set;
 
-import Colecciones.MapaGenerico;
 import Interfaces.IdMaximo;
+import Productos.Producto;
 
 public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements IdMaximo{
 	
@@ -36,39 +37,69 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 	}
 	
-	public boolean existencia(Long idCategoria)
+	public boolean eliminarProducto(Long idProducto)
 	{
-		return super.existencia(idCategoria);
-	}
-	
-	public void eliminarProducto(Long idCategoria, Long idProducto)
-	{
-		MapaProductos nuevo = new MapaProductos();
-		
-		try{
-			nuevo = buscar(idCategoria);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
+		boolean resp = false;
+		Producto aux;
+		MapaProductos localizacion;
+		if(existeProducto(idProducto))
+		{
+			aux = buscarProducto(idProducto);
+			localizacion = this.buscar(aux.getIdCategoria());
+			resp = localizacion.eliminar(aux.getId());
+			
 		}
 		
-		nuevo.eliminar(idProducto);
-		
+		return resp;
 	}
 	
-	public boolean existeProducto(Long idCategoria, Long idProducto)
+	public boolean existeProducto(Long idProducto)
 	{
-		MapaProductos nuevo = new MapaProductos(); 
-		
-		try{
-			nuevo = buscar(idCategoria);
-		} catch (NullPointerException e) {
-			//e.printStackTrace();
-			System.out.println("ERROR EN EXISTENCIA");
+		boolean resp = false;
+		MapaProductos aux;
+		Set<Entry<Long,MapaProductos>> set = this.getMapa().entrySet();
+		Iterator<Entry<Long,MapaProductos>> it = set.iterator();
+		while(it.hasNext() && resp == false)
+		{
+			Entry<Long,MapaProductos> entrada = it.next();
+			aux = entrada.getValue();
+			resp = aux.existencia(idProducto);
 		}
 		
-		return nuevo.existencia(idProducto);
+		return resp;
 	}
 	
+	public Producto buscarProducto(Long idProducto) throws NullPointerException
+	{
+		Producto resp = null;
+		boolean corte = false;
+		MapaProductos aux;
+		if(existeProducto(idProducto))
+		{
+			
+			Set<Entry<Long,MapaProductos>> set = this.getMapa().entrySet();
+			Iterator<Entry<Long,MapaProductos>> it = set.iterator();
+			while(it.hasNext() && corte == false)
+			{
+				Entry<Long,MapaProductos> entrada = it.next();
+				aux = entrada.getValue();
+				
+				if(aux.existencia(idProducto))
+				{
+					resp = aux.buscar(idProducto);
+					corte = true;
+				}
+				
+			}
+		}else
+		{
+			throw new NullPointerException();
+		}
+		
+		return resp;
+	}
+	
+	/*
 	public Producto buscarProducto(Long idCategoria, Long idProducto)
 	{
 		MapaProductos nuevo = new MapaProductos(); 
@@ -83,7 +114,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		
 		return producto;
 	}
-	
+	*/
 	public String listarCategorias()
 	{
 		StringBuilder builder = new StringBuilder();

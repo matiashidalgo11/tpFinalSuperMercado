@@ -10,7 +10,7 @@ import java.util.Set;
 
 import Objetos.Carro;
 import Objetos.Usuario;
-import productos.Producto;
+import Productos.Producto;
 
 public class MapaCarro extends MapaGenerico<Long, Carro> implements IdMaximo {
 
@@ -32,7 +32,7 @@ public class MapaCarro extends MapaGenerico<Long, Carro> implements IdMaximo {
 			Carro aux = entrada.getValue();
 			if(aux.cantidadProductos() == 0)
 			{
-				listaIdEliminar.agregar(aux.getIdPrincipal());
+				listaIdEliminar.agregar(aux.getId());
 			}
 			
 		}

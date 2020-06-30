@@ -10,14 +10,14 @@ import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
 
+import Colecciones.MapaCategoria;
+import Colecciones.MapaProductos;
 import Objetos.Carro;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import productos.Bebidas;
-import productos.Lacteo;
-import productos.MapaCategoria;
-import productos.MapaProductos;
-import productos.Snack;
+import Productos.Bebidas;
+import Productos.Lacteo;
+import Productos.Snack;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;

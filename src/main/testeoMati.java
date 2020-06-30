@@ -6,18 +6,18 @@ import java.time.LocalTime;
 
 import Archivo.ArchivoGenerico;
 import Colecciones.ArregloProductos;
+import Colecciones.MapaCategoria;
 import Colecciones.ArregloGenerico;
 import Colecciones.MapaUsuario;
 import Colecciones.MapaGenerico;
+import Colecciones.MapaProductos;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import productos.Bebidas;
-import productos.MapaCategoria;
-import productos.MapaProductos;
-import productos.Producto;
+import Productos.Bebidas;
+import Productos.Producto;
 
 public class testeoMati {
 

@@ -8,6 +8,7 @@ package Interfaces;
  */
 public interface idInterface <K> {
 
-	public K getIdPrincipal();
+	public K getId();
+	public void setId(K id);
 	
 }

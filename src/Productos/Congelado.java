@@ -1,18 +1,28 @@
-package productos;
+package Productos;
 
 public class Congelado extends Producto{
 
 	private double peso;
+	public static long ID_CATEGORIA_CONGELADO = 6;
 	
 	public Congelado() {
 		super();
 		peso = 0;
 	}
 
-	public Congelado(String nombre, double precio, String marca, long stock,
-			long idCategoria, double peso) {
-		super(nombre, precio, marca, stock, idCategoria);
+	public Congelado(String nombre, double precio, String marca, long stock, double peso) {
+		super(nombre, precio, marca, stock, ID_CATEGORIA_CONGELADO);
 		this.peso = peso;
+	}
+	
+	/**
+	 * Constructor para Clonar
+	 * @param dato
+	 */
+	public Congelado(Congelado dato)
+	{
+		super(dato);
+		this.peso = dato.getPeso();
 	}
 
 	public double getPeso() {

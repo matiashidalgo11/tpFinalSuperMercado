@@ -1,23 +1,25 @@
-package productos;
+package Productos;
 
 import java.io.Serializable;
 
 import Interfaces.idInterface;
 
-public  class Producto implements Serializable, idInterface<Long>{
+public abstract class Producto implements Serializable, idInterface<Long>{
 	
-	public static long conteoGeneral = 1;
+	public static long generadorId = 1;
 	
-	private long idProducto;
+	private long id;
 	private String nombre;
 	private double precio;
 	private String marca;
 	private long stock;
+	
 	private long idCategoria;	
+	
 	
 	public Producto() 
 	{
-		idProducto = 0;
+		id = 0;
 		nombre = "";
 		precio = 0;
 		marca = "";
@@ -27,7 +29,7 @@ public  class Producto implements Serializable, idInterface<Long>{
 	
 	public Producto(String nombre, double precio, String marca, long stock, long idCategoria) 
 	{	
-		this.idProducto = conteoGeneral++;
+		this.id = generadorId++;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.marca = marca;
@@ -37,7 +39,7 @@ public  class Producto implements Serializable, idInterface<Long>{
 	
 	public Producto(Producto aux)
 	{
-		this.idProducto = aux.idProducto;
+		this.id = aux.id;
 		this.nombre = aux.nombre;
 		this.precio = aux.precio;
 		this.marca = aux.marca;
@@ -46,8 +48,15 @@ public  class Producto implements Serializable, idInterface<Long>{
 		
 	}
 	
-	public long getIdProducto() {
-		return idProducto;
+	@Override
+	public Long getId() {
+		return id;
+	}
+	
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+		
 	}
 	
 	public String getNombre() {
@@ -92,7 +101,7 @@ public  class Producto implements Serializable, idInterface<Long>{
 	@Override
 	public String toString() 
 	{
-		return  "\nIdProducto: " + idProducto + "\n" + 
+		return  "\nIdProducto: " + id + "\n" + 
 				"Nombre:     " + nombre + "\n" + 
 				"Precio:     " + precio + "\n" + 
 				"Marca:      " + marca + "\n" + 
@@ -116,7 +125,7 @@ public  class Producto implements Serializable, idInterface<Long>{
 		Producto other = (Producto) obj;
 		if (idCategoria != other.idCategoria)
 			return false;
-		if (idProducto != other.idProducto)
+		if (id != other.id)
 			return false;
 		if (marca == null) {
 			if (other.marca != null)
@@ -169,10 +178,5 @@ public  class Producto implements Serializable, idInterface<Long>{
 		return "Producto";
 	}
 
-	@Override
-	public Long getIdPrincipal() {
-		
-		return this.idProducto;
-	}
 
 }

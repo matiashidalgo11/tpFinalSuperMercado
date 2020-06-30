@@ -1,6 +1,7 @@
 package Colecciones;
 
-import productos.Producto;
+import Productos.*;
+
 
 /**
  * 
@@ -19,14 +20,14 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		Producto aux;
 		boolean resp = false;
 		
-		if(this.existencia(dato.getIdProducto()))
+		if(this.existencia(dato.getId()))
 		{
-			aux = this.buscar(dato.getIdProducto());
+			aux = this.buscar(dato.getId());
 			aux.sumarStock(1);
 			
 		}else
 		{
-			aux = new Producto(dato);
+			aux = clonarProductoCategoria(dato);
 			aux.setStock(1);
 			resp = arreglo.add(aux);
 		}
@@ -57,7 +58,7 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 	
 		for(Producto aux : super.getArreglo())
 		{
-			if(aux.getIdProducto() == id)
+			if(aux.getId() == id)
 			{
 				resp = true;
 			}
@@ -72,7 +73,7 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		
 		for(Producto aux : arreglo)
 		{
-			if(aux.getIdProducto() == id)
+			if(aux.getId() == id)
 			{
 				resp = aux;
 			}
@@ -98,6 +99,52 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		return resp;
 	}
 	
+	/**
+	 * Metodo para clonar un Producto dependiendo de la Categoria, y asi poder pasar uno nuevo al Arreglo del Carrito
+	 * 
+	 * @param dato
+	 * @return
+	 */
+	public static  Producto clonarProductoCategoria(Producto dato)
+	{
+		Producto resp = null;
+		
+		if(dato instanceof Bebidas)
+		{
+			Bebidas aux =(Bebidas) dato;
+			resp = new Bebidas(aux);
+		}else if(dato instanceof Congelado)
+		{
+			Congelado aux = (Congelado) dato;
+			resp = new Congelado(aux);
+		}else if(dato instanceof Golosina)
+		{
+			Golosina aux = (Golosina) dato;
+			resp = new Golosina(aux);
+			
+		}else if(dato instanceof Lacteo)
+		{
+			Lacteo aux = (Lacteo) dato;
+			resp = new Lacteo(aux);
+			
+		}else if(dato instanceof Limpieza)
+		{
+			Limpieza aux = (Limpieza) dato;
+			resp = new Limpieza(aux);
+			
+		}else if(dato instanceof Perfumeria)
+		{
+			Perfumeria aux = (Perfumeria) dato;
+			resp = new Perfumeria(aux);
+			
+		}else if(dato instanceof Snack)
+		{
+			Snack aux = (Snack) dato;
+			resp = new Snack(aux);
+		}
+		
+		return resp;
+	}
 	
 	
  }

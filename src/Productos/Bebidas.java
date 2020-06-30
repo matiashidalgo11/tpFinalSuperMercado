@@ -1,4 +1,4 @@
-package productos;
+package Productos;
 
 public class Bebidas extends Producto{
 
@@ -6,6 +6,8 @@ public class Bebidas extends Producto{
 	private double litros;
 	private String gusto;
 	private boolean alcohol;
+	
+	public static long ID_CATEGORIA_BEBIDAS = 7;
 	
 	public Bebidas() 
 	{
@@ -15,14 +17,26 @@ public class Bebidas extends Producto{
 		alcohol = false;
 	}
 	
-	public Bebidas(String nombre, double precio, String marca, long stock, long idCategoria, 
-			boolean gasificada, double litros, String gusto, boolean alcohol) 
+	public Bebidas(String nombre, double precio, String marca, long stock,boolean gasificada, double litros, String gusto, boolean alcohol) 
 	{
-		super(nombre, precio, marca, stock, idCategoria);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_BEBIDAS);
 		this.gasificada = gasificada;
 		this.litros = litros;
 		this.gusto = gusto;
 		this.alcohol = alcohol;
+	}
+	
+	/**
+	 * Constructor para clonar
+	 * @param b
+	 */
+	public Bebidas(Bebidas b)
+	{
+		super(b);
+		this.gasificada = b.isGasificada();
+		this.litros = b.getLitros();
+		this.gusto = b.getGusto();
+		this.alcohol = b.isAlcohol();
 	}
 
 	public boolean isGasificada() {

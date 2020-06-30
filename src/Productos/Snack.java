@@ -1,8 +1,9 @@
-package productos;
+package Productos;
 
 public class Snack extends Producto {
 
 	private double cantidadG;
+	public static long ID_CATEGORIA_SNACK = 1;
 	
 	public Snack() 
 	{
@@ -10,13 +11,18 @@ public class Snack extends Producto {
 		cantidadG = 0;
 	}
 
-	public Snack(String nombre, double precio, String marca, long stock,
-			long idCategoria, double cantidadG) 
+	public Snack(String nombre, double precio, String marca, long stock, double cantidadG) 
 	{
-		super(nombre, precio, marca, stock, idCategoria);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_SNACK);
 		this.cantidadG = cantidadG;
 	}
 
+	public Snack(Snack dato)
+	{
+		super(dato);
+		this.cantidadG = dato.getCantidadG();
+	}
+	
 	public double getCantidadG() {
 		return cantidadG;
 	}

@@ -1,8 +1,9 @@
-package productos;
+package Productos;
 
 public class Lacteo extends Producto {
 	
 	private String tipo;
+	public static long ID_CATEGORIA_LACTEO = 4;
 	
 	public Lacteo() 
 	{
@@ -10,10 +11,18 @@ public class Lacteo extends Producto {
 		tipo = "";
 	}
 
-	public Lacteo(String nombre, double precio, String marca, long stock,
-			long idCategoria, String tipo) {
-		super(null, precio, marca, stock, idCategoria);
+	public Lacteo(String nombre, double precio, String marca, long stock, String tipo) {
+		super(nombre, precio, marca, stock, ID_CATEGORIA_LACTEO);
 		this.tipo = tipo;
+	}
+	/**
+	 * Constructor para Clonar
+	 * @param dato
+	 */
+	public Lacteo(Lacteo dato)
+	{
+		super(dato);
+		this.tipo = dato.getTipo();
 	}
 
 	public String getTipo() {

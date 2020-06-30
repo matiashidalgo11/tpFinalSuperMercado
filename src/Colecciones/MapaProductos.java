@@ -1,10 +1,10 @@
-package productos;
+package Colecciones;
 
 import java.util.Iterator;
 import java.util.Map.Entry;
 
-import Colecciones.MapaGenerico;
 import Interfaces.IdMaximo;
+import Productos.Producto;
 
 public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMaximo{
 
@@ -41,9 +41,9 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		while(it.hasNext())
 		{
 			Entry<Long, Producto> entrada = it.next();
-			if(entrada.getValue().getIdProducto() > id)
+			if(entrada.getValue().getId() > id)
 			{
-				id = entrada.getValue().getIdProducto();
+				id = entrada.getValue().getId();
 			}
 		}
 		
@@ -58,9 +58,9 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		if(it.hasNext())
 		{
 			Entry<Long, Producto> entrada = it.next();
-			if(entrada.getValue().getIdProducto() > id)
+			if(entrada.getValue().getId() > id)
 			{
-				id = entrada.getValue().getIdProducto();
+				id = entrada.getValue().getId();
 			}
 		}
 		

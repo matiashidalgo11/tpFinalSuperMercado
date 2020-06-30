@@ -36,7 +36,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 	private String apellido;
 	private int edad;
 	private String telefono;
-
+	private boolean activo;
 	
 	
 	public Usuario(String userName, String password, String nombre, String apellido, int edad, String telefono) {
@@ -44,12 +44,13 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.userName = userName;
 		this.password = password;
 		this.cartera = 0;
-		this.id = generadorId + (long)1;
+		this.id = generadorId + (long) 1;
 		historialCompra = new ArregloGenerico<DetalleCompra>();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
 		this.telefono = telefono;
+		this.activo = true;
 		
 		this.generadorId ++;
 	}
@@ -60,7 +61,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 	 *	Constructor para clonar objeto.
 	 * 
 	 */
-	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, String telefono) {
+	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, String telefono, boolean activo) {
 		
 		this.userName = userName;
 		this.password = password;
@@ -71,6 +72,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.apellido = apellido;
 		this.edad = edad;
 		this.telefono = telefono;
+		this.activo = activo;
 	}
 	
 	
@@ -84,6 +86,7 @@ public class Usuario implements idInterface<Long>, Serializable{
 		this.apellido = "";
 		this.edad = 0;
 		this.telefono = "";
+		this.activo = false;
 	}
 	
 
@@ -141,19 +144,16 @@ public class Usuario implements idInterface<Long>, Serializable{
 		}
 	}
 
-	@Override
-	public Long getIdPrincipal() {
-		// TODO Auto-generated method stub
-		return this.getId();
-	}
+
 
 	/**
+	 * BorrarFuncion
 	 * Funcion para que solo se modifique el password sabiendo el actual, solo se ingresa el password en el constructor
 	 * 
 	 * @param actual password actual ingresado por interface
 	 * @param nuevo password nuevo ingresado por interface
 	 * @return si se cambio correctamente
-	 */
+	 
 	public boolean cambiarPassword(String actual, String nuevo)
 	{
 		boolean resp = false;
@@ -166,31 +166,27 @@ public class Usuario implements idInterface<Long>, Serializable{
 		return resp;
 	}
 
-
+	*/
 
 	public static long getGeneradorId() {
 		return generadorId;
 	}
 
+	@Override
+	public Long getId() {
+		return id;
+	}
+	
 
+	@Override
+	public void setId(Long id) {
+		this.id = id;
+		
+	}
 
 	public static void setGeneradorId(long generadorId) {
 		Usuario.generadorId = generadorId;
 	}
-
-
-
-	public long getId() {
-		return id;
-	}
-
-
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-
 
 	public String getUserName() {
 		return userName;
@@ -288,9 +284,20 @@ public class Usuario implements idInterface<Long>, Serializable{
 
 
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public boolean isActivo() {
+		return activo;
 	}
+
+
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	
+
+
+
 
 	
 	

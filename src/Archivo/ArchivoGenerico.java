@@ -48,9 +48,10 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 				archivo.createNewFile();
 				System.out.println("\nEl fichero fue creado\n");
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
+				System.out.println("\nNo se pudo crear el Ficher\n");
 			}
+			
 			
 		}
 		
@@ -91,23 +92,21 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 	
 	public void guardarUnidad(T dato)
 	{
-
-
-		
+		ObjectOutputStream ob;
 		try
 		{
 			if(archivo.length() == 0 )
 			{
-				ObjectOutputStream ob = new ObjectOutputStream(new FileOutputStream(archivo, true));
+				ob = new ObjectOutputStream(new FileOutputStream(archivo, true));
 				ob.writeObject(dato);
 				ob.close();
 				System.out.println(dato);
 				System.out.println("\nSE GUARDO EN OBJECT\n");
 			}else
 			{
-				AppendableObjectOutputStream apO = new AppendableObjectOutputStream(new FileOutputStream(archivo, true), archivo.exists());
-				apO.writeObject(dato);
-				apO.close();
+				ob = new MiObjectOutputStream(new FileOutputStream(archivo));
+				ob.writeObject(dato);
+				ob.close();
 				System.out.println(dato);
 				System.out.println("\nSE GUARDO EN APPENDABLEOBJECT\n");
 			}
@@ -135,8 +134,6 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 
 		
 		try {
-			//borrar de mas
-			FileInputStream in = new FileInputStream(archivo);
 			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
 			T dato;
 			K clave;
@@ -145,7 +142,7 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 				
 				
 				dato = (T) obIn.readObject();
-				clave = dato.getIdPrincipal();
+				clave = dato.getId();
 				System.out.println(resp.agregar(clave, dato));
 			}
 			

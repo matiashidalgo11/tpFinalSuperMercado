@@ -1,8 +1,9 @@
-package productos;
+package Productos;
 
 public class Perfumeria extends Producto {
 
 	private String tipoFragancia;
+	public static long ID_CATEGORIA_PERFUMERIA = 2;
 	
 	public Perfumeria() 
 	{
@@ -10,13 +11,18 @@ public class Perfumeria extends Producto {
 		tipoFragancia = "";
 	}
 
-	public Perfumeria(String nombre, double precio, String marca, long stock,
-			long idCategoria, String tipoFragancia) 
+	public Perfumeria(String nombre, double precio, String marca, long stock, String tipoFragancia) 
 	{
-		super(nombre, precio, marca, stock, idCategoria);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_PERFUMERIA);
 		this.tipoFragancia = tipoFragancia;
 	}
 
+	public Perfumeria(Perfumeria dato)
+	{
+		super(dato);
+		this.tipoFragancia = dato.tipoFragancia;
+	}
+	
 	public String getTipoFragancia() {
 		return tipoFragancia;
 	}

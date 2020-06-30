@@ -6,7 +6,7 @@ import java.util.Set;
 
 import Interfaces.IdMaximo;
 import Objetos.Usuario;
-import productos.Producto;
+import Productos.Producto;
 
 public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo{
 
@@ -24,11 +24,11 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	public boolean agregarUsuario(Usuario user)
 	{
 		boolean resp = false;
-		if(!(super.existencia(user.getIdPrincipal())))
+		if(!(super.existencia(user.getId())))
 		{
 			if(!(existencia(user.getUserName())))
 			{
-				resp = super.agregar(user.getIdPrincipal(), user);
+				resp = super.agregar(user.getId(), user);
 
 			}
 		}

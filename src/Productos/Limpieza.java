@@ -1,8 +1,9 @@
-package productos;
+package Productos;
 
 public class Limpieza extends Producto{
 
 	private String tipo;
+	public static long ID_CATEGORIA_LIMPIEZA = 3;
 	
 	public Limpieza() 
 	{
@@ -10,13 +11,22 @@ public class Limpieza extends Producto{
 		tipo = "";
 	}
 
-	public Limpieza(String nombre, double precio, String marca, long stock,
-			long idCategoria, String tipo) 
+	public Limpieza(String nombre, double precio, String marca, long stock, String tipo) 
 	{
-		super(nombre, precio, marca, stock, idCategoria);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_LIMPIEZA);
 		this.tipo = tipo;
 	}
 
+	/**
+	 * Constructor para Clonar
+	 * @param dato
+	 */
+	public Limpieza(Limpieza dato)
+	{
+		super(dato);
+		this.tipo = dato.getTipo();
+	}
+	
 	public String getTipo() {
 		return tipo;
 	}

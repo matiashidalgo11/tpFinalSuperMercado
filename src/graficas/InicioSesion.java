@@ -22,10 +22,12 @@ import Excepciones.LoginAdmin;
 import Excepciones.LoginIncorrecto;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import graficasAdmin.Admin;
+
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class InicioSesion extends JFrame {
 
@@ -189,7 +191,7 @@ public class InicioSesion extends JFrame {
 							throw new LoginIncorrecto("Password", txtPassword);
 						}else
 						{
-							superAux.iniciarSession(aux.getIdPrincipal());
+							superAux.iniciarSession(aux.getId());
 							Inicio iniciar = new Inicio(superAux);
 							iniciar.setVisible(true);
 							dispose();
@@ -206,13 +208,14 @@ public class InicioSesion extends JFrame {
 				} catch (LoginAdmin e1) {
 					
 					e1.printStackTrace();
-					Admin nuevo = new Admin(superAux);
-					nuevo.setVisible(true);
-					dispose();
+					
 				}
 
 			}
 		});
+		
+		
+		
 		
 	}
 	

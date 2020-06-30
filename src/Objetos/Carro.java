@@ -3,10 +3,10 @@ package Objetos;
 import java.io.Serializable;
 
 import Colecciones.ArregloProductos;
+import Colecciones.MapaCategoria;
 import Colecciones.ArregloGenerico;
 import Interfaces.idInterface;
-import productos.MapaCategoria;
-import productos.Producto;
+import Productos.Producto;
 
 /**
  * 
@@ -130,9 +130,15 @@ public class Carro implements Serializable, idInterface<Long>{
 	}
 
 	@Override
-	public Long getIdPrincipal() {
+	public Long getId() {
 		
 		return this.idCarro;
+	}
+	
+	@Override
+	public void setId(Long id) {
+		this.idCarro = id;
+		
 	}
 	
 	@Override
@@ -161,9 +167,9 @@ public class Carro implements Serializable, idInterface<Long>{
 		for (Producto productoCarrito : carrito.getArreglo().getArreglo()) {
 			
 		//Verifica si existe el Producto que se encuentra en el carrito dentro de la Lista Principal de Productos, si no es el caso lo elimina. En cambio si es el caso verifica que el stock este sincronizado con la cantidad De Stock disponible
-			if (listaCategorias.existeProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto())) {
+			if (listaCategorias.existeProducto(productoCarrito.getId())) {
 				
-				productoListado = listaCategorias.buscarProducto(productoCarrito.getIdCategoria(), productoCarrito.getIdProducto());
+				productoListado = listaCategorias.buscarProducto( productoCarrito.getId());
 				int stockNube = igualacion((int) productoListado.getStock(), (int) productoCarrito.getStock());
 				if (stockNube < 0 && productoListado.getStock() > 0) {
 					
@@ -173,8 +179,8 @@ public class Carro implements Serializable, idInterface<Long>{
 
 			} else {
 				
-				System.out.println(productoCarrito.getIdProducto());
-				idDeEliminados.agregar(productoCarrito.getIdProducto());
+				System.out.println(productoCarrito.getId());
+				idDeEliminados.agregar(productoCarrito.getId());
 
 			}
 
@@ -223,5 +229,7 @@ public class Carro implements Serializable, idInterface<Long>{
 		
 		return cantidad;
 	}
+
+	
 	
 }
