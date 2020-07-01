@@ -38,7 +38,8 @@ public class Supermercado {
 		cargarDatos();
 		
 		System.out.println(listaUsuarios.listar());
-		//System.out.println(listaCategorias.listarCategorias());
+		System.out.println(listaCategorias.cantidad());
+		System.out.println(listaCategorias.listar());
 		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
 		
 	}
@@ -160,11 +161,9 @@ public class Supermercado {
 		return listaUsuarios.listar();
 	}
 	
-	public void agregarProducto(Long idCategoria, Producto producto)
+	public boolean agregarProducto(Producto producto)
 	{
-		MapaProductos nuevoMapa = new MapaProductos();
-		nuevoMapa.agregar(producto.getId(), producto);
-		listaCategorias.agregarCategoria(idCategoria, nuevoMapa);
+		return listaCategorias.agregarProducto(producto);
 	}
 	
 	public void eliminarProducto(Long idProducto)
@@ -194,7 +193,7 @@ public class Supermercado {
 	
 	public String listarCategorias()
 	{
-		return listaCategorias.listarCategorias();
+		return listaCategorias.listar();
 	}
 	
 	public String listarCategoriaEspecifica(Long idCategoria)
@@ -377,7 +376,7 @@ public class Supermercado {
 		{
 			Entry<Long, Producto> entrada = it.next();
 			Producto nuevo = entrada.getValue(); //Obtengo cada producto para tener su atributo de idCategoria.
-			agregarProducto(nuevo.getIdCategoria(), entrada.getValue()); //Guardo cada producto en la categoria que le corresponde
+			agregarProducto(entrada.getValue()); //Guardo cada producto en la categoria que le corresponde
 		}
 		
 		return mapa;

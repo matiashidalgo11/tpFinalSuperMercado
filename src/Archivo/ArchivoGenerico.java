@@ -104,7 +104,7 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 				System.out.println("\nSE GUARDO EN OBJECT\n");
 			}else
 			{
-				ob = new MiObjectOutputStream(new FileOutputStream(archivo));
+				ob = new MiObjectOutputStream(new FileOutputStream(archivo,true));
 				ob.writeObject(dato);
 				ob.close();
 				System.out.println(dato);

@@ -40,6 +40,28 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 	}
 	
+	public boolean agregarProducto(Producto p)
+	{
+		MapaProductos aux;
+		boolean resp = false;
+		if(!existeProducto(p.getId()))
+		{
+			if(existencia(p.getIdCategoria()))
+			{
+				aux = buscar(p.getIdCategoria());
+				resp = aux.agregar(p.getId(), p);
+			}else
+			{
+				aux = new MapaProductos();
+				aux.agregar(p.getId(), p);
+				resp = super.agregar(p.getIdCategoria(), aux);
+			}
+		}
+		
+		
+		return resp;
+	}
+	
 	public boolean eliminarProducto(Long idProducto)
 	{
 		boolean resp = false;
@@ -102,23 +124,8 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
-	/*
-	public Producto buscarProducto(Long idCategoria, Long idProducto)
-	{
-		MapaProductos nuevo = new MapaProductos(); 
-		Producto producto = new Producto();
-		
-		try{
-			nuevo = buscar(idCategoria);
-			producto = nuevo.buscar(idProducto);
-		} catch (NullPointerException e) {
-			e.printStackTrace();
-		}
-		
-		return producto;
-	}
-	*/
-	public String listarCategorias()
+	
+	public String listar()
 	{
 		StringBuilder builder = new StringBuilder();
 		Iterator<Entry<Long, MapaProductos>> it = getIterator();
