@@ -87,9 +87,10 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 	@Override
 	public JSONObject toJson() {
 		JSONObject resp = new JSONObject();
+		
 		resp.put(CLAVE_FECHAHORA, this.getFechaYhora());
 		resp.put(CLAVE_MONTOTOTAL, this.getMontoTotal());
-		//resp.put(CLAVE_PRODUCTOS, this.getP)
+		resp.put(CLAVE_PRODUCTOS, this.getProductos().toJsonArray());
 		
 		return null;
 	}

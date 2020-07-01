@@ -7,6 +7,8 @@ import ColeccionesGenericas.MapaGenerico;
 
 import java.util.Set;
 
+import org.json.JSONArray;
+
 import Interfaces.IdMaximo;
 import Objetos.Usuario;
 import Productos.Producto;
@@ -104,7 +106,22 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	}
 
 	
-	
+	public JSONArray toJsonArray()
+	{
+		JSONArray resp = new JSONArray();
+		
+		Set<Entry<Long,Usuario>> set = this.getMapa().entrySet();
+		Iterator<Entry<Long,Usuario>> it = set.iterator();
+		while(it.hasNext())
+		{
+			Entry<Long,Usuario> entrada = it.next();
+			Usuario aux = entrada.getValue();
+			resp.put(aux.toJson());
+		}
+		
+		
+		return resp;
+	}
 	
 
 	

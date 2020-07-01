@@ -6,6 +6,7 @@ import java.io.Serializable;
 
 import org.json.JSONObject;
 
+import Colecciones.ArregloDetalleCompra;
 import ColeccionesGenericas.ArregloGenerico;
 import Interfaces.JsonFunciones;
 import Interfaces.idInterface;
@@ -34,7 +35,7 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	private String userName;
 	private String password;
 	private double cartera;
-	private ArregloGenerico<DetalleCompra> historialCompra;
+	private ArregloDetalleCompra historialCompra;
 	private String nombre;
 	private String apellido;
 	private int edad;
@@ -59,7 +60,7 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 		this.password = password;
 		this.cartera = 0;
 		this.id = generadorId + (long) 1;
-		historialCompra = new ArregloGenerico<DetalleCompra>();
+		historialCompra = new ArregloDetalleCompra();
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.edad = edad;
@@ -75,7 +76,7 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	 *	Constructor para clonar objeto.
 	 * 
 	 */
-	public Usuario(String userName, String password, double cartera, long id, ArregloGenerico<DetalleCompra> historialCompra, String nombre, String apellido, int edad, String telefono, boolean activo) {
+	public Usuario(String userName, String password, double cartera, long id, ArregloDetalleCompra historialCompra, String nombre, String apellido, int edad, String telefono, boolean activo) {
 		
 		this.userName = userName;
 		this.password = password;
@@ -238,13 +239,13 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 
 
 
-	public ArregloGenerico<DetalleCompra> getHistorialCompra() {
+	public ArregloDetalleCompra getHistorialCompra() {
 		return historialCompra;
 	}
 
 
 
-	public void setHistorialCompra(ArregloGenerico<DetalleCompra> historialCompra) {
+	public void setHistorialCompra(ArregloDetalleCompra historialCompra) {
 		this.historialCompra = historialCompra;
 	}
 
@@ -319,7 +320,7 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 		JSONObject resp = new JSONObject();
 		resp.put(CLAVE_ACTIVO, this.isActivo());
 		resp.put(CLAVE_CARTERA, this.getCartera());
-		//resp.put(CLAVE_HISTORIALCOMPRA, )
+		resp.put(CLAVE_HISTORIALCOMPRA, this.getHistorialCompra().toJsonArray());
 		resp.put(CLAVE_ID, this.getId());
 		resp.put(CLAVE_NOMBRE, this.getNombre());
 		resp.put(CLAVE_PASSWORD, this.getPassword());

@@ -10,6 +10,8 @@ import Interfaces.IdMaximo;
 
 import java.util.Set;
 
+import org.json.JSONArray;
+
 import Objetos.Carro;
 import Objetos.Usuario;
 import Productos.Producto;
@@ -69,6 +71,27 @@ public class MapaCarro extends MapaGenerico<Long, Carro> implements IdMaximo {
 		
 		return id;
 
+	}
+	
+	public JSONArray toJsonArray()
+	{
+		//elimino los carros vacios
+		eliminarCarrosVacios();
+		JSONArray jsonArray = new JSONArray();
+		
+		Set<Entry<Long,Carro>> set = this.getMapa().entrySet();
+		Iterator<Entry<Long,Carro>> it = set.iterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Long,Carro> entrada = it.next();
+			Carro aux = entrada.getValue();
+			jsonArray.put(aux.toJson());
+			
+		}
+		
+		
+		return jsonArray;
 	}
 	
 	

@@ -253,11 +253,12 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	 */
 	@Override
 	public JSONObject toJson() {
+		
 		JSONObject resp = new JSONObject();
 		
 		resp.put(CLAVE_ID, this.getId());
 		resp.put(CLAVE_TOTAL, this.getTotal());
-		//resp.put(CLAVE_ARREGLOPRODUCTOS, value);
+		resp.put(CLAVE_ARREGLOPRODUCTOS, this.getArreglo().toJsonArray());
 		
 		return resp;
 	}

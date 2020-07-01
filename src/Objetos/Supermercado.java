@@ -3,6 +3,9 @@ package Objetos;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
+
+import org.json.JSONObject;
+
 import java.util.Set;
 
 import Archivo.ArchivoGenerico;
@@ -24,8 +27,11 @@ public class Supermercado {
 	private ArchivoGenerico<Long, Usuario> archivoUsuario;
 	private ArchivoGenerico<Long, Producto> archivoProducto;
 	private ArchivoGenerico<Long, Carro> archivoCarro;
-	//Hay que implementarles las interfaces Serializable y idPrincipal para poder persistirlos en un archivo;
-	
+
+	//Clave para Json
+	public static String CLAVE_LISTAUSUARIOS = "listaUsuarios";
+	public static String CLAVE_LISTACATEGORIAS = "listaCategorias";
+	public static String CLAVE_LISTACARRITOS = "listaCarritos";
 	
 	
 	Session sesionActiva;
@@ -374,6 +380,20 @@ public class Supermercado {
 		listaUsuarios = new MapaUsuario();
 		listaCategorias = new MapaCategoria();
 		listaCarritos = new MapaCarro();
+	}
+	
+	
+	public JSONObject toJsonObject()
+	{
+		JSONObject jsonObject = new JSONObject();
+		
+		jsonObject.put(CLAVE_LISTAUSUARIOS, listaUsuarios.toJsonArray());
+		jsonObject.put(CLAVE_LISTACARRITOS, listaCarritos.toJsonArray());
+		
+		//Agregar el de Productos
+		
+		
+		return jsonObject;
 	}
 	
 	//Funcion deberia estar en MapaProductos, recibier por parametro la listaCategoria

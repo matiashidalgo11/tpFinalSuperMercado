@@ -1,5 +1,7 @@
 package Colecciones;
 
+import org.json.JSONArray;
+
 import ColeccionesGenericas.ArregloGenerico;
 import Productos.*;
 
@@ -147,5 +149,16 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		return resp;
 	}
 	
-	
+	public JSONArray toJsonArray()
+	{
+		JSONArray jsonArray = new JSONArray();
+		
+		for(Producto aux : this.getArreglo())
+		{
+			jsonArray.put(aux.toJson());
+		}
+		
+		
+		return jsonArray;
+	}
  }
