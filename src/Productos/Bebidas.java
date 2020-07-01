@@ -1,5 +1,7 @@
 package Productos;
 
+import org.json.JSONObject;
+
 public class Bebidas extends Producto{
 
 	private boolean gasificada;
@@ -113,5 +115,15 @@ public class Bebidas extends Producto{
 	public String getNombreCategoria()
 	{
 		return "Bebidas";
+	}
+	
+	public JSONObject toJson()
+	{
+		JSONObject objeto = super.toJson();
+		objeto.put("Gasificada", this.gasificada);
+		objeto.put("Litros", this.litros);
+		objeto.put("Gusto", this.gusto);
+		objeto.put("Alcohol", this.alcohol);
+		return objeto;
 	}
 }

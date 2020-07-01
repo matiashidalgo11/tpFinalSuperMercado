@@ -1,5 +1,7 @@
 package Productos;
 
+import org.json.JSONObject;
+
 public class Golosina extends Producto{
 
 	private int cantidad;
@@ -64,5 +66,12 @@ public class Golosina extends Producto{
 	public String getNombreCategoria()
 	{
 		return "Golosina";
+	}
+	
+	public JSONObject toJson()
+	{
+		JSONObject objeto = super.toJson();
+		objeto.put("Cantidad", this.cantidad);
+		return objeto;
 	}
 }

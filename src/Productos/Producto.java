@@ -212,9 +212,15 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	
 	public JSONObject toJson()
 	{
-		return null;
-		
+		JSONObject objeto = new JSONObject();
+		objeto.put("Nombre", this.nombre);
+		objeto.put("Precio", this.precio);
+		objeto.put("Marca", this.marca);
+		objeto.put("Stock", this.stock);
+		objeto.put("Oferta", this.oferta);
+		objeto.put("Precio Oferta", this.precioOferta);
+		objeto.put("ID", this.id);
+		objeto.put("ID Categoria", this.idCategoria);
+		return objeto;
 	}
-
-
 }

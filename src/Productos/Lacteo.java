@@ -1,5 +1,7 @@
 package Productos;
 
+import org.json.JSONObject;
+
 public class Lacteo extends Producto {
 	
 	private String tipo;
@@ -65,6 +67,13 @@ public class Lacteo extends Producto {
 	public String getNombreCategoria()
 	{
 		return "Lacteo";
+	}
+	
+	public JSONObject toJson()
+	{
+		JSONObject objeto = super.toJson();
+		objeto.put("Tipo", this.tipo);
+		return objeto;
 	}
 	
 }
