@@ -21,7 +21,8 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	private double precio;
 	private String marca;
 	private long stock;
-	
+	private boolean oferta;
+	private double precioOferta;
 	private long idCategoria;	
 	
 	
@@ -33,11 +34,13 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		marca = "";
 		stock = 0;
 		idCategoria = 0;
+		oferta = false;
+		precioOferta = 0;
 	}
 	
 	
 	
-	public Producto(String nombre, double precio, String marca, long stock, long idCategoria) 
+	public Producto(String nombre, double precio, String marca, long stock, long idCategoria, boolean oferta, double precioOferta) 
 	{	
 		this.id = generadorId++;
 		this.nombre = nombre;
@@ -45,6 +48,8 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		this.marca = marca;
 		this.stock = stock;
 		this.idCategoria = idCategoria;
+		this.oferta = oferta;
+		this.precioOferta = precioOferta;
 	}
 	
 	public Producto(Producto aux)
@@ -55,7 +60,8 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		this.marca = aux.marca;
 		this.stock = aux.stock;
 		this.idCategoria = aux.idCategoria;
-		
+		this.oferta = aux.oferta;
+		this.precioOferta = aux.precioOferta;
 	}
 	
 	@Override
@@ -106,6 +112,22 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	
 	public void setIdCategoria(long idCategoria) {
 		this.idCategoria = idCategoria;
+	}
+	
+	public boolean isOferta() {
+		return oferta;
+	}
+	
+	public void setOferta(boolean oferta) {
+		this.oferta = oferta;
+	}
+	
+	public double getPrecioOferta() {
+		return precioOferta;
+	}
+	
+	public void setPrecioOferta(double precioOferta) {
+		this.precioOferta = precioOferta;
 	}
 
 	@Override

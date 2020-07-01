@@ -229,6 +229,21 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		
 		return resp;
 	}
+	
+	public void establecerOferta(Producto producto, double precioOferta)
+	{
+		Producto oferta = buscarProducto(producto.getId());
+		oferta.setOferta(true);
+		oferta.setPrecioOferta(precioOferta);
+	}
+	
+	public void quitarOferta(Producto producto)
+	{
+		Producto oferta = buscarProducto(producto.getId());
+		oferta.setOferta(false);
+	}
+	
+	
 	/**
 	 * Recibe un Mapa de Productos y lo carga por categoria
 	 * @return
@@ -249,4 +264,5 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		
 		return resp;
 	}
+	
 }

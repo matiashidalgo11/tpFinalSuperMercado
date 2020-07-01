@@ -84,6 +84,17 @@ public class Supermercado {
 		return resp;
 	}
 	
+	public void establecerOferta(Producto producto, double precioOferta)
+	{
+		listaCategorias.establecerOferta(producto, precioOferta);
+		
+	}
+	
+	public void quitarOferta(Producto producto)
+	{
+		listaCategorias.quitarOferta(producto);
+	}
+	
 	public boolean comprarProductos()
 	{
 		boolean resp = false;
@@ -231,6 +242,7 @@ public class Supermercado {
 	public Session getSesionActiva() {
 		return sesionActiva;
 	}
+	
 	
 	/**
 	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados). La idea es utilizarla solo al principio del programa.
@@ -399,6 +411,7 @@ public class Supermercado {
 	}
 	
 	*/
+	
 	
 
 
