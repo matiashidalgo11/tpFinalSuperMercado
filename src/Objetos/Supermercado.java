@@ -34,7 +34,7 @@ public class Supermercado {
 	public static String CLAVE_LISTACARRITOS = "listaCarritos";
 	
 	
-	Session sesionActiva;
+	private Session sesionActiva;
 	
 	public Supermercado()
 	{
@@ -90,6 +90,24 @@ public class Supermercado {
 		return resp;
 	}
 	
+	/*
+	 * Si se esta en Sesion, pasa a null el atributo y guarda todos los datos;
+	 * 
+	 */
+	public boolean cerrarSesion()
+	{
+		boolean resp = false;
+		
+		if(inSession())
+		{	
+			this.sesionActiva = null;
+			this.guardarDatos();
+			resp = true;
+		}
+		
+		return resp;
+	}
+	
 	public void establecerOferta(Producto producto, double precioOferta)
 	{
 		listaCategorias.establecerOferta(producto, precioOferta);
@@ -131,7 +149,7 @@ public class Supermercado {
 			 
 			 if(resp == true)
 			 {
-				  this.guardarUnidad(user);
+				  archivoUsuario.guardarUnidad(user);
 			 }	
 
 		}
@@ -184,12 +202,7 @@ public class Supermercado {
 		if(p != null)
 		{
 			resp = listaCategorias.agregarProducto(p);
-			/*
-			if(resp == true)
-			{
-				// no funciona
-				archivoProducto.guardarUnidad(p);
-			}*/
+		
 		}
 		
 		return resp;
@@ -333,6 +346,7 @@ public class Supermercado {
 	/**
 	 * Funcion que guarde dependiendo del dato una Unidad de Usuario, Producto o Carro. Es para que si el programa esta mucho tiempo abierto, se mantenga con el archivo lo mas actualizada posible sin tener que ir guardando y cargando todo de una
 	 */
+	/*
 	private void guardarUnidad(Object dato)
 	{
 		if(dato instanceof Usuario)
@@ -357,10 +371,11 @@ public class Supermercado {
 		{
 			System.out.println("EL Dato no corresponde a un Archivo disponible");
 		}
-
+		
 		
 	}
-	
+	*/
+
 	/**
 	 * Funcion que inicializa todos los Archivos del Programa
 	 */
@@ -390,7 +405,7 @@ public class Supermercado {
 		jsonObject.put(CLAVE_LISTAUSUARIOS, listaUsuarios.toJsonArray());
 		jsonObject.put(CLAVE_LISTACARRITOS, listaCarritos.toJsonArray());
 		
-		//Agregar el de Productos
+		//Agregabr el de Productos
 		
 		
 		return jsonObject;
