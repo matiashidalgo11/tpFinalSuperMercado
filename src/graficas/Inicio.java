@@ -209,27 +209,38 @@ public class Inicio extends JFrame {
 	{
 		int x = 150;
 		int y = 61;
-		JButton arreglo[] = new JButton[mercado.cantidadCategorias()];
+		int bajar = 0;
+		JButton arreglo[] = new JButton[mercado.getidCategoriaMasAlta()];
 		
-		for(int i = 0; i < mercado.cantidadCategorias(); i++)
+		for(int i = 0; i < mercado.getidCategoriaMasAlta(); i++)
 		{
-			arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1) + "s");
-			arreglo[i].setBounds(x, y, 316, 67);
-			arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-			arreglo[i].setForeground(new Color(255, 255, 255));
-			arreglo[i].setBackground(new Color(0, 102, 255));
-			arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
-			arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
-			arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
-			panel.add(arreglo[i]);
-			
-			x += 316 + 20;
-			
-			if(i == 1) 
+			try
 			{
-				x = 150;
-				y += 67 + 20;
+				arreglo[i] = new JButton(mercado.getNombreCategoria((long) i + 1) + "s");
+				arreglo[i].setBounds(x, y, 316, 67);
+				arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+				arreglo[i].setForeground(new Color(255, 255, 255));
+				arreglo[i].setBackground(new Color(0, 102, 255));
+				arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
+				arreglo[i].setActionCommand(mercado.getNombreCategoria((long) i + 1));
+				arreglo[i].addActionListener(new Pulsando(arreglo[i], mercado));
+				panel.add(arreglo[i]);
+				
+				x += 316 + 20;
+				
+				bajar++;
+				
+				if(bajar == 2) 
+				{
+					x = 150;
+					y += 67 + 20;
+				}
 			}
+			catch(NullPointerException e)
+			{
+				e.printStackTrace();
+			}
+			
 		}	
 	}
 	

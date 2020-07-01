@@ -198,10 +198,13 @@ public class Productos extends JFrame {
 	{
 		int x = 150;
 		int y = 61;
-		JButton arreglo[] = new JButton[productos.cantidad()];
+		long idAltoLong = productos.getIdMasAlto();
+		int idAlto = (int) idAltoLong;
+		int bajar = 0;
+		JButton arreglo[] = new JButton[idAlto+1];
 		int primerId = Long.valueOf(productos.getPrimerId()).intValue();
 		
-		for(int i = primerId ; i < productos.cantidad(); i++)
+		for(int i = primerId ; i <= idAlto; i++)
 		{
 			arreglo[i] = new JButton(productos.getNombreProducto(i));
 			arreglo[i].setBounds(x, y, 316, 67);
@@ -214,7 +217,8 @@ public class Productos extends JFrame {
 			panel.add(arreglo[i]);
 			x += 316 + 20;
 			
-			if(i == 1) 
+			bajar++;
+			if(bajar == 2) 
 			{
 				x = 150;
 				y += 67 + 20;

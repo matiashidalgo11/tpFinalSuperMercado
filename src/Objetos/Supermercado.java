@@ -214,6 +214,13 @@ public class Supermercado {
 		return listaCategorias.cantidad();
 	}
 	
+	public int getidCategoriaMasAlta()
+	{
+		long id = listaCategorias.getIdMasAlto();
+		int idConvertida = (int) id;
+		return idConvertida;
+	}
+	
 	public String listarCategorias()
 	{
 		return listaCategorias.listar();
