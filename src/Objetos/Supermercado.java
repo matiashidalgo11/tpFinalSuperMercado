@@ -38,9 +38,9 @@ public class Supermercado {
 		cargarDatos();
 		
 		System.out.println(listaUsuarios.listar());
-		System.out.println(listaCategorias.cantidad());
 		System.out.println(listaCategorias.listar());
-		//Hay que cargar los mapas despues de crear los archivos de Producto y Carro
+		System.out.println(listaCarritos.listar());
+
 		
 	}
 	
@@ -298,7 +298,7 @@ public class Supermercado {
 		
 		if(listaCategorias != null)
 		{
-			System.out.println(listaCategorias.listar());
+
 			MapaGenerico<Long, Producto> aux = (MapaGenerico<Long, Producto>)listaCategorias.toMapaProductos();
 			archivoProducto.guardar(aux);
 			System.out.println("\n SE GUARDO LISTAPRODUCTOS");
@@ -320,6 +320,7 @@ public class Supermercado {
 			
 		}else if(dato instanceof Producto)
 		{
+			//Error de Casteo no funciona
 			Producto aux = (Producto) dato;
 			archivoProducto.guardarUnidad((Producto)aux);
 			

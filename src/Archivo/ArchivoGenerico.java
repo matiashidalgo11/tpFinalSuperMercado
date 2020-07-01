@@ -98,16 +98,15 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		{
 			if(archivo.length() == 0 )
 			{
-				ob = new ObjectOutputStream(new FileOutputStream(archivo, true));
+				ob = new ObjectOutputStream(new FileOutputStream(archivo));
 				ob.writeObject(dato);
-				System.out.println(dato);
+
 				System.out.println("\nSE GUARDO EN OBJECT\n");
 			}else
 			{
 				ob = new MiObjectOutputStream(new FileOutputStream(archivo,true));
 				ob.writeObject(dato);
-				System.out.println(dato);
-				System.out.println("\nSE GUARDO EN APPENDABLEOBJECT\n");
+				System.out.println("\nSE GUARDO EN MIOBJECT\n");
 			}
 			
 			ob.close();
@@ -187,10 +186,6 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 				
 				
 				T dato = (T) obIn.readObject();
-				//borrar
-				System.out.println("EL DATO QUE SE CARGO DEL ARCHIVO Y SE GUARDA EN EL ARREGLO ES : ");
-				System.out.println(dato);
-				
 				resp.agregar(dato);
 			}
 			
@@ -205,7 +200,7 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			System.out.println("\nARCHIVO FINALIZADO\n");
-			e.printStackTrace();
+			//e.printStackTrace();
 			return resp;
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
