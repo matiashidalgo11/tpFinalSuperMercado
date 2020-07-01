@@ -99,19 +99,17 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 			{
 				ob = new ObjectOutputStream(new FileOutputStream(archivo, true));
 				ob.writeObject(dato);
-				ob.close();
 				System.out.println(dato);
 				System.out.println("\nSE GUARDO EN OBJECT\n");
 			}else
 			{
 				ob = new MiObjectOutputStream(new FileOutputStream(archivo,true));
 				ob.writeObject(dato);
-				ob.close();
 				System.out.println(dato);
 				System.out.println("\nSE GUARDO EN APPENDABLEOBJECT\n");
 			}
 			
-			
+			ob.close();
 		}catch (IOException e) {
 			System.out.println("\nERROR AL GUARDAR LA UNIDAD\n");
 			

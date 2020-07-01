@@ -161,9 +161,19 @@ public class Supermercado {
 		return listaUsuarios.listar();
 	}
 	
-	public boolean agregarProducto(Producto producto)
+	public boolean agregarProducto(Producto p)
 	{
-		return listaCategorias.agregarProducto(producto);
+		boolean resp = false;
+		if(p != null)
+		{
+			resp = listaCategorias.agregarProducto(p);
+			if(resp == true)
+			{
+				archivoProducto.guardarUnidad(p);
+			}
+		}
+		
+		return resp;
 	}
 	
 	public void eliminarProducto(Long idProducto)
@@ -250,7 +260,7 @@ public class Supermercado {
 		
 		if(listaCategorias != null)
 		{
-			mapaToListaProductos();
+			listaCategorias = MapaCategoria.mapaToListaProductos(archivoProducto.cargar().getMapa());
 			Producto.generadorId = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
 			System.out.println("\n SE CARGO LISTAPRODUCTOS");
 		}
@@ -286,7 +296,7 @@ public class Supermercado {
 		
 		if(listaCategorias != null)
 		{
-			archivoProducto.guardar(listaProductosToMap());
+			archivoProducto.guardar(listaCategorias.toMapaProductos());
 			System.out.println("\n SE GUARDO LISTAPRODUCTOS");
 		}
 	}
@@ -307,7 +317,7 @@ public class Supermercado {
 		}else if(dato instanceof Producto)
 		{
 			Producto aux = (Producto) dato;
-			archivoProducto.guardarUnidad(aux);
+			archivoProducto.guardarUnidad((Producto)aux);
 			
 		}else if (dato instanceof Carro)
 		{
@@ -343,6 +353,7 @@ public class Supermercado {
 	}
 	
 	//Funcion deberia estar en MapaProductos, recibier por parametro la listaCategoria
+	/*
 	public MapaProductos listaProductosToMap()
 	{
 		MapaProductos productos = new MapaProductos();
@@ -362,8 +373,8 @@ public class Supermercado {
 		
 		return productos; //Retorno el Mapa con todos los Productos
 	}
-	
-	
+	*/
+	/*
 	public MapaCategoria mapaToListaProductos()
 	{
 		HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa(); //Obtengo el mapa con todos los productos del archivo
@@ -382,7 +393,7 @@ public class Supermercado {
 		return mapa;
 	}
 	
-	
+	*/
 	
 
 

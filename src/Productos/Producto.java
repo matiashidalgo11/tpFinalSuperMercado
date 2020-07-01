@@ -6,6 +6,11 @@ import Interfaces.idInterface;
 
 public abstract class Producto implements Serializable, idInterface<Long>{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public static long generadorId = 1;
 	
 	private long id;
@@ -26,6 +31,8 @@ public abstract class Producto implements Serializable, idInterface<Long>{
 		stock = 0;
 		idCategoria = 0;
 	}
+	
+	
 	
 	public Producto(String nombre, double precio, String marca, long stock, long idCategoria) 
 	{	

@@ -1,5 +1,6 @@
 package Colecciones;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
@@ -196,5 +197,54 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 		
 		return id;
+	}
+	
+	/**
+	 * Metodo que crea un Mapa unico con todos los Productos
+	 * @return
+	 */
+	public MapaProductos toMapaProductos()
+	{
+		MapaProductos resp = new MapaProductos();
+		Set<Entry<Long,MapaProductos>> set = super.getMapa().entrySet();
+		Iterator<Entry<Long,MapaProductos>> it = set.iterator();
+		while(it.hasNext())
+		{
+			Entry<Long,MapaProductos> entrada = it.next();
+			MapaProductos aux = entrada.getValue();
+			
+			Set<Entry<Long,Producto>> setP = aux.getMapa().entrySet();
+			Iterator<Entry<Long,Producto>> itP = setP.iterator();
+			while(it.hasNext())
+			{
+				Entry<Long,Producto> entradaP = itP.next();
+				Producto dato = entradaP.getValue();
+				resp.agregar(dato.getId(), dato);
+				
+			}
+			
+		}
+		
+		return resp;
+	}
+	/**
+	 * Recibe un Mapa de Productos y lo carga por categoria
+	 * @return
+	 */
+	public static MapaCategoria mapaToListaProductos(HashMap<Long,Producto> mapaDelArchivo)
+	{
+		MapaCategoria resp = new MapaCategoria();
+		//HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa(); //Obtengo el mapa con todos los productos del archivo
+		Set<Entry<Long, Producto>> set = mapaDelArchivo.entrySet();
+		Iterator<Entry<Long, Producto>> it = set.iterator(); //Obtengo el iterator del mapa
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			Producto nuevo = entrada.getValue(); //Obtengo cada producto para tener su atributo de idCategoria.
+			resp.agregarProducto(nuevo); //Guardo cada producto en la categoria que le corresponde
+		}
+		
+		return resp;
 	}
 }
