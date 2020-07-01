@@ -11,8 +11,8 @@ public class Lacteo extends Producto {
 		tipo = "";
 	}
 
-	public Lacteo(String nombre, double precio, String marca, long stock, String tipo) {
-		super(nombre, precio, marca, stock, ID_CATEGORIA_LACTEO);
+	public Lacteo(String nombre, double precio, String marca, long stock, String tipo, boolean oferta, double precioOferta) {
+		super(nombre, precio, marca, stock, ID_CATEGORIA_LACTEO, oferta, precioOferta);
 		this.tipo = tipo;
 	}
 	/**

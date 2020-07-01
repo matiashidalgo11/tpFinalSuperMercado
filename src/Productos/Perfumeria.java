@@ -11,9 +11,9 @@ public class Perfumeria extends Producto {
 		tipoFragancia = "";
 	}
 
-	public Perfumeria(String nombre, double precio, String marca, long stock, String tipoFragancia) 
+	public Perfumeria(String nombre, double precio, String marca, long stock, String tipoFragancia, boolean oferta, double precioOferta) 
 	{
-		super(nombre, precio, marca, stock, ID_CATEGORIA_PERFUMERIA);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_PERFUMERIA, oferta, precioOferta);
 		this.tipoFragancia = tipoFragancia;
 	}
 

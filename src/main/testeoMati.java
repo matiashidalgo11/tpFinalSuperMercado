@@ -34,9 +34,9 @@ public class testeoMati {
 		
 		//toledo.agregarUsuario(a);
 		
-		Producto pa = new Bebidas("Coca cola", 100, "Coca Cola Company", 10, true, 2.25, "Cola", false);
-		Producto pb = new Congelado("Pollo", 100, "Doleto", 100, 1.25);
-		Producto pc = new Golosina("Kinder Sorpresa", 150, "Kinder Infantil", 100, 1);
+		Producto pa = new Bebidas("Coca cola", 100, "Coca Cola Company", 10, true, 2.25, "Cola", false, false, 0);
+		Producto pb = new Congelado("Pollo", 100, "Doleto", 100, 1.25, false, 0);
+		Producto pc = new Golosina("Kinder Sorpresa", 150, "Kinder Infantil", 100, 1, false, 0);
 		
 		toledo.agregarProducto(pa);
 		toledo.agregarProducto(pb);

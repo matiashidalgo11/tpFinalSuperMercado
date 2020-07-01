@@ -11,9 +11,9 @@ public class Golosina extends Producto{
 		cantidad = 0;
 	}
 
-	public Golosina(String nombre, double precio, String marca, long stock, int cantidad) 
+	public Golosina(String nombre, double precio, String marca, long stock, int cantidad, boolean oferta, double precioOferta) 
 	{
-		super(nombre, precio, marca, stock, ID_CATEGORIA_GOLOSINA);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_GOLOSINA, oferta, precioOferta);
 		this.cantidad = cantidad;
 	}
 

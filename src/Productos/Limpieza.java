@@ -11,9 +11,9 @@ public class Limpieza extends Producto{
 		tipo = "";
 	}
 
-	public Limpieza(String nombre, double precio, String marca, long stock, String tipo) 
+	public Limpieza(String nombre, double precio, String marca, long stock, String tipo, boolean oferta, double precioOferta) 
 	{
-		super(nombre, precio, marca, stock, ID_CATEGORIA_LIMPIEZA);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_LIMPIEZA, oferta, precioOferta);
 		this.tipo = tipo;
 	}
 

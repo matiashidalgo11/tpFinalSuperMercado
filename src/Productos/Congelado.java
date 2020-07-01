@@ -10,8 +10,8 @@ public class Congelado extends Producto{
 		peso = 0;
 	}
 
-	public Congelado(String nombre, double precio, String marca, long stock, double peso) {
-		super(nombre, precio, marca, stock, ID_CATEGORIA_CONGELADO);
+	public Congelado(String nombre, double precio, String marca, long stock, double peso, boolean oferta, double precioOferta) {
+		super(nombre, precio, marca, stock, ID_CATEGORIA_CONGELADO, oferta, precioOferta);
 		this.peso = peso;
 	}
 	

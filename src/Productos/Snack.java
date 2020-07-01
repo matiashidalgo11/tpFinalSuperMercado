@@ -11,9 +11,9 @@ public class Snack extends Producto {
 		cantidadG = 0;
 	}
 
-	public Snack(String nombre, double precio, String marca, long stock, double cantidadG) 
+	public Snack(String nombre, double precio, String marca, long stock, double cantidadG, boolean oferta, double precioOferta) 
 	{
-		super(nombre, precio, marca, stock, ID_CATEGORIA_SNACK);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_SNACK, oferta, precioOferta);
 		this.cantidadG = cantidadG;
 	}
 

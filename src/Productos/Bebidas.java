@@ -17,9 +17,9 @@ public class Bebidas extends Producto{
 		alcohol = false;
 	}
 	
-	public Bebidas(String nombre, double precio, String marca, long stock,boolean gasificada, double litros, String gusto, boolean alcohol) 
+	public Bebidas(String nombre, double precio, String marca, long stock,boolean gasificada, double litros, String gusto, boolean alcohol, boolean oferta, double precioOferta) 
 	{
-		super(nombre, precio, marca, stock, ID_CATEGORIA_BEBIDAS);
+		super(nombre, precio, marca, stock, ID_CATEGORIA_BEBIDAS, oferta, precioOferta);
 		this.gasificada = gasificada;
 		this.litros = litros;
 		this.gusto = gusto;
