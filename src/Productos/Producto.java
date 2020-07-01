@@ -9,7 +9,7 @@ public abstract class Producto implements Serializable, idInterface<Long>{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
+
 
 	public static long generadorId = 1;
 	

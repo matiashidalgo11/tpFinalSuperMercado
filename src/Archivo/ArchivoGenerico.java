@@ -126,6 +126,7 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		this.archivo = archivo;
 	}
 
+
 	public MapaGenerico<K, T> cargar()
 	{
 		MapaGenerico<K, T> resp = new MapaGenerico<K, T>();
@@ -139,7 +140,9 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 			{
 				
 				
-				dato = (T) obIn.readObject();
+				 
+				dato = (T) obIn.readObject();;
+				
 				clave = dato.getId();
 				System.out.println(resp.agregar(clave, dato));
 			}
@@ -210,6 +213,33 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		
 
 		return resp;
+	}
+	
+	public void listar() {
+		try {
+
+			FileInputStream in = new FileInputStream(archivo);
+			ObjectInputStream obIn = new ObjectInputStream(new FileInputStream(archivo));
+
+			while (true) {
+
+				T readObject = ((T) obIn.readObject());
+				T dato = readObject;
+				System.out.println(dato.toString());
+
+			}
+
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}  catch (IOException e) {
+			// TODO Auto-generated catch block
+			System.out.println("\nARCHIVO FINALIZADO\n");
+			//e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }
