@@ -216,7 +216,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 			
 			Set<Entry<Long,Producto>> setP = aux.getMapa().entrySet();
 			Iterator<Entry<Long,Producto>> itP = setP.iterator();
-			while(it.hasNext())
+			while(itP.hasNext())
 			{
 				Entry<Long,Producto> entradaP = itP.next();
 				Producto dato = entradaP.getValue();

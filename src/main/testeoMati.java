@@ -27,7 +27,7 @@ public class testeoMati {
 
 
 		
-		//Supermercado toledo = new Supermercado();
+		Supermercado toledo = new Supermercado();
 
 		Usuario a = new Usuario("MatiasGamer", "1234", "Matias", "Hidalgo", 21, "123456");
 		Usuario b = new Usuario("PepeGamer", "123", "Pepe", "Pepito", 21, "45235874");
@@ -37,26 +37,14 @@ public class testeoMati {
 		Producto pa = new Bebidas("Coca cola", 100, "Coca Cola Company", 10, true, 2.25, "Cola", false);
 		Producto pb = new Congelado("Pollo", 100, "Doleto", 100, 1.25);
 		Producto pc = new Golosina("Kinder Sorpresa", 150, "Kinder Infantil", 100, 1);
-		/*
+		
 		toledo.agregarProducto(pa);
 		toledo.agregarProducto(pb);
 		toledo.agregarProducto(pc);
 		
-		toledo.guardarDatos();
-	*/
-		ArchivoGenerico<Long,Producto> archivoProducto = new ArchivoGenerico<Long, Producto>("productoTest.dat");
-		MapaCategoria mapCategoria = new MapaCategoria();
-		MapaProductos todo = new MapaProductos();
-		
-		mapCategoria.agregarProducto(pa);
-		mapCategoria.agregarProducto(pb);
-		mapCategoria.agregarProducto(pc);
-		
-
-		todo = mapCategoria.toMapaProductos();
-		
-		System.out.println(todo.listar());
-		
+		//toledo.guardarDatos();
+	
+	
 		
 		/**
 		 * Error cuando guardar Productos de distinta categoria;
