@@ -103,7 +103,7 @@ public class Registro extends JFrame {
 		Fondo = new JLabel("");
 		Fondo.setForeground(new Color(0, 0, 0));
 		Fondo.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		Fondo.setIcon(new ImageIcon(Principal.class.getResource("/img/Registro.png")));
+		Fondo.setIcon(new ImageIcon(Principal.class.getResource("/img/Registro V2.png")));
 		Fondo.setBounds(0, 0, 1300, 750);
 		contentPane.add(Fondo);
 	}
@@ -153,10 +153,10 @@ public class Registro extends JFrame {
 				btnCancelar.setBorder(null);
 			}
 		});
-		btnCancelar.setBounds(877, 598, 221, 43);
+		btnCancelar.setBounds(867, 636, 221, 43);
 		contentPane.add(btnCancelar);
 
-		btnSiguiente.setBounds(564, 598, 221, 43);
+		btnSiguiente.setBounds(554, 636, 221, 43);
 		contentPane.add(btnSiguiente);
 
 	}
@@ -172,7 +172,7 @@ public class Registro extends JFrame {
 		txtNombreUser.setCaretColor(Color.BLACK);
 		txtNombreUser.setBorder(null);
 		txtNombreUser.setBackground(Color.WHITE);
-		txtNombreUser.setBounds(565, 155, 622, 35);
+		txtNombreUser.setBounds(554, 99, 622, 35);
 		contentPane.add(txtNombreUser);
 		
 		txtPassword = new JPasswordField();
@@ -184,7 +184,7 @@ public class Registro extends JFrame {
 		txtPassword.setColumns(10);
 		txtPassword.setBorder(null);
 		txtPassword.setBackground(Color.WHITE);
-		txtPassword.setBounds(564, 278, 623, 35);
+		txtPassword.setBounds(554, 193, 623, 35);
 		contentPane.add(txtPassword);
 		
 		txtNombre = new JTextField();
@@ -196,7 +196,7 @@ public class Registro extends JFrame {
 		txtNombre.setCaretColor(Color.BLACK);
 		txtNombre.setBorder(null);
 		txtNombre.setBackground(Color.WHITE);
-		txtNombre.setBounds(564, 400, 623, 35);
+		txtNombre.setBounds(554, 287, 623, 35);
 		contentPane.add(txtNombre);
 		
 		txtApellido = new JTextField();
@@ -208,7 +208,7 @@ public class Registro extends JFrame {
 		txtApellido.setCaretColor(Color.BLACK);
 		txtApellido.setBorder(null);
 		txtApellido.setBackground(Color.WHITE);
-		txtApellido.setBounds(551, 469, 623, 35);
+		txtApellido.setBounds(554, 382, 623, 35);
 		contentPane.add(txtApellido);
 		
 		txtTelefono = new JTextField();
@@ -220,7 +220,7 @@ public class Registro extends JFrame {
 		txtTelefono.setCaretColor(Color.BLACK);
 		txtTelefono.setBorder(null);
 		txtTelefono.setBackground(Color.WHITE);
-		txtTelefono.setBounds(67, 590, 350, 35);
+		txtTelefono.setBounds(554, 566, 622, 35);
 		contentPane.add(txtTelefono);
 		
 		txtEdad = new JTextField();
@@ -232,7 +232,7 @@ public class Registro extends JFrame {
 		txtEdad.setCaretColor(Color.BLACK);
 		txtEdad.setBorder(null);
 		txtEdad.setBackground(Color.WHITE);
-		txtEdad.setBounds(67, 636, 400, 29);
+		txtEdad.setBounds(554, 481, 400, 29);
 		contentPane.add(txtEdad);
 		
 	}

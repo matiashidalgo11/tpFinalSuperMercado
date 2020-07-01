@@ -17,9 +17,11 @@ import java.awt.Color;
 import javax.swing.border.LineBorder;
 
 import Objetos.Usuario;
+import graficas.Inicio;
 
 import javax.swing.JScrollPane;
 import java.awt.CardLayout;
+import javax.swing.ImageIcon;
 
 public class AdminMenuPrincipal extends JFrame {
 
@@ -34,6 +36,7 @@ public class AdminMenuPrincipal extends JFrame {
 	private JScrollPane scrollPane;
 	private JPanel subMenu;
 	private CardLayout control;
+	private JLabel Fondo;
 	
 	public static String USERMENU_REFERENCIA = "userMenu";
 	private UsuariosMenu userMenu = new UsuariosMenu();
@@ -69,15 +72,19 @@ public class AdminMenuPrincipal extends JFrame {
 	}
 	private void initComponents() {
 		
+		setUndecorated(true);
+		//setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1300, 750);
+		setBounds(100, 100, 1300, 750); //Tamaño por defecto del JFrame
+		setBackground(new Color(0,0,0,0));
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(10, 11, 212, 689);
+		panel.setBounds(37, 11, 212, 689);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -93,8 +100,16 @@ public class AdminMenuPrincipal extends JFrame {
 		btnAdministrarOfertas.setBounds(5, 444, 200, 102);
 		panel.add(btnAdministrarOfertas);
 		
-		btnCerrarSesion = new JButton("Cerrar Sesion");
-		btnCerrarSesion.setBounds(40, 608, 120, 70);
+		btnCerrarSesion = new JButton("");
+		btnCerrarSesion.setOpaque(false);
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnCerrarSesion.setBackground(new Color(0,0,0,0));
+		//btnCerrarSesion.setBackground(Color.WHITE);
+		btnCerrarSesion.setIcon(new ImageIcon(AdminMenuPrincipal.class.getResource("/img/Boton Cerrar Sesion.png")));
+		btnCerrarSesion.setBounds(22, 608, 158, 70);
 		panel.add(btnCerrarSesion);
 		
 		lblImagenAdmin = new JLabel("Imagen");
@@ -110,7 +125,7 @@ public class AdminMenuPrincipal extends JFrame {
 		panel.add(btnInformacionGeneral);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(232, 11, 1042, 689);
+		scrollPane.setBounds(259, 11, 1042, 689);
 		contentPane.add(scrollPane);
 		
 		subMenu = new JPanel();
@@ -121,6 +136,11 @@ public class AdminMenuPrincipal extends JFrame {
 		subMenu.add(infoG,INFOGENERAL_REFERENCIA);
 		subMenu.add(userMenu,USERMENU_REFERENCIA);
 		subMenu.add(productosMenu,PRODUCTOSMENU_REFERENCIA);
+		
+		Fondo = new JLabel("");
+		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Fondo Solo.png")));
+		Fondo.setBounds(0, 0, 1294, 721); //Tamaño por defecto del fondo 
+		contentPane.add(Fondo);
 		
 		
 		ArrayList<Usuario> arreglo = cargarArreglo();
