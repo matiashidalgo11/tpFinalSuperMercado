@@ -128,6 +128,14 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		this.arreglo = arreglo;
 	}
 	
+	public double getTotal() {
+		return total;
+	}
+
+	public void setTotal(double total) {
+		this.total = total;
+	}
+	
 	public boolean isEmpty()
 	{
 		boolean resp = false;
@@ -240,11 +248,21 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		return cantidad;
 	}
 
+	/**
+	 * falta pasar Arreglo a JSONARRAY
+	 */
 	@Override
 	public JSONObject toJson() {
-		// TODO Auto-generated method stub
-		return null;
+		JSONObject resp = new JSONObject();
+		
+		resp.put(CLAVE_ID, this.getId());
+		resp.put(CLAVE_TOTAL, this.getTotal());
+		//resp.put(CLAVE_ARREGLOPRODUCTOS, value);
+		
+		return resp;
 	}
+
+	
 
 	
 	

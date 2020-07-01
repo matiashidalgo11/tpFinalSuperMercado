@@ -310,11 +310,21 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 
 
 
+	/**
+	 * Falta terminar con el Historial de compra
+	 */
 	@Override
 	public JSONObject toJson() {
 		
 		JSONObject resp = new JSONObject();
-		
+		resp.put(CLAVE_ACTIVO, this.isActivo());
+		resp.put(CLAVE_CARTERA, this.getCartera());
+		//resp.put(CLAVE_HISTORIALCOMPRA, )
+		resp.put(CLAVE_ID, this.getId());
+		resp.put(CLAVE_NOMBRE, this.getNombre());
+		resp.put(CLAVE_PASSWORD, this.getPassword());
+		resp.put(CLAVE_TELEFONO, this.getTelefono());
+		resp.put(CLAVE_USERNAME, this.getUserName());
 		
 		
 		return resp;

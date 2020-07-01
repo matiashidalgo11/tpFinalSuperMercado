@@ -167,10 +167,12 @@ public class Supermercado {
 		if(p != null)
 		{
 			resp = listaCategorias.agregarProducto(p);
+			/*
 			if(resp == true)
 			{
+				// no funciona
 				archivoProducto.guardarUnidad(p);
-			}
+			}*/
 		}
 		
 		return resp;
@@ -296,7 +298,9 @@ public class Supermercado {
 		
 		if(listaCategorias != null)
 		{
-			archivoProducto.guardar(listaCategorias.toMapaProductos());
+			System.out.println(listaCategorias.listar());
+			MapaGenerico<Long, Producto> aux = (MapaGenerico<Long, Producto>)listaCategorias.toMapaProductos();
+			archivoProducto.guardar(aux);
 			System.out.println("\n SE GUARDO LISTAPRODUCTOS");
 		}
 	}

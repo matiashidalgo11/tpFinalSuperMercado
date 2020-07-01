@@ -76,8 +76,9 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 				obOut.writeObject(objeto);
 			}
 			
-			out.close();
+			
 			obOut.close();
+			out.close();
 			System.out.println("\nSE GUARDO EL MAPA\n");
 			
 		} catch (FileNotFoundException e) {

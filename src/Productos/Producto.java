@@ -2,9 +2,12 @@ package Productos;
 
 import java.io.Serializable;
 
+import org.json.JSONObject;
+
+import Interfaces.JsonFunciones;
 import Interfaces.idInterface;
 
-public abstract class Producto implements Serializable, idInterface<Long>{
+public abstract class Producto implements Serializable, idInterface<Long>, JsonFunciones{
 	
 	/**
 	 * 
@@ -183,6 +186,12 @@ public abstract class Producto implements Serializable, idInterface<Long>{
 	public String getNombreCategoria()
 	{
 		return "Producto";
+	}
+	
+	public JSONObject toJson()
+	{
+		return null;
+		
 	}
 
 

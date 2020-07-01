@@ -81,10 +81,16 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 		return builder.toString();
 	}
 
-
+	/**
+	 * Falta Completar Convirtiendo el Arreglo en un JArray
+	 */
 	@Override
 	public JSONObject toJson() {
-		// TODO Auto-generated method stub
+		JSONObject resp = new JSONObject();
+		resp.put(CLAVE_FECHAHORA, this.getFechaYhora());
+		resp.put(CLAVE_MONTOTOTAL, this.getMontoTotal());
+		//resp.put(CLAVE_PRODUCTOS, this.getP)
+		
 		return null;
 	}
 	

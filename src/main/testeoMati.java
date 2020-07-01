@@ -27,7 +27,7 @@ public class testeoMati {
 
 
 		
-		Supermercado toledo = new Supermercado();
+		//Supermercado toledo = new Supermercado();
 
 		Usuario a = new Usuario("MatiasGamer", "1234", "Matias", "Hidalgo", 21, "123456");
 		Usuario b = new Usuario("PepeGamer", "123", "Pepe", "Pepito", 21, "45235874");
@@ -37,41 +37,35 @@ public class testeoMati {
 		Producto pa = new Bebidas("Coca cola", 100, "Coca Cola Company", 10, true, 2.25, "Cola", false);
 		Producto pb = new Congelado("Pollo", 100, "Doleto", 100, 1.25);
 		Producto pc = new Golosina("Kinder Sorpresa", 150, "Kinder Infantil", 100, 1);
+		/*
+		toledo.agregarProducto(pa);
+		toledo.agregarProducto(pb);
+		toledo.agregarProducto(pc);
 		
+		toledo.guardarDatos();
+	*/
+		ArchivoGenerico<Long,Producto> archivoProducto = new ArchivoGenerico<Long, Producto>("productoTest.dat");
+		MapaCategoria mapCategoria = new MapaCategoria();
+		MapaProductos todo = new MapaProductos();
 		
-	
+		mapCategoria.agregarProducto(pa);
+		mapCategoria.agregarProducto(pb);
+		mapCategoria.agregarProducto(pc);
+		
+
+		todo = mapCategoria.toMapaProductos();
+		
+		System.out.println(todo.listar());
+		
 		
 		/**
 		 * Error cuando guardar Productos de distinta categoria;
 		 */
 		
-			//ArchivoGenerico<Long, Producto> archivoProducto = new ArchivoGenerico<Long, Producto>("ProductoTest.dat");
-		/*
-		Producto castPA = (Producto) pa;
-		Producto castPB = (Producto) pb;
-		MapaGenerico<Long,Producto> mapa = new MapaGenerico<Long, Producto>();
-		//mapa.agregar(pa.getId(), pa);
-		//mapa.agregar(pb.getId(), pb);
-		//archivoProducto.guardar(mapa);
-		//archivoProducto.guardarUnidad(castPB);
-		//archivoProducto.guardarUnidad(pc);
-		*/
-		//archivoProducto.listar();
 		
 		
 		
-		//ArchivoGenerico<Long,Usuario> archivoUsuario= new ArchivoGenerico<Long, Usuario>("Usuario.dat");
-		//archivoUsuario.guardarUnidad(a);
-		//archivoUsuario.guardarUnidad(b);
-		//archivoUsuario.listar();
 		
-		/*
-		MapaProductos mapaTodo = new MapaProductos();
-		mapaTodo.setMapa(archivoProducto.cargar().getMapa());
-		
-		MapaCategoria mapaCategor = MapaCategoria.mapaToListaProductos(mapaTodo.getMapa());
-		System.out.println(mapaCategor.listar());
-		*/
 
 	}
 	

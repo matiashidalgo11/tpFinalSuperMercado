@@ -206,12 +206,13 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 	public MapaProductos toMapaProductos()
 	{
 		MapaProductos resp = new MapaProductos();
+		MapaProductos aux ;
 		Set<Entry<Long,MapaProductos>> set = super.getMapa().entrySet();
 		Iterator<Entry<Long,MapaProductos>> it = set.iterator();
 		while(it.hasNext())
 		{
 			Entry<Long,MapaProductos> entrada = it.next();
-			MapaProductos aux = entrada.getValue();
+			aux = entrada.getValue();
 			
 			Set<Entry<Long,Producto>> setP = aux.getMapa().entrySet();
 			Iterator<Entry<Long,Producto>> itP = setP.iterator();
@@ -219,6 +220,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 			{
 				Entry<Long,Producto> entradaP = itP.next();
 				Producto dato = entradaP.getValue();
+				System.out.println(dato);
 				resp.agregar(dato.getId(), dato);
 				
 			}
