@@ -404,6 +404,7 @@ public class Supermercado {
 		
 		jsonObject.put(CLAVE_LISTAUSUARIOS, listaUsuarios.toJsonArray());
 		jsonObject.put(CLAVE_LISTACARRITOS, listaCarritos.toJsonArray());
+		jsonObject.put(CLAVE_LISTACATEGORIAS, listaCategorias.toJsonArray());
 		
 		//Agregabr el de Productos
 		

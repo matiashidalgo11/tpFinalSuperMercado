@@ -8,6 +8,8 @@ import ColeccionesGenericas.MapaGenerico;
 
 import java.util.Set;
 
+import org.json.JSONArray;
+
 import Interfaces.IdMaximo;
 import Productos.Producto;
 
@@ -263,6 +265,20 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 		
 		return resp;
+	}
+	
+	public JSONArray toJsonArray()
+	{
+		JSONArray arreglo = new JSONArray();
+		MapaProductos productos = toMapaProductos();
+		Iterator<Entry<String, Producto>> it = productos.getIterator();
+		while(it.hasNext())
+		{
+			Entry<String, Producto> entrada = it.next();
+			arreglo.put(entrada.getValue().toJson());
+		}
+		
+		return arreglo;
 	}
 	
 }
