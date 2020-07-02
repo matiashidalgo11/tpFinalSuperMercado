@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Colecciones.MapaProductos;
+import Objetos.Session;
 import Objetos.Supermercado;
 import Productos.Producto;
 
@@ -22,8 +23,11 @@ import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
+
+import javax.swing.border.BevelBorder;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
 
 public class DetallesProducto extends JFrame {
 
@@ -73,13 +77,113 @@ public class DetallesProducto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		
+		JButton botonInicio = new JButton("");
+		botonInicio.setContentAreaFilled(false);
+		botonInicio.setBorder(null);
+		botonInicio.setVisible(true);
+		botonInicio.setOpaque(false);
+		botonInicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonInicio.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonInicio.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				new Inicio(mercado).setVisible(true);
+				setVisible(false);
+			}
+		});
+		contentPane.setLayout(null);
+		botonInicio.setBounds(55, 305, 196, 51);
+		contentPane.add(botonInicio);
+		
+		JButton botonCarro = new JButton("");
+		botonCarro.setVisible(true);
+		botonCarro.setOpaque(false);
+		botonCarro.setBorder(null);
+		botonCarro.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCarro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCarro.setBorder(null);
+			}
+		});
+		
+		botonCarro.setContentAreaFilled(false);
+		botonCarro.setBounds(55, 362, 196, 51);
+		contentPane.add(botonCarro);
+
+		JButton botonCuenta = new JButton("");
+		botonCuenta.setVisible(true);
+		botonCuenta.setOpaque(false);
+		botonCuenta.setBorder(null);
+		botonCuenta.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCuenta.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCuenta.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				new Cuenta(mercado).setVisible(true);
+				setVisible(false);
+			}
+		});
+		botonCuenta.setContentAreaFilled(false);
+		botonCuenta.setBounds(56, 421, 196, 51);
+		contentPane.add(botonCuenta);
+		
+		JButton botonHistorial = new JButton("");
+		botonHistorial.setVisible(true);
+		botonHistorial.setOpaque(false);
+		botonHistorial.setBorder(null);
+		botonHistorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonHistorial.setBorder(null);
+			}
+		});
+		
+		botonHistorial.setContentAreaFilled(false);
+		botonHistorial.setBounds(56, 480, 196, 51);
+		contentPane.add(botonHistorial);
+		
+		
+		
 		botonAgregar = new JButton("");
 		botonAgregar.addMouseListener(new MouseAdapter() 
 		{
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				
+				Session activa = mercado.getSesionActiva();
+				activa.agregarAlCarro(producto);
 			}
 		});
 		botonAgregar.setContentAreaFilled(false);
