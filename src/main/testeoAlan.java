@@ -19,6 +19,7 @@ import Productos.Lacteo;
 import Productos.Producto;
 import Productos.Snack;
 import graficas.Inicio;
+import graficas.Principal;
 
 public class testeoAlan {
 
@@ -87,8 +88,9 @@ public class testeoAlan {
 //		mercado.guardarDatos();
 		mercado.cargarDatos();
 //		System.out.println(mercado.listarCategoriaEspecifica((long) 1));
-		System.out.println(mercado.listarCategorias());
-		new Inicio(mercado).setVisible(true);
+//		System.out.println(mercado.listarCategorias());
+//		new Inicio(mercado).setVisible(true);
+		new Principal(mercado).setVisible(true);
 //		mercado.agregarUsuario(alan);
 //		mercado.iniciarSession(1);
 //		

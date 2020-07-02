@@ -20,6 +20,7 @@ import Colecciones.ArregloDetalleCompra;
 import Colecciones.ArregloProductos;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
+import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
 import Productos.Producto;
@@ -29,6 +30,8 @@ import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 
 public class GraficaHistorial extends JFrame {
 
@@ -72,6 +75,7 @@ public class GraficaHistorial extends JFrame {
 		setLocationRelativeTo(null);
 		
 		Usuario user = mercado.getUsuarioEnSesion();
+		Session activa = mercado.getSesionActiva();
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -81,19 +85,22 @@ public class GraficaHistorial extends JFrame {
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
-		scrollPane.setBounds(265, 58, 1016, 629);
+		scrollPane.setBounds(254, 45, 1016, 629);
 		scrollPane.setBackground(new Color(0,0,0,0));
+		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		contentPane.add(scrollPane);
 		
 		panel = new JPanel();
 		panel.setBackground(new Color(0,0,0,0));
+		panel.setPreferredSize(new Dimension(1015, 620));
 		scrollPane.setViewportView(panel);
+		panel.setLayout(null);
 		
 		labelPerfil = new JLabel(user.getUserName());
 		labelPerfil.setForeground(Color.WHITE);
 		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
 		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
-		labelPerfil.setBounds(38, 166, 208, 41);
+		labelPerfil.setBounds(37, 167, 208, 41);
 		contentPane.add(labelPerfil);
 		
 
@@ -121,7 +128,7 @@ public class GraficaHistorial extends JFrame {
 			}
 		});
 		contentPane.setLayout(null);
-		botonInicio.setBounds(53, 288, 196, 51);
+		botonInicio.setBounds(52, 289, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
@@ -148,7 +155,7 @@ public class GraficaHistorial extends JFrame {
 		});
 		
 		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(48, 347, 196, 51);
+		botonCarro.setBounds(47, 348, 196, 51);
 		contentPane.add(botonCarro);
 
 		JButton botonCuenta = new JButton("");
@@ -175,43 +182,47 @@ public class GraficaHistorial extends JFrame {
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
-		botonCuenta.setBounds(46, 406, 196, 51);
+		botonCuenta.setBounds(45, 407, 196, 51);
 		contentPane.add(botonCuenta);
+		
+		columnaProductos(user.getHistorialCompra());
 		
 		
 		fondo = new JLabel("");
-		fondo.setBounds(10, 11, 1294, 721);
+		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIgnoreRepaint(true);
 		fondo.setIcon(new ImageIcon(GraficaHistorial.class.getResource("/img/Historial V2.png")));
 		contentPane.add(fondo);
 	}
 	
-//	void columnaProductos(ArregloDetalleCompra historial)
-//	{
-//		JLabel arregloBotones[] = new JLabel[historial.cantidad()];
-//		int y = 40;
-//		int yPanel = 620;
-//		long id = 0;
-//		int i = 0;
-//		DetalleCompra detalles = historial.getArreglo().
-//		
-//		
-//		for(Producto aux : historial.getArreglo())
-//		{
-//			arregloBotones[i] = new JLabel();
-//			arregloBotones[i].setHorizontalAlignment(SwingConstants.LEFT);
-//			arregloBotones[i].setFont(new Font("Calibri", Font.BOLD, 20));
-//			arregloBotones[i].setForeground(new Color(51, 102, 153));
-//			arregloBotones[i].setBounds(39, y, 838, 44);
-//			panel.add(arregloBotones[i]);
-//			y += 60;
-//			i++;
-//			
-//			if(i >= 7)
-//			{
-//				yPanel += 60;
-//				panel.setPreferredSize(new Dimension(1015, yPanel));
-//			}
-//		}
-//	}
+	void columnaProductos(ArregloDetalleCompra historial)
+	{
+		JTextPane arregloLabel[] = new JTextPane[historial.cantidad()];
+		int y = 40;
+		int yPanel = 620;
+		long id = 0;
+		int i = 0;
+		ArrayList<DetalleCompra> detalles = historial.getArreglo();
+		
+		
+		for(DetalleCompra aux : detalles)
+		{
+			arregloLabel[i] = new JTextPane();
+			arregloLabel[i].setText(aux.toString());
+			arregloLabel[i].setFont(new Font("Calibri", Font.BOLD, 20));
+			arregloLabel[i].setForeground(new Color(51, 102, 153));
+			arregloLabel[i].setBackground(new Color(0,0,0,0));
+			arregloLabel[i].setBounds(39, y, 838, 400);
+			panel.add(arregloLabel[i]);
+			y += 430;
+			i++;
+			
+			if(i >= 1)
+			{
+				yPanel += 430;
+				panel.setPreferredSize(new Dimension(1015, yPanel));
+			}	
+			
+		}
+	}
 }
