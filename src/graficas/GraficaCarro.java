@@ -32,6 +32,10 @@ import javax.swing.Scrollable;
 import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
+import javax.swing.border.MatteBorder;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.Cursor;
 
 public class GraficaCarro extends JFrame {
 
@@ -41,6 +45,7 @@ public class GraficaCarro extends JFrame {
 	private JButton btnNewButton;
 	private JLabel labelTotal;
 	private JLabel precioTotal;
+	private JButton botonComprar;
 
 //	/**
 //	 * Launch the application.
@@ -110,6 +115,31 @@ public class GraficaCarro extends JFrame {
 		precioTotal = new JLabel("");
 		precioTotal.setBounds(397, 666, 69, 38);
 		String total = "$" + String.valueOf(prueba.getTotal());
+		
+		botonComprar = new JButton("");
+		botonComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonComprar.setBorder(null);
+		botonComprar.setContentAreaFilled(false);
+		botonComprar.setOpaque(false);
+		botonComprar.setBounds(1018, 666, 165, 38);
+		botonComprar.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonComprar.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 102, 153)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonComprar.setBorder(null);
+			}
+		});
+		contentPane.add(botonComprar);
 		precioTotal.setText(total);
 		contentPane.add(precioTotal);
 		precioTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));

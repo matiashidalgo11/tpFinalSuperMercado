@@ -7,6 +7,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import Objetos.Supermercado;
+
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 
@@ -34,10 +37,13 @@ public class GraficaHistorial extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public GraficaHistorial() {
+	public GraficaHistorial(Supermercado mercado) 
+	{
 		initComponents();
 	}
-	private void initComponents() {
+	
+	private void initComponents() 
+	{
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
