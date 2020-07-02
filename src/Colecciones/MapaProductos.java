@@ -86,4 +86,20 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		
 		return buscado;
 	}
+	
+	public boolean compararProductos(Producto p)
+	{
+		boolean esIgual = false;
+		Iterator<Entry<String, Producto>> it = super.getIterator();
+		while(it.hasNext() && esIgual == false)
+		{
+			Entry<String, Producto> entrada = it.next();
+			if(entrada.getValue().equals(p))
+			{
+				esIgual = true;
+			}
+		}
+		
+		return esIgual;
+	}
 }

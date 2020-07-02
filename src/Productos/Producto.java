@@ -141,10 +141,14 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 				;
 	}
 
+	
+	
 	@Override
 	public int hashCode() {
 		return 0;
 	}
+
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -155,10 +159,6 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		if (getClass() != obj.getClass())
 			return false;
 		Producto other = (Producto) obj;
-		if (idCategoria != other.idCategoria)
-			return false;
-		if (id != other.id)
-			return false;
 		if (marca == null) {
 			if (other.marca != null)
 				return false;
@@ -169,12 +169,11 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 				return false;
 		} else if (!nombre.equals(other.nombre))
 			return false;
-		if (Double.doubleToLongBits(precio) != Double
-				.doubleToLongBits(other.precio))
-			return false;
 		return true;
 	}
-	
+
+
+
 	/**
 	 * 
 	 * @param cant es la cantidad de Stock que se va a sumar al total

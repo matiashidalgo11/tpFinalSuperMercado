@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 
 import ColeccionesGenericas.MapaGenerico;
+import Excepciones.ProductoYaExiste;
 
 import java.util.Set;
 
@@ -43,7 +44,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 	}
 	
-	public boolean agregarProducto(Producto p)
+	public boolean agregarProducto(Producto p) throws ProductoYaExiste
 	{
 		MapaProductos aux;
 		boolean resp = false;
@@ -52,14 +53,24 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 			if(existencia(p.getIdCategoria()))
 			{
 				aux = buscar(p.getIdCategoria());
-				resp = aux.agregar(p.getId(), p);
+				
+				if(!aux.compararProductos(p))
+				{
+					resp = aux.agregar(p.getId(), p);
+				}
+				else
+				{
+					throw new ProductoYaExiste();
+				}
+				
 			}else
 			{
 				aux = new MapaProductos();
 				aux.agregar(p.getId(), p);
 				resp = super.agregar(p.getIdCategoria(), aux);
 			}
-		}
+			
+	}
 		
 		
 		return resp;
@@ -266,8 +277,9 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 	/**
 	 * Recibe un Mapa de Productos y lo carga por categoria
 	 * @return
+	 * @throws ProductoYaExiste 
 	 */
-	public static MapaCategoria mapaToListaProductos(HashMap<Long,Producto> mapaDelArchivo)
+	public static MapaCategoria mapaToListaProductos(HashMap<Long,Producto> mapaDelArchivo) throws ProductoYaExiste
 	{
 		MapaCategoria resp = new MapaCategoria();
 		//HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa(); //Obtengo el mapa con todos los productos del archivo

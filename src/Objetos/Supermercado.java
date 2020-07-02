@@ -12,6 +12,7 @@ import Archivo.ArchivoGenerico;
 import Colecciones.MapaUsuario;
 import ColeccionesGenericas.ArregloGenerico;
 import ColeccionesGenericas.MapaGenerico;
+import Excepciones.ProductoYaExiste;
 import Interfaces.idInterface;
 import Productos.Producto;
 import Colecciones.MapaCarro;
@@ -196,7 +197,7 @@ public class Supermercado {
 		return listaUsuarios.listar();
 	}
 	
-	public boolean agregarProducto(Producto p)
+	public boolean agregarProducto(Producto p) throws ProductoYaExiste
 	{
 		boolean resp = false;
 		if(p != null)
@@ -305,14 +306,17 @@ public class Supermercado {
 		
 		if(listaCategorias != null)
 		{
-			listaCategorias = MapaCategoria.mapaToListaProductos(archivoProducto.cargar().getMapa());
-			Producto.generadorId = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
-			System.out.println("\n SE CARGO LISTAPRODUCTOS");
+			try
+			{
+				listaCategorias = MapaCategoria.mapaToListaProductos(archivoProducto.cargar().getMapa());
+				Producto.generadorId = listaCategorias.getIdMasAlto() + 1;//Busca el id mas alto, para cuando se cree un nuevo Producto comience a partir del id Mas alto
+				System.out.println("\n SE CARGO LISTAPRODUCTOS");
+			}
+			catch(ProductoYaExiste e)
+			{
+				System.out.println(e.getMessage());
+			}	
 		}
-		
-	
-		
-		
 	}
 	
 	/**
