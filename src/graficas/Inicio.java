@@ -186,7 +186,7 @@ public class Inicio extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				new graficaCarro(mercado).setVisible(true);
+				new GraficaCarro(mercado).setVisible(true);
 			}
 		});
 		

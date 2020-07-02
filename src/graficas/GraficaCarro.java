@@ -5,6 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Rectangle;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -12,6 +15,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Colecciones.ArregloProductos;
+import Colecciones.MapaProductos;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Productos.Bebida;
@@ -29,12 +33,14 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
-public class graficaCarro extends JFrame {
+public class GraficaCarro extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel fondo;
 	private JPanel panel;
 	private JButton btnNewButton;
+	private JLabel labelTotal;
+	private JLabel precioTotal;
 
 //	/**
 //	 * Launch the application.
@@ -55,7 +61,7 @@ public class graficaCarro extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public graficaCarro(Supermercado mercado) 
+	public GraficaCarro(Supermercado mercado) 
 	{
 		initComponents(mercado);
 	}
@@ -75,8 +81,9 @@ public class graficaCarro extends JFrame {
 		setContentPane(contentPane);
 //		Session activa = mercado.getSesionActiva();
 //		Carro carrito = activa.getCarrito();
-		Carro prueba = new Carro(1);
 		
+		//****************************** Prueba *********************************//
+		Carro prueba = new Carro(1);
 		Producto coca = new Bebida("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
 		Producto jugo = new Bebida("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
 		Producto cerveza = new Bebida("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
@@ -96,14 +103,28 @@ public class graficaCarro extends JFrame {
 		prueba.agregar(leche);
 		
 		ArregloProductos arreglo = prueba.getArreglo();
+		//*******************************************************************//
+		
 		contentPane.setLayout(null);
+		
+		precioTotal = new JLabel("");
+		precioTotal.setBounds(397, 666, 69, 38);
+		String total = "$" + String.valueOf(prueba.getTotal());
+		precioTotal.setText(total);
+		contentPane.add(precioTotal);
+		precioTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		labelTotal = new JLabel("Total");
+		labelTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		labelTotal.setBounds(335, 666, 69, 38);
+		contentPane.add(labelTotal);
 		
 		
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(261, 68, 1015, 620);
+		scrollPane.setBounds(277, 122, 992, 522);
 		scrollPane.setBackground(new Color(0,0,0,0));
 		
 		panel = new JPanel();
@@ -114,16 +135,22 @@ public class graficaCarro extends JFrame {
 		
 		contentPane.add(scrollPane);
 		
-		columnaProductos(arreglo);
+		columnaProductos(arreglo, prueba, precioTotal);
 		
 		fondo = new JLabel("");
 		fondo.setBounds(5, 5, 1290, 740);
 		fondo.setIgnoreRepaint(true);
-		fondo.setIcon(new ImageIcon(graficaCarro.class.getResource("/img/Carro.png")));
+		fondo.setIcon(new ImageIcon(GraficaCarro.class.getResource("/img/Carro V2.png")));
 		contentPane.add(fondo);
 	}
 	
-	void columnaProductos(ArregloProductos productos)
+	/**
+	 * Crea una columna grafica de botones con los productos que tenemos en el carrito
+	 * @param productos
+	 * @param carrito
+	 * @param precioTotal
+	 */
+	void columnaProductos(ArregloProductos productos, Carro carrito, JLabel precioTotal)
 	{
 		JButton arregloBotones[] = new JButton[productos.cantidad()];
 		int y = 40;
@@ -133,20 +160,62 @@ public class graficaCarro extends JFrame {
 		
 		for(Producto aux : productos.getArreglo())
 		{
-			arregloBotones[i] = new JButton(aux.getNombre());
+			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecio());
 			arregloBotones[i].setHorizontalAlignment(SwingConstants.LEFT);
 			arregloBotones[i].setFont(new Font("Calibri", Font.BOLD, 20));
 			arregloBotones[i].setForeground(new Color(51, 102, 153));
 			arregloBotones[i].setBounds(39, y, 838, 44);
+			arregloBotones[i].setActionCommand(aux.getNombre());
+			arregloBotones[i].addActionListener(new Pulsando(arregloBotones[i], productos, carrito, precioTotal));
 			panel.add(arregloBotones[i]);
 			y += 60;
 			i++;
 			
-			if(i >= 9)
+			if(i >= 7)
 			{
 				yPanel += 60;
 				panel.setPreferredSize(new Dimension(1015, yPanel));
 			}
 		}
+	}
+	
+	//Clase que le da comportamiento a los botones de productos del carrito.
+	class Pulsando implements ActionListener{
+		
+		ArregloProductos arreglo;
+		JButton button;
+		Carro carrito;
+		JLabel precioTotal;
+		
+		public Pulsando(JButton button, ArregloProductos arreglo, Carro carrito, JLabel precioTotal) {
+			
+			this.button = button;
+			this.arreglo = arreglo;
+			this.carrito = carrito;
+			this.precioTotal = precioTotal;
+		}
+		
+		public void actionPerformed(ActionEvent e) 
+		{
+	        String actionCommand = ((JButton) e.getSource()).getActionCommand();
+	        ArrayList<Producto> productos = arreglo.getArreglo();
+	        Producto nuevo = null;
+	        
+	        for(Producto aux : productos)
+	        {
+	        	if(aux.getNombre().equals(actionCommand))
+	        	{
+	        		nuevo = aux;
+	        	}
+	        }
+
+	        carrito.quitar(nuevo.getId()); //TODO Eliminar del carrito y que aparezca el nuevo total
+	        arreglo.eliminar(nuevo.getId());
+	        button.setEnabled(false);
+	        String nuevoTotal = "$" + String.valueOf(carrito.getTotal());
+	        precioTotal.setText(nuevoTotal);
+	        
+	    }
+		
 	}
 }
