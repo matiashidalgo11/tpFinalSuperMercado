@@ -210,7 +210,6 @@ public class GraficaCarro extends JFrame {
 	        }
 
 	        carrito.quitar(nuevo.getId()); //TODO Eliminar del carrito y que aparezca el nuevo total
-	        arreglo.eliminar(nuevo.getId());
 	        button.setEnabled(false);
 	        String nuevoTotal = "$" + String.valueOf(carrito.getTotal());
 	        precioTotal.setText(nuevoTotal);

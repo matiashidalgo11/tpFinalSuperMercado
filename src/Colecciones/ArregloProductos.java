@@ -96,7 +96,7 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		
 		for(Producto aux : super.getArreglo())
 		{
-			resp =+ aux.getPrecio();
+			resp += aux.getPrecio();
 		}
 		
 		return resp;
