@@ -201,6 +201,23 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return id;
 	}
 	
+	public int cantidadProductos()
+	{
+		int cantidad = 0;
+		Set<Entry<Long,MapaProductos>> set = super.getMapa().entrySet();
+		Iterator<Entry<Long,MapaProductos>> it = set.iterator();
+		while(it.hasNext())
+		{
+			Entry<Long,MapaProductos> entrada = it.next();
+			MapaProductos aux = entrada.getValue();
+			cantidad += aux.cantidad();
+		}
+		
+		
+		return cantidad;
+	}
+	
+	
 	/**
 	 * Metodo que crea un Mapa unico con todos los Productos
 	 * @return

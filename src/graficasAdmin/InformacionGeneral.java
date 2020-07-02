@@ -1,22 +1,27 @@
 package graficasAdmin;
 
 import javax.swing.JPanel;
+
+import Objetos.Supermercado;
+
 import javax.swing.JLabel;
 import java.awt.Font;
 
 public class InformacionGeneral extends JPanel {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
-	private JLabel lblNewLabel_2;
-	private JLabel lblNewLabel_3;
+	private JLabel lblCantidadProductos;
+	private JLabel lblCantidadUusarios;
 	private JLabel lblNewLabel_4;
 	private JLabel lblNewLabel_5;
+	private Supermercado datos;
 
 	/**
 	 * Create the panel.
 	 */
-	public InformacionGeneral() {
+	public InformacionGeneral(Supermercado datos) {
 
+		this.datos = datos;
 		initComponents();
 	}
 	private void initComponents() {
@@ -35,15 +40,15 @@ public class InformacionGeneral extends JPanel {
 		lblNewLabel_1.setBounds(50, 274, 330, 82);
 		add(lblNewLabel_1);
 		
-		lblNewLabel_2 = new JLabel("\"\"");
-		lblNewLabel_2.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_2.setBounds(520, 274, 330, 82);
-		add(lblNewLabel_2);
+		lblCantidadProductos = new JLabel("" + datos.cantidadProductos());
+		lblCantidadProductos.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblCantidadProductos.setBounds(520, 274, 330, 82);
+		add(lblCantidadProductos);
 		
-		lblNewLabel_3 = new JLabel("\"\"\"");
-		lblNewLabel_3.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_3.setBounds(520, 103, 330, 82);
-		add(lblNewLabel_3);
+		lblCantidadUusarios = new JLabel("" + datos.cantidadUsuarios());
+		lblCantidadUusarios.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblCantidadUusarios.setBounds(520, 103, 330, 82);
+		add(lblCantidadUusarios);
 		
 		lblNewLabel_4 = new JLabel("Ofertas Actuales");
 		lblNewLabel_4.setFont(new Font("Calibri", Font.BOLD, 23));
@@ -55,4 +60,13 @@ public class InformacionGeneral extends JPanel {
 		lblNewLabel_5.setBounds(520, 420, 330, 82);
 		add(lblNewLabel_5);
 	}
+	
+	/*
+	public void cargarInformacionGeneral(Supermercado datos)
+	{
+		lblCantidadUusarios.setText("" + datos.cantidadUsuarios());
+		lblCantidadProductos.setText("" + datos.cantidadCategorias());
+		
+	}
+	*/
 }

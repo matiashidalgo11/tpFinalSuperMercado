@@ -5,6 +5,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JToolBar;
 
+import Objetos.Supermercado;
 import Objetos.Usuario;
 
 import javax.swing.JScrollPane;
@@ -24,7 +25,7 @@ public class UsuariosMenu extends JPanel {
 	private JLabel lblNewLabel_1;
 	public JButton btnAgregarUsuario;
 	public JButton btnListaUsuarios;
-	
+	private Supermercado datos;
 	
 	public static String LISTA_USUARIOS_REF = "listaUsuarios";
 	public static String AGREGAR_USUARIO_REF = "agregarUsuario";
@@ -34,8 +35,8 @@ public class UsuariosMenu extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public UsuariosMenu() {
-
+	public UsuariosMenu(Supermercado datos) {
+		this.datos = datos;
 		initComponents();
 	}
 	private void initComponents() {

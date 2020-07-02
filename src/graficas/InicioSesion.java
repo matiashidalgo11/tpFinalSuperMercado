@@ -22,7 +22,7 @@ import Excepciones.LoginAdmin;
 import Excepciones.LoginIncorrecto;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-
+import graficasAdmin.AdminMenuPrincipal;
 
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -208,6 +208,9 @@ public class InicioSesion extends JFrame {
 				} catch (LoginAdmin e1) {
 					
 					e1.printStackTrace();
+					AdminMenuPrincipal nuevo = new AdminMenuPrincipal(superAux);
+					nuevo.setVisible(true);
+					dispose();
 					
 				}
 

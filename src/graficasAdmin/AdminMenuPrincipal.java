@@ -16,8 +16,10 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import javax.swing.border.LineBorder;
 
+import Objetos.Supermercado;
 import Objetos.Usuario;
 import graficas.Inicio;
+import graficas.Principal;
 
 import javax.swing.JScrollPane;
 import java.awt.CardLayout;
@@ -37,16 +39,17 @@ public class AdminMenuPrincipal extends JFrame {
 	private JPanel subMenu;
 	private CardLayout control;
 	private JLabel Fondo;
+	private Supermercado datos;
 	
 	public static String USERMENU_REFERENCIA = "userMenu";
-	private UsuariosMenu userMenu = new UsuariosMenu();
+	private UsuariosMenu userMenu;
 
 	public static String INFOGENERAL_REFERENCIA = "informacionGeneral";
-	private InformacionGeneral infoG = new InformacionGeneral();
+	private InformacionGeneral infoG;
 	
 	
 	public static String PRODUCTOSMENU_REFERENCIA= "productosMenu";
-	private ProductosMenuAdmin productosMenu = new ProductosMenuAdmin();
+	private ProductosMenuAdmin productosMenu ;
 	/**
 	 * Launch the application.
 	 */
@@ -54,7 +57,8 @@ public class AdminMenuPrincipal extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					AdminMenuPrincipal frame = new AdminMenuPrincipal();
+					Supermercado datos = new Supermercado();
+					AdminMenuPrincipal frame = new AdminMenuPrincipal(datos);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -66,11 +70,16 @@ public class AdminMenuPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public AdminMenuPrincipal() {
+	public AdminMenuPrincipal(Supermercado datos) {
+		this.datos = datos;
 		initComponents();
 		accionesBotonesPrincipales();
 	}
 	private void initComponents() {
+		
+		userMenu = new UsuariosMenu(datos);
+		infoG = new InformacionGeneral(datos);
+		productosMenu = new ProductosMenuAdmin();
 		
 		setUndecorated(true);
 		//setResizable(false);
@@ -102,14 +111,10 @@ public class AdminMenuPrincipal extends JFrame {
 		
 		btnCerrarSesion = new JButton("");
 		btnCerrarSesion.setOpaque(false);
-		btnCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
 		btnCerrarSesion.setBackground(new Color(0,0,0,0));
 		//btnCerrarSesion.setBackground(Color.WHITE);
 		btnCerrarSesion.setIcon(new ImageIcon(AdminMenuPrincipal.class.getResource("/img/Boton Cerrar Sesion.png")));
-		btnCerrarSesion.setBounds(22, 608, 158, 70);
+		btnCerrarSesion.setBounds(33, 628, 127, 35);
 		panel.add(btnCerrarSesion);
 		
 		lblImagenAdmin = new JLabel("Imagen");
@@ -153,7 +158,6 @@ public class AdminMenuPrincipal extends JFrame {
 		
 	}
 	
-	
 	public void cargarTabla(ArrayList<Usuario> usuarios)
 	{
 		for(Usuario aux : usuarios)
@@ -171,6 +175,10 @@ public class AdminMenuPrincipal extends JFrame {
 		return objeto;
 	}
 	
+	/**Funcion auxiliar
+	 * 
+	 * @return
+	 */
 	public ArrayList<Usuario> cargarArreglo()
 	{
 		ArrayList<Usuario> arreglo = new ArrayList<Usuario>();
@@ -205,5 +213,16 @@ public class AdminMenuPrincipal extends JFrame {
 				control.show(subMenu, PRODUCTOSMENU_REFERENCIA);
 			}
 		});
+		
+		btnCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				datos.cerrarSesion();
+				Principal p = new Principal(datos);
+				p.setVisible(true);
+				dispose();
+			}
+		});
 	}
+	
+	
 }

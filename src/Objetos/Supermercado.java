@@ -233,6 +233,11 @@ public class Supermercado {
 		return listaCategorias.cantidad();
 	}
 	
+	public int cantidadProductos()
+	{
+		return listaCategorias.cantidadProductos();
+	}
+	
 	public int getidCategoriaMasAlta()
 	{
 		long id = listaCategorias.getIdMasAlto();
