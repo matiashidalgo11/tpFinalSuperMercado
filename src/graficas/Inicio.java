@@ -120,26 +120,26 @@ public class Inicio extends JFrame {
 		contentPane.add(labelMover);
 		
 		
-		JButton botonCarro = new JButton("");
-		botonCarro.setVisible(true);
-		botonCarro.setOpaque(false);
-		botonCarro.setBorder(null);
-		botonCarro.addMouseListener(new MouseAdapter() {
+		JButton botonHistorial = new JButton("");
+		botonHistorial.setVisible(true);
+		botonHistorial.setOpaque(false);
+		botonHistorial.setBorder(null);
+		botonHistorial.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				botonCarro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				botonCarro.setBorder(null);
+				botonHistorial.setBorder(null);
 			}
 		});
 		
-		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(50, 467, 196, 51);
-		contentPane.add(botonCarro);
+		botonHistorial.setContentAreaFilled(false);
+		botonHistorial.setBounds(50, 467, 196, 51);
+		contentPane.add(botonHistorial);
 
 		JButton botonCuenta = new JButton("");
 		botonCuenta.setVisible(true);
@@ -168,26 +168,31 @@ public class Inicio extends JFrame {
 		botonCuenta.setBounds(50, 407, 196, 51);
 		contentPane.add(botonCuenta);
 		
-		JButton botonHistorial = new JButton("");
-		botonHistorial.setVisible(true);
-		botonHistorial.setOpaque(false);
-		botonHistorial.setBorder(null);
-		botonHistorial.addMouseListener(new MouseAdapter() {
+		JButton botonCarro = new JButton("");
+		botonCarro.setVisible(true);
+		botonCarro.setOpaque(false);
+		botonCarro.setBorder(null);
+		botonCarro.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) 
 			{
-				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				botonCarro.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 			}
 			@Override
 			public void mouseExited(MouseEvent e) 
 			{
-				botonHistorial.setBorder(null);
+				botonCarro.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				new graficaCarro(mercado).setVisible(true);
 			}
 		});
 		
-		botonHistorial.setContentAreaFilled(false);
-		botonHistorial.setBounds(50, 347, 196, 51);
-		contentPane.add(botonHistorial);
+		botonCarro.setContentAreaFilled(false);
+		botonCarro.setBounds(50, 347, 196, 51);
+		contentPane.add(botonCarro);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);

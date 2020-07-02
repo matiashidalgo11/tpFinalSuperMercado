@@ -273,6 +273,54 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		oferta.setOferta(false);
 	}
 	
+	//Establece una oferta a todos los productos de una marca
+	public void establecerOfertaPorMarca(String marca, int porcentaje)
+	{
+		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
+		double porcentajeDouble = porcentaje / 100;
+		
+		while(itCategorias.hasNext()) 
+		{
+			Entry<String, MapaProductos> entradaCategoria = itCategorias.next();
+			Iterator<Entry<String, Producto>> itProducto = entradaCategoria.getValue().getIterator(); //Obtengo el iterator de cada categoria
+			
+			while(itProducto.hasNext()) //Recorro la categoria
+			{
+				Entry<String, Producto> entradaProducto = itProducto.next();
+				Producto aux = entradaProducto.getValue(); //Obtengo cada producto de la categoria
+				
+				if(aux.getMarca().equals(marca)) //Si la marca del producto actual es igual a la que se busca, se establece el precio de oferta
+				{
+					aux.setOferta(true); 
+					aux.setPrecioOferta(aux.getPrecio() * porcentajeDouble); //Establezco 
+				}
+			}
+		}
+	}
+	
+	//Quita la oferta de todos los productos de una marca
+	public void quitarOfertaPorMarca(String marca)
+	{
+		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
+		
+		while(itCategorias.hasNext()) 
+		{
+			Entry<String, MapaProductos> entradaCategoria = itCategorias.next();
+			Iterator<Entry<String, Producto>> itProducto = entradaCategoria.getValue().getIterator(); //Obtengo el iterator de cada categoria
+			
+			while(itProducto.hasNext()) //Recorro la categoria
+			{
+				Entry<String, Producto> entradaProducto = itProducto.next();
+				Producto aux = entradaProducto.getValue(); //Obtengo cada producto de la categoria
+				
+				if(aux.getMarca().equals(marca)) //Si la marca del producto actual es igual a la que se busca, se quita la oferta.
+				{
+					aux.setOferta(false); 
+				}
+			}
+		}
+	}
+	
 	
 	/**
 	 * Recibe un Mapa de Productos y lo carga por categoria

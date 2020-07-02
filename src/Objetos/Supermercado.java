@@ -112,9 +112,19 @@ public class Supermercado {
 		
 	}
 	
+	public void establecerOfertaPorMarca(String marca, int porcentaje)
+	{
+		listaCategorias.establecerOfertaPorMarca(marca, porcentaje);
+	}
+	
 	public void quitarOferta(Producto producto)
 	{
 		listaCategorias.quitarOferta(producto);
+	}
+	
+	public void quitarOfertaPorMarca(String marca)
+	{
+		listaCategorias.quitarOfertaPorMarca(marca);
 	}
 	
 	public boolean comprarProductos()
