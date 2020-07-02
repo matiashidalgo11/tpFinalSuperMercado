@@ -135,7 +135,7 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	{
 		return  "\nIdProducto: " + id + "\n" + 
 				"Nombre:     " + nombre + "\n" + 
-				"Precio:     " + precio + "\n" + 
+				"Precio:     $" + precio + "\n" + 
 				"Marca:      " + marca + "\n" + 
 				"Stock:      " + stock + "\n"
 				;

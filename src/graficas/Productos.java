@@ -20,6 +20,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import Colecciones.MapaProductos;
 import Objetos.Supermercado;
+import Productos.Producto;
 import graficas.Inicio.Pulsando;
 
 import javax.swing.JLabel;
@@ -184,7 +185,7 @@ public class Productos extends JFrame {
 		contentPane.add(panel);
 		
 		System.out.println(productos.listar());
-		crearMatrizBotones(panel, productos);
+		crearMatrizBotones(panel, productos, mercado);
 		panel.setLayout(null);
 		
 		JLabel fondo = new JLabel("");
@@ -194,7 +195,7 @@ public class Productos extends JFrame {
 		contentPane.add(fondo);
 	}
 	
-	void crearMatrizBotones(JPanel panel, MapaProductos productos)
+	void crearMatrizBotones(JPanel panel, MapaProductos productos, Supermercado mercado)
 	{
 		int x = 150;
 		int y = 61;
@@ -213,7 +214,7 @@ public class Productos extends JFrame {
 			arreglo[i].setBackground(new Color(0, 102, 255));
 			arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
 			arreglo[i].setActionCommand(productos.getNombreProducto(i));
-			arreglo[i].addActionListener(new Pulsando(arreglo[i], productos));
+			arreglo[i].addActionListener(new Pulsando(arreglo[i], productos, mercado));
 			panel.add(arreglo[i]);
 			x += 316 + 20;
 			
@@ -230,18 +231,20 @@ public class Productos extends JFrame {
 		
 		MapaProductos productos;
 		JButton button;
+		Supermercado mercado;
 		
-		public Pulsando(JButton button, MapaProductos productos) {
+		public Pulsando(JButton button, MapaProductos productos, Supermercado mercado) {
 			
 			this.button = button;
 			this.productos = productos;
+			this.mercado = mercado;
 		}
 		
 		public void actionPerformed(ActionEvent e) {
 	        String actionCommand = ((JButton) e.getSource()).getActionCommand();
-//	        MapaProductos productos = mercado.getCategoriaPorNombre(actionCommand);
-//	        setVisible(false);
-//	        new Productos(mercado, productos).setVisible(true);
+	        Producto seleccionado = productos.getProductoPorNombre(actionCommand);
+	        setVisible(false);
+	        new DetallesProducto(mercado, productos, seleccionado).setVisible(true);
 	    }
 		
 	}

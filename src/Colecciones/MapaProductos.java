@@ -68,4 +68,22 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		
 		return id;
 	}
+	
+	public Producto getProductoPorNombre(String nombre)
+	{
+		Producto buscado = null;
+		Iterator<Entry<String, Producto>> it = super.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<String, Producto> entrada = it.next();
+			
+			if(entrada.getValue().getNombre().equals(nombre))
+			{
+				buscado = entrada.getValue();
+			}
+		}
+		
+		return buscado;
+	}
 }
