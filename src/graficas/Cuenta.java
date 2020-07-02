@@ -67,7 +67,7 @@ public class Cuenta extends JFrame {
 	public Cuenta(Supermercado mercado) 
 	{
 		
-		Usuario user = new Usuario("AlanGmer", "123", "Alan", "Perez", 22, "123456");
+		Usuario user = mercado.getUsuarioEnSesion();
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -118,8 +118,8 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Inicio(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		botonInicio.setContentAreaFilled(false);
@@ -141,10 +141,16 @@ public class Cuenta extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
 		});
 		
 		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(50, 467, 196, 51);
+		botonCarro.setBounds(47, 348, 196, 51);
 		contentPane.add(botonCarro);
 		
 		JButton botonHistorial = new JButton("");
@@ -162,10 +168,16 @@ public class Cuenta extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
-		botonHistorial.setBounds(50, 347, 196, 51);
+		botonHistorial.setBounds(49, 466, 196, 51);
 		contentPane.add(botonHistorial);
 		
 		fieldTelefono = new JTextField();
@@ -299,7 +311,6 @@ public class Cuenta extends JFrame {
 		botonGuardar.setBounds(836, 634, 224, 34);
 		contentPane.add(botonGuardar);
 		
-		user.setCartera(500);
 		labelSaldo = new JLabel("");
 		labelSaldo.setForeground(new Color(102, 102, 102));
 		labelSaldo.setFont(new Font("Calibri", Font.PLAIN, 23));
@@ -359,25 +370,21 @@ public class Cuenta extends JFrame {
 
 		@Override
 		public void mouseEntered(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseExited(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mousePressed(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 
 		@Override
 		public void mouseReleased(MouseEvent arg0) {
-			// TODO Auto-generated method stub
 			
 		}
 		
