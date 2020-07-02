@@ -29,7 +29,7 @@ public class AdminMenuPrincipal extends JFrame {
 
 	private JPanel contentPane;
 	private JPanel panel;
-	private JButton btnUsuarios;
+	private JButton btnAdministrarUsuarios;
 	private JButton btnAdministrarProductos;
 	private JButton btnAdministrarOfertas;
 	private JButton btnCerrarSesion;
@@ -42,14 +42,14 @@ public class AdminMenuPrincipal extends JFrame {
 	private Supermercado datos;
 	
 	public static String USERMENU_REFERENCIA = "userMenu";
-	private UsuariosMenu userMenu;
+	private MenuAdminUsuarios userMenu;
 
 	public static String INFOGENERAL_REFERENCIA = "informacionGeneral";
-	private InformacionGeneral infoG;
+	private MenuAdminInformacionGeneral infoG;
 	
 	
 	public static String PRODUCTOSMENU_REFERENCIA= "productosMenu";
-	private ProductosMenuAdmin productosMenu ;
+	private MenuAdminProductos productosMenu ;
 	/**
 	 * Launch the application.
 	 */
@@ -77,9 +77,9 @@ public class AdminMenuPrincipal extends JFrame {
 	}
 	private void initComponents() {
 		
-		userMenu = new UsuariosMenu(datos);
-		infoG = new InformacionGeneral(datos);
-		productosMenu = new ProductosMenuAdmin(datos);
+		userMenu = new MenuAdminUsuarios(datos);
+		infoG = new MenuAdminInformacionGeneral(datos);
+		productosMenu = new MenuAdminProductos(datos);
 		
 		setUndecorated(true);
 		//setResizable(false);
@@ -97,9 +97,9 @@ public class AdminMenuPrincipal extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		btnUsuarios = new JButton("Administrar Usuarios");
-		btnUsuarios.setBounds(5, 218, 200, 102);
-		panel.add(btnUsuarios);
+		btnAdministrarUsuarios = new JButton("Administrar Usuarios");
+		btnAdministrarUsuarios.setBounds(5, 218, 200, 102);
+		panel.add(btnAdministrarUsuarios);
 		
 		btnAdministrarProductos = new JButton("Administrar Productos");
 		btnAdministrarProductos.setBounds(5, 331, 200, 102);
@@ -154,7 +154,7 @@ public class AdminMenuPrincipal extends JFrame {
 	
 	public void accionesBotonesPrincipales()
 	{
-		btnUsuarios.addActionListener(new ActionListener() {
+		btnAdministrarUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				control.show(subMenu, USERMENU_REFERENCIA);
 			}
@@ -162,7 +162,9 @@ public class AdminMenuPrincipal extends JFrame {
 		
 		btnInformacionGeneral.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				infoG.cargarInformacionGeneral(datos);
 				control.show(subMenu, INFOGENERAL_REFERENCIA);
+				
 			}
 		});
 		

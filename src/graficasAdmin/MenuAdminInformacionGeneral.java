@@ -7,7 +7,7 @@ import Objetos.Supermercado;
 import javax.swing.JLabel;
 import java.awt.Font;
 
-public class InformacionGeneral extends JPanel {
+public class MenuAdminInformacionGeneral extends JPanel {
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
 	private JLabel lblCantidadProductos;
@@ -19,7 +19,7 @@ public class InformacionGeneral extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public InformacionGeneral(Supermercado datos) {
+	public MenuAdminInformacionGeneral(Supermercado datos) {
 
 		this.datos = datos;
 		initComponents();
@@ -61,12 +61,12 @@ public class InformacionGeneral extends JPanel {
 		add(lblNewLabel_5);
 	}
 	
-	/*
+	
 	public void cargarInformacionGeneral(Supermercado datos)
 	{
 		lblCantidadUusarios.setText("" + datos.cantidadUsuarios());
 		lblCantidadProductos.setText("" + datos.cantidadCategorias());
 		
 	}
-	*/
+	
 }

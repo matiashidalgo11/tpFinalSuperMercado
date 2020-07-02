@@ -6,6 +6,14 @@ import com.jgoodies.forms.layout.ColumnSpec;
 import com.jgoodies.forms.layout.RowSpec;
 
 import Excepciones.CamposVacios;
+import Productos.Bebida;
+import Productos.Congelado;
+import Productos.Golosina;
+import Productos.Lacteo;
+import Productos.Limpieza;
+import Productos.Perfumeria;
+import Productos.Producto;
+import Productos.Snack;
 
 import java.awt.FlowLayout;
 import java.awt.CardLayout;
@@ -24,7 +32,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 
-public class AgregarProducto extends JPanel {
+public class SubMenuAgregarProducto extends JPanel {
+	
 	private JPanel panel;
 	private JLabel lblNewLabel;
 	private JLabel lblNewLabel_1;
@@ -59,7 +68,7 @@ public class AgregarProducto extends JPanel {
 	JTextField textUnidades;
 	private JPanel Lacteos;
 	private JLabel lblNewLabel_10;
-	public JComboBox cmbTipoLacteo;
+	public JTextField textTipoLacteo;
 	private JPanel Limpieza;
 	private JLabel lblNewLabel_11;
 	JTextField textDescripcionLimpieza;
@@ -92,12 +101,13 @@ public class AgregarProducto extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AgregarProducto() {
+	public SubMenuAgregarProducto() {
 
 		initComponents();
 		mostrarPanelAtributoComboBox();
 		accionLimpiarCampos();
 	}
+	
 	private void initComponents() {
 		setBounds(159, 90, 724, 588);
 		setLayout(null);
@@ -289,10 +299,10 @@ public class AgregarProducto extends JPanel {
 		lblNewLabel_10.setBounds(10, 11, 249, 29);
 		Lacteos.add(lblNewLabel_10);
 		
-		cmbTipoLacteo = new JComboBox();
-		cmbTipoLacteo.setFont(new Font("Calibri", Font.PLAIN, 23));
-		cmbTipoLacteo.setBounds(269, 14, 269, 29);
-		Lacteos.add(cmbTipoLacteo);
+		textTipoLacteo = new JTextField();
+		textTipoLacteo.setFont(new Font("Calibri", Font.PLAIN, 23));
+		textTipoLacteo.setBounds(269, 14, 269, 29);
+		Lacteos.add(textTipoLacteo);
 		
 		Limpieza = new JPanel();
 		panelAtributos.add(Limpieza, LIMPIEZA_REFERENCIA);
@@ -356,25 +366,25 @@ public class AgregarProducto extends JPanel {
 		panel.add(btnLimpiarCampos);
 		
 		errorNombre = new JLabel("");
-		errorNombre.setIcon(new ImageIcon(AgregarProducto.class.getResource("/img/Error.png")));
+		errorNombre.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
 		errorNombre.setBounds(667, 46, 30, 29);
 		errorNombre.setVisible(false);
 		panel.add(errorNombre);
 		
 		errorMarca = new JLabel("");
-		errorMarca.setIcon(new ImageIcon(AgregarProducto.class.getResource("/img/Error.png")));
+		errorMarca.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
 		errorMarca.setBounds(667, 168, 30, 29);
 		errorMarca.setVisible(false);
 		panel.add(errorMarca);
 		
 		errorPrecio = new JLabel("");
-		errorPrecio.setIcon(new ImageIcon(AgregarProducto.class.getResource("/img/Error.png")));
+		errorPrecio.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
 		errorPrecio.setBounds(667, 107, 30, 29);
 		errorPrecio.setVisible(false);
 		panel.add(errorPrecio);
 		
 		errorStockInicial = new JLabel("");
-		errorStockInicial.setIcon(new ImageIcon(AgregarProducto.class.getResource("/img/Error.png")));
+		errorStockInicial.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
 		errorStockInicial.setBounds(667, 229, 30, 29);
 		errorStockInicial.setVisible(false);
 		panel.add(errorStockInicial);
@@ -453,6 +463,7 @@ public class AgregarProducto extends JPanel {
 		textPesoCongelado.setText(nulo);
 		textPesoGrm.setText(nulo);
 		textUnidades.setText(nulo);
+		textTipoLacteo.setText(nulo);
 	}
 	
 	public int contarCamposVacios()
@@ -512,7 +523,10 @@ public class AgregarProducto extends JPanel {
 		}
 		else if(cmbCategoria.getSelectedItem().equals(LACTEOS_REFERENCIA))
 		{
-			//
+			if(textTipoLacteo.getText().isEmpty())
+			{
+				contador++;
+			}
 		}
 		else if(cmbCategoria.getSelectedItem().equals(LIMPIEZA_REFERENCIA))
 		{
@@ -576,28 +590,89 @@ public class AgregarProducto extends JPanel {
 
 		} else
 
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.BEBIDAS_REFERENCIA) && (textGusto.getText().isEmpty() || textLitros.getText().isEmpty())) {
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.BEBIDAS_REFERENCIA) && (textGusto.getText().isEmpty() || textLitros.getText().isEmpty())) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 		} else
 
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.CONGELADO_REFERENCIA) && textPesoCongelado.getText().isEmpty()) {
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.CONGELADO_REFERENCIA) && textPesoCongelado.getText().isEmpty()) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 		} else
 
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.GOLOSINAS_REFERENCIA) && (textUnidades.getText().isEmpty() || textDescripcionGolosina.getText().isEmpty())) {
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.GOLOSINAS_REFERENCIA) && (textUnidades.getText().isEmpty() || textDescripcionGolosina.getText().isEmpty())) {
+			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
+		} else
+			
+			if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.LACTEOS_REFERENCIA) && (textTipoLacteo.getText().isEmpty()))
+			{
+				throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
+		}else
+		
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.LIMPIEZA_REFERENCIA) && textDescripcionLimpieza.getText().isEmpty()) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 		} else
 
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.LIMPIEZA_REFERENCIA) && textDescripcionLimpieza.getText().isEmpty()) {
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.PERFUMERIA_REFERENCIA) && textFragancia.getText().isEmpty()) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 		} else
 
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.PERFUMERIA_REFERENCIA) && textFragancia.getText().isEmpty()) {
-			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
-		} else
-
-		if (cmbCategoria.getSelectedItem().equals(AgregarProducto.SNACK_REFERENCIA) && textPesoGrm.getText().isEmpty()) {
+		if (cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.SNACK_REFERENCIA) && textPesoGrm.getText().isEmpty()) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 		}
+	}
+	
+	public Producto crearProducto() throws NullPointerException
+	{
+		Producto nuevo = null;
+		
+		if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.BEBIDAS_REFERENCIA))
+		{
+			double litros = Double.parseDouble(textLitros.getText());
+			nuevo = new Bebida(grupoGasificadaResp(), litros, textGusto.getText(), grupoAlcoholResp());
+			
+		}else if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.CONGELADO_REFERENCIA))
+		{
+			double peso = Double.parseDouble(textPesoCongelado.getText());
+			nuevo = new Congelado(peso);
+			
+		}else if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.GOLOSINAS_REFERENCIA))
+		{
+			int unidades = Integer.parseInt(textUnidades.getText());
+			nuevo = new Golosina(unidades, textDescripcionGolosina.getText());
+		}
+		else if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.LACTEOS_REFERENCIA))
+		{
+			
+			nuevo = new Lacteo(textTipoLacteo.getText());
+		}
+		else if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.LIMPIEZA_REFERENCIA))
+		{
+			
+			nuevo = new Limpieza(textDescripcionLimpieza.getText());
+		}
+		else if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.PERFUMERIA_REFERENCIA))
+		{
+			
+			nuevo = new Perfumeria(textFragancia.getText());
+		}
+		else  if(cmbCategoria.getSelectedItem().equals(SubMenuAgregarProducto.SNACK_REFERENCIA)){
+				double pesoGramos = Double.parseDouble(textPesoGrm.getText());
+				nuevo = new Snack(pesoGramos);
+		}else
+			{
+					throw new NullPointerException();	
+			}
+			
+		
+		//Agregar categoria Descripcion a Productos ?)
+		
+		//Se termina de Construir el Producto
+		double precio = Double.parseDouble(txtPrecio.getText());
+		long stock = Long.parseLong(txtStockInicial.getText());
+		nuevo.setNombre(txtNombre.getText());
+		nuevo.setPrecio(precio);
+		nuevo.setMarca(txtMarca.getText());
+		nuevo.setStock(stock);
+		
+		return nuevo;
 	}
 }

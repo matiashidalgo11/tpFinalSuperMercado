@@ -24,7 +24,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 
-public class UsuariosMenu extends JPanel {
+public class MenuAdminUsuarios extends JPanel {
 
 	public DefaultListModel<Usuario> modeloLista = new DefaultListModel<Usuario>();
 	private JPanel panel;
@@ -37,20 +37,20 @@ public class UsuariosMenu extends JPanel {
 	public static String LISTA_USUARIOS_REF = "listaUsuarios";
 	public static String AGREGAR_USUARIO_REF = "agregarUsuario";
 	
-	public ListaUsuarios listaUs;
-	public AgregarUsuario agregarUs;
+	public SubMenuListaUsuarios listaUs;
+	public SubMenuAgregarUsuario agregarUs;
 	/**
 	 * Create the panel.
 	 */
-	public UsuariosMenu(Supermercado datos) {
+	public MenuAdminUsuarios(Supermercado datos) {
 		this.datos = datos;
 		initComponents();
 	}
 	private void initComponents() {
 		
-		listaUs = new ListaUsuarios(datos);
+		listaUs = new SubMenuListaUsuarios(datos);
 		JpopuMenuAcciones();
-		agregarUs = new AgregarUsuario();
+		agregarUs = new SubMenuAgregarUsuario();
 		agregarUsuario();
 
 		

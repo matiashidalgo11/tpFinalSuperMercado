@@ -24,7 +24,7 @@ import javax.swing.ListSelectionModel;
 import java.awt.Dimension;
 import java.awt.Component;
 
-public class ListaUsuarios extends JPanel {
+public class SubMenuListaUsuarios extends JPanel {
 	
 	public DefaultTableModel modeloTabla;
 	public JScrollPane scrollPane;
@@ -36,7 +36,7 @@ public class ListaUsuarios extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public ListaUsuarios(Supermercado datos) {
+	public SubMenuListaUsuarios(Supermercado datos) {
 		this.datos = datos;
 		initComponents();
 	}

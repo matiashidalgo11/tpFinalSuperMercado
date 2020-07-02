@@ -37,7 +37,7 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		oferta = false;
 		precioOferta = 0;
 	}
-	
+	 
 	/**
 	 * Constructor para Parte Grafica
 	 * 

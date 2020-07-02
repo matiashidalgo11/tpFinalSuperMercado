@@ -24,22 +24,21 @@ import Objetos.Supermercado;
 import Objetos.Usuario;
 import Productos.Producto;
 
-public class ListaProductos extends JPanel {
+public class SubMenuListaProductos extends JPanel {
 
 	private DefaultTableModel modeloTabla;
 	private JScrollPane scrollPane;
-	private JTable table;
+	public JTable table;
 	private JPopupMenu popupMenu;
-	private JMenuItem itemEliminar;
-	private JMenuItem itemActivar;
-	private JMenuItem itemModificar;
-	private JMenuItem itemAgregarStock;
+	public JMenuItem itemEliminar;
+	public JMenuItem itemModificar;
+	public JMenuItem itemAgregarStock;
 	private Supermercado datos;
 
 	/**
 	 * Create the panel.
 	 */
-	public ListaProductos(Supermercado datos) {
+	public SubMenuListaProductos(Supermercado datos) {
 		this.datos = datos;
 		initComponents();
 	}
@@ -83,10 +82,9 @@ public class ListaProductos extends JPanel {
 		
 		popupMenu = new JPopupMenu();
 		itemEliminar = new JMenuItem("Eliminar");
-		itemActivar = new JMenuItem("Activar/Desactivar");
 		itemModificar = new JMenuItem("Modificar");
 		itemAgregarStock = new JMenuItem("Sumar Stock");
-		popupMenu.add(itemActivar);
+	
 		popupMenu.add(itemEliminar);
 		popupMenu.add(itemModificar);
 		popupMenu.add(itemAgregarStock);

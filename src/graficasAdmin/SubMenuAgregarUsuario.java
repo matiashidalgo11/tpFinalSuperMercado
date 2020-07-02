@@ -24,7 +24,7 @@ import javax.swing.ImageIcon;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-public class AgregarUsuario extends JPanel {
+public class SubMenuAgregarUsuario extends JPanel {
 	
 	private JButton btnNewButton;
 	private JLabel lblNewLabel;
@@ -54,7 +54,7 @@ public class AgregarUsuario extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AgregarUsuario() {
+	public SubMenuAgregarUsuario() {
 		initComponents();
 		accionBtnLimpiar();
 	}
@@ -155,31 +155,31 @@ public class AgregarUsuario extends JPanel {
 		add(chckbxActivo);
 		
 		errorUserName = new JLabel("");
-		errorUserName.setIcon(new ImageIcon(AgregarUsuario.class.getResource("/img/Error.png")));
+		errorUserName.setIcon(new ImageIcon(SubMenuAgregarUsuario.class.getResource("/img/Error.png")));
 		errorUserName.setBounds(606, 68, 37, 41);
 		errorUserName.setVisible(false);
 		add(errorUserName);
 		
 		errorPassword = new JLabel("");
-		errorPassword.setIcon(new ImageIcon(AgregarUsuario.class.getResource("/img/Error.png")));
+		errorPassword.setIcon(new ImageIcon(SubMenuAgregarUsuario.class.getResource("/img/Error.png")));
 		errorPassword.setBounds(606, 138, 37, 41);
 		errorPassword.setVisible(false);
 		add(errorPassword);
 		
 		errorNombre = new JLabel("");
-		errorNombre.setIcon(new ImageIcon(AgregarUsuario.class.getResource("/img/Error.png")));
+		errorNombre.setIcon(new ImageIcon(SubMenuAgregarUsuario.class.getResource("/img/Error.png")));
 		errorNombre.setBounds(606, 207, 37, 41);
 		errorNombre.setVisible(false);
 		add(errorNombre);
 		
 		errorApellido = new JLabel("");
-		errorApellido.setIcon(new ImageIcon(AgregarUsuario.class.getResource("/img/Error.png")));
+		errorApellido.setIcon(new ImageIcon(SubMenuAgregarUsuario.class.getResource("/img/Error.png")));
 		errorApellido.setBounds(606, 279, 37, 41);
 		errorApellido.setVisible(false);
 		add(errorApellido);
 		
 		errorTelefono = new JLabel("");
-		errorTelefono.setIcon(new ImageIcon(AgregarUsuario.class.getResource("/img/Error.png")));
+		errorTelefono.setIcon(new ImageIcon(SubMenuAgregarUsuario.class.getResource("/img/Error.png")));
 		errorTelefono.setBounds(606, 348, 37, 41);
 		errorTelefono.setVisible(false);
 		add(errorTelefono);

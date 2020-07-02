@@ -8,6 +8,7 @@ import com.jgoodies.forms.layout.RowSpec;
 import Excepciones.CamposVacios;
 import Excepciones.ProductoYaExiste;
 import Objetos.Supermercado;
+import Objetos.Usuario;
 import Productos.Bebida;
 import Productos.Congelado;
 import Productos.Golosina;
@@ -30,7 +31,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-public class ProductosMenuAdmin extends JPanel {
+public class MenuAdminProductos extends JPanel {
 	private JScrollPane scrollPane;
 	private JPanel panel;
 	private JLabel lblNewLabel;
@@ -41,14 +42,19 @@ public class ProductosMenuAdmin extends JPanel {
 	private Supermercado datos;
 	
 	public static String AGREGARPRODUCTO_REFERENCIA = "agregarProducto";
-	public AgregarProducto agregarP;
+	public SubMenuAgregarProducto agregarP;
 	
 	public static String LISTAPRODUCTOS_REFERENCIA = "listaProductos";
-	public ListaProductos listaP;
+	public SubMenuListaProductos listaP;
+	
+	public static String MODIFICARPRODUCTO_REFERENCIA = "modificarProducto";
+	public SubMenuModificarProducto modificarP;
+	
+	
 	/**
 	 * Create the panel.
 	 */
-	public ProductosMenuAdmin(Supermercado datos) {
+	public MenuAdminProductos(Supermercado datos) {
 		this.datos = datos;
 		initComponents();
 		accionesBotones();
@@ -56,8 +62,9 @@ public class ProductosMenuAdmin extends JPanel {
 	}
 	private void initComponents() {
 
-		listaP = new ListaProductos(datos);
-		agregarP = new AgregarProducto();
+		listaP = new SubMenuListaProductos(datos);
+		jpopuMenuAcciones();
+		agregarP = new SubMenuAgregarProducto();
 		setBounds(232, 11, 1042, 689);
 		setLayout(null);
 		
@@ -92,6 +99,7 @@ public class ProductosMenuAdmin extends JPanel {
 		add(btnListaProductos);
 	}
 	
+	
 	public void accionesBotones()
 	{
 		btnAgregarProducto.addActionListener(new ActionListener() {
@@ -107,67 +115,16 @@ public class ProductosMenuAdmin extends JPanel {
 		});
 	}
 	
+	
 	public void agregarProducto()
 	{
 		agregarP.btnAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try
 				{
-						//Si encuentra algun campo Vacio lanza la Excepcion
 						agregarP.verificacionDeCampos();
-					
-						Producto nuevo = null;
+						Producto nuevo = agregarP.crearProducto();
 						
-						if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.BEBIDAS_REFERENCIA))
-						{
-							double litros = Double.parseDouble(agregarP.textLitros.getText());
-							nuevo = new Bebida(agregarP.grupoGasificadaResp(), litros, agregarP.textGusto.getText(), agregarP.grupoAlcoholResp());
-							
-						}else if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.CONGELADO_REFERENCIA))
-						{
-							double peso = Double.parseDouble(agregarP.textPesoCongelado.getText());
-							nuevo = new Congelado(peso);
-							
-						}else if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.GOLOSINAS_REFERENCIA))
-						{
-							int unidades = Integer.parseInt(agregarP.textUnidades.getText());
-							nuevo = new Golosina(unidades, agregarP.textDescripcionGolosina.getText());
-						}
-						else if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.LACTEOS_REFERENCIA))
-						{
-							//Llenar el comboBox con los Tipos de Lacteo
-							String tipo = (String) agregarP.cmbTipoLacteo.getSelectedItem();
-							nuevo = new Lacteo(tipo);
-						}
-						else if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.LIMPIEZA_REFERENCIA))
-						{
-							
-							nuevo = new Limpieza(agregarP.textDescripcionLimpieza.getText());
-						}
-						else if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.PERFUMERIA_REFERENCIA))
-						{
-							
-							nuevo = new Perfumeria(agregarP.textFragancia.getText());
-						}
-						else 
-						      if(agregarP.cmbCategoria.getSelectedItem().equals(AgregarProducto.SNACK_REFERENCIA)){
-								double pesoGramos = Double.parseDouble(agregarP.textPesoGrm.getText());
-								nuevo = new Snack(pesoGramos);
-									}
-							
-						
-						//Agregar categoria Descripcion a Productos ?)
-						
-						//Se termina de Construir el Producto
-						double precio = Double.parseDouble(agregarP.txtPrecio.getText());
-						long stock = Long.parseLong(agregarP.txtStockInicial.getText());
-						nuevo.setNombre(agregarP.txtNombre.getText());
-						nuevo.setPrecio(precio);
-						nuevo.setMarca(agregarP.txtMarca.getText());
-						nuevo.setStock(stock);
-						
-						
-						//Se agregar a la clase Principal Supermercado
 						if(datos.agregarProducto(nuevo))
 						{
 							JOptionPane.showMessageDialog(panel, "Se agrego el Producto Correctamente");
@@ -177,14 +134,8 @@ public class ProductosMenuAdmin extends JPanel {
 							
 						}else
 						{
-							JOptionPane.showMessageDialog(panel, "No se agrego el Producto Correctamente");
+							JOptionPane.showMessageDialog(panel, "No se agrego el Producto");
 						}
-						
-						
-						
-						
-						
-					
 
 				} catch (CamposVacios cam) {
 					cam.printStackTrace();
@@ -192,12 +143,61 @@ public class ProductosMenuAdmin extends JPanel {
 					e1.printStackTrace();
 				}
 
-					//Ningun campo Vacio	//Desarrollar Modularizacion
-						
-					
-				
+		
 			}
 		});
+	}
+	
+	public void jpopuMenuAcciones()
+	{
+		listaP.itemEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+		
+				int seleccionTabla = listaP.table.getSelectedRow();
+				long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaCategorias().existeProducto(id))
+				{
+					Producto aux = datos.getListaCategorias().buscarProducto(id);
+					int valor = JOptionPane.showConfirmDialog(panel, "Desea Eliminar el Producto ?", "Eliminar", 2);
+					if(valor == 0)
+					{
+						datos.eliminarProducto(id);
+						listaP.limpiarLista();
+						listaP.cargarLista(datos);
+					}
+				}
+				
+			
+			}
+		});
+		
+		
+		listaP.itemModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				int seleccionTabla = listaP.table.getSelectedRow();
+				long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaCategorias().existeProducto(id))
+				{
+					Producto aux = datos.getListaCategorias().buscarProducto(id);
+					modificarP = new SubMenuModificarProducto(aux);
+					panel.add(modificarP,MODIFICARPRODUCTO_REFERENCIA);
+					controlProductoMenu.show(panel, MODIFICARPRODUCTO_REFERENCIA);
+					
+				}else
+				{
+					JOptionPane.showMessageDialog(panel, "Producto Inexistente");
+				}
+				
+				
+				
+			}
+			});
+			
 	}
 	
 	
