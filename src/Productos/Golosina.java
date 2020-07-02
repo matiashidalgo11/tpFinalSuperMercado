@@ -5,6 +5,8 @@ import org.json.JSONObject;
 public class Golosina extends Producto{
 
 	private int cantidad;
+	private String descripcion;
+	
 	public static long ID_CATEGORIA_GOLOSINA = 5;
 	
 	public Golosina() 
@@ -13,10 +15,11 @@ public class Golosina extends Producto{
 		cantidad = 0;
 	}
 
-	public Golosina(String nombre, double precio, String marca, long stock, int cantidad, boolean oferta, double precioOferta) 
+	public Golosina(String nombre, double precio, String marca, long stock, int cantidad, boolean oferta, double precioOferta, String descripcion) 
 	{
 		super(nombre, precio, marca, stock, ID_CATEGORIA_GOLOSINA, oferta, precioOferta);
 		this.cantidad = cantidad;
+		this.descripcion = descripcion;
 	}
 
 	/**
@@ -29,6 +32,27 @@ public class Golosina extends Producto{
 		this.cantidad = dato.getCantidad();
 	}
 	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	
+	public Golosina(int cantidad, String descripcion) {
+		super(ID_CATEGORIA_GOLOSINA);
+		this.cantidad = cantidad;
+		this.descripcion = descripcion;
+	}
+
+	
+	
+	public String getDescripcion() {
+		return descripcion;
+	}
+
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+
 	public int getCantidad() {
 		return cantidad;
 	}
@@ -72,6 +96,7 @@ public class Golosina extends Producto{
 	{
 		JSONObject objeto = super.toJson();
 		objeto.put("Cantidad", this.cantidad);
+		objeto.put("Descripcion", this.descripcion);
 		return objeto;
 	}
 }

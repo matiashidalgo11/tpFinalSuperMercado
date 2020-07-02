@@ -42,7 +42,6 @@ public class AgregarUsuario extends JPanel {
 	public JButton btnAgregar;
 	private JLabel lblNewLabel_1;
 	
-	private Supermercado datos;
 	public JCheckBox chckbxActivo;
 	public JLabel errorPassword;
 	public JLabel errorNombre;
@@ -55,8 +54,7 @@ public class AgregarUsuario extends JPanel {
 	/**
 	 * Create the panel.
 	 */
-	public AgregarUsuario(Supermercado datos) {
-		this.datos = datos;
+	public AgregarUsuario() {
 		initComponents();
 		accionBtnLimpiar();
 	}

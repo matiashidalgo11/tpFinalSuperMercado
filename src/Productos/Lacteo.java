@@ -26,6 +26,15 @@ public class Lacteo extends Producto {
 		super(dato);
 		this.tipo = dato.getTipo();
 	}
+	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Lacteo(String tipo) {
+		super(ID_CATEGORIA_LACTEO);
+		this.tipo = tipo;
+	}
 
 	public String getTipo() {
 		return tipo;

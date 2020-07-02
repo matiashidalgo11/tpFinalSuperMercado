@@ -50,7 +50,7 @@ public class UsuariosMenu extends JPanel {
 		
 		listaUs = new ListaUsuarios(datos);
 		JpopuMenuAcciones();
-		agregarUs = new AgregarUsuario(datos);
+		agregarUs = new AgregarUsuario();
 		agregarUsuario();
 
 		

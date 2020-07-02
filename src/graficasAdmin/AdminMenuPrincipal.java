@@ -79,7 +79,7 @@ public class AdminMenuPrincipal extends JFrame {
 		
 		userMenu = new UsuariosMenu(datos);
 		infoG = new InformacionGeneral(datos);
-		productosMenu = new ProductosMenuAdmin();
+		productosMenu = new ProductosMenuAdmin(datos);
 		
 		setUndecorated(true);
 		//setResizable(false);
@@ -117,12 +117,13 @@ public class AdminMenuPrincipal extends JFrame {
 		btnCerrarSesion.setBounds(33, 628, 127, 35);
 		panel.add(btnCerrarSesion);
 		
-		lblImagenAdmin = new JLabel("Imagen");
+		lblImagenAdmin = new JLabel("");
+		lblImagenAdmin.setIcon(new ImageIcon(AdminMenuPrincipal.class.getResource("/img/Logo Admin.png")));
 		lblImagenAdmin.setBorder(new LineBorder(new Color(0, 0, 0)));
 		lblImagenAdmin.setForeground(Color.BLACK);
 		lblImagenAdmin.setBackground(Color.GREEN);
 		lblImagenAdmin.setHorizontalAlignment(SwingConstants.CENTER);
-		lblImagenAdmin.setBounds(40, 29, 120, 70);
+		lblImagenAdmin.setBounds(21, 11, 155, 162);
 		panel.add(lblImagenAdmin);
 		
 		btnInformacionGeneral = new JButton("Informacion General");

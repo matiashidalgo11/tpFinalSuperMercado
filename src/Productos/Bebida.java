@@ -40,10 +40,24 @@ public class Bebida extends Producto{
 		this.gusto = b.getGusto();
 		this.alcohol = b.isAlcohol();
 	}
-
+	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Bebida(boolean gasificada, double litros, String gusto, boolean alcohol) {
+		super(ID_CATEGORIA_BEBIDAS);
+		this.gasificada = gasificada;
+		this.litros = litros;
+		this.gusto = gusto;
+		this.alcohol = alcohol;
+	}
+	
 	public boolean isGasificada() {
 		return gasificada;
 	}
+
+	
 
 	public void setGasificada(boolean gasificada) {
 		this.gasificada = gasificada;

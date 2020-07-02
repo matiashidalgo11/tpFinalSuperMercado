@@ -14,7 +14,7 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	 */
 
 
-	public static long generadorId = 1;
+	public static long generadorId = 0;
 	
 	private long id;
 	private String nombre;
@@ -38,7 +38,23 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		precioOferta = 0;
 	}
 	
-	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Producto(long idCategoria) 
+	{
+		id = generadorId++;
+		nombre = "";
+		precio = 0;
+		marca = "";
+		stock = 0;
+		this.idCategoria = idCategoria;
+		oferta = false;
+		precioOferta = 0;
+		
+
+	}
 	
 	public Producto(String nombre, double precio, String marca, long stock, long idCategoria, boolean oferta, double precioOferta) 
 	{	

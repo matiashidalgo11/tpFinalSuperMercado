@@ -26,6 +26,15 @@ public class Congelado extends Producto{
 		super(dato);
 		this.peso = dato.getPeso();
 	}
+	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Congelado(double peso) {
+		super(ID_CATEGORIA_CONGELADO);
+		this.peso = peso;
+	}
 
 	public double getPeso() {
 		return peso;

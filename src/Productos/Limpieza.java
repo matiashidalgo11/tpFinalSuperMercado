@@ -29,6 +29,16 @@ public class Limpieza extends Producto{
 		this.tipo = dato.getTipo();
 	}
 	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Limpieza(String tipo) {
+		super(ID_CATEGORIA_LIMPIEZA);
+		this.tipo = tipo;
+	}
+	
+
 	public String getTipo() {
 		return tipo;
 	}

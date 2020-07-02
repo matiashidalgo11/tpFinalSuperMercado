@@ -163,19 +163,13 @@ public class InicioSesion extends JFrame {
 
 				try {
 
-					/*
-					if (txtNombreUser.getText().length() == 0 && txtPassword.getText().length() == 0) {
+					
+					if (txtNombreUser.getText().length() == 0 || txtPassword.getText().length() == 0) {
 						
-						throw new CamposVacios("UserName , Password" ,txtNombreUser, txtPassword);
+						int vacios  = contarCamposVacios();
+						throw new CamposVacios("Faltan Llenar los Campos",vacios);
 						
-					}else if(txtNombreUser.getText().length() == 0 )
-					{
-						throw new CamposVacios("UserName",txtNombreUser, txtPassword);
-						
-					}else if(txtPassword.getText().length() == 0)
-					{
-						throw new CamposVacios("Password",txtNombreUser, txtPassword);
-						
+					
 					}else if(txtNombreUser.getText().equals(ADMIN_NAME) && txtPassword.getText().equals(ADMIN_PASSWORD))
 					{
 						throw new LoginAdmin();
@@ -217,7 +211,7 @@ public class InicioSesion extends JFrame {
 
 			}
 				
-			*/	
+			
 		});
 		
 		
@@ -225,6 +219,19 @@ public class InicioSesion extends JFrame {
 		
 	}
 	
+	public int contarCamposVacios()
+	{
+		int resp = 0;
+		if(txtNombreUser.getText().isEmpty())
+		{
+			resp++;
+		}
+		if(txtPassword.getText().isEmpty())
+		{
+			resp++;
+		}
+		return resp;
+	}
 	
 	
 }

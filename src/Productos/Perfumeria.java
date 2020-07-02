@@ -25,6 +25,15 @@ public class Perfumeria extends Producto {
 		this.tipoFragancia = dato.tipoFragancia;
 	}
 	
+	/**
+	 * Constructor para Parte Grafica
+	 *
+	 */
+	public Perfumeria(String tipoFragancia) {
+		super(ID_CATEGORIA_PERFUMERIA);
+		this.tipoFragancia = tipoFragancia;
+	}
+
 	public String getTipoFragancia() {
 		return tipoFragancia;
 	}

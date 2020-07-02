@@ -25,6 +25,15 @@ public class Snack extends Producto {
 		this.cantidadG = dato.getCantidadG();
 	}
 	
+	/**
+	 * Constructor para Parte Grafica
+	 * 
+	 */
+	public Snack(double cantidadG) {
+		super(ID_CATEGORIA_SNACK);
+		this.cantidadG = cantidadG;
+	}
+
 	public double getCantidadG() {
 		return cantidadG;
 	}
