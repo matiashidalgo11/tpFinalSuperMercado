@@ -49,6 +49,7 @@ public class UsuariosMenu extends JPanel {
 	private void initComponents() {
 		
 		listaUs = new ListaUsuarios(datos);
+		JpopuMenuAcciones();
 		agregarUs = new AgregarUsuario(datos);
 		agregarUsuario();
 
@@ -86,7 +87,6 @@ public class UsuariosMenu extends JPanel {
 		btnListaUsuarios = new JButton("Lista Usuarios");
 		btnListaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//listaUs.updateUI();
 				CardLayout cl = (CardLayout)(panel.getLayout());
 				cl.show(panel, LISTA_USUARIOS_REF);
 			}
@@ -94,6 +94,7 @@ public class UsuariosMenu extends JPanel {
 		btnListaUsuarios.setBounds(521, 21, 362, 58);
 		add(btnListaUsuarios);
 	}
+	
 	
 	public void agregarUsuario()
 	{
@@ -139,7 +140,52 @@ public class UsuariosMenu extends JPanel {
 		});
 	}
 	
-	
+	public void JpopuMenuAcciones()
+	{
+		listaUs.itemActivar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int seleccionTabla = listaUs.table.getSelectedRow();
+				long id = (long) listaUs.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaUsuarios().existencia(id))
+				{
+					Usuario aux = datos.getListaUsuarios().buscar(id);
+					int valor = JOptionPane.showConfirmDialog(panel, "Desea cambiar el valor de Activo ?", "Activar", 2);
+					if(valor == 0)
+					{
+						aux.invertirActivo();
+						listaUs.limpiarLista();
+						listaUs.cargarLista(datos);
+					}
+				}
+				
+			}
+		});
+		
+		listaUs.itemEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+		
+				int seleccionTabla = listaUs.table.getSelectedRow();
+				long id = (long) listaUs.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaUsuarios().existencia(id))
+				{
+					Usuario aux = datos.getListaUsuarios().buscar(id);
+					int valor = JOptionPane.showConfirmDialog(panel, "Desea Eliminar el Usuario ?", "Eliminar", 2);
+					if(valor == 0)
+					{
+						datos.eliminarUsuario(aux);
+						listaUs.limpiarLista();
+						listaUs.cargarLista(datos);
+					}
+				}
+				
+			
+			}
+		});
+	}
 	
 	
 }

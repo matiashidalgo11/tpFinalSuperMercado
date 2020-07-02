@@ -57,6 +57,7 @@ public class ListaUsuarios extends JPanel {
 		modeloTabla.addColumn("Edad");
 		modeloTabla.addColumn("Cant Compras");
 		modeloTabla.addColumn("Activo");
+		
 		cargarLista(datos);
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 704, 566);
@@ -113,6 +114,7 @@ public class ListaUsuarios extends JPanel {
 	{
 		modeloTabla.setRowCount(0);
 	}
+	
 	
 	
 

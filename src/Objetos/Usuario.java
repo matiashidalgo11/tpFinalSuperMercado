@@ -308,6 +308,17 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	public void setActivo(boolean activo) {
 		this.activo = activo;
 	}
+	
+	public void invertirActivo()
+	{
+		if(this.activo == true)
+		{
+			this.activo = false;
+		}else
+		{
+			this.activo = true;
+		}
+	}
 
 
 

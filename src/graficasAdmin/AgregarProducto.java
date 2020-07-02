@@ -388,12 +388,7 @@ public class AgregarProducto extends JPanel {
 				textPesoCongelado.setText(nulo);
 				textPesoGrm.setText(nulo);
 				textUnidades.setText(nulo);
-				/*
-				rdbtnNoAlcohol.setSelected(false);
-				rdbtnNoGasificada.setSelected(false);
-				rdbtnSiAlcohol.setSelected(false);
-				rdbtnSiGasificada.setSelected(false);
-				*/
+				
 			}
 		});
 	}
@@ -405,6 +400,22 @@ public class AgregarProducto extends JPanel {
 				
 			}
 		});
+	}
+	
+	public void limpiarCampos()
+	{
+		String nulo = "";
+		txtMarca.setText(nulo);
+		txtNombre.setText(nulo);
+		txtPrecio.setText(nulo);
+		txtStockInicial.setText(nulo);
+		textDescripcion.setText(nulo);
+		textFragancia.setText(nulo);
+		textGusto.setText(nulo);
+		textLitros.setText(nulo);
+		textPesoCongelado.setText(nulo);
+		textPesoGrm.setText(nulo);
+		textUnidades.setText(nulo);
 	}
 	
 	

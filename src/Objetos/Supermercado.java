@@ -95,18 +95,15 @@ public class Supermercado {
 	 * Si se esta en Sesion, pasa a null el atributo y guarda todos los datos;
 	 * 
 	 */
-	public boolean cerrarSesion()
+	public void cerrarSesion()
 	{
-		boolean resp = false;
-		
+
 		if(inSession())
 		{	
 			this.sesionActiva = null;
-			this.guardarDatos();
-			resp = true;
 		}
 		
-		return resp;
+		this.guardarDatos();
 	}
 	
 	public void establecerOferta(Producto producto, double precioOferta)
