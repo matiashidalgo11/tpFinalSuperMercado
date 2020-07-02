@@ -12,12 +12,15 @@ import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 
+import Colecciones.ArregloDetalleCompra;
 import Colecciones.ArregloProductos;
 import Colecciones.MapaProductos;
 import Objetos.Session;
 import Objetos.Supermercado;
+import Objetos.Usuario;
 import Productos.Bebida;
 import Productos.Lacteo;
 import Productos.Producto;
@@ -33,6 +36,8 @@ import javax.swing.JButton;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.border.SoftBevelBorder;
+
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
@@ -46,6 +51,9 @@ public class GraficaCarro extends JFrame {
 	private JLabel labelTotal;
 	private JLabel precioTotal;
 	private JButton botonComprar;
+	private JLabel labelInsuficiente;
+	private JLabel labelCompraExitosa;
+	private JLabel labelCarritoVacio;
 
 //	/**
 //	 * Launch the application.
@@ -80,53 +88,178 @@ public class GraficaCarro extends JFrame {
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
 		
+		Usuario user = mercado.getUsuarioEnSesion();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
-//		Session activa = mercado.getSesionActiva();
-//		Carro carrito = activa.getCarrito();
+		contentPane.setLayout(null);
+		
+		labelInsuficiente = new JLabel("¡SALDO INSUFICIENTE!");
+		labelInsuficiente.setVisible(false);
+		labelInsuficiente.setFont(new Font("Calibri", Font.BOLD, 23));
+		labelInsuficiente.setForeground(new Color(255, 0, 0));
+		labelInsuficiente.setBounds(321, 651, 424, 42);
+		contentPane.add(labelInsuficiente);
+		
+		labelCompraExitosa = new JLabel("¡COMPRA EXITOSA!");
+		labelCompraExitosa.setVisible(false);
+		labelCompraExitosa.setFont(new Font("Calibri", Font.BOLD, 23));
+		labelCompraExitosa.setForeground(Color.GREEN);
+		labelCompraExitosa.setBounds(321, 651, 424, 42);
+		contentPane.add(labelCompraExitosa);
+		
+		labelCarritoVacio = new JLabel("¡EL CARRITO ESTA VACIO!");
+		labelCarritoVacio.setVisible(false);
+		labelCarritoVacio.setFont(new Font("Calibri", Font.BOLD, 23));
+		labelCarritoVacio.setForeground(Color.black);
+		labelCarritoVacio.setBounds(321, 651, 424, 42);
+		contentPane.add(labelCarritoVacio);
+		
+		JButton botonHistorial = new JButton("");
+		botonHistorial.setVisible(true);
+		botonHistorial.setOpaque(false);
+		botonHistorial.setBorder(null);
+		botonHistorial.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonHistorial.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonHistorial.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
+		
+		JButton botonInicio = new JButton("");
+		botonInicio.setContentAreaFilled(false);
+		botonInicio.setBorder(null);
+		botonInicio.setVisible(true);
+		botonInicio.setOpaque(false);
+		botonInicio.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonInicio.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonInicio.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
+		botonInicio.setBounds(48, 287, 196, 51);
+		contentPane.add(botonInicio);
+		
+		botonHistorial.setContentAreaFilled(false);
+		botonHistorial.setBounds(50, 465, 196, 51);
+		contentPane.add(botonHistorial);
+
+		JButton botonCuenta = new JButton("");
+		botonCuenta.setVisible(true);
+		botonCuenta.setOpaque(false);
+		botonCuenta.setBorder(null);
+		botonCuenta.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseEntered(MouseEvent e) 
+			{
+				botonCuenta.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCuenta.setBorder(null);
+			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
+		botonCuenta.setContentAreaFilled(false);
+		botonCuenta.setBounds(47, 405, 196, 51);
+		contentPane.add(botonCuenta);
+		
+		Session activa = mercado.getSesionActiva();
+		Carro carrito = activa.getCarrito();
 		
 		//****************************** Prueba *********************************//
-		Carro prueba = new Carro(1);
-		Producto coca = new Bebida("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
-		Producto jugo = new Bebida("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
-		Producto cerveza = new Bebida("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
-		Producto agua = new Bebida("Agua", 50, "Mineral", 1, false, 2, "Agua", false, false, 0);
+//		Carro prueba = new Carro(1);
+//		Producto coca = new Bebida("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
+//		Producto jugo = new Bebida("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
+//		Producto cerveza = new Bebida("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
+//		Producto agua = new Bebida("Agua", 50, "Mineral", 1, false, 2, "Agua", false, false, 0);
+//		
+//		Producto papas = new Snack("Papas Frita", 70, "Lays", 1, 100, false, 0);
+//		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
+//	
+//		Producto leche = new Lacteo("Leche", 50, "LaSerenisima", 1, "Leche", false, 0);
+//		
+//		prueba.agregar(coca);
+//		prueba.agregar(jugo);
+//		prueba.agregar(cerveza);
+//		prueba.agregar(agua);
+//		prueba.agregar(papas);
+//		prueba.agregar(palitos);
+//		prueba.agregar(leche);
 		
-		Producto papas = new Snack("Papas Frita", 70, "Lays", 1, 100, false, 0);
-		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
-	
-		Producto leche = new Lacteo("Leche", 50, "LaSerenisima", 1, "Leche", false, 0);
-		
-		prueba.agregar(coca);
-		prueba.agregar(jugo);
-		prueba.agregar(cerveza);
-		prueba.agregar(agua);
-		prueba.agregar(papas);
-		prueba.agregar(palitos);
-		prueba.agregar(leche);
-		
-		ArregloProductos arreglo = prueba.getArreglo();
+		ArregloProductos arreglo = carrito.getArreglo();
 		//*******************************************************************//
 		
 		contentPane.setLayout(null);
 		
 		precioTotal = new JLabel("");
-		precioTotal.setBounds(397, 666, 69, 38);
-		String total = "$" + String.valueOf(prueba.getTotal());
+		precioTotal.setBounds(911, 652, 69, 38);
+		String total = "$" + String.valueOf(carrito.getTotal());
 		
 		botonComprar = new JButton("");
 		botonComprar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		botonComprar.setBorder(null);
 		botonComprar.setContentAreaFilled(false);
 		botonComprar.setOpaque(false);
-		botonComprar.setBounds(1018, 666, 165, 38);
+		botonComprar.setBounds(1016, 653, 165, 38);
 		botonComprar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
-				new GraficaHistorial(mercado).setVisible(true);
+				if(carrito.isEmpty())
+				{
+					labelInsuficiente.setVisible(false);
+					labelCompraExitosa.setVisible(false);
+					labelCarritoVacio.setVisible(true);
+				}
+				else if(user.getCartera() >= carrito.getTotal())
+				{
+					labelCarritoVacio.setVisible(false);
+					labelInsuficiente.setVisible(false);
+					labelCompraExitosa.setVisible(true);
+					user.setCartera(user.getCartera() - carrito.getTotal());
+					carrito.limpiarCarrito();
+				}
+				else
+				{
+					labelCompraExitosa.setVisible(false);
+					labelCarritoVacio.setVisible(false);
+					labelInsuficiente.setVisible(true);
+				}
+				
 			}
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -146,7 +279,7 @@ public class GraficaCarro extends JFrame {
 		
 		labelTotal = new JLabel("Total");
 		labelTotal.setFont(new Font("Tahoma", Font.PLAIN, 18));
-		labelTotal.setBounds(335, 666, 69, 38);
+		labelTotal.setBounds(849, 652, 69, 38);
 		contentPane.add(labelTotal);
 		
 		
@@ -154,7 +287,7 @@ public class GraficaCarro extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollPane.setBounds(277, 122, 992, 522);
+		scrollPane.setBounds(272, 107, 992, 522);
 		scrollPane.setBackground(new Color(0,0,0,0));
 		
 		panel = new JPanel();
@@ -165,10 +298,10 @@ public class GraficaCarro extends JFrame {
 		
 		contentPane.add(scrollPane);
 		
-		columnaProductos(arreglo, prueba, precioTotal);
+		columnaProductos(arreglo, carrito, precioTotal);
 		
 		fondo = new JLabel("");
-		fondo.setBounds(5, 5, 1290, 740);
+		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIgnoreRepaint(true);
 		fondo.setIcon(new ImageIcon(GraficaCarro.class.getResource("/img/Carro V2.png")));
 		contentPane.add(fondo);

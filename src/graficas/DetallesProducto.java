@@ -97,12 +97,12 @@ public class DetallesProducto extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Inicio(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		contentPane.setLayout(null);
-		botonInicio.setBounds(55, 305, 196, 51);
+		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
@@ -120,10 +120,16 @@ public class DetallesProducto extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
 		});
 		
 		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(55, 362, 196, 51);
+		botonCarro.setBounds(44, 346, 196, 51);
 		contentPane.add(botonCarro);
 
 		JButton botonCuenta = new JButton("");
@@ -145,12 +151,12 @@ public class DetallesProducto extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Cuenta(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
-		botonCuenta.setBounds(56, 421, 196, 51);
+		botonCuenta.setBounds(50, 406, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonHistorial = new JButton("");
@@ -168,10 +174,16 @@ public class DetallesProducto extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent arg0) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
-		botonHistorial.setBounds(56, 480, 196, 51);
+		botonHistorial.setBounds(48, 465, 196, 51);
 		contentPane.add(botonHistorial);
 		
 		
@@ -188,7 +200,7 @@ public class DetallesProducto extends JFrame {
 		});
 		botonAgregar.setContentAreaFilled(false);
 		botonAgregar.setOpaque(false);
-		botonAgregar.setBounds(321, 613, 263, 46);
+		botonAgregar.setBounds(315, 598, 263, 46);
 		contentPane.add(botonAgregar);
 		
 		botonVolver = new JButton("");
@@ -216,14 +228,14 @@ public class DetallesProducto extends JFrame {
 		
 		botonVolver.setContentAreaFilled(false);
 		botonVolver.setOpaque(false);
-		botonVolver.setBounds(950, 614, 127, 45);
+		botonVolver.setBounds(944, 599, 127, 45);
 		contentPane.add(botonVolver);
 		
 		detalles = new JTextPane();
 		detalles.setOpaque(false);
 		detalles.setForeground(new Color(51, 102, 153));
 		detalles.setFont(new Font("Calibri", Font.BOLD, 25));
-		detalles.setBounds(329, 205, 736, 353);
+		detalles.setBounds(323, 190, 736, 353);
 		detalles.setText(producto.toString());
 		detalles.setEditable(false);
 		contentPane.add(detalles);
@@ -231,13 +243,13 @@ public class DetallesProducto extends JFrame {
 		nombreProducto = new JLabel("");
 		nombreProducto.setForeground(new Color(51, 102, 153));
 		nombreProducto.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		nombreProducto.setBounds(574, 71, 364, 49);
+		nombreProducto.setBounds(568, 56, 364, 49);
 		nombreProducto.setText(producto.getNombre());
 		contentPane.add(nombreProducto);
 		
 		fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
-		fondo.setBounds(5, 5, 1290, 740);
+		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIcon(new ImageIcon(DetallesProducto.class.getResource("/img/DetallesProducto.png")));
 		contentPane.add(fondo);
 	}

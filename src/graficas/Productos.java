@@ -78,7 +78,7 @@ public class Productos extends JFrame {
 			}
 		});
 		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-		labelMover.setBounds(43, 30, 1233, 35);
+		labelMover.setBounds(45, 14, 1233, 35);
 		contentPane.add(labelMover);
 		
 		JButton botonInicio = new JButton("");
@@ -100,12 +100,12 @@ public class Productos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Inicio(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		contentPane.setLayout(null);
-		botonInicio.setBounds(52, 302, 196, 51);
+		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
@@ -123,11 +123,17 @@ public class Productos extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
 		});
 		contentPane.setLayout(null);
 		
 		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(53, 363, 196, 51);
+		botonCarro.setBounds(50, 348, 196, 51);
 		contentPane.add(botonCarro);
 
 		JButton botonCuenta = new JButton("");
@@ -148,12 +154,12 @@ public class Productos extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Cuenta(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
-		botonCuenta.setBounds(53, 421, 196, 51);
+		botonCuenta.setBounds(51, 408, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonHistorial = new JButton("");
@@ -171,17 +177,23 @@ public class Productos extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
-		botonHistorial.setBounds(55, 480, 196, 51);
+		botonHistorial.setBounds(52, 463, 196, 51);
 		contentPane.add(botonHistorial);
 		
 		
 		JPanel panel = new JPanel();
 		panel.setIgnoreRepaint(true);
 		panel.setBorder(null);
-		panel.setBounds(259, 64, 1017, 627);
+		panel.setBounds(255, 58, 1017, 627);
 		contentPane.add(panel);
 		
 		System.out.println(productos.listar());
@@ -190,7 +202,7 @@ public class Productos extends JFrame {
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
-		fondo.setBounds(5, 5, 1290, 740);
+		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos.png")));
 		contentPane.add(fondo);
 	}

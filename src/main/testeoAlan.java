@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import org.omg.CORBA.Principal;
+
 import Colecciones.ArregloProductos;
 import Colecciones.MapaCategoria;
 import Colecciones.MapaUsuario;
@@ -87,8 +89,9 @@ public class testeoAlan {
 //		mercado.guardarDatos();
 		mercado.cargarDatos();
 //		System.out.println(mercado.listarCategoriaEspecifica((long) 1));
-		System.out.println(mercado.listarCategorias());
-		new Inicio(mercado).setVisible(true);
+//		System.out.println(mercado.listarCategorias());
+//		new Inicio(mercado).setVisible(true);
+		new graficas.Principal(mercado).setVisible(true);
 //		mercado.agregarUsuario(alan);
 //		mercado.iniciarSession(1);
 //		

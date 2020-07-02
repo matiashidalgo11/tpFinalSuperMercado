@@ -135,6 +135,12 @@ public class Inicio extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
@@ -160,8 +166,8 @@ public class Inicio extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
 			{
+				dispose();
 				new Cuenta(mercado).setVisible(true);
-				setVisible(false);
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
@@ -186,6 +192,7 @@ public class Inicio extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
+				dispose();
 				new GraficaCarro(mercado).setVisible(true);
 			}
 		});
@@ -193,6 +200,7 @@ public class Inicio extends JFrame {
 		botonCarro.setContentAreaFilled(false);
 		botonCarro.setBounds(50, 347, 196, 51);
 		contentPane.add(botonCarro);
+		
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(null);
