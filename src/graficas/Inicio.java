@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -37,8 +38,9 @@ import java.awt.Font;
 public class Inicio extends JFrame {
 
 	private JPanel contentPane;
-	int x;
-	int y;
+	private int x;
+	private int y;
+	private JLabel labelPerfil;
 
 	/**
 	 * Launch the application.
@@ -68,12 +70,20 @@ public class Inicio extends JFrame {
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
 
+		Usuario user = mercado.getUsuarioEnSesion();
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		contentPane.setBackground(new Color(0,0,0,0));
+		
+		labelPerfil = new JLabel(user.getUserName());
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		labelPerfil.setBounds(38, 166, 208, 41);
+		contentPane.add(labelPerfil);
 		
 		
 		JLabel labelMover = new JLabel("");
@@ -213,7 +223,7 @@ public class Inicio extends JFrame {
 
 		
 		JLabel Fondo = new JLabel("");
-		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Inicio.png")));
+		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Inicio V2.png")));
 		Fondo.setBounds(0, 0, 1294, 721); //Tamaño por defecto del fondo 
 		contentPane.add(Fondo);
 	}

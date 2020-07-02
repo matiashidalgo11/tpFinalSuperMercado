@@ -11,12 +11,15 @@ import javax.swing.border.EmptyBorder;
 import Colecciones.MapaProductos;
 import Objetos.Session;
 import Objetos.Supermercado;
+import Objetos.Usuario;
 import Productos.Producto;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.SwingConstants;
+
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
@@ -37,6 +40,7 @@ public class DetallesProducto extends JFrame {
 	private JTextPane detalles;
 	private JButton botonVolver;
 	private JButton botonAgregar;
+	private JLabel labelPerfil;
 
 //	/**
 //	 * Launch the application.
@@ -71,12 +75,20 @@ public class DetallesProducto extends JFrame {
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
 		
+		Usuario user = mercado.getUsuarioEnSesion();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		labelPerfil = new JLabel(user.getUserName());
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		labelPerfil.setBounds(38, 166, 208, 41);
+		contentPane.add(labelPerfil);
 		
 		JButton botonInicio = new JButton("");
 		botonInicio.setContentAreaFilled(false);
@@ -250,7 +262,7 @@ public class DetallesProducto extends JFrame {
 		fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
 		fondo.setBounds(0, 0, 1294, 721);
-		fondo.setIcon(new ImageIcon(DetallesProducto.class.getResource("/img/DetallesProducto.png")));
+		fondo.setIcon(new ImageIcon(DetallesProducto.class.getResource("/img/DetallesProducto V2.png")));
 		contentPane.add(fondo);
 	}
 }

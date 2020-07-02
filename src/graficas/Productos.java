@@ -13,6 +13,7 @@ import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
@@ -20,6 +21,7 @@ import javax.swing.border.SoftBevelBorder;
 
 import Colecciones.MapaProductos;
 import Objetos.Supermercado;
+import Objetos.Usuario;
 import Productos.Producto;
 import graficas.Inicio.Pulsando;
 
@@ -30,7 +32,8 @@ import javax.swing.JButton;
 public class Productos extends JFrame {
 
 	private JPanel contentPane;
-	int x, y;
+	private int x, y;
+	private JLabel labelPerfil;
 	/**
 	 * Launch the application.
 	 */
@@ -62,6 +65,15 @@ public class Productos extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
+		
+		Usuario user = mercado.getUsuarioEnSesion();
+		
+		labelPerfil = new JLabel(user.getUserName());
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		labelPerfil.setBounds(38, 166, 208, 41);
+		contentPane.add(labelPerfil);
 		
 		JLabel labelMover = new JLabel("");
 		labelMover.addMouseListener(new MouseAdapter() {
@@ -203,7 +215,7 @@ public class Productos extends JFrame {
 		JLabel fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
 		fondo.setBounds(0, 0, 1294, 721);
-		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos.png")));
+		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos V2.png")));
 		contentPane.add(fondo);
 	}
 	

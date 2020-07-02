@@ -48,6 +48,7 @@ public class Cuenta extends JFrame {
 	private JLabel editarApellido;
 	private JLabel editarEdad;
 	private JLabel editarTelefono;
+	private JLabel labelPerfil;
 	
 //	public static void main(String[] args) 
 //	{
@@ -66,21 +67,31 @@ public class Cuenta extends JFrame {
 	
 	public Cuenta(Supermercado mercado) 
 	{
-		
-		Usuario user = mercado.getUsuarioEnSesion();
+		initComponents(mercado);
+	}
+	private void initComponents(Supermercado mercado) {
 		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 750);
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
-
 		
+		Usuario user = mercado.getUsuarioEnSesion();
+				
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		labelPerfil = new JLabel(user.getUserName());
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		labelPerfil.setBounds(38, 166, 208, 41);
+		contentPane.add(labelPerfil);
 		
 		JLabel labelMover = new JLabel("");
 		labelMover.addMouseListener(new MouseAdapter() {
@@ -96,14 +107,16 @@ public class Cuenta extends JFrame {
 				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
 			}
 		});
+		
 		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
 		labelMover.setBounds(32, 11, 1233, 35);
 		contentPane.add(labelMover);
 		
 		JButton botonInicio = new JButton("");
+		botonInicio.setContentAreaFilled(false);
+		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
 		botonInicio.setOpaque(false);
-		botonInicio.setBorder(null);
 		botonInicio.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent e) 
@@ -122,8 +135,8 @@ public class Cuenta extends JFrame {
 				new Inicio(mercado).setVisible(true);
 			}
 		});
-		botonInicio.setContentAreaFilled(false);
-		botonInicio.setBounds(50, 289, 196, 51);
+		contentPane.setLayout(null);
+		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
@@ -150,7 +163,7 @@ public class Cuenta extends JFrame {
 		});
 		
 		botonCarro.setContentAreaFilled(false);
-		botonCarro.setBounds(47, 348, 196, 51);
+		botonCarro.setBounds(44, 346, 196, 51);
 		contentPane.add(botonCarro);
 		
 		JButton botonHistorial = new JButton("");
@@ -177,7 +190,7 @@ public class Cuenta extends JFrame {
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
-		botonHistorial.setBounds(49, 466, 196, 51);
+		botonHistorial.setBounds(48, 465, 196, 51);
 		contentPane.add(botonHistorial);
 		
 		fieldTelefono = new JTextField();
@@ -341,12 +354,12 @@ public class Cuenta extends JFrame {
 		agregarDinero.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
 		agregarDinero.setBounds(1142, 526, 38, 36);
 		contentPane.add(agregarDinero);
-
 		
-		JLabel Fondo = new JLabel("");
+				
+				JLabel Fondo = new JLabel("");
 		Fondo.setForeground(new Color(0, 0, 0));
 		Fondo.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		Fondo.setIcon(new ImageIcon(Cuenta.class.getResource("/img/Cuenta.png")));
+		Fondo.setIcon(new ImageIcon(Cuenta.class.getResource("/img/Cuenta V2.png")));
 		Fondo.setBounds(0, 0, 1294, 721);
 		contentPane.add(Fondo);
 	}

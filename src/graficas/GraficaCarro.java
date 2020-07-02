@@ -54,6 +54,7 @@ public class GraficaCarro extends JFrame {
 	private JLabel labelInsuficiente;
 	private JLabel labelCompraExitosa;
 	private JLabel labelCarritoVacio;
+	private JLabel labelPerfil;
 
 //	/**
 //	 * Launch the application.
@@ -95,6 +96,13 @@ public class GraficaCarro extends JFrame {
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		labelPerfil = new JLabel(user.getUserName());
+		labelPerfil.setForeground(Color.WHITE);
+		labelPerfil.setHorizontalAlignment(SwingConstants.CENTER);
+		labelPerfil.setFont(new Font("Calibri", Font.BOLD | Font.ITALIC, 20));
+		labelPerfil.setBounds(38, 166, 208, 41);
+		contentPane.add(labelPerfil);
 		
 		labelInsuficiente = new JLabel("¡SALDO INSUFICIENTE!");
 		labelInsuficiente.setVisible(false);
@@ -198,32 +206,8 @@ public class GraficaCarro extends JFrame {
 		contentPane.add(botonCuenta);
 		
 		Session activa = mercado.getSesionActiva();
-		Carro carrito = activa.getCarrito();
-		
-		//****************************** Prueba *********************************//
-//		Carro prueba = new Carro(1);
-//		Producto coca = new Bebida("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
-//		Producto jugo = new Bebida("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
-//		Producto cerveza = new Bebida("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
-//		Producto agua = new Bebida("Agua", 50, "Mineral", 1, false, 2, "Agua", false, false, 0);
-//		
-//		Producto papas = new Snack("Papas Frita", 70, "Lays", 1, 100, false, 0);
-//		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
-//	
-//		Producto leche = new Lacteo("Leche", 50, "LaSerenisima", 1, "Leche", false, 0);
-//		
-//		prueba.agregar(coca);
-//		prueba.agregar(jugo);
-//		prueba.agregar(cerveza);
-//		prueba.agregar(agua);
-//		prueba.agregar(papas);
-//		prueba.agregar(palitos);
-//		prueba.agregar(leche);
-		
+		Carro carrito = activa.getCarrito();	
 		ArregloProductos arreglo = carrito.getArreglo();
-		//*******************************************************************//
-		
-		contentPane.setLayout(null);
 		
 		precioTotal = new JLabel("");
 		precioTotal.setBounds(911, 652, 69, 38);
@@ -234,7 +218,7 @@ public class GraficaCarro extends JFrame {
 		botonComprar.setBorder(null);
 		botonComprar.setContentAreaFilled(false);
 		botonComprar.setOpaque(false);
-		botonComprar.setBounds(1016, 653, 165, 38);
+		botonComprar.setBounds(1013, 651, 165, 38);
 		botonComprar.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent arg0) 
@@ -250,8 +234,9 @@ public class GraficaCarro extends JFrame {
 					labelCarritoVacio.setVisible(false);
 					labelInsuficiente.setVisible(false);
 					labelCompraExitosa.setVisible(true);
-					user.setCartera(user.getCartera() - carrito.getTotal());
+					activa.comprar();
 					carrito.limpiarCarrito();
+					precioTotal.setText("$" + String.valueOf(carrito.getTotal()));
 				}
 				else
 				{
@@ -303,7 +288,7 @@ public class GraficaCarro extends JFrame {
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIgnoreRepaint(true);
-		fondo.setIcon(new ImageIcon(GraficaCarro.class.getResource("/img/Carro V2.png")));
+		fondo.setIcon(new ImageIcon(GraficaCarro.class.getResource("/img/Carro V3.png")));
 		contentPane.add(fondo);
 	}
 	
