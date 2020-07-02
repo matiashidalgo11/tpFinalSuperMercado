@@ -114,7 +114,7 @@ public class Bebida extends Producto{
 	@Override
 	public String getNombreCategoria()
 	{
-		return "Bebidas";
+		return "Bebida";
 	}
 	
 	public JSONObject toJson()

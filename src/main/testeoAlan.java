@@ -65,10 +65,10 @@ public class testeoAlan {
 //		Usuario alan = new Usuario("Alan", "123", 500, 1, null);
 //		
 //		
-//		Producto coca = new Bebidas("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
-//		Producto jugo = new Bebidas("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
-//		Producto cerveza = new Bebidas("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
-//		Producto agua = new Bebidas("Agua", 50, "Mineral", 1, false, 2, "Agua", false, false, 0);
+//		Producto coca = new Bebida("Cola", 60, "Coca", 1, true, 2, "Dulce", false, false, 0);
+//		Producto jugo = new Bebida("Jugo", 30, "Cualquiera", 1, false, 2, "Dulce", false, false, 0);
+//		Producto cerveza = new Bebida("Cerveza", 100, "Quilmes", 1, false, 2, "Amargo", true, false, 0);
+//		Producto agua = new Bebida("Agua", 50, "Mineral", 1, false, 2, "Agua", false, false, 0);
 //		
 //		Producto papas = new Snack("Papas Frita", 70, "Lays", 1, 100, false, 0);
 //		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
