@@ -2,7 +2,7 @@ package Productos;
 
 import org.json.JSONObject;
 
-public class Bebidas extends Producto{
+public class Bebida extends Producto{
 
 	private boolean gasificada;
 	private double litros;
@@ -11,7 +11,7 @@ public class Bebidas extends Producto{
 	
 	public static long ID_CATEGORIA_BEBIDAS = 7;
 	
-	public Bebidas() 
+	public Bebida() 
 	{
 		super();
 		gasificada = false;
@@ -19,7 +19,7 @@ public class Bebidas extends Producto{
 		alcohol = false;
 	}
 	
-	public Bebidas(String nombre, double precio, String marca, long stock,boolean gasificada, double litros, String gusto, boolean alcohol, boolean oferta, double precioOferta) 
+	public Bebida(String nombre, double precio, String marca, long stock,boolean gasificada, double litros, String gusto, boolean alcohol, boolean oferta, double precioOferta) 
 	{
 		super(nombre, precio, marca, stock, ID_CATEGORIA_BEBIDAS, oferta, precioOferta);
 		this.gasificada = gasificada;
@@ -32,7 +32,7 @@ public class Bebidas extends Producto{
 	 * Constructor para clonar
 	 * @param b
 	 */
-	public Bebidas(Bebidas b)
+	public Bebida(Bebida b)
 	{
 		super(b);
 		this.gasificada = b.isGasificada();
@@ -86,7 +86,7 @@ public class Bebidas extends Producto{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Bebidas other = (Bebidas) obj;
+		Bebida other = (Bebida) obj;
 		if (alcohol != other.alcohol)
 			return false;
 		if (gasificada != other.gasificada)

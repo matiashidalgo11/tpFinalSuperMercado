@@ -112,10 +112,10 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 	{
 		Producto resp = null;
 		
-		if(dato instanceof Bebidas)
+		if(dato instanceof Bebida)
 		{
-			Bebidas aux =(Bebidas) dato;
-			resp = new Bebidas(aux);
+			Bebida aux =(Bebida) dato;
+			resp = new Bebida(aux);
 		}else if(dato instanceof Congelado)
 		{
 			Congelado aux = (Congelado) dato;

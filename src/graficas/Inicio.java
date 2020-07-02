@@ -15,7 +15,7 @@ import Colecciones.MapaProductos;
 import Objetos.Carro;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import Productos.Bebidas;
+import Productos.Bebida;
 import Productos.Lacteo;
 import Productos.Snack;
 

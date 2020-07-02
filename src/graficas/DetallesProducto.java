@@ -74,6 +74,14 @@ public class DetallesProducto extends JFrame {
 		contentPane.setLayout(null);
 		
 		botonAgregar = new JButton("");
+		botonAgregar.addMouseListener(new MouseAdapter() 
+		{
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				
+			}
+		});
 		botonAgregar.setContentAreaFilled(false);
 		botonAgregar.setOpaque(false);
 		botonAgregar.setBounds(321, 613, 263, 46);

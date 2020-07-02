@@ -16,7 +16,7 @@ import Objetos.DetalleCompra;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import Productos.Bebidas;
+import Productos.Bebida;
 import Productos.Congelado;
 import Productos.Golosina;
 import Productos.Producto;

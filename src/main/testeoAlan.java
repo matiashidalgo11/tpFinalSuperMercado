@@ -14,7 +14,7 @@ import Objetos.DetalleCompra;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
-import Productos.Bebidas;
+import Productos.Bebida;
 import Productos.Lacteo;
 import Productos.Producto;
 import Productos.Snack;
