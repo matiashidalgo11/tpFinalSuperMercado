@@ -407,6 +407,31 @@ public class Supermercado {
 	}
 	
 	
+	
+	public MapaUsuario getListaUsuarios() {
+		return listaUsuarios;
+	}
+
+	public void setListaUsuarios(MapaUsuario listaUsuarios) {
+		this.listaUsuarios = listaUsuarios;
+	}
+
+	public MapaCategoria getListaCategorias() {
+		return listaCategorias;
+	}
+
+	public void setListaCategorias(MapaCategoria listaCategorias) {
+		this.listaCategorias = listaCategorias;
+	}
+
+	public MapaCarro getListaCarritos() {
+		return listaCarritos;
+	}
+
+	public void setListaCarritos(MapaCarro listaCarritos) {
+		this.listaCarritos = listaCarritos;
+	}
+
 	public JSONObject toJsonObject()
 	{
 		JSONObject jsonObject = new JSONObject();

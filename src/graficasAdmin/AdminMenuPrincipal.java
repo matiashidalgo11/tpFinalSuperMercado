@@ -147,51 +147,8 @@ public class AdminMenuPrincipal extends JFrame {
 		Fondo.setBounds(0, 0, 1294, 721); //Tamaño por defecto del fondo 
 		contentPane.add(Fondo);
 		
-		
-		ArrayList<Usuario> arreglo = cargarArreglo();
-		for(int i = 0; i < 10 ; i++)
-		{
-			cargarTabla(arreglo);
-		}
-		
 		revalidate();
 		
-	}
-	
-	public void cargarTabla(ArrayList<Usuario> usuarios)
-	{
-		for(Usuario aux : usuarios)
-		{
-			Object[] transformado = transformarObjecto(aux);
-			userMenu.listaUs.modeloTabla.addRow(transformado);
-		}
-		
-	}
-	
-	public Object[] transformarObjecto(Usuario us)
-	{
-		Object[] objeto = new Object[] {us.getId(),us.getUserName(), us.getPassword(), us.getCartera(), us.getNombre(),us.getApellido(),us.getTelefono(),us.getEdad(), 1};
-		
-		return objeto;
-	}
-	
-	/**Funcion auxiliar
-	 * 
-	 * @return
-	 */
-	public ArrayList<Usuario> cargarArreglo()
-	{
-		ArrayList<Usuario> arreglo = new ArrayList<Usuario>();
-		
-		Usuario a = new  Usuario("Matias11HP", "1234s", "Matias", "Hidalgo", 21, "123456");
-		Usuario b = new Usuario("SkyTrix", "marat", "Ivan", "Hidalgo", 21, "1345546");
-		Usuario c = new Usuario("Chap", "dasda", "Renzo", "Mirabella", 20, "5465");
-		arreglo.add(a);
-		arreglo.add(b);
-		arreglo.add(c);
-		
-		
-		return arreglo;
 	}
 	
 	public void accionesBotonesPrincipales()

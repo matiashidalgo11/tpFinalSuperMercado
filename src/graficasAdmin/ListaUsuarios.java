@@ -3,6 +3,7 @@ package graficasAdmin;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 
+import Objetos.Supermercado;
 import Objetos.Usuario;
 
 import javax.swing.DefaultListModel;
@@ -12,6 +13,9 @@ import javax.swing.JMenuItem;
 
 import java.awt.Font;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
 import java.awt.Color;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -23,16 +27,17 @@ import java.awt.Component;
 public class ListaUsuarios extends JPanel {
 	
 	public DefaultTableModel modeloTabla;
-	private JScrollPane scrollPane;
+	public JScrollPane scrollPane;
 	public JTable table;
 	public JPopupMenu popupMenu;
 	public JMenuItem itemEliminar;
 	public JMenuItem itemActivar;
+	public Supermercado datos;
 	/**
 	 * Create the panel.
 	 */
-	public ListaUsuarios() {
-
+	public ListaUsuarios(Supermercado datos) {
+		this.datos = datos;
 		initComponents();
 	}
 	private void initComponents() {
@@ -51,8 +56,8 @@ public class ListaUsuarios extends JPanel {
 		modeloTabla.addColumn("Telefono");
 		modeloTabla.addColumn("Edad");
 		modeloTabla.addColumn("Cant Compras");
-		
-	
+		modeloTabla.addColumn("Activo");
+		cargarLista(datos);
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 704, 566);
 		add(scrollPane);
@@ -80,14 +85,36 @@ public class ListaUsuarios extends JPanel {
 		popupMenu.add(itemEliminar);
 		table.setComponentPopupMenu(popupMenu);
 		
+		
 	}
 	
 	public Object[] usuarioToObject(Usuario us)
 	{
-		Object[] objeto = new Object[] {us.getId(),us.getUserName(), us.getPassword(), us.getCartera(), us.getNombre(),us.getApellido(),us.getTelefono(),us.getEdad(), us.getHistorialCompra().cantidad()};
+		Object[] objeto = new Object[] {us.getId(),us.getUserName(), us.getPassword(), us.getCartera(), us.getNombre(),us.getApellido(),us.getTelefono(),us.getEdad(), us.getHistorialCompra().cantidad(), us.isActivo()};
 		
 		return objeto;
 	}
+	
+	public void cargarLista(Supermercado datos)
+	{
+		Set<Entry<Long,Usuario>> set = datos.getListaUsuarios().getMapa().entrySet();
+		Iterator<Entry<Long,Usuario>> it = set.iterator();
+		while(it.hasNext())
+		{
+			Entry<Long,Usuario> entrada = it.next();
+			Usuario aux = entrada.getValue();
+			Object[] dato = this.usuarioToObject(aux);
+			modeloTabla.addRow(dato);
+		}
+		
+	}
+	
+	public void limpiarLista()
+	{
+		modeloTabla.setRowCount(0);
+	}
+	
+	
 
 }
 

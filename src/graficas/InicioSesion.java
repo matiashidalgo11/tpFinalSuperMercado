@@ -163,6 +163,7 @@ public class InicioSesion extends JFrame {
 
 				try {
 
+					/*
 					if (txtNombreUser.getText().length() == 0 && txtPassword.getText().length() == 0) {
 						
 						throw new CamposVacios("UserName , Password" ,txtNombreUser, txtPassword);
@@ -215,6 +216,8 @@ public class InicioSesion extends JFrame {
 				}
 
 			}
+				
+			*/	
 		});
 		
 		

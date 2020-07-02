@@ -10,15 +10,22 @@ import Objetos.Usuario;
 
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import java.awt.GridLayout;
 import javax.swing.SwingConstants;
+
+import Excepciones.CamposVacios;
+import Excepciones.UsuarioExistente;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.CardLayout;
 
 public class UsuariosMenu extends JPanel {
+
 	public DefaultListModel<Usuario> modeloLista = new DefaultListModel<Usuario>();
 	private JPanel panel;
 	private JLabel lblNewLabel;
@@ -41,8 +48,10 @@ public class UsuariosMenu extends JPanel {
 	}
 	private void initComponents() {
 		
-		listaUs = new ListaUsuarios();
-		agregarUs = new AgregarUsuario();
+		listaUs = new ListaUsuarios(datos);
+		agregarUs = new AgregarUsuario(datos);
+		agregarUsuario();
+
 		
 		setBounds(232, 11, 1042, 689);
 		setLayout(null);
@@ -77,6 +86,7 @@ public class UsuariosMenu extends JPanel {
 		btnListaUsuarios = new JButton("Lista Usuarios");
 		btnListaUsuarios.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				//listaUs.updateUI();
 				CardLayout cl = (CardLayout)(panel.getLayout());
 				cl.show(panel, LISTA_USUARIOS_REF);
 			}
@@ -84,4 +94,52 @@ public class UsuariosMenu extends JPanel {
 		btnListaUsuarios.setBounds(521, 21, 362, 58);
 		add(btnListaUsuarios);
 	}
+	
+	public void agregarUsuario()
+	{
+		agregarUs.btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					if (agregarUs.txtUserName.getText().isEmpty() || agregarUs.txtPassword.getText().isEmpty()
+							|| agregarUs.txtNombre.getText().isEmpty() || agregarUs.txtApellido.getText().isEmpty()
+							|| agregarUs.txtTelefono.getText().isEmpty()) {
+						
+						int cant = agregarUs.contadorCamposVacios();
+						throw new CamposVacios("Formulario sin LLENAR completamente", cant);
+						
+					}else if(datos.getListaUsuarios().existencia(agregarUs.txtUserName.getText()))
+					{
+						throw new UsuarioExistente(agregarUs.txtUserName.getText());
+					}else
+					{
+						int edad = (int) agregarUs.cmbEdad.getSelectedItem();
+						Usuario nuevo = new Usuario(agregarUs.txtUserName.getText(), agregarUs.txtPassword.getText(), agregarUs.txtNombre.getText(), agregarUs.txtApellido.getText(), edad, agregarUs.txtTelefono.getText());
+						nuevo.setActivo(agregarUs.chckbxActivo.isSelected());
+						
+						if(datos.agregarUsuario(nuevo))
+						{
+							JOptionPane.showMessageDialog(panel, "Se agrego el Usuario Correctamente");
+							listaUs.limpiarLista();
+							listaUs.cargarLista(datos);
+							agregarUs.limpiarCampos();
+												}
+						
+					}
+
+				} catch (CamposVacios ex) {
+					ex.printStackTrace();
+				} catch(UsuarioExistente rep)
+				{
+					rep.printStackTrace();
+					agregarUs.txtUserName.setText("");
+				}
+					
+					
+			}
+		});
+	}
+	
+	
+	
+	
 }

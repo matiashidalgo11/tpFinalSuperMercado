@@ -398,4 +398,15 @@ public class AgregarProducto extends JPanel {
 		});
 	}
 	
+	public void agregarUsuario()
+	{
+		btnAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+	}
+	
+	
+	
 }
