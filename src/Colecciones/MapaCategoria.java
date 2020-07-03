@@ -261,9 +261,9 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		while(it.hasNext())
 		{
 			Entry<Long, MapaProductos> entrada = it.next();
-			if(entrada.getValue().getIdMasAlto() > id)
+			if(entrada.getKey() > id)
 			{
-				id = entrada.getValue().getIdMasAlto();
+				id = entrada.getKey();
 			}
 		}
 		
