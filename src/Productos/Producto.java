@@ -25,6 +25,15 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	private double precioOferta;
 	private long idCategoria;	
 	
+	public static String CLAVE_NOMBRE = "Nombre";
+	public static String CLAVE_PRECIO = "Precio";
+	public static String CLAVE_MARCA = "Marca";
+	public static String CLAVE_STOCK = "Stock";
+	public static String CLAVE_OFERTA = "Oferta";
+	public static String CLAVE_PRECIOOFERTA = "Precio Oferta";
+	public static String CLAVE_ID = "Id Producto";
+	public static String CLAVE_IDCATEGORIA = "ID Categoria";
+	
 
 	public Producto() 
 	{
@@ -54,6 +63,26 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		precioOferta = 0;
 		
 
+	}
+	
+	/**
+	 * 
+	 * Constructor con Json
+	 */
+	public Producto(JSONObject objeto)
+	{
+		if(objeto.has(CLAVE_ID))
+		{
+			id = objeto.getLong(CLAVE_ID);
+			nombre = objeto.getString(CLAVE_NOMBRE);
+			precio = objeto.getDouble(CLAVE_PRECIO);
+			marca = objeto.getString(CLAVE_MARCA);
+			stock = objeto.getLong(CLAVE_STOCK);
+			idCategoria = objeto.getLong(CLAVE_IDCATEGORIA);
+			oferta = objeto.getBoolean(CLAVE_OFERTA);
+			precioOferta = objeto.getDouble(CLAVE_PRECIOOFERTA);
+		}
+		
 	}
 	
 	public Producto(String nombre, double precio, String marca, long stock, long idCategoria, boolean oferta, double precioOferta) 
@@ -272,14 +301,16 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	public JSONObject toJson()
 	{
 		JSONObject objeto = new JSONObject();
-		objeto.put("Nombre", this.nombre);
-		objeto.put("Precio", this.precio);
-		objeto.put("Marca", this.marca);
-		objeto.put("Stock", this.stock);
-		objeto.put("Oferta", this.oferta);
-		objeto.put("Precio Oferta", this.precioOferta);
-		objeto.put("ID", this.id);
-		objeto.put("ID Categoria", this.idCategoria);
+		objeto.put(CLAVE_NOMBRE, this.nombre);
+		objeto.put(CLAVE_PRECIO, this.precio);
+		objeto.put(CLAVE_MARCA, this.marca);
+		objeto.put(CLAVE_STOCK, this.stock);
+		objeto.put(CLAVE_OFERTA, this.oferta);
+		objeto.put(CLAVE_PRECIOOFERTA, this.precioOferta);
+		objeto.put(CLAVE_ID, this.id);
+		objeto.put(CLAVE_IDCATEGORIA, this.idCategoria);
 		return objeto;
 	}
+	
+	
 }

@@ -7,6 +7,8 @@ public class Limpieza extends Producto{
 	private String tipo;
 	public static long ID_CATEGORIA_LIMPIEZA = 3;
 	
+	public static String CLAVE_TIPO = "tipoLimpieza";
+	
 	public Limpieza() 
 	{
 		super();
@@ -38,6 +40,19 @@ public class Limpieza extends Producto{
 		this.tipo = tipo;
 	}
 	
+	/**
+	 * 
+	 * Constructor Json
+	 * 
+	 */
+	public Limpieza(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_TIPO))
+		{
+			this.tipo = objeto.getString(CLAVE_TIPO);
+		}
+	}
 
 	public String getTipo() {
 		return tipo;
@@ -84,7 +99,7 @@ public class Limpieza extends Producto{
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Tipo", this.tipo);
+		objeto.put(CLAVE_TIPO, this.tipo);
 		return objeto;
 	}
 }

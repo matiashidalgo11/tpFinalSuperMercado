@@ -191,6 +191,7 @@ public class SubMenuModificarProducto extends JPanel {
 		panel.add(txtMarca);
 		
 		txtStockInicial = new JTextField(""+dato.getStock());
+		
 		txtStockInicial.setEnabled(false);
 		txtStockInicial.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtStockInicial.setColumns(10);

@@ -5,7 +5,10 @@ import org.json.JSONObject;
 public class Congelado extends Producto{
 
 	private double peso;
+	
 	public static long ID_CATEGORIA_CONGELADO = 6;
+	
+	public static String CLAVE_PESO = "pesoCongelado";
 	
 	public Congelado() {
 		super();
@@ -36,6 +39,19 @@ public class Congelado extends Producto{
 		this.peso = peso;
 	}
 
+	/*
+	 * Constructor Json
+	 * 
+	 */
+	public Congelado(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_PESO))
+		{
+			this.peso = objeto.getDouble(CLAVE_PESO);
+		}
+	}
+	
 	public double getPeso() {
 		return peso;
 	}
@@ -79,7 +95,7 @@ public class Congelado extends Producto{
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Peso", this.peso);
+		objeto.put(CLAVE_PESO, this.peso);
 		return objeto;
 	}
 }

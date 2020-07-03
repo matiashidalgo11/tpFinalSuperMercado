@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.Set;
@@ -51,8 +52,27 @@ public class Supermercado {
 		System.out.println(listaUsuarios.listar());
 		System.out.println(listaCategorias.listar());
 		System.out.println(listaCarritos.listar());
-
 	
+	}
+	
+	
+	public Supermercado(JSONObject objeto)
+	{
+		inicializarMapas();
+		if(objeto.has(CLAVE_LISTACARRITOS) && objeto.has(CLAVE_LISTACATEGORIAS) && objeto.has(CLAVE_LISTAUSUARIOS))
+		{
+			JSONArray arrayJUsuarios = objeto.getJSONArray(CLAVE_LISTAUSUARIOS);
+			
+			for(int i = 0; i < arrayJUsuarios.length(); i++)
+			{
+				Usuario aux = arrayJUsuarios.get(i); 
+			}
+
+			JSONArray arrayJCarro = objeto.getJSONArray(CLAVE_LISTACARRITOS);
+			
+			JSONArray arrayJProducto = objeto.getJSONArray(CLAVE_LISTACATEGORIAS);
+			
+		}
 	}
 	
 	/**
