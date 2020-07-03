@@ -28,8 +28,6 @@ public class MenuAdminUsuarios extends JPanel {
 
 	public DefaultListModel<Usuario> modeloLista = new DefaultListModel<Usuario>();
 	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
 	public JButton btnAgregarUsuario;
 	public JButton btnListaUsuarios;
 	private Supermercado datos;
@@ -63,16 +61,6 @@ public class MenuAdminUsuarios extends JPanel {
 		panel.setLayout(new CardLayout(0, 0));
 		panel.add(listaUs, LISTA_USUARIOS_REF);
 		panel.add(agregarUs, AGREGAR_USUARIO_REF);
-		
-	
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(893, 286, 149, 14);
-		add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(0, 286, 149, 14);
-		add(lblNewLabel_1);
 		
 		btnAgregarUsuario = new JButton("Agregar Usuario");
 		btnAgregarUsuario.addActionListener(new ActionListener() {

@@ -37,8 +37,6 @@ import java.awt.SystemColor;
 public class MenuAdminProductos extends JPanel {
 	private JScrollPane scrollPane;
 	private JPanel panel;
-	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
 	private JButton btnAgregarProducto;
 	private JButton btnListaProductos;
 	public CardLayout controlProductoMenu = new CardLayout();
@@ -79,17 +77,6 @@ public class MenuAdminProductos extends JPanel {
 		panel.setLayout(controlProductoMenu);
 		panel.add(listaP,LISTAPRODUCTOS_REFERENCIA);
 		panel.add(agregarP,AGREGARPRODUCTO_REFERENCIA);
-		
-		
-		
-		lblNewLabel = new JLabel("New label");
-		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
-		lblNewLabel.setBounds(893, 286, 149, 14);
-		add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setBounds(0, 286, 149, 14);
-		add(lblNewLabel_1);
 		
 		btnAgregarProducto = new JButton("Agregar Producto");
 		
