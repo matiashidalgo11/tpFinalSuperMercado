@@ -91,7 +91,6 @@ public class DetallesProducto extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
 		botonCerrarSesion = new JButton("");
 		botonCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 

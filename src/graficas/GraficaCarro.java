@@ -58,6 +58,7 @@ public class GraficaCarro extends JFrame {
 	private JLabel labelCarritoVacio;
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
+	private JLabel lblNewLabel;
 
 //	/**
 //	 * Launch the application.
@@ -121,6 +122,11 @@ public class GraficaCarro extends JFrame {
 				botonCerrarSesion.setBorder(null);
 			}
 		});
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
+		lblNewLabel.setBounds(650, 29, 387, 34);
+		contentPane.add(lblNewLabel);
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorderPainted(false);
 		botonCerrarSesion.setOpaque(false);

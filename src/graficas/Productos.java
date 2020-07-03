@@ -40,6 +40,7 @@ public class Productos extends JFrame {
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
 	private JScrollPane scrollPane;
+	private JButton botonVolver;
 	/**
 	 * Launch the application.
 	 */
@@ -92,6 +93,24 @@ public class Productos extends JFrame {
 				botonCerrarSesion.setBorder(null);
 			}
 		});
+		
+		
+		
+		
+		botonVolver = new JButton("VOLVER");
+		botonVolver.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
+		botonVolver.setForeground(Color.WHITE);
+		botonVolver.setBackground(new Color(51, 102, 153));
+		botonVolver.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 18));
+		botonVolver.setBounds(278, 19, 151, 37);
+		contentPane.add(botonVolver);
+		
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorderPainted(false);
 		botonCerrarSesion.setOpaque(false);
@@ -253,9 +272,6 @@ public class Productos extends JFrame {
 		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos V2.png")));
 		contentPane.add(fondo);
-		
-		
-		
 	}
 	
 	void crearMatrizBotones(JPanel panel, MapaProductos productos, Supermercado mercado)
