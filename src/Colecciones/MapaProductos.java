@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
+import ColeccionesGenericas.ArregloGenerico;
 import ColeccionesGenericas.MapaGenerico;
 import Interfaces.IdMaximo;
 import Productos.Producto;
@@ -101,5 +102,19 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		}
 		
 		return esIgual;
+	}
+	
+	public ArregloGenerico<Producto> mapaToArreglo()
+	{
+		ArregloGenerico<Producto> arreglo = null;
+		Iterator<Entry<String, Producto>> it = this.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<String, Producto> entrada = it.next();
+			arreglo.agregar(entrada.getValue());
+		}
+		
+		return arreglo;
 	}
 }
