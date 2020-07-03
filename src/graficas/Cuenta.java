@@ -26,11 +26,13 @@ import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.border.BevelBorder;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Cuenta extends JFrame {
 
 	private JPanel contentPane;
-	private JPasswordField fieldContraseña;
+	private JPasswordField fieldContraseñaGrafica;
 	private JLabel editarNombreUsuario;
 	private JTextField fieldUsuario;
 	private JLabel botonGuardar;
@@ -49,6 +51,8 @@ public class Cuenta extends JFrame {
 	private JLabel editarEdad;
 	private JLabel editarTelefono;
 	private JLabel labelPerfil;
+	private JButton botonCerrarSesion;
+	private JPasswordField fieldContraseñaReal;
 	
 //	public static void main(String[] args) 
 //	{
@@ -84,6 +88,33 @@ public class Cuenta extends JFrame {
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		botonCerrarSesion = new JButton("");
+		botonCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				mercado.guardarDatos();
+				dispose();
+				new Principal(mercado).setVisible(true);
+			}
+		});
+		botonCerrarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) 
+			{
+				botonCerrarSesion.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 102, 153)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCerrarSesion.setBorder(null);
+			}
+		});
+		botonCerrarSesion.setContentAreaFilled(false);
+		botonCerrarSesion.setBorderPainted(false);
+		botonCerrarSesion.setOpaque(false);
+		botonCerrarSesion.setBounds(81, 660, 129, 27);
+		contentPane.add(botonCerrarSesion);
 		
 		
 		labelPerfil = new JLabel(user.getUserName());
@@ -262,18 +293,31 @@ public class Cuenta extends JFrame {
 		contentPane.add(fieldUsuario);
 		fieldUsuario.setColumns(10);
 		
-		fieldContraseña = new JPasswordField();
-		fieldContraseña.setText(".......");
-		fieldContraseña.setSelectionColor(new Color(51, 204, 255));
-		fieldContraseña.setOpaque(false);
-		fieldContraseña.setForeground(new Color(102, 102, 102));
-		fieldContraseña.setFont(new Font("Calibri", Font.PLAIN, 24));
-		fieldContraseña.setEditable(false);
-		fieldContraseña.setColumns(10);
-		fieldContraseña.setBorder(null);
-		fieldContraseña.setBackground(Color.WHITE);
-		fieldContraseña.setBounds(320, 224, 391, 30);
-		contentPane.add(fieldContraseña);
+		fieldContraseñaReal = new JPasswordField();
+		fieldContraseñaReal.setText(user.getPassword());
+		fieldContraseñaReal.setSelectionColor(new Color(51, 204, 255));
+		fieldContraseñaReal.setOpaque(false);
+		fieldContraseñaReal.setForeground(new Color(102, 102, 102));
+		fieldContraseñaReal.setFont(new Font("Calibri", Font.PLAIN, 24));
+		fieldContraseñaReal.setEditable(false);
+		fieldContraseñaReal.setColumns(10);
+		fieldContraseñaReal.setBorder(null);
+		fieldContraseñaReal.setBackground(Color.WHITE);
+		fieldContraseñaReal.setBounds(320, 224, 391, 30);
+		contentPane.add(fieldContraseñaReal);
+		
+		fieldContraseñaGrafica = new JPasswordField();
+		fieldContraseñaGrafica.setText(".......");
+		fieldContraseñaGrafica.setSelectionColor(new Color(51, 204, 255));
+		fieldContraseñaGrafica.setOpaque(false);
+		fieldContraseñaGrafica.setForeground(new Color(102, 102, 102));
+		fieldContraseñaGrafica.setFont(new Font("Calibri", Font.PLAIN, 24));
+		fieldContraseñaGrafica.setEditable(false);
+		fieldContraseñaGrafica.setColumns(10);
+		fieldContraseñaGrafica.setBorder(null);
+		fieldContraseñaGrafica.setBackground(Color.WHITE);
+		fieldContraseñaGrafica.setBounds(320, 224, 391, 30);
+		contentPane.add(fieldContraseñaGrafica);
 		
 		editarNombreUsuario = new JLabel("");
 		editarNombreUsuario.setBounds(743, 117, 38, 35);
@@ -282,9 +326,17 @@ public class Cuenta extends JFrame {
 		contentPane.add(editarNombreUsuario);
 		
 		editarContraseña = new JLabel("");
+		editarContraseña.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseClicked(MouseEvent e) 
+			{
+				fieldContraseñaGrafica.setVisible(false);
+				fieldContraseñaReal.setVisible(true);
+				fieldContraseñaReal.setEditable(true);
+			}
+		});
 		editarContraseña.setBounds(742, 220, 38, 35);	
 		editarContraseña.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		editarContraseña.addMouseListener(new EditarField(fieldContraseña));
 		contentPane.add(editarContraseña);
 		
 		editarNombre = new JLabel("");
@@ -318,7 +370,12 @@ public class Cuenta extends JFrame {
 			public void mouseClicked(MouseEvent e) 
 			{
 				user.setUserName(fieldUsuario.getText());
-				user.setPassword(fieldContraseña.getText());
+				user.setPassword(fieldContraseñaReal.getText());
+				user.setNombre(fieldNombre.getText());
+				user.setApellido(fieldApellido.getText());
+				user.setCartera(Double.valueOf(labelSaldo.getText()));
+				user.setEdad(Integer.valueOf(fieldEdad.getText()));
+				user.setTelefono(fieldTelefono.getText());
 			}
 		});
 		botonGuardar.setBounds(836, 634, 224, 34);

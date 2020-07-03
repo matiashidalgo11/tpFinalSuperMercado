@@ -5,6 +5,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -14,6 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Colecciones.ArregloDetalleCompra;
@@ -40,6 +43,7 @@ public class GraficaHistorial extends JFrame {
 	private JLabel labelPerfil;
 	private JScrollPane scrollPane;
 	private JPanel panel;
+	private JButton botonCerrarSesion;
 
 	/**
 	 * Launch the application.
@@ -82,6 +86,33 @@ public class GraficaHistorial extends JFrame {
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		botonCerrarSesion = new JButton("");
+		botonCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				mercado.guardarDatos();
+				dispose();
+				new Principal(mercado).setVisible(true);
+			}
+		});
+		botonCerrarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) 
+			{
+				botonCerrarSesion.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 102, 153)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCerrarSesion.setBorder(null);
+			}
+		});
+		botonCerrarSesion.setContentAreaFilled(false);
+		botonCerrarSesion.setBorderPainted(false);
+		botonCerrarSesion.setOpaque(false);
+		botonCerrarSesion.setBounds(81, 660, 129, 27);
+		contentPane.add(botonCerrarSesion);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);

@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Colecciones.MapaProductos;
@@ -34,6 +35,7 @@ public class Productos extends JFrame {
 	private JPanel contentPane;
 	private int x, y;
 	private JLabel labelPerfil;
+	private JButton botonCerrarSesion;
 	/**
 	 * Launch the application.
 	 */
@@ -67,6 +69,33 @@ public class Productos extends JFrame {
 		setContentPane(contentPane);
 		
 		Usuario user = mercado.getUsuarioEnSesion();
+		
+		botonCerrarSesion = new JButton("");
+		botonCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				mercado.guardarDatos();
+				dispose();
+				new Principal(mercado).setVisible(true);
+			}
+		});
+		botonCerrarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) 
+			{
+				botonCerrarSesion.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 102, 153)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCerrarSesion.setBorder(null);
+			}
+		});
+		botonCerrarSesion.setContentAreaFilled(false);
+		botonCerrarSesion.setBorderPainted(false);
+		botonCerrarSesion.setOpaque(false);
+		botonCerrarSesion.setBounds(81, 660, 129, 27);
+		contentPane.add(botonCerrarSesion);
 		
 		labelPerfil = new JLabel(user.getUserName());
 		labelPerfil.setForeground(Color.WHITE);

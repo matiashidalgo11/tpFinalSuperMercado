@@ -23,6 +23,9 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextPane;
 import javax.swing.JButton;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Cursor;
@@ -41,6 +44,7 @@ public class DetallesProducto extends JFrame {
 	private JButton botonVolver;
 	private JButton botonAgregar;
 	private JLabel labelPerfil;
+	private JButton botonCerrarSesion;
 
 //	/**
 //	 * Launch the application.
@@ -82,6 +86,34 @@ public class DetallesProducto extends JFrame {
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
+		
+		botonCerrarSesion = new JButton("");
+		botonCerrarSesion.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				mercado.guardarDatos();
+				dispose();
+				new Principal(mercado).setVisible(true);
+			}
+		});
+		botonCerrarSesion.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseEntered(MouseEvent arg0) 
+			{
+				botonCerrarSesion.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 102, 153)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonCerrarSesion.setBorder(null);
+			}
+		});
+		botonCerrarSesion.setContentAreaFilled(false);
+		botonCerrarSesion.setBorderPainted(false);
+		botonCerrarSesion.setOpaque(false);
+		botonCerrarSesion.setBounds(81, 660, 129, 27);
+		contentPane.add(botonCerrarSesion);
 		
 		labelPerfil = new JLabel(user.getUserName());
 		labelPerfil.setForeground(Color.WHITE);
