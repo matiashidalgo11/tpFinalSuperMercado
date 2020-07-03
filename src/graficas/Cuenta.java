@@ -25,6 +25,9 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
+
+import com.sun.xml.internal.ws.util.StringUtils;
+
 import javax.swing.border.BevelBorder;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -34,7 +37,7 @@ public class Cuenta extends JFrame {
 	private JPanel contentPane;
 	private JPasswordField fieldContraseñaGrafica;
 	private JTextField fieldUsuario;
-	private JLabel botonGuardar;
+	private JButton botonGuardar;
 	private JLabel editarContraseña;
 	private JLabel labelSaldo;
 	private JLabel agregarDinero;
@@ -53,6 +56,7 @@ public class Cuenta extends JFrame {
 	private JButton botonCerrarSesion;
 	private JPasswordField fieldContraseñaReal;
 	private JLabel labelCamposVacios;
+	private JLabel labelNumerosIncorrectos;
 	
 //	public static void main(String[] args) 
 //	{
@@ -122,6 +126,13 @@ public class Cuenta extends JFrame {
 		botonCerrarSesion.setOpaque(false);
 		botonCerrarSesion.setBounds(81, 660, 129, 27);
 		contentPane.add(botonCerrarSesion);
+		
+		labelNumerosIncorrectos = new JLabel("Error! Debe ingresar unicamente numeros en Edad y Telefono");
+		labelNumerosIncorrectos.setVisible(false);
+		labelNumerosIncorrectos.setFont(new Font("Calibri", Font.BOLD, 20));
+		labelNumerosIncorrectos.setForeground(Color.RED);
+		labelNumerosIncorrectos.setBounds(697, 600, 579, 27);
+		contentPane.add(labelNumerosIncorrectos);
 		
 		
 		labelPerfil = new JLabel(user.getUserName());
@@ -367,15 +378,34 @@ public class Cuenta extends JFrame {
 		editarTelefono.addMouseListener(new EditarField(fieldTelefono));
 		contentPane.add(editarTelefono);
 		
-		botonGuardar = new JLabel("");
-		botonGuardar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		botonGuardar = new JButton("");
 		botonGuardar.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent e) 
+			public void mouseEntered(MouseEvent arg0) 
 			{
-				if(!casillasVacias())
+				botonGuardar.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(51, 204, 255)));
+			}
+			@Override
+			public void mouseExited(MouseEvent e) 
+			{
+				botonGuardar.setBorder(null);
+			}
+		});
+		botonGuardar.setBorder(null);
+		botonGuardar.setContentAreaFilled(false);
+		botonGuardar.setOpaque(false);
+		botonGuardar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				if(!numerosCorrectos())
 				{
 					labelCamposVacios.setVisible(false);
+					labelNumerosIncorrectos.setVisible(true);
+				}
+				else if(!casillasVacias())
+				{
+					labelCamposVacios.setVisible(false);
+					labelNumerosIncorrectos.setVisible(false);
 					user.setUserName(fieldUsuario.getText());
 					user.setPassword(fieldContraseñaReal.getText());
 					user.setNombre(fieldNombre.getText());
@@ -386,11 +416,14 @@ public class Cuenta extends JFrame {
 				}
 				else
 				{
+					labelNumerosIncorrectos.setVisible(false);
 					labelCamposVacios.setVisible(true);
 				}
 			}
 		});
-		botonGuardar.setBounds(836, 634, 224, 34);
+		botonGuardar.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+		
+		botonGuardar.setBounds(835, 639, 224, 34);
 		contentPane.add(botonGuardar);
 		
 		labelSaldo = new JLabel("");
@@ -477,11 +510,26 @@ public class Cuenta extends JFrame {
 	{
 		boolean verificar = false;
 		if(fieldUsuario.getText().equals("") || fieldContraseñaReal.getText().equals("") || fieldNombre.getText().equals("")
-				|| fieldApellido.getText().equals("") || fieldEdad.getText().equals("") || fieldTelefono.getText().equals("")
-				|| labelSaldo.getText().equals(""))
+				|| fieldApellido.getText().equals("") || fieldEdad.getText().equals("") || fieldTelefono.getText().equals(""))
 		{
 			verificar = true;
 		}
 		return verificar;
 	}
+	
+	boolean numerosCorrectos()
+	{
+		boolean verificar = false;
+		if(isNumeric(fieldEdad.getText()) && isNumeric(fieldTelefono.getText()))
+		{
+			verificar = true;
+		}
+		
+		return verificar;
+
+	}
+	
+	public boolean isNumeric(String s) {  
+	    return s != null && s.matches("[-+]?\\d*\\.?\\d+");  
+	}  
 }

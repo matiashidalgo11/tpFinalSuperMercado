@@ -246,7 +246,7 @@ public class Inicio extends JFrame {
 			}
 			catch(NullPointerException e)
 			{
-				e.printStackTrace();
+				
 			}
 			
 		}	
