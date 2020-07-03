@@ -339,7 +339,7 @@ public class GraficaCarro extends JFrame {
 		
 		for(Producto aux : productos.getArreglo())
 		{
-			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecio());
+			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecioActual());
 			arregloBotones[i].setHorizontalAlignment(SwingConstants.LEFT);
 			arregloBotones[i].setFont(new Font("Calibri", Font.BOLD, 20));
 			arregloBotones[i].setForeground(new Color(51, 102, 153));
