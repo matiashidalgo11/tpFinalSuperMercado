@@ -205,6 +205,11 @@ public class Supermercado {
 		return resp;
 	}
 	
+	public void sumarStock(Producto p, Long cantidad)
+	{
+		Producto aux = listaCategorias.buscarProducto(p.getId());
+		aux.sumarStock(cantidad);
+	}
 	
 	/**
 	 * Agrega un Usuario al mapa y tambien lo agrega al Archivo
