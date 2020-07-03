@@ -21,6 +21,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		super();
 	}
 	
+	/**
+	 * Agrega una categoria al mapa de categorias.
+	 * @param idCategoria
+	 * @param mapaNuevo
+	 */
 	public void agregarCategoria(Long idCategoria, MapaProductos mapaNuevo )
 	{
 		if(existencia(idCategoria))
@@ -44,6 +49,12 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 	}
 	
+	/**
+	 * Agrega un producto al supermercado. En caso de que pertenezca a una categoria ya existente, la agrega a esa categoria. Caso contrario, crea la categoria y agrega el producto
+	 * @param p
+	 * @return
+	 * @throws ProductoYaExiste
+	 */
 	public boolean agregarProducto(Producto p) throws ProductoYaExiste
 	{
 		MapaProductos aux;
@@ -76,6 +87,12 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
+	
+	/**
+	 * Elimina un producto del supermercado mediante la id de este.
+	 * @param idProducto
+	 * @return
+	 */
 	public boolean eliminarProducto(Long idProducto)
 	{
 		boolean resp = false;
@@ -92,6 +109,13 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
+	
+	
+	/**
+	 * En caso de que el producto ya se encuentre dentro del supermercado, esta funcion retornara un true. Caso contrario, retornara un false.
+	 * @param idProducto
+	 * @return boolean
+	 */
 	public boolean existeProducto(Long idProducto)
 	{
 		boolean resp = false;
@@ -108,6 +132,12 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
+	/**
+	 * Esta funcion busca un producto dentro del supermercado.
+	 * @param idProducto
+	 * @return Producto
+	 * @throws NullPointerException
+	 */
 	public Producto buscarProducto(Long idProducto) throws NullPointerException
 	{
 		Producto resp = null;
@@ -152,6 +182,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return builder.toString();
 	}
 	
+	/**
+	 * Lista una categoria en especifico
+	 * @param idCategoria
+	 * @return String
+	 */
 	public String listarCategoriaProducto(Long idCategoria)
 	{
 		MapaProductos nuevo = new MapaProductos(); 
@@ -165,6 +200,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return nuevo.listar();
 	}
 	
+	/**
+	 * Obtiene el nombre de una categoria dependiendo de su id.
+	 * @param idCategoria
+	 * @return String
+	 */
 	public String getNombreCategoria(Long idCategoria)
 	{
 		MapaProductos mapa = buscar(idCategoria);
@@ -179,6 +219,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return nombre;
 	}
 	
+	/**
+	 * Obtiene una categoria dependiente de su nombre.
+	 * @param nombre
+	 * @return MapaProductos
+	 */
 	public MapaProductos getCategoriaPorNombre(String nombre)
 	{
 		Iterator<Entry<Long, MapaProductos>> it = getIterator();
@@ -195,6 +240,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return mapaRetorno;
 	}
 	
+	
+	 /**
+	  * Obtiene el id mas alto
+	  * @return Long
+	  */
 	public Long getIdMasAlto()
 	{
 		Iterator<Entry<Long, MapaProductos>> it = getIterator();
@@ -212,6 +262,10 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return id;
 	}
 	
+	/**
+	 * Obtengo la cantidad de productos que hay en el supermercado
+	 * @return int
+	 */
 	public int cantidadProductos()
 	{
 		int cantidad = 0;
@@ -260,7 +314,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
-	
+	/**
+	 * Establece una oferta al producto recibido por parametro
+	 * @param producto
+	 * @param precioOferta
+	 */
 	public void establecerOferta(Producto producto, double precioOferta)
 	{
 		Producto oferta = buscarProducto(producto.getId());
@@ -268,6 +326,10 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		oferta.setPrecioOferta(precioOferta);
 	}
 	
+	/**
+	 * Elimina la oferta del producto recibido por parametro
+	 * @param producto
+	 */
 	public void quitarOferta(Producto producto)
 	{
 		Producto oferta = buscarProducto(producto.getId());
@@ -332,6 +394,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
+	
 	public boolean marcaEnOferta(String marcaProducto)
 	{
 		boolean resp =  true;
@@ -360,7 +423,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
-	//Establece una oferta a todos los productos de una marca
+	/**
+	 * Establece una oferta a todos los productos de la marca recibida por parametro
+	 * @param marcaProducto
+	 * @return
+	 */
 	public void establecerOfertaPorMarca(String marca, int porcentaje)
 	{
 		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
@@ -386,7 +453,11 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 	}
 	
-	//Quita la oferta de todos los productos de una marca
+	/**
+	 * Elimina las ofertas a todos los productos de la marca recibida por parametro
+	 * @param marcaProducto
+	 * @return
+	 */
 	public void quitarOfertaPorMarca(String marca)
 	{
 		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
