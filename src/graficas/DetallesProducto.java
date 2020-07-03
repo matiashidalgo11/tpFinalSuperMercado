@@ -9,6 +9,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import Colecciones.MapaProductos;
+import Objetos.Carro;
 import Objetos.Session;
 import Objetos.Supermercado;
 import Objetos.Usuario;
@@ -80,6 +81,8 @@ public class DetallesProducto extends JFrame {
 		setLocationRelativeTo(null);
 		
 		Usuario user = mercado.getUsuarioEnSesion();
+		Session activa = mercado.getSesionActiva();
+		Carro carrito = activa.getCarrito();
 		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -233,12 +236,11 @@ public class DetallesProducto extends JFrame {
 		
 		
 		botonAgregar = new JButton("");
-		botonAgregar.addMouseListener(new MouseAdapter() 
-		{
-			@Override
-			public void mouseClicked(MouseEvent e) 
+		botonAgregar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
 			{
-				Session activa = mercado.getSesionActiva();
+				producto.restarStock(1);
+				detalles.setText(producto.toString());
 				activa.agregarAlCarro(producto);
 			}
 		});

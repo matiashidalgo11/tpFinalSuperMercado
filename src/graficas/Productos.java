@@ -21,6 +21,7 @@ import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
 
 import Colecciones.MapaProductos;
+import ColeccionesGenericas.ArregloGenerico;
 import Objetos.Supermercado;
 import Objetos.Usuario;
 import Productos.Producto;
@@ -235,11 +236,12 @@ public class Productos extends JFrame {
 		panel.setIgnoreRepaint(true);
 		panel.setBorder(null);
 		panel.setBounds(255, 58, 1017, 627);
+		panel.setLayout(null);
 		contentPane.add(panel);
 		
 		System.out.println(productos.listar());
-		crearMatrizBotones(panel, productos, mercado);
-		panel.setLayout(null);
+		
+		crearMatrizBotones(panel, productos, mercado);		
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
@@ -257,26 +259,32 @@ public class Productos extends JFrame {
 		int bajar = 0;
 		JButton arreglo[] = new JButton[idAlto+1];
 		int primerId = Long.valueOf(productos.getPrimerId()).intValue();
+		Producto aux = null;
 		
 		for(int i = primerId ; i <= idAlto; i++)
 		{
-			arreglo[i] = new JButton(productos.getNombreProducto(i));
-			arreglo[i].setBounds(x, y, 316, 67);
-			arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
-			arreglo[i].setForeground(new Color(255, 255, 255));
-			arreglo[i].setBackground(new Color(0, 102, 255));
-			arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
-			arreglo[i].setActionCommand(productos.getNombreProducto(i));
-			arreglo[i].addActionListener(new Pulsando(arreglo[i], productos, mercado));
-			panel.add(arreglo[i]);
-			x += 316 + 20;
+			aux = productos.getProductoPorNombre(productos.getNombreProducto(i));
 			
-			bajar++;
-			if(bajar == 2) 
+			if(aux.getStock() > 0)
 			{
-				x = 150;
-				y += 67 + 20;
-			}
+				arreglo[i] = new JButton(aux.getNombre());
+				arreglo[i].setBounds(x, y, 316, 67);
+				arreglo[i].setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 15));
+				arreglo[i].setForeground(new Color(255, 255, 255));
+				arreglo[i].setBackground(new Color(0, 102, 255));
+				arreglo[i].setBorder(UIManager.getBorder("CheckBox.border"));
+				arreglo[i].setActionCommand(aux.getNombre());
+				arreglo[i].addActionListener(new Pulsando(arreglo[i], productos, mercado));
+				panel.add(arreglo[i]);
+				x += 316 + 20;
+				
+				bajar++;
+				if(bajar == 2) 
+				{
+					x = 150;
+					y += 67 + 20;
+				}
+			}		
 		}	
 	}
 	

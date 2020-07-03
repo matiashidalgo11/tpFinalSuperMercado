@@ -149,22 +149,35 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	@Override
 	public String toString() 
 	{
-		return  "\nIdProducto: " + id + "\n" + 
+		String sinOferta = "\nIdProducto: " + id + "\n" + 
 				"Nombre:     " + nombre + "\n" + 
 				"Precio:     $" + precio + "\n" + 
 				"Marca:      " + marca + "\n" + 
 				"Stock:      " + stock + "\n"
 				;
-	}
-
-	
+		String conOferta = "\nIdProducto: " + id + "\n" + 
+				"Nombre:     " + nombre + "\n" + 
+				"PRECIO EN OFERTA!!! " + "\n" +
+				"Antes:     $" + precio + "\n" + 
+				"Ahora:     $" + precioOferta + "\n" + 
+				"Marca:      " + marca + "\n" + 
+				"Stock:      " + stock + "\n"
+				;
+				
+		if(this.oferta)
+		{
+			return conOferta;
+		}
+		else
+		{
+			return sinOferta;
+		}
+	}	
 	
 	@Override
 	public int hashCode() {
 		return 0;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
