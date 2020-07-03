@@ -30,6 +30,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
+import java.awt.Color;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 public class MenuAdminProductos extends JPanel {
 	private JScrollPane scrollPane;
@@ -55,6 +58,7 @@ public class MenuAdminProductos extends JPanel {
 	 * Create the panel.
 	 */
 	public MenuAdminProductos(Supermercado datos) {
+		setBackground(SystemColor.text);
 		this.datos = datos;
 		initComponents();
 		accionesBotones();

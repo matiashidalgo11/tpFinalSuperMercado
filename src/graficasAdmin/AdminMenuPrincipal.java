@@ -24,6 +24,7 @@ import graficas.Principal;
 import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import javax.swing.ImageIcon;
+import java.awt.Font;
 
 /**
  * 
@@ -101,25 +102,50 @@ public class AdminMenuPrincipal extends JFrame {
 		contentPane.setLayout(null);
 		
 		panel = new JPanel();
-		panel.setBounds(37, 11, 212, 689);
+		panel.setBounds(29, 11, 229, 689);
+		panel.setBackground(new Color(0,0,0,0));
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		btnAdministrarUsuarios = new JButton("Administrar Usuarios");
-		btnAdministrarUsuarios.setBounds(5, 279, 200, 102);
+		
+		//Configuracion para Boton Invisible
+				btnAdministrarUsuarios.setVisible(true);
+				btnAdministrarUsuarios.setOpaque(false);
+				btnAdministrarUsuarios.setContentAreaFilled(false);
+		
+		btnAdministrarUsuarios.setForeground(Color.WHITE);
+		btnAdministrarUsuarios.setFont(new Font("Calibri", Font.ITALIC, 19));
+		btnAdministrarUsuarios.setBounds(5, 298, 207, 83);
+		btnAdministrarUsuarios.setBackground(Color.WHITE);
 		panel.add(btnAdministrarUsuarios);
 		
 		btnAdministrarProductos = new JButton("Administrar Productos");
-		btnAdministrarProductos.setBounds(5, 404, 200, 102);
+		
+		//Configuracion para Boton Invisible
+		btnAdministrarProductos.setVisible(true);
+		btnAdministrarProductos.setOpaque(false);
+		btnAdministrarProductos.setContentAreaFilled(false);
+		
+		btnAdministrarProductos.setBackground(new Color(0,0,0,0));
+		btnAdministrarProductos.setForeground(Color.WHITE);
+		btnAdministrarProductos.setOpaque(false);
+		
+		btnAdministrarProductos.setFont(new Font("Calibri", Font.ITALIC, 19));
+		btnAdministrarProductos.setBounds(5, 423, 207, 83);
 		panel.add(btnAdministrarProductos);
 		
 
 		btnCerrarSesion = new JButton("");
-		btnCerrarSesion.setOpaque(false);
+		
+		//Configuracion para Boton Invisible
+				btnCerrarSesion.setVisible(true);
+				btnCerrarSesion.setOpaque(false);
+				btnCerrarSesion.setContentAreaFilled(false);
+		
 		btnCerrarSesion.setBackground(new Color(0,0,0,0));
-		//btnCerrarSesion.setBackground(Color.WHITE);
 		btnCerrarSesion.setIcon(new ImageIcon(AdminMenuPrincipal.class.getResource("/img/Boton Cerrar Sesion.png")));
-		btnCerrarSesion.setBounds(33, 628, 127, 35);
+		btnCerrarSesion.setBounds(37, 628, 139, 35);
 		panel.add(btnCerrarSesion);
 		
 		lblImagenAdmin = new JLabel("");
@@ -132,14 +158,24 @@ public class AdminMenuPrincipal extends JFrame {
 		panel.add(lblImagenAdmin);
 		
 		btnInformacionGeneral = new JButton("Informacion General");
-		btnInformacionGeneral.setBounds(5, 229, 200, 23);
+		btnInformacionGeneral.setForeground(Color.WHITE);
+		//Configuracion para Boton Invisible
+		btnInformacionGeneral.setVisible(true);
+		btnInformacionGeneral.setOpaque(false);
+		btnInformacionGeneral.setContentAreaFilled(false);
+		
+		btnInformacionGeneral.setBackground(Color.WHITE);
+		btnInformacionGeneral.setFont(new Font("Calibri", Font.ITALIC, 19));
+		btnInformacionGeneral.setBounds(5, 218, 207, 51);
 		panel.add(btnInformacionGeneral);
 		
 		scrollPane = new JScrollPane();
-		scrollPane.setBounds(259, 11, 1042, 689);
+		scrollPane.setBackground(Color.GREEN);
+		scrollPane.setBounds(259, 25, 1002, 675);
 		contentPane.add(scrollPane);
 		
 		subMenu = new JPanel();
+		subMenu.setBackground(Color.WHITE);
 		scrollPane.setViewportView(subMenu);
 		control = new CardLayout();
 		subMenu.setLayout(control);

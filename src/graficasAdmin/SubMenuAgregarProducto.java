@@ -32,6 +32,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JCheckBox;
+import java.awt.SystemColor;
 
 public class SubMenuAgregarProducto extends JPanel {
 	
@@ -118,6 +119,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		setLayout(null);
 		
 		panel = new JPanel();
+		panel.setBackground(SystemColor.text);
 		panel.setBounds(0, 0, 724, 588);
 		add(panel);
 		panel.setLayout(null);
@@ -175,11 +177,13 @@ public class SubMenuAgregarProducto extends JPanel {
 		panel.add(cmbCategoria);;
 		
 		panelAtributos = new JPanel();
+		panelAtributos.setBackground(SystemColor.text);
 		panelAtributos.setBounds(86, 358, 548, 165);
 		panel.add(panelAtributos);
 		panelAtributos.setLayout(controlPanelAtributo);
 		
 		Bebidas = new JPanel();
+		Bebidas.setBackground(SystemColor.text);
 		panelAtributos.add(Bebidas, BEBIDAS_REFERENCIA);
 		Bebidas.setLayout(null);
 		
@@ -240,6 +244,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		textGusto.setColumns(10);
 		
 		Congelado = new JPanel();
+		Congelado.setBackground(SystemColor.text);
 		panelAtributos.add(Congelado, CONGELADO_REFERENCIA);
 		Congelado.setLayout(null);
 		
@@ -256,6 +261,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		Congelado.add(textPesoCongelado);
 		
 		Golisinas = new JPanel();
+		Golisinas.setBackground(SystemColor.text);
 		panelAtributos.add(Golisinas, GOLOSINAS_REFERENCIA);
 		Golisinas.setLayout(null);
 		
@@ -284,6 +290,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		Golisinas.add(textDescripcionGolosina);
 		
 		Lacteos = new JPanel();
+		Lacteos.setBackground(SystemColor.controlLtHighlight);
 		panelAtributos.add(Lacteos, LACTEOS_REFERENCIA);
 		Lacteos.setLayout(null);
 		
@@ -299,6 +306,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		Lacteos.add(textTipoLacteo);
 		
 		Limpieza = new JPanel();
+		Limpieza.setBackground(SystemColor.controlLtHighlight);
 		panelAtributos.add(Limpieza, LIMPIEZA_REFERENCIA);
 		Limpieza.setLayout(null);
 		
@@ -313,6 +321,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		textDescripcionLimpieza.setColumns(10);
 		
 		Perfumeria = new JPanel();
+		Perfumeria.setBackground(SystemColor.controlLtHighlight);
 		panelAtributos.add(Perfumeria, PERFUMERIA_REFERENCIA);
 		Perfumeria.setLayout(null);
 		
@@ -327,6 +336,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		textFragancia.setColumns(10);
 		
 		Snack = new JPanel();
+		Snack.setBackground(SystemColor.controlLtHighlight);
 		panelAtributos.add(Snack, SNACK_REFERENCIA);
 		Snack.setLayout(null);
 		

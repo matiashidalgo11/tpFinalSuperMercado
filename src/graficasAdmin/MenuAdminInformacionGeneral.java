@@ -7,6 +7,8 @@ import Objetos.Supermercado;
 
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.SystemColor;
+import javax.swing.border.BevelBorder;
 
 public class MenuAdminInformacionGeneral extends JPanel {
 	private JLabel lblNewLabel;
@@ -21,6 +23,8 @@ public class MenuAdminInformacionGeneral extends JPanel {
 	 * Create the panel.
 	 */
 	public MenuAdminInformacionGeneral(Supermercado datos) {
+		setBorder(new BevelBorder(BevelBorder.RAISED, SystemColor.controlLtHighlight, SystemColor.text, SystemColor.text, SystemColor.text));
+		setBackground(SystemColor.text);
 
 		this.datos = datos;
 		initComponents();
@@ -30,7 +34,7 @@ public class MenuAdminInformacionGeneral extends JPanel {
 	
 		setBounds(232, 11, 1042, 689);
 		setLayout(null);
-		
+
 	
 		lblNewLabel = new JLabel("Cantidad de Usuarios");
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 23));
