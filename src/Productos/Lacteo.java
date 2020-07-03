@@ -7,6 +7,8 @@ public class Lacteo extends Producto {
 	private String tipo;
 	public static long ID_CATEGORIA_LACTEO = 4;
 	
+	public static String CLAVE_TIPO = "tipoLacteo";
+	
 	public Lacteo() 
 	{
 		super();
@@ -35,7 +37,20 @@ public class Lacteo extends Producto {
 		super(ID_CATEGORIA_LACTEO);
 		this.tipo = tipo;
 	}
-
+	
+	/**
+	 * Constructor para Json
+	 * 
+	 */
+	public Lacteo(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_TIPO))
+		{
+			this.tipo = objeto.getString(CLAVE_TIPO);
+		}
+	}
+	
 	public String getTipo() {
 		return tipo;
 	}
@@ -81,7 +96,7 @@ public class Lacteo extends Producto {
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Tipo", this.tipo);
+		objeto.put(CLAVE_TIPO, this.tipo);
 		return objeto;
 	}
 	

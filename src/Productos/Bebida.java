@@ -11,10 +11,17 @@ public class Bebida extends Producto{
 	
 	public static long ID_CATEGORIA_BEBIDAS = 7;
 	
+	//Referencia Json
+	public static String CLAVE_GASIFICADA = "gasificada";
+	public static String CLAVE_LITROS = "litros";
+	public static String CLAVE_GUSTO = "gustoBebida";
+	public static String CLAVE_ALCOHOL = "alcohol";
+	
 	public Bebida() 
 	{
 		super();
 		gasificada = false;
+		litros = 0;
 		gusto = "";
 		alcohol = false;
 	}
@@ -51,6 +58,26 @@ public class Bebida extends Producto{
 		this.litros = litros;
 		this.gusto = gusto;
 		this.alcohol = alcohol;
+	}
+	
+	
+	/**
+	 * 
+	 * Constructor para Json
+	 */
+	public Bebida(JSONObject objeto)
+	{
+		super(objeto);
+		
+		if(objeto.has(CLAVE_GUSTO))
+		{
+			gasificada = objeto.getBoolean(CLAVE_GASIFICADA);
+			litros = objeto.getDouble(CLAVE_LITROS);
+			gusto = objeto.getString(CLAVE_GUSTO);
+			alcohol = objeto.getBoolean(CLAVE_ALCOHOL);
+		}
+		
+		
 	}
 	
 	public boolean isGasificada() {

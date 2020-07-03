@@ -10,9 +10,17 @@ import Excepciones.ProductoYaExiste;
 import java.util.Set;
 
 import org.json.JSONArray;
+import org.json.JSONObject;
 
 import Interfaces.IdMaximo;
+import Productos.Bebida;
+import Productos.Congelado;
+import Productos.Golosina;
+import Productos.Lacteo;
+import Productos.Limpieza;
+import Productos.Perfumeria;
 import Productos.Producto;
+import Productos.Snack;
 
 public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements IdMaximo{
 	
@@ -515,6 +523,47 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		}
 		
 		return arreglo;
+	}
+	
+	
+	public static Producto instanciarJson(JSONObject objeto)
+	{
+		Producto aux = null;
+		try
+		{
+			if(objeto.has(Bebida.CLAVE_GUSTO))
+			{
+				aux = new Bebida(objeto);
+			}else if(objeto.has(Congelado.CLAVE_PESO))
+			{
+				aux = new Congelado(objeto);
+			}else if(objeto.has(Golosina.CLAVE_DESCRIPCION))
+			{
+				aux = new Golosina(objeto);
+			}else if(objeto.has(Lacteo.CLAVE_TIPO))
+			{
+				aux = new Lacteo(objeto);
+			}else if(objeto.has(Limpieza.CLAVE_TIPO))
+			{
+				aux = new Limpieza(objeto);
+			}else if(objeto.has(Perfumeria.CLAVE_TIPOFRAGANCIA))
+			{
+				aux = new Perfumeria(objeto);
+			}else if(objeto.has(Snack.CLAVE_CANTIDADG))
+			{
+				aux = new Snack(objeto);
+			}else
+			{
+				throw new NullPointerException();
+			}
+			
+		}catch(NullPointerException nu)
+		{
+			nu.printStackTrace();
+		}
+		
+		
+		return aux;
 	}
 	
 }

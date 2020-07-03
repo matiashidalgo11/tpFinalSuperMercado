@@ -4,6 +4,7 @@ package Objetos;
 
 import java.io.Serializable;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Colecciones.ArregloDetalleCompra;
@@ -46,6 +47,8 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	public static String CLAVE_CARTERA = "cartera";
 	public static String CLAVE_HISTORIALCOMPRA = "historialCompra";
 	public static String CLAVE_NOMBRE = "nombre";
+	public static String CLAVE_APELLIDO = "apellido";
+	public static String CLAVE_EDAD = "edad";
 	public static String CLAVE_TELEFONO = "telefono";
 	public static String CLAVE_ACTIVO = "activo";
 	
@@ -84,6 +87,40 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 		this.edad = edad;
 		this.telefono = telefono;
 		this.activo = activo;
+	}
+	
+	/**
+	 * Constructor para Json
+	 */
+	public Usuario(JSONObject json)
+	{
+		JSONArray arrayJDetalleCompra;
+		JSONObject detalleJson;
+		DetalleCompra aux;
+		
+		if(json.has(CLAVE_ID))
+		{
+			this.id = json.getLong(CLAVE_ID);
+			this.userName = json.getString(CLAVE_USERNAME);
+			this.password = json.getString(CLAVE_PASSWORD);
+			this.cartera = json.getDouble(CLAVE_CARTERA);
+			this.nombre = json.getString(CLAVE_NOMBRE);
+			this.apellido = json.getString(CLAVE_APELLIDO);
+			this.edad = json.getInt(CLAVE_EDAD);
+			this.telefono = json.getString(CLAVE_TELEFONO);
+			this.activo = json.getBoolean(CLAVE_ACTIVO);
+			historialCompra = new ArregloDetalleCompra();
+			arrayJDetalleCompra = json.getJSONArray(CLAVE_HISTORIALCOMPRA);
+			
+			for(int i = 0; i < arrayJDetalleCompra.length(); i++ )
+			{
+				detalleJson = arrayJDetalleCompra.getJSONObject(i);
+				aux  = new DetalleCompra(detalleJson);
+				historialCompra.agregar(aux);
+			}
+			
+		}
+
 	}
 	
 	
@@ -299,11 +336,13 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	public JSONObject toJson() {
 		
 		JSONObject resp = new JSONObject();
+		
 		resp.put(CLAVE_ACTIVO, this.isActivo());
 		resp.put(CLAVE_CARTERA, this.getCartera());
 		resp.put(CLAVE_HISTORIALCOMPRA, this.getHistorialCompra().toJsonArray());
 		resp.put(CLAVE_ID, this.getId());
 		resp.put(CLAVE_NOMBRE, this.getNombre());
+		resp.put(CLAVE_APELLIDO, this.getApellido());
 		resp.put(CLAVE_PASSWORD, this.getPassword());
 		resp.put(CLAVE_TELEFONO, this.getTelefono());
 		resp.put(CLAVE_USERNAME, this.getUserName());
@@ -312,7 +351,7 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 		return resp;
 	}
 
-	
+
 
 
 

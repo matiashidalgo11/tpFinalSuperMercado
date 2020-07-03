@@ -2,6 +2,7 @@ package Objetos;
 
 import java.io.Serializable;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import Colecciones.ArregloProductos;
@@ -43,6 +44,28 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		arreglo = new ArregloProductos();
 		this.total = 0;
 		this.idCarro = id;
+	}
+	
+	public Carro(JSONObject objeto)
+	{
+		arreglo = new ArregloProductos();
+		Producto aux;
+		JSONArray arrayJProductos;
+		JSONObject productoJson;
+		if(objeto.has(CLAVE_ID))
+		{
+			this.idCarro = objeto.getLong(CLAVE_ID);
+			this.total = objeto.getDouble(CLAVE_TOTAL);
+			
+			arrayJProductos = objeto.getJSONArray(CLAVE_ARREGLOPRODUCTOS);
+			for(int i = 0; i < arrayJProductos.length() ; i++)
+			{
+				//Si no funciona es Get
+				productoJson = arrayJProductos.getJSONObject(i);
+				aux = MapaCategoria.instanciarJson(productoJson);
+				arreglo.agregar(aux);
+			}
+		}
 	}
 	
 

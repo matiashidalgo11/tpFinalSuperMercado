@@ -7,6 +7,8 @@ public class Snack extends Producto {
 	private double cantidadG;
 	public static long ID_CATEGORIA_SNACK = 1;
 	
+	public static String CLAVE_CANTIDADG = "claveCantidadSnack";
+	
 	public Snack() 
 	{
 		super();
@@ -32,6 +34,19 @@ public class Snack extends Producto {
 	public Snack(double cantidadG) {
 		super(ID_CATEGORIA_SNACK);
 		this.cantidadG = cantidadG;
+	}
+	
+	/**
+	 * Constructor para Json
+	 * 
+	 */
+	public Snack(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_CANTIDADG))
+		{
+			this.cantidadG = objeto.getDouble(CLAVE_CANTIDADG);
+		}
 	}
 
 	public double getCantidadG() {

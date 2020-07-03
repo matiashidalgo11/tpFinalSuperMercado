@@ -9,6 +9,9 @@ public class Golosina extends Producto{
 	
 	public static long ID_CATEGORIA_GOLOSINA = 5;
 	
+	public static String CLAVE_CANTIDAD = "cantidad";
+	public static String CLAVE_DESCRIPCION = "descripcionGolosina";
+	
 	public Golosina() 
 	{
 		super();
@@ -43,6 +46,21 @@ public class Golosina extends Producto{
 		this.descripcion = descripcion;
 	}
 
+	/**
+	 * Constructor para Json
+	 * 
+	 */
+	public Golosina(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_DESCRIPCION))
+		{
+			this.cantidad = objeto.getInt(CLAVE_CANTIDAD);
+			this.descripcion = objeto.getString(CLAVE_DESCRIPCION);
+		}
+				
+		
+	}
 	
 	
 	public String getDescripcion() {
@@ -95,8 +113,8 @@ public class Golosina extends Producto{
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Cantidad", this.cantidad);
-		objeto.put("Descripcion", this.descripcion);
+		objeto.put(CLAVE_CANTIDAD, this.cantidad);
+		objeto.put(CLAVE_DESCRIPCION, this.descripcion);
 		return objeto;
 	}
 }

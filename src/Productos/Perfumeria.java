@@ -7,6 +7,8 @@ public class Perfumeria extends Producto {
 	private String tipoFragancia;
 	public static long ID_CATEGORIA_PERFUMERIA = 2;
 	
+	public static String CLAVE_TIPOFRAGANCIA = "tipoFraganciaPerfumeria";
+	
 	public Perfumeria() 
 	{
 		super();
@@ -33,7 +35,20 @@ public class Perfumeria extends Producto {
 		super(ID_CATEGORIA_PERFUMERIA);
 		this.tipoFragancia = tipoFragancia;
 	}
-
+	
+	/**
+	 * Constructor para Json
+	 * 
+	 */
+	public Perfumeria(JSONObject objeto)
+	{
+		super(objeto);
+		if(objeto.has(CLAVE_TIPOFRAGANCIA))
+		{
+			this.tipoFragancia = objeto.getString(CLAVE_TIPOFRAGANCIA);
+		}
+	}
+	
 	public String getTipoFragancia() {
 		return tipoFragancia;
 	}
@@ -79,7 +94,7 @@ public class Perfumeria extends Producto {
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Tipo Fragancia", this.tipoFragancia);
+		objeto.put(CLAVE_TIPOFRAGANCIA, this.tipoFragancia);
 		return objeto;
 	}
 }
