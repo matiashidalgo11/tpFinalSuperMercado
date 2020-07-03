@@ -53,6 +53,7 @@ public class Cuenta extends JFrame {
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
 	private JPasswordField fieldContraseñaReal;
+	private JLabel labelCamposVacios;
 	
 //	public static void main(String[] args) 
 //	{
@@ -110,6 +111,13 @@ public class Cuenta extends JFrame {
 				botonCerrarSesion.setBorder(null);
 			}
 		});
+		
+		labelCamposVacios = new JLabel("Error! Hay campos vacios.");
+		labelCamposVacios.setVisible(false);
+		labelCamposVacios.setFont(new Font("Calibri", Font.BOLD, 20));
+		labelCamposVacios.setForeground(Color.RED);
+		labelCamposVacios.setBounds(836, 602, 279, 27);
+		contentPane.add(labelCamposVacios);
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorderPainted(false);
 		botonCerrarSesion.setOpaque(false);
@@ -369,13 +377,21 @@ public class Cuenta extends JFrame {
 			@Override
 			public void mouseClicked(MouseEvent e) 
 			{
-				user.setUserName(fieldUsuario.getText());
-				user.setPassword(fieldContraseñaReal.getText());
-				user.setNombre(fieldNombre.getText());
-				user.setApellido(fieldApellido.getText());
-				user.setCartera(Double.valueOf(labelSaldo.getText()));
-				user.setEdad(Integer.valueOf(fieldEdad.getText()));
-				user.setTelefono(fieldTelefono.getText());
+				if(!casillasVacias())
+				{
+					labelCamposVacios.setVisible(false);
+					user.setUserName(fieldUsuario.getText());
+					user.setPassword(fieldContraseñaReal.getText());
+					user.setNombre(fieldNombre.getText());
+					user.setApellido(fieldApellido.getText());
+					user.setCartera(Double.valueOf(labelSaldo.getText()));
+					user.setEdad(Integer.valueOf(fieldEdad.getText()));
+					user.setTelefono(fieldTelefono.getText());
+				}
+				else
+				{
+					labelCamposVacios.setVisible(true);
+				}
 			}
 		});
 		botonGuardar.setBounds(836, 634, 224, 34);
@@ -459,5 +475,17 @@ public class Cuenta extends JFrame {
 		}
 		
 		
+	}
+	
+	boolean casillasVacias()
+	{
+		boolean verificar = false;
+		if(fieldUsuario.getText().equals("") || fieldContraseñaReal.getText().equals("") || fieldNombre.getText().equals("")
+				|| fieldApellido.getText().equals("") || fieldEdad.getText().equals("") || fieldTelefono.getText().equals("")
+				|| labelSaldo.getText().equals(""))
+		{
+			verificar = true;
+		}
+		return verificar;
 	}
 }

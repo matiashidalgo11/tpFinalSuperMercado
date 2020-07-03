@@ -34,6 +34,8 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.Scrollable;
 import javax.swing.JButton;
 import java.awt.Font;
+import java.awt.Point;
+
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
 import javax.swing.border.SoftBevelBorder;
@@ -301,17 +303,16 @@ public class GraficaCarro extends JFrame {
 		scrollPane.setBorder(null);
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scrollPane.setBounds(272, 107, 992, 522);
-		scrollPane.setBackground(new Color(0,0,0,0));
 		
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(1015, 620));
-		panel.setBackground(new Color(0,0,0,0));
 		scrollPane.setViewportView(panel);
 		panel.setLayout(null);
 		
 		contentPane.add(scrollPane);
 		
 		columnaProductos(arreglo, carrito, precioTotal);
+		scrollPane.getViewport().setViewPosition( new Point(0, 0) );
 		
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1294, 721);

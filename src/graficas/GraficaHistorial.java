@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -113,19 +114,18 @@ public class GraficaHistorial extends JFrame {
 		botonCerrarSesion.setOpaque(false);
 		botonCerrarSesion.setBounds(81, 660, 129, 27);
 		contentPane.add(botonCerrarSesion);
+				
+		panel = new JPanel();
+		panel.setPreferredSize(new Dimension(1015, 620));
+		panel.setLayout(null);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBorder(null);
 		scrollPane.setBounds(254, 45, 1016, 629);
-		scrollPane.setBackground(new Color(0,0,0,0));
 		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollPane.setViewportView(panel);
 		contentPane.add(scrollPane);
 		
-		panel = new JPanel();
-		panel.setBackground(new Color(0,0,0,0));
-		panel.setPreferredSize(new Dimension(1015, 620));
-		scrollPane.setViewportView(panel);
-		panel.setLayout(null);
 		
 		labelPerfil = new JLabel(user.getUserName());
 		labelPerfil.setForeground(Color.WHITE);
@@ -217,7 +217,7 @@ public class GraficaHistorial extends JFrame {
 		contentPane.add(botonCuenta);
 		
 		columnaProductos(user.getHistorialCompra());
-		
+		scrollPane.getViewport().setViewPosition( new Point(0, 0) );
 		
 		fondo = new JLabel("");
 		fondo.setBounds(0, 0, 1294, 721);
@@ -243,17 +243,18 @@ public class GraficaHistorial extends JFrame {
 			arregloLabel[i].setFont(new Font("Calibri", Font.BOLD, 20));
 			arregloLabel[i].setForeground(new Color(51, 102, 153));
 			arregloLabel[i].setBackground(new Color(0,0,0,0));
-			arregloLabel[i].setBounds(39, y, 838, 400);
+			arregloLabel[i].setBounds(39, y, 838, 300);
 			panel.add(arregloLabel[i]);
-			y += 430;
+			y += 300;
 			i++;
 			
 			if(i >= 1)
 			{
-				yPanel += 430;
+				yPanel += 300;
 				panel.setPreferredSize(new Dimension(1015, yPanel));
 			}	
 			
+			scrollPane.getViewport().setViewPosition( new Point(0, 0) );
 		}
 	}
 }
