@@ -252,7 +252,7 @@ public class DetallesProducto extends JFrame {
 			{
 				if(producto.getStock() > 0)
 				{
-					labelSinStock.setVisible(true);
+					labelSinStock.setVisible(false);
 					carrito.agregar(producto);
 					producto.restarStock(1);
 					detalles.setText(producto.toString());

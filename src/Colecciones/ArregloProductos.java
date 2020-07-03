@@ -1,5 +1,7 @@
 package Colecciones;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 
 import ColeccionesGenericas.ArregloGenerico;
@@ -166,5 +168,21 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		
 		
 		return jsonArray;
+	}
+	
+	public Producto getProductoPorNombre(String nombre) 
+	{
+		ArrayList<Producto> arreglo = getArreglo();
+		Producto retorno = null;
+		
+		for(Producto aux : arreglo)
+		{
+			if(aux.getNombre().equals(nombre))
+			{
+				retorno = aux;
+			}
+		}
+		
+		return retorno;
 	}
  }
