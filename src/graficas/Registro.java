@@ -264,6 +264,8 @@ public class Registro extends JFrame {
 					Usuario nuevo = new Usuario(txtNombreUser.getText(), txtPassword.getText(), txtNombre.getText(), txtApellido.getText(), Integer.parseInt(txtEdad.getText()), txtTelefono.getText());
 					superAux.agregarUsuario(nuevo);
 					Principal p = new Principal(superAux);
+					p.setVisible(true);
+					dispose();
 				}
 				
 				
