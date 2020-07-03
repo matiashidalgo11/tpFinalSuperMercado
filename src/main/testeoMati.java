@@ -87,6 +87,11 @@ public class testeoMati {
 		mercado.guardarDatos();
 		
 	*/		
+		JSONObject objetoJson = jugo.toJson();
+		
+		Producto nuevo = MapaCategoria.instanciarJson(objetoJson);
+		
+		System.out.println(nuevo);
 		
 		
 		
