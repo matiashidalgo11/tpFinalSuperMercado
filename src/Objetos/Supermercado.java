@@ -48,7 +48,7 @@ public class Supermercado {
 		System.out.println(listaCategorias.listar());
 		System.out.println(listaCarritos.listar());
 
-		
+	
 	}
 	
 	public boolean iniciarSession(long id)

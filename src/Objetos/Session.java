@@ -27,7 +27,6 @@ public class Session {
 		this.carrito = carrito;
 		
 	}
-	
 	/**
 	 * Crea una Session con un Usuario ya creado pero con un Carro Vacio
 	 * @param user
@@ -89,27 +88,7 @@ public class Session {
 		user.sumarCartera(carga);
 	}
 
-	/*
-	 * Funciones para Borrar
-	 * 
-	public boolean modificarPassword(String actual, String nuevo)
-	{
-		return user.cambiarPassword(actual, nuevo);
-	}
-	
-	public boolean modificarNombre(String actual, String nuevo)
-	{
-		boolean resp = false;
-		if(actual.equals(user.getUserName()))
-		{
-			user.setUserName(nuevo);
-			resp = true;
-		}
-		
-		return resp;
-	}
-	*/
-	
+
 	@Override
 	public String toString() {
 		// TODO Auto-generated method stub

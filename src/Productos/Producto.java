@@ -25,7 +25,7 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	private double precioOferta;
 	private long idCategoria;	
 	
-	
+
 	public Producto() 
 	{
 		id = 0;
@@ -37,7 +37,7 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		oferta = false;
 		precioOferta = 0;
 	}
-	 
+	
 	/**
 	 * Constructor para Parte Grafica
 	 * 
@@ -223,6 +223,26 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 	public String getNombreCategoria()
 	{
 		return "Producto";
+	}
+	
+	/**
+	 * La funcion se fija si el producto esta en oferta y en base a la respuesta devuelve el precioOferta o el Precio normal
+	 * 
+	 * @return devuelve el Precio que tiene actualmente para el Comprador
+	 */
+	public double getPrecioActual() {
+	
+		double precioActual ;
+	
+		if(this.isOferta())
+		{
+			precioActual = this.getPrecioOferta();
+		}else
+		{
+			precioActual = this.getPrecio();
+		}
+		
+		return precioActual;
 	}
 	
 	public JSONObject toJson()

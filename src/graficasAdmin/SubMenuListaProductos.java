@@ -51,14 +51,13 @@ public class SubMenuListaProductos extends JPanel {
 		
 		modeloTabla.addColumn("Id");
 		modeloTabla.addColumn("Nombre");
-		modeloTabla.addColumn("Precio");
+		modeloTabla.addColumn("PrecioActual");
 		modeloTabla.addColumn("Marca");
 		modeloTabla.addColumn("Stock");
 		modeloTabla.addColumn("Categoria");
-		
-		//Object[] a = new Object[] {"1","Pepe",100,"Nike",100,"Ropa"};
+		modeloTabla.addColumn("Oferta");
+	
 		cargarLista(datos);
-		//modeloTabla.addRow(a);
 		
 		scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 11, 704, 566);
@@ -93,7 +92,7 @@ public class SubMenuListaProductos extends JPanel {
 	
 	public Object[] productoToObjecto(Producto p)
 	{
-		Object[] resp = new Object[] {p.getId(),p.getNombre(),p.getPrecio(),p.getMarca(),p.getStock(),p.getNombreCategoria()};
+		Object[] resp = new Object[] {p.getId(),p.getNombre(),p.getPrecio(),p.getMarca(),p.getStock(),p.getNombreCategoria(), p.isOferta()};
 		return resp;
 	}
 	

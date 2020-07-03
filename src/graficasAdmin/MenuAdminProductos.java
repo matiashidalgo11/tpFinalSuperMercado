@@ -60,10 +60,11 @@ public class MenuAdminProductos extends JPanel {
 		accionesBotones();
 		agregarProducto();
 	}
+
 	private void initComponents() {
 
 		listaP = new SubMenuListaProductos(datos);
-		jpopuMenuAcciones();
+		jpopuMenuAccionesListaProductos();
 		agregarP = new SubMenuAgregarProducto();
 		setBounds(232, 11, 1042, 689);
 		setLayout(null);
@@ -115,7 +116,6 @@ public class MenuAdminProductos extends JPanel {
 		});
 	}
 	
-	
 	public void agregarProducto()
 	{
 		agregarP.btnAgregar.addActionListener(new ActionListener() {
@@ -148,7 +148,7 @@ public class MenuAdminProductos extends JPanel {
 		});
 	}
 	
-	public void jpopuMenuAcciones()
+	public void jpopuMenuAccionesListaProductos()
 	{
 		listaP.itemEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -188,6 +188,24 @@ public class MenuAdminProductos extends JPanel {
 					panel.add(modificarP,MODIFICARPRODUCTO_REFERENCIA);
 					controlProductoMenu.show(panel, MODIFICARPRODUCTO_REFERENCIA);
 					
+					modificarP.btnSalir.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent e) {
+							
+							int seleccion = JOptionPane.showConfirmDialog(null, "Desea Salir ? ", "Modificar Producto", JOptionPane.YES_NO_OPTION);
+							if (seleccion == JOptionPane.NO_OPTION) {
+							    
+								listaP.limpiarLista();
+								listaP.cargarLista(datos);
+								agregarP.limpiarCampos();
+							    controlProductoMenu.show(panel, LISTAPRODUCTOS_REFERENCIA);
+							    
+							} 
+							
+							
+						}
+					});
+					
+					
 				}else
 				{
 					JOptionPane.showMessageDialog(panel, "Producto Inexistente");
@@ -197,8 +215,18 @@ public class MenuAdminProductos extends JPanel {
 				
 			}
 			});
+		
+		
 			
+	
+		
+	
+	
 	}
+	
+	
+	
+	
 	
 	
 	

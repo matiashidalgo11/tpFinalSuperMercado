@@ -24,7 +24,7 @@ public class Snack extends Producto {
 		super(dato);
 		this.cantidadG = dato.getCantidadG();
 	}
-	
+
 	/**
 	 * Constructor para Parte Grafica
 	 * 

@@ -96,12 +96,12 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		
 		for(Producto aux : super.getArreglo())
 		{
-			resp += aux.getPrecio();
+			resp += aux.getPrecioActual();
 		}
 		
 		return resp;
 	}
-	
+
 	/**
 	 * Metodo para clonar un Producto dependiendo de la Categoria, y asi poder pasar uno nuevo al Arreglo del Carrito
 	 * 

@@ -80,7 +80,7 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	{
 		return arreglo.cantidad();
 	}
-	
+
 	public DetalleCompra generarDetllaCompra() throws NullPointerException
 	{
 		DetalleCompra resp = null;

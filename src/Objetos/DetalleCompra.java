@@ -27,7 +27,7 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 	public static String CLAVE_MONTOTOTAL = "montoTotal";
 	public static String CLAVE_FECHAHORA = "fechaYhora";
 	
-	
+
 	public DetalleCompra(ArregloProductos productos) {
 		
 		this.productos = productos;

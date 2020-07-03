@@ -31,16 +31,15 @@ import javax.swing.ButtonGroup;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
+import javax.swing.JCheckBox;
 
 public class SubMenuAgregarProducto extends JPanel {
 	
 	private JPanel panel;
 	private JLabel lblNewLabel;
-	private JLabel lblNewLabel_1;
 	private JLabel lblNewLabel_2;
 	private JLabel lblNewLabel_3;
 	 JTextField txtNombre;
-	 JTextField txtPrecio;
 	 JTextField txtMarca;
 	 JTextField txtStockInicial;
 	private JLabel lblNewLabel_4;
@@ -81,7 +80,7 @@ public class SubMenuAgregarProducto extends JPanel {
 	private JLabel lblNewLabel_14;
 	private CardLayout controlPanelAtributo = new CardLayout();
 	
-	
+
 	public static String BEBIDAS_REFERENCIA = "Bebida";
 	public static String CONGELADO_REFERENCIA = "Congelado";
 	public static String GOLOSINAS_REFERENCIA = "Golosinas";
@@ -97,6 +96,12 @@ public class SubMenuAgregarProducto extends JPanel {
 	private JLabel errorStockInicial;
 	private JLabel lblNewLabel_15;
 	public JTextField textDescripcionGolosina;
+	private JLabel lblNewLabel_1;
+	private JTextField txtPrecio;
+	private JLabel lblNewLabel_16;
+	private JLabel lblNewLabel_17;
+	private JTextField txtPrecioOferta;
+	private JCheckBox chckbxActivarOferta;
 
 	/**
 	 * Create the panel.
@@ -119,51 +124,40 @@ public class SubMenuAgregarProducto extends JPanel {
 		
 		lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel.setBounds(86, 46, 269, 50);
+		lblNewLabel.setBounds(86, 11, 269, 50);
 		panel.add(lblNewLabel);
-		
-		lblNewLabel_1 = new JLabel("Precio");
-		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(86, 107, 269, 50);
-		panel.add(lblNewLabel_1);
 		
 		lblNewLabel_2 = new JLabel("Marca");
 		lblNewLabel_2.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_2.setBounds(86, 168, 269, 50);
+		lblNewLabel_2.setBounds(86, 72, 269, 36);
 		panel.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Stock Inicial");
 		lblNewLabel_3.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_3.setBounds(86, 229, 269, 50);
+		lblNewLabel_3.setBounds(86, 119, 269, 50);
 		panel.add(lblNewLabel_3);
 		
 		txtNombre = new JTextField();
 		txtNombre.setFont(new Font("Calibri", Font.PLAIN, 23));
-		txtNombre.setBounds(365, 46, 269, 50);
+		txtNombre.setBounds(365, 11, 269, 50);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
-		
-		txtPrecio = new JTextField();
-		txtPrecio.setFont(new Font("Calibri", Font.PLAIN, 23));
-		txtPrecio.setColumns(10);
-		txtPrecio.setBounds(365, 107, 269, 50);
-		panel.add(txtPrecio);
 		
 		txtMarca = new JTextField();
 		txtMarca.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(365, 168, 269, 50);
+		txtMarca.setBounds(365, 72, 269, 36);
 		panel.add(txtMarca);
 		
 		txtStockInicial = new JTextField();
 		txtStockInicial.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtStockInicial.setColumns(10);
-		txtStockInicial.setBounds(365, 229, 269, 50);
+		txtStockInicial.setBounds(365, 119, 269, 50);
 		panel.add(txtStockInicial);
 		
 		lblNewLabel_4 = new JLabel("Categoria");
 		lblNewLabel_4.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_4.setBounds(86, 290, 269, 29);
+		lblNewLabel_4.setBounds(86, 180, 269, 29);
 		panel.add(lblNewLabel_4);
 		
 		cmbCategoria = new JComboBox();
@@ -177,11 +171,11 @@ public class SubMenuAgregarProducto extends JPanel {
 		modeloBoxCategoria.addElement(SNACK_REFERENCIA );
 		cmbCategoria.setModel(modeloBoxCategoria);
 		cmbCategoria.setFont(new Font("Calibri", Font.PLAIN, 23));
-		cmbCategoria.setBounds(365, 290, 269, 29);
+		cmbCategoria.setBounds(365, 180, 269, 29);
 		panel.add(cmbCategoria);;
 		
 		panelAtributos = new JPanel();
-		panelAtributos.setBounds(86, 330, 548, 165);
+		panelAtributos.setBounds(86, 358, 548, 165);
 		panel.add(panelAtributos);
 		panelAtributos.setLayout(controlPanelAtributo);
 		
@@ -354,7 +348,7 @@ public class SubMenuAgregarProducto extends JPanel {
 		
 		
 		btnAgregar = new JButton("Agregar ");
-		btnAgregar.setBounds(245, 506, 155, 43);
+		btnAgregar.setBounds(245, 534, 155, 43);
 		panel.add(btnAgregar);
 		
 		btnLimpiarCampos = new JButton("Limpiar Campos");
@@ -362,32 +356,63 @@ public class SubMenuAgregarProducto extends JPanel {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnLimpiarCampos.setBounds(526, 516, 108, 23);
+		btnLimpiarCampos.setBounds(523, 544, 108, 23);
 		panel.add(btnLimpiarCampos);
 		
 		errorNombre = new JLabel("");
 		errorNombre.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
-		errorNombre.setBounds(667, 46, 30, 29);
+		errorNombre.setBounds(667, 11, 30, 29);
 		errorNombre.setVisible(false);
 		panel.add(errorNombre);
 		
 		errorMarca = new JLabel("");
 		errorMarca.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
-		errorMarca.setBounds(667, 168, 30, 29);
+		errorMarca.setBounds(667, 72, 30, 29);
 		errorMarca.setVisible(false);
 		panel.add(errorMarca);
 		
 		errorPrecio = new JLabel("");
 		errorPrecio.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
-		errorPrecio.setBounds(667, 107, 30, 29);
+		errorPrecio.setBounds(667, 236, 30, 29);
 		errorPrecio.setVisible(false);
 		panel.add(errorPrecio);
 		
 		errorStockInicial = new JLabel("");
 		errorStockInicial.setIcon(new ImageIcon(SubMenuAgregarProducto.class.getResource("/img/Error.png")));
-		errorStockInicial.setBounds(667, 229, 30, 29);
+		errorStockInicial.setBounds(667, 119, 30, 29);
 		errorStockInicial.setVisible(false);
 		panel.add(errorStockInicial);
+		
+		lblNewLabel_1 = new JLabel("Precio");
+		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblNewLabel_1.setBounds(86, 215, 269, 50);
+		panel.add(lblNewLabel_1);
+		
+		txtPrecio = new JTextField();
+		txtPrecio.setFont(new Font("Calibri", Font.PLAIN, 23));
+		txtPrecio.setColumns(10);
+		txtPrecio.setBounds(365, 222, 139, 36);
+		panel.add(txtPrecio);
+		
+		lblNewLabel_16 = new JLabel("Activar Oferta");
+		lblNewLabel_16.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblNewLabel_16.setBounds(86, 276, 216, 29);
+		panel.add(lblNewLabel_16);
+		
+		lblNewLabel_17 = new JLabel("PrecioOferta");
+		lblNewLabel_17.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblNewLabel_17.setBounds(86, 318, 269, 29);
+		panel.add(lblNewLabel_17);
+		
+		txtPrecioOferta = new JTextField();
+		txtPrecioOferta.setFont(new Font("Calibri", Font.PLAIN, 23));
+		txtPrecioOferta.setColumns(10);
+		txtPrecioOferta.setBounds(365, 313, 139, 29);
+		panel.add(txtPrecioOferta);
+		
+		chckbxActivarOferta = new JCheckBox("");
+		chckbxActivarOferta.setBounds(365, 279, 97, 23);
+		panel.add(chckbxActivarOferta);
 		
 		
 	}
@@ -490,6 +515,10 @@ public class SubMenuAgregarProducto extends JPanel {
 			contador++;
 			errorStockInicial.setVisible(true);
 		}
+		if(chckbxActivarOferta.isSelected() && txtPrecioOferta.getText().isEmpty())
+		{
+			contador++;
+		}
 		
 		
 		if(cmbCategoria.getSelectedItem().equals(BEBIDAS_REFERENCIA))
@@ -585,7 +614,7 @@ public class SubMenuAgregarProducto extends JPanel {
 	public void verificacionDeCampos() throws CamposVacios
 	{
 		if (txtNombre.getText().isEmpty() || txtMarca.getText().isEmpty()
-				|| txtPrecio.getText().isEmpty() || txtStockInicial.getText().isEmpty()) {
+				|| txtPrecio.getText().isEmpty() || txtStockInicial.getText().isEmpty() || (chckbxActivarOferta.isSelected() && txtPrecioOferta.getText().isEmpty())) {
 			throw new CamposVacios("Formulario sin LLENAR completamente", contarCamposVacios());
 
 		} else
@@ -666,6 +695,13 @@ public class SubMenuAgregarProducto extends JPanel {
 		//Agregar categoria Descripcion a Productos ?)
 		
 		//Se termina de Construir el Producto
+		if(chckbxActivarOferta.isSelected())
+		{
+			nuevo.setOferta(true);
+			double precioOferta = Double.parseDouble(txtPrecioOferta.getText());
+			nuevo.setPrecioOferta(precioOferta);
+		}
+		
 		double precio = Double.parseDouble(txtPrecio.getText());
 		long stock = Long.parseLong(txtStockInicial.getText());
 		nuevo.setNombre(txtNombre.getText());
