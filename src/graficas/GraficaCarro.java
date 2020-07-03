@@ -59,6 +59,7 @@ public class GraficaCarro extends JFrame {
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
 	private JLabel lblNewLabel;
+	Supermercado mercado;
 
 //	/**
 //	 * Launch the application.
@@ -81,11 +82,12 @@ public class GraficaCarro extends JFrame {
 	 */
 	public GraficaCarro(Supermercado mercado) 
 	{
-		initComponents(mercado);
+		this.mercado = mercado;
+		initComponents();
 	}
 	
 	
-	private void initComponents(Supermercado mercado) 
+	private void initComponents() 
 	{
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -345,7 +347,7 @@ public class GraficaCarro extends JFrame {
 		
 		for(Producto aux : productos.getArreglo())
 		{
-			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecioActual());
+			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecioActual() + "    Cantidad: " + aux.getStock());
 			arregloBotones[i].setHorizontalAlignment(SwingConstants.LEFT);
 			arregloBotones[i].setFont(new Font("Calibri", Font.BOLD, 20));
 			arregloBotones[i].setForeground(new Color(51, 102, 153));
@@ -395,7 +397,11 @@ public class GraficaCarro extends JFrame {
 	        }
 
 	        carrito.quitar(nuevo.getId()); //TODO Eliminar del carrito y que aparezca el nuevo total
+	        mercado.sumarStock(nuevo, nuevo.getStock());
 	        button.setEnabled(false);
+	        System.out.println("\n \n \n \n \n \n \n \n \n \n \n \n \n \n \n");
+	        System.out.println("PRODUCTO SUMAR STOCK");
+	        System.out.println(nuevo.toString());
 	        String nuevoTotal = "$" + String.valueOf(carrito.getTotal());
 	        precioTotal.setText(nuevoTotal);
 	        
