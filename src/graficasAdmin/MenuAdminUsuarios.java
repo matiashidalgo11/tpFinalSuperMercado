@@ -64,7 +64,7 @@ public class MenuAdminUsuarios extends JPanel {
 		panel.add(listaUs, LISTA_USUARIOS_REF);
 		panel.add(agregarUs, AGREGAR_USUARIO_REF);
 		
-		
+	
 		lblNewLabel = new JLabel("New label");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.RIGHT);
 		lblNewLabel.setBounds(893, 286, 149, 14);

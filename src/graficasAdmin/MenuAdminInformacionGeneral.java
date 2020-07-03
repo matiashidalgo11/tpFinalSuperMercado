@@ -25,11 +25,11 @@ public class MenuAdminInformacionGeneral extends JPanel {
 		initComponents();
 	}
 	private void initComponents() {
-		
+	
 		setBounds(232, 11, 1042, 689);
 		setLayout(null);
 		
-		
+	
 		lblNewLabel = new JLabel("Cantidad de Usuarios");
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 23));
 		lblNewLabel.setBounds(50, 103, 330, 82);
@@ -65,7 +65,7 @@ public class MenuAdminInformacionGeneral extends JPanel {
 	public void cargarInformacionGeneral(Supermercado datos)
 	{
 		lblCantidadUusarios.setText("" + datos.cantidadUsuarios());
-		lblCantidadProductos.setText("" + datos.cantidadCategorias());
+		lblCantidadProductos.setText("" + datos.cantidadProductos());
 		
 	}
 	

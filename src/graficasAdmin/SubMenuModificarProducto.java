@@ -45,7 +45,7 @@ public class SubMenuModificarProducto extends JPanel {
 	JComboBox<String> cmbCategoria;
 	private DefaultComboBoxModel<String> modeloBoxCategoria;
 	private JPanel panelAtributos;
-	JButton btnSalir;
+	JButton btnActualizar;
 	private JPanel Bebidas;
 	private JLabel Gasificada;
 	private JLabel lblNewLabel_6;
@@ -406,9 +406,9 @@ public class SubMenuModificarProducto extends JPanel {
 		
 		
 		
-		btnSalir = new JButton("Salir");
-		btnSalir.setBounds(239, 534, 155, 23);
-		panel.add(btnSalir);
+		btnActualizar = new JButton("Actualizar");
+		btnActualizar.setBounds(239, 534, 155, 23);
+		panel.add(btnActualizar);
 		
 		btnEditarNombre = new JButton("New button");
 		btnEditarNombre.setBounds(668, 25, 35, 23);

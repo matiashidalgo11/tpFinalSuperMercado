@@ -47,12 +47,12 @@ public class AdminMenuPrincipal extends JFrame {
 	public static String INFOGENERAL_REFERENCIA = "informacionGeneral";
 	private MenuAdminInformacionGeneral infoG;
 	
-	
+
 	public static String PRODUCTOSMENU_REFERENCIA= "productosMenu";
 	private MenuAdminProductos productosMenu ;
 	/**
 	 * Launch the application.
-	 */
+	 */ 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -66,7 +66,7 @@ public class AdminMenuPrincipal extends JFrame {
 			}
 		});
 	}
-
+ 
 	/**
 	 * Create the frame.
 	 */

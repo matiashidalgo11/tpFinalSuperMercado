@@ -185,27 +185,10 @@ public class MenuAdminProductos extends JPanel {
 				{
 					Producto aux = datos.getListaCategorias().buscarProducto(id);
 					modificarP = new SubMenuModificarProducto(aux);
+					itemMenuModificarProductoSalirAccion();
 					panel.add(modificarP,MODIFICARPRODUCTO_REFERENCIA);
 					controlProductoMenu.show(panel, MODIFICARPRODUCTO_REFERENCIA);
-					
-					modificarP.btnSalir.addActionListener(new ActionListener() {
-						public void actionPerformed(ActionEvent e) {
-							
-							int seleccion = JOptionPane.showConfirmDialog(null, "Desea Salir ? ", "Modificar Producto", JOptionPane.YES_NO_OPTION);
-							if (seleccion == JOptionPane.NO_OPTION) {
-							    
-								listaP.limpiarLista();
-								listaP.cargarLista(datos);
-								agregarP.limpiarCampos();
-							    controlProductoMenu.show(panel, LISTAPRODUCTOS_REFERENCIA);
-							    
-							} 
-							
-							
-						}
-					});
-					
-					
+	
 				}else
 				{
 					JOptionPane.showMessageDialog(panel, "Producto Inexistente");
@@ -222,6 +205,29 @@ public class MenuAdminProductos extends JPanel {
 		
 	
 	
+	}
+	
+	/**
+	 * Funcion que le agrega la Accion de actualizar los datos a la hora de salir de Modificar Producto
+	 */
+	private void itemMenuModificarProductoSalirAccion()
+	{
+		modificarP.btnActualizar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int seleccion = JOptionPane.showConfirmDialog(null, "Finalizar Modificaciones ? ", "Modificar Producto", JOptionPane.YES_NO_OPTION);
+				if (seleccion == JOptionPane.YES_OPTION) {
+				    
+					listaP.limpiarLista();
+					listaP.cargarLista(datos);
+					agregarP.limpiarCampos();
+				    controlProductoMenu.show(panel, LISTAPRODUCTOS_REFERENCIA);
+				    
+				} 
+				
+				
+			}
+		});
 	}
 	
 	
