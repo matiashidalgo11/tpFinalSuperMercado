@@ -24,7 +24,7 @@ public class testeoMati {
 
 
 		
-		Supermercado toledo = new Supermercado();
+		
 
 		/*
 		
@@ -70,7 +70,7 @@ public class testeoMati {
 		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
 		Producto leche = new Lacteo("Leche", 50, "LaSerenisima", 1, "Leche", false, 0);
 		
-		Supermercado mercado = new Supermercado();
+		//Supermercado mercado = new Supermercado();
 		//mercado.agregarUsuario(a);
 		//mercado.agregarUsuario(b);
 		/*		
@@ -83,7 +83,14 @@ public class testeoMati {
 		mercado.agregarProducto(leche);
 		
 		mercado.guardarDatos();
+		
+		
+		
 */
+		int porcentaje = 75;
+		double porciento = (double) porcentaje / 100;
+		System.out.println(porciento);
+		
 	}
 	
 	

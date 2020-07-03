@@ -11,6 +11,7 @@ import java.util.Vector;
 import java.util.Map.Entry;
 
 import javax.swing.JComponent;
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
@@ -30,10 +31,14 @@ public class SubMenuListaProductos extends JPanel {
 	private JScrollPane scrollPane;
 	public JTable table;
 	private JPopupMenu popupMenu;
-	public JMenuItem itemActivarOferta;
 	public JMenuItem itemEliminar;
 	public JMenuItem itemModificar;
 	public JMenuItem itemAgregarStock;
+	public JMenu ofertasMenu;
+	public JMenuItem itemActivarOferta;
+	public JMenuItem agregarOfertaMarca;
+	public JMenuItem quitarOfertaMarca;
+	
 	private Supermercado datos;
 
 	/**
@@ -80,15 +85,29 @@ public class SubMenuListaProductos extends JPanel {
 		table.setModel(modeloTabla);
 		scrollPane.setViewportView(table);
 		
+		/**
+		 * Jpopu Completo para Editar
+		 */
 		popupMenu = new JPopupMenu();
-		itemActivarOferta = new JMenuItem("Activar/Desactivar Oferta");
+		
 		itemEliminar = new JMenuItem("Eliminar");
 		itemModificar = new JMenuItem("Modificar");
 		itemAgregarStock = new JMenuItem("Sumar Stock");
-	
+		
+		ofertasMenu = new JMenu("Ofertas");
+		itemActivarOferta = new JMenuItem("Activar/Desactivar Oferta Producto");
+		agregarOfertaMarca = new JMenuItem("Agregar Oferta Marca");
+		quitarOfertaMarca = new JMenuItem("Quitar Oferta Marca");
+		ofertasMenu.add(itemActivarOferta);
+		ofertasMenu.add(agregarOfertaMarca);
+		ofertasMenu.add(quitarOfertaMarca);
+		
+		popupMenu.add(ofertasMenu);
+		popupMenu.add(itemAgregarStock);
 		popupMenu.add(itemEliminar);
 		popupMenu.add(itemModificar);
-		popupMenu.add(itemAgregarStock);
+		
+		
 		table.setComponentPopupMenu(popupMenu);
 	}
 	

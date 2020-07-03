@@ -2,6 +2,7 @@ package graficasAdmin;
 
 import javax.swing.JPanel;
 
+import Colecciones.MapaProductos;
 import Objetos.Supermercado;
 
 import javax.swing.JLabel;
@@ -13,7 +14,7 @@ public class MenuAdminInformacionGeneral extends JPanel {
 	private JLabel lblCantidadProductos;
 	private JLabel lblCantidadUusarios;
 	private JLabel lblNewLabel_4;
-	private JLabel lblNewLabel_5;
+	private JLabel lblProductosEnOferta;
 	private Supermercado datos;
 
 	/**
@@ -23,6 +24,7 @@ public class MenuAdminInformacionGeneral extends JPanel {
 
 		this.datos = datos;
 		initComponents();
+		cargarInformacionGeneral(datos);
 	}
 	private void initComponents() {
 	
@@ -50,15 +52,15 @@ public class MenuAdminInformacionGeneral extends JPanel {
 		lblCantidadUusarios.setBounds(520, 103, 330, 82);
 		add(lblCantidadUusarios);
 		
-		lblNewLabel_4 = new JLabel("Ofertas Actuales");
+		lblNewLabel_4 = new JLabel("Productos en Oferta");
 		lblNewLabel_4.setFont(new Font("Calibri", Font.BOLD, 23));
 		lblNewLabel_4.setBounds(50, 420, 330, 82);
 		add(lblNewLabel_4);
 		
-		lblNewLabel_5 = new JLabel("\"\"");
-		lblNewLabel_5.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_5.setBounds(520, 420, 330, 82);
-		add(lblNewLabel_5);
+		lblProductosEnOferta = new JLabel("\"\"");
+		lblProductosEnOferta.setFont(new Font("Calibri", Font.BOLD, 23));
+		lblProductosEnOferta.setBounds(520, 420, 330, 82);
+		add(lblProductosEnOferta);
 	}
 	
 	
@@ -66,6 +68,9 @@ public class MenuAdminInformacionGeneral extends JPanel {
 	{
 		lblCantidadUusarios.setText("" + datos.cantidadUsuarios());
 		lblCantidadProductos.setText("" + datos.cantidadProductos());
+		MapaProductos mapa = datos.getListaCategorias().toMapaProductos();
+		int cantidadProductosOferta = mapa.cantidadDeProductosEnOferta();
+		lblProductosEnOferta.setText(""+cantidadProductosOferta);
 		
 	}
 	

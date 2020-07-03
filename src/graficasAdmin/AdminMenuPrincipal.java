@@ -50,6 +50,8 @@ public class AdminMenuPrincipal extends JFrame {
 
 	public static String PRODUCTOSMENU_REFERENCIA= "productosMenu";
 	private MenuAdminProductos productosMenu ;
+	
+	
 	/**
 	 * Launch the application.
 	 */ 
@@ -80,6 +82,7 @@ public class AdminMenuPrincipal extends JFrame {
 		userMenu = new MenuAdminUsuarios(datos);
 		infoG = new MenuAdminInformacionGeneral(datos);
 		productosMenu = new MenuAdminProductos(datos);
+
 		
 		setUndecorated(true);
 		//setResizable(false);
@@ -98,17 +101,14 @@ public class AdminMenuPrincipal extends JFrame {
 		panel.setLayout(null);
 		
 		btnAdministrarUsuarios = new JButton("Administrar Usuarios");
-		btnAdministrarUsuarios.setBounds(5, 218, 200, 102);
+		btnAdministrarUsuarios.setBounds(5, 279, 200, 102);
 		panel.add(btnAdministrarUsuarios);
 		
 		btnAdministrarProductos = new JButton("Administrar Productos");
-		btnAdministrarProductos.setBounds(5, 331, 200, 102);
+		btnAdministrarProductos.setBounds(5, 404, 200, 102);
 		panel.add(btnAdministrarProductos);
 		
-		btnAdministrarOfertas = new JButton("Administrar Ofertas");
-		btnAdministrarOfertas.setBounds(5, 444, 200, 102);
-		panel.add(btnAdministrarOfertas);
-		
+
 		btnCerrarSesion = new JButton("");
 		btnCerrarSesion.setOpaque(false);
 		btnCerrarSesion.setBackground(new Color(0,0,0,0));
@@ -127,7 +127,7 @@ public class AdminMenuPrincipal extends JFrame {
 		panel.add(lblImagenAdmin);
 		
 		btnInformacionGeneral = new JButton("Informacion General");
-		btnInformacionGeneral.setBounds(5, 184, 200, 23);
+		btnInformacionGeneral.setBounds(5, 229, 200, 23);
 		panel.add(btnInformacionGeneral);
 		
 		scrollPane = new JScrollPane();
@@ -142,6 +142,7 @@ public class AdminMenuPrincipal extends JFrame {
 		subMenu.add(infoG,INFOGENERAL_REFERENCIA);
 		subMenu.add(userMenu,USERMENU_REFERENCIA);
 		subMenu.add(productosMenu,PRODUCTOSMENU_REFERENCIA);
+
 		
 		Fondo = new JLabel("");
 		Fondo.setIcon(new ImageIcon(Inicio.class.getResource("/img/Fondo Solo.png")));
@@ -174,11 +175,6 @@ public class AdminMenuPrincipal extends JFrame {
 			}
 		});
 		
-		btnAdministrarOfertas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				
-			}
-		});
 		
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

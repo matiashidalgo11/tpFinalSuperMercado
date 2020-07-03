@@ -21,20 +21,24 @@ import ColeccionesGenericas.MapaGenerico;
 import Interfaces.idInterface;
 /**
  * 
- * @author Matias
+ * Clase para gestionar Archivo, al ser Generica se puede volver a reutilizar 
  *
  * @param <K> es la Clave para agregar al Mapa
  * @param <T> es el Dato Principal que se utilizara en el Archivo
  * 
  * 
- * La interface idInterface hace que cualquier objeto que la implemente tenga el metodo getIdPrincipal, para luego utilizarlo como clave, faltan mas testeos
+ * 
  */
 
 public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializable{
 	
 	File archivo;
 
-	
+	/**
+	 * Constructor que crear el Archivo de no encontrarse
+	 * 
+	 * @param nombre del Archivo
+	 */
 	public ArchivoGenerico(String nombre) {
 		
 		archivo = new File(nombre);
@@ -59,6 +63,11 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		
 	}
 	
+	/**
+	 * Metodo que recibe un MapaGenerico y luego lo guarda en el Archivo
+	 * 
+	 * @param mapa
+	 */
 	public void guardar(MapaGenerico<K, T> mapa)
 	{
 		
@@ -91,6 +100,11 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		
 	}
 	
+	/**
+	 * Recibe un Dato y luego lo guarda, si el archivo esta vacio crea una cabecera, si no lo Guarda SIN CABECERA
+	 * 
+	 * @param dato
+	 */
 	public void guardarUnidad(T dato)
 	{
 		ObjectOutputStream ob;
@@ -127,6 +141,10 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 	}
 
 
+	/**
+	 * Metodo que retorna un MapaGenerico con los tipos de Datos Ya establecidos al instanciar esta Clase
+	 * 
+	 */
 	public MapaGenerico<K, T> cargar()
 	{
 		MapaGenerico<K, T> resp = new MapaGenerico<K, T>();
@@ -166,10 +184,9 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		return resp;
 	}
 	
-	/**Si no se utiliza borrar
-	 * 
-	 * @return un arregloGenerico
-	 */
+	/*
+	
+	
 	public ArregloGenerico<T> returnArregloGenerico()
 	{
 		ArregloGenerico<T> resp = new ArregloGenerico<T>();
@@ -211,6 +228,7 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		return resp;
 	}
 	
+	
 	public void listar() {
 		try {
 
@@ -238,4 +256,5 @@ public class ArchivoGenerico  <K ,T extends idInterface<K> > implements Serializ
 		}
 	}
 
+	*/
 }

@@ -260,6 +260,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		return resp;
 	}
 	
+	
 	public void establecerOferta(Producto producto, double precioOferta)
 	{
 		Producto oferta = buscarProducto(producto.getId());
@@ -273,11 +274,97 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		oferta.setOferta(false);
 	}
 	
+	
+	public boolean establecerOferta(long id, double precioOferta)
+	{
+		boolean resp = false;
+		if(this.existeProducto(id))
+		{
+			Producto oferta = buscarProducto(id);
+			oferta.setOferta(true);
+			oferta.setPrecioOferta(precioOferta);
+			resp = true;
+		}
+		return resp;
+	}
+	
+	public boolean quitarOferta(long id)
+	{
+		boolean resp = false;
+		if(this.existeProducto(id))
+		{
+			Producto oferta = buscarProducto(id);
+			oferta.setOferta(false);
+			resp = true;
+		}
+		return resp;
+	}
+	
+	
+	/**
+	 * Funcion en la busca si existe una Marca en el MapaCategorias
+	 * 
+	 * @param marcaProducto el nombre de la Marca a buscar
+	 * @return false si no existe, true si existe
+	 */
+	public boolean existeMarcar(String marcaProducto)
+	{
+		boolean resp =  false;
+		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
+		
+		while(itCategorias.hasNext() && resp == false) 
+		{
+			Entry<String, MapaProductos> entradaCategoria = itCategorias.next();
+			Iterator<Entry<String, Producto>> itProducto = entradaCategoria.getValue().getIterator(); //Obtengo el iterator de cada categoria
+			
+			while(itProducto.hasNext() && resp == false) //Recorro la categoria
+			{
+				Entry<String, Producto> entradaProducto = itProducto.next();
+				Producto aux = entradaProducto.getValue(); //Obtengo cada producto de la categoria
+				
+				if(aux.getMarca().equals(marcaProducto)) //Si la marca del producto actual es igual a la que se busca
+				{
+					resp = true;
+				}
+			}
+		}
+		
+		return resp;
+	}
+	
+	public boolean marcaEnOferta(String marcaProducto)
+	{
+		boolean resp =  true;
+		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
+
+		while(itCategorias.hasNext() && resp == true) 
+		{
+			Entry<String, MapaProductos> entradaCategoria = itCategorias.next();
+			Iterator<Entry<String, Producto>> itProducto = entradaCategoria.getValue().getIterator(); //Obtengo el iterator de cada categoria
+			
+			while(itProducto.hasNext() && resp == true) //Recorro la categoria
+			{
+				Entry<String, Producto> entradaProducto = itProducto.next();
+				Producto aux = entradaProducto.getValue(); //Obtengo cada producto de la categoria
+				
+				if(aux.getMarca().equals(marcaProducto)) //Si la marca del producto actual es igual a la que se busca, se establece el precio de oferta
+				{
+					if(!(aux.isOferta()))
+					{
+						resp = false;
+					}
+				}
+			}
+		}
+		
+		return resp;
+	}
+	
 	//Establece una oferta a todos los productos de una marca
 	public void establecerOfertaPorMarca(String marca, int porcentaje)
 	{
 		Iterator<Entry<String, MapaProductos>> itCategorias = super.getIterator(); //Obtengo el iterator del mapa de categorias
-		double porcentajeDouble = porcentaje / 100;
+		double porcentajeDouble = (double) porcentaje / 100;
 		
 		while(itCategorias.hasNext()) 
 		{
@@ -291,8 +378,9 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 				
 				if(aux.getMarca().equals(marca)) //Si la marca del producto actual es igual a la que se busca, se establece el precio de oferta
 				{
-					aux.setOferta(true); 
-					aux.setPrecioOferta(aux.getPrecio() * porcentajeDouble); //Establezco 
+					aux.setOferta(true);
+					double valorPrecioOferta = aux.getPrecio() - (aux.getPrecio() * porcentajeDouble);
+					aux.setPrecioOferta(valorPrecioOferta); //Establezco 
 				}
 			}
 		}

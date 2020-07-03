@@ -241,33 +241,159 @@ public class MenuAdminProductos extends JPanel {
 
 				if (datos.getListaCategorias().existeProducto(id)) {
 					Producto aux = datos.getListaCategorias().buscarProducto(id);
-					if (aux.getPrecioOferta() == 0) {
-
-						try {
-
-							String precioOfertaString = JOptionPane.showInputDialog("Introduzca precio Oferta:");
-							Double precioOferta = Double.parseDouble(precioOfertaString);
-							aux.setPrecioOferta(precioOferta);
-							
-
-						} catch (NumberFormatException num) {
-							JOptionPane.showMessageDialog(null, "Ingrese una cantidad para sumar al Stock",
-									"Datos Invalidos", JOptionPane.ERROR_MESSAGE);
-						}
-
-					}else
+					aux.invertirActivo();
+					
+					if(aux.isOferta())
 					{
-						JOptionPane.showMessageDialog(null, "Existe un Precio Oferta Cargado",
-								"Producto en Oferta", JOptionPane.INFORMATION_MESSAGE);
+						if (aux.getPrecioOferta() == 0) {
+
+							try {
+
+								String precioOfertaString = JOptionPane.showInputDialog("Introduzca precio Oferta:");
+								Double precioOferta = Double.parseDouble(precioOfertaString);
+								aux.setPrecioOferta(precioOferta);
+								
+
+							} catch (NumberFormatException num) {
+								JOptionPane.showMessageDialog(null, "Ingrese una cantidad para sumar al Stock",
+										"Datos Invalidos", JOptionPane.ERROR_MESSAGE);
+							}
+
+						}else
+						{
+							
+							JOptionPane.showMessageDialog(null, "Existe un Precio Oferta Cargado",
+									"Producto en Oferta", JOptionPane.INFORMATION_MESSAGE);
+						}
+						
+					}else{
+						
+						JOptionPane.showMessageDialog(null, "Se Desactivo la Oferta del Producto",
+								"Expiro Oferta", JOptionPane.INFORMATION_MESSAGE);
 					}
 					
-					aux.invertirActivo();
+					
+					
+					
 					listaP.limpiarLista();
 					listaP.cargarLista(datos);
 				}
 			}
 		});
-	
+		
+		listaP.agregarOfertaMarca.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+				int seleccionTabla = listaP.table.getSelectedRow();
+				long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaCategorias().existeProducto(id))
+				{
+					Producto aux = datos.getListaCategorias().buscarProducto(id);
+					String marcaOferta = JOptionPane.showInputDialog("Introduzca Marca para crear Oferta:", aux.getMarca());
+					
+					if (datos.getListaCategorias().existeMarcar(marcaOferta)) {
+						try {
+						
+							if(!(datos.getListaCategorias().marcaEnOferta(marcaOferta)))
+							{
+
+								String porcentajeString = JOptionPane.showInputDialog("Introduzca un Entero menor a 100, sera el Porcentaje de Descuento para la Oferta:");
+								int porcentaje = Integer.parseInt(porcentajeString);
+								datos.establecerOfertaPorMarca(marcaOferta, porcentaje);
+		
+							
+						}else
+						{
+							//int resp = JOptionPane.showConfirmDialog(null, "Ya se encuentra la Marca en Oferta", "Oferta Existente", JOptionPane.);
+							
+							Object[] options = { "Cambiar Valor de Oferta", "Quitar Oferta Marca", "Cancelar" };
+			                int eleccion = JOptionPane.showOptionDialog(null, "La Marca Ya se encuentra en Oferta", "Oferta Existente",
+			                JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE,
+			                null, options, options[0]);
+			                
+			                if(eleccion == 0 )//Cambiar Valor de Oferta
+			                {
+			                	String porcentajeString = JOptionPane.showInputDialog("Introduzca un Entero menor a 100, sera el Nuevo Porcentaje de Descuento:");
+								int porcentaje = Integer.parseInt(porcentajeString);
+			                	datos.establecerOfertaPorMarca(marcaOferta, porcentaje);
+			                	
+			                }else if(eleccion == 1)//Quitar Oferta Marca
+			                {
+			                	datos.quitarOfertaPorMarca(marcaOferta);
+			                	
+			                }else if(eleccion == 2)//Cancelar
+			                {
+			                	//
+			                }
+			                
+			                
+			                
+						}
+						
+						} catch (NumberFormatException num) {
+								JOptionPane.showMessageDialog(null, "Ingrese un Valor Entero para el Porcentaje",
+										"Datos Invalidos", JOptionPane.ERROR_MESSAGE);
+						}
+						
+							//Actualizar Datos
+							listaP.limpiarLista();
+							listaP.cargarLista(datos);
+						}
+
+				}else
+				{
+					JOptionPane.showMessageDialog(panel, "Producto Inexistente");
+				}
+				
+				
+				
+			}
+			});
+		
+		
+			listaP.quitarOfertaMarca.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+
+					int seleccionTabla = listaP.table.getSelectedRow();
+					long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+
+					if (datos.getListaCategorias().existeProducto(id)) {
+						Producto aux = datos.getListaCategorias().buscarProducto(id);
+						String marcaOferta = JOptionPane.showInputDialog("Introduzca Marca para Quitar Oferta:",
+								aux.getMarca());
+
+						if (datos.getListaCategorias().existeMarcar(marcaOferta)) {
+							
+
+								if ((datos.getListaCategorias().marcaEnOferta(marcaOferta))) {
+
+									int eleccion = JOptionPane.showConfirmDialog(null, "Desea quitar la Oferta ?",
+											"Marca en Oferta", JOptionPane.YES_NO_OPTION);
+									if (eleccion == JOptionPane.YES_OPTION) {
+										
+										datos.quitarOfertaPorMarca(marcaOferta);
+										//Actualizar Datos
+										listaP.limpiarLista();
+										listaP.cargarLista(datos);
+									}
+
+								} else {
+									
+									JOptionPane.showMessageDialog(null, "La marca no se encuentra en Oferta",
+											"Datos Invalidos", JOptionPane.ERROR_MESSAGE);
+										
+								}
+
+						}
+
+					} else {
+						JOptionPane.showMessageDialog(panel, "Producto Inexistente");
+					}
+
+				}
+			});
 	
 	}
 	

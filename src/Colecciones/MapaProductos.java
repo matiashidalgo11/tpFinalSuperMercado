@@ -104,6 +104,32 @@ public class MapaProductos extends MapaGenerico<Long, Producto> implements IdMax
 		return esIgual;
 	}
 	
+	/**
+	 * Recorrer y buscar los Productos en Oferta
+	 * @return la cantidad de Productos en Oferta
+	 */
+	public int cantidadDeProductosEnOferta()
+	{
+		int resp = 0;
+		
+		Iterator<Entry<Long, Producto>> it = this.getIterator();
+		
+		while(it.hasNext())
+		{
+			Entry<Long, Producto> entrada = it.next();
+			Producto aux = entrada.getValue();
+			if(aux.isOferta())
+			{
+				resp++;
+			}
+			
+		}
+		
+
+		
+		return resp;
+	}
+	
 	public ArregloGenerico<Producto> mapaToArreglo()
 	{
 		ArregloGenerico<Producto> arreglo = null;

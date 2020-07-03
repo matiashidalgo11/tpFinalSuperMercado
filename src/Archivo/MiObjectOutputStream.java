@@ -4,9 +4,8 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 
-//Esta clase hereda sus propiedades de ObjectOutputStream
-/**
-* Esta clase lo que hace es sobreEscribir la funcion writeStreamHeader a la hora de escribir en un archivo, asi cada vez que se escriba a algun archivo no cree cabezeras y no produzca errores
+/*
+* Esta clase lo que hace es sobreEscribir la funcion writeStreamHeader a la hora de escribir en un archivo, asi cada vez que se escriba en algun archivo no cree cabezeras y no produzca errores
 * @author Matias
 *
 */
