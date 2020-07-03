@@ -46,6 +46,7 @@ public class DetallesProducto extends JFrame {
 	private JButton botonAgregar;
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
+	private JLabel labelSinStock;
 
 //	/**
 //	 * Launch the application.
@@ -112,6 +113,13 @@ public class DetallesProducto extends JFrame {
 				botonCerrarSesion.setBorder(null);
 			}
 		});
+		
+		labelSinStock = new JLabel("NO HAY MAS STOCK DISPONIBLE!");
+		labelSinStock.setVisible(false);
+		labelSinStock.setForeground(Color.RED);
+		labelSinStock.setFont(new Font("Tahoma", Font.BOLD, 20));
+		labelSinStock.setBounds(319, 652, 381, 45);
+		contentPane.add(labelSinStock);
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorderPainted(false);
 		botonCerrarSesion.setOpaque(false);
@@ -126,6 +134,13 @@ public class DetallesProducto extends JFrame {
 		contentPane.add(labelPerfil);
 		
 		JButton botonInicio = new JButton("");
+		botonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
 		botonInicio.setContentAreaFilled(false);
 		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
@@ -141,18 +156,19 @@ public class DetallesProducto extends JFrame {
 			{
 				botonInicio.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Inicio(mercado).setVisible(true);
-			}
 		});
 		contentPane.setLayout(null);
 		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -167,12 +183,6 @@ public class DetallesProducto extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
-			}
 		});
 		
 		botonCarro.setContentAreaFilled(false);
@@ -180,6 +190,13 @@ public class DetallesProducto extends JFrame {
 		contentPane.add(botonCarro);
 
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -195,18 +212,19 @@ public class DetallesProducto extends JFrame {
 			{
 				botonCuenta.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
-			}
 		});
 		botonCuenta.setContentAreaFilled(false);
 		botonCuenta.setBounds(50, 406, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -221,12 +239,6 @@ public class DetallesProducto extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
-			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
@@ -239,9 +251,19 @@ public class DetallesProducto extends JFrame {
 		botonAgregar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) 
 			{
-				producto.restarStock(1);
-				detalles.setText(producto.toString());
-				activa.agregarAlCarro(producto);
+				if(producto.getStock() > 0)
+				{
+					labelSinStock.setVisible(true);
+					carrito.agregar(producto);
+					producto.restarStock(1);
+					detalles.setText(producto.toString());
+				}
+				else
+				{
+					labelSinStock.setVisible(true);
+				}
+				
+				
 			}
 		});
 		botonAgregar.setContentAreaFilled(false);

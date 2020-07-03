@@ -152,6 +152,13 @@ public class Cuenta extends JFrame {
 		contentPane.add(labelMover);
 		
 		JButton botonInicio = new JButton("");
+		botonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
 		botonInicio.setContentAreaFilled(false);
 		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
@@ -167,18 +174,19 @@ public class Cuenta extends JFrame {
 			{
 				botonInicio.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Inicio(mercado).setVisible(true);
-			}
 		});
 		contentPane.setLayout(null);
 		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -193,12 +201,6 @@ public class Cuenta extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
-			}
 		});
 		
 		botonCarro.setContentAreaFilled(false);
@@ -206,6 +208,13 @@ public class Cuenta extends JFrame {
 		contentPane.add(botonCarro);
 		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -219,12 +228,6 @@ public class Cuenta extends JFrame {
 			public void mouseExited(MouseEvent e) 
 			{
 				botonHistorial.setBorder(null);
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
 			}
 		});
 		

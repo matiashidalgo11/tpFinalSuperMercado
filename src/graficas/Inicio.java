@@ -159,6 +159,13 @@ public class Inicio extends JFrame {
 		
 		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -173,12 +180,6 @@ public class Inicio extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
-			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
@@ -186,6 +187,13 @@ public class Inicio extends JFrame {
 		contentPane.add(botonHistorial);
 
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -201,18 +209,19 @@ public class Inicio extends JFrame {
 			{
 				botonCuenta.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
-			}
 		});
 		botonCuenta.setContentAreaFilled(false);
 		botonCuenta.setBounds(50, 407, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -226,12 +235,6 @@ public class Inicio extends JFrame {
 			public void mouseExited(MouseEvent e) 
 			{
 				botonCarro.setBorder(null);
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
 			}
 		});
 		

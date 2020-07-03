@@ -3,6 +3,7 @@ package graficas;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
+import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -30,6 +31,7 @@ import graficas.Inicio.Pulsando;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 
 public class Productos extends JFrame {
 
@@ -37,6 +39,7 @@ public class Productos extends JFrame {
 	private int x, y;
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
+	private JScrollPane scrollPane;
 	/**
 	 * Launch the application.
 	 */
@@ -58,28 +61,25 @@ public class Productos extends JFrame {
 	 */
 	public Productos(Supermercado mercado, MapaProductos productos) {
 		
+		initComponents(mercado, productos);
+	}
+	
+	private void initComponents(Supermercado mercado, MapaProductos productos) {
+		
 		setUndecorated(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1300, 750);
 		setBackground(new Color(0,0,0,0));
 		setLocationRelativeTo(null);
 		
+		Usuario user = mercado.getUsuarioEnSesion();
+		
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setBackground(new Color(0,0,0,0));
 		setContentPane(contentPane);
 		
-		Usuario user = mercado.getUsuarioEnSesion();
-		
 		botonCerrarSesion = new JButton("");
-		botonCerrarSesion.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				mercado.guardarDatos();
-				dispose();
-				new Principal(mercado).setVisible(true);
-			}
-		});
 		botonCerrarSesion.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseEntered(MouseEvent arg0) 
@@ -124,6 +124,13 @@ public class Productos extends JFrame {
 		contentPane.add(labelMover);
 		
 		JButton botonInicio = new JButton("");
+		botonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
 		botonInicio.setContentAreaFilled(false);
 		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
@@ -139,18 +146,19 @@ public class Productos extends JFrame {
 			{
 				botonInicio.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Inicio(mercado).setVisible(true);
-			}
 		});
 		contentPane.setLayout(null);
 		botonInicio.setBounds(49, 290, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -165,20 +173,21 @@ public class Productos extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
-			}
 		});
 		contentPane.setLayout(null);
 		
 		botonCarro.setContentAreaFilled(false);
 		botonCarro.setBounds(50, 348, 196, 51);
 		contentPane.add(botonCarro);
-
+		
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -193,18 +202,19 @@ public class Productos extends JFrame {
 			{
 				botonCuenta.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
-			}
 		});
 		botonCuenta.setContentAreaFilled(false);
 		botonCuenta.setBounds(51, 408, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -219,41 +229,40 @@ public class Productos extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
-			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
 		botonHistorial.setBounds(52, 463, 196, 51);
 		contentPane.add(botonHistorial);
 		
+		scrollPane = new JScrollPane();
+		scrollPane.setBounds(255, 60, 1017, 627);
+		contentPane.add(scrollPane);
 		
 		JPanel panel = new JPanel();
 		panel.setIgnoreRepaint(true);
 		panel.setBorder(null);
-		panel.setBounds(255, 58, 1017, 627);
+		panel.setPreferredSize(new Dimension(1017,627));
 		panel.setLayout(null);
-		contentPane.add(panel);
+		scrollPane.setViewportView(panel);
 		
-		System.out.println(productos.listar());
-		
-		crearMatrizBotones(panel, productos, mercado);		
+		crearMatrizBotones(panel, productos, mercado);
 		
 		JLabel fondo = new JLabel("");
 		fondo.setIgnoreRepaint(true);
 		fondo.setBounds(0, 0, 1294, 721);
 		fondo.setIcon(new ImageIcon(Productos.class.getResource("/img/Productos V2.png")));
 		contentPane.add(fondo);
+		
+		
+		
 	}
 	
 	void crearMatrizBotones(JPanel panel, MapaProductos productos, Supermercado mercado)
 	{
 		int x = 150;
 		int y = 61;
+		int yPanel = 627;
 		long idAltoLong = productos.getIdMasAlto();
 		int idAlto = (int) idAltoLong;
 		int bajar = 0;
@@ -283,6 +292,12 @@ public class Productos extends JFrame {
 				{
 					x = 150;
 					y += 67 + 20;
+				}
+				
+				if(i % 2 == 0)
+				{
+					yPanel += 100;
+					panel.setPreferredSize(new Dimension(1017, yPanel));
 				}
 			}		
 		}	
