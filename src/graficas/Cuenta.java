@@ -33,7 +33,6 @@ public class Cuenta extends JFrame {
 
 	private JPanel contentPane;
 	private JPasswordField fieldContraseñaGrafica;
-	private JLabel editarNombreUsuario;
 	private JTextField fieldUsuario;
 	private JLabel botonGuardar;
 	private JLabel editarContraseña;
@@ -329,12 +328,6 @@ public class Cuenta extends JFrame {
 		fieldContraseñaGrafica.setBackground(Color.WHITE);
 		fieldContraseñaGrafica.setBounds(320, 224, 391, 30);
 		contentPane.add(fieldContraseñaGrafica);
-		
-		editarNombreUsuario = new JLabel("");
-		editarNombreUsuario.setBounds(743, 117, 38, 35);
-		editarNombreUsuario.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-		editarNombreUsuario.addMouseListener(new EditarField(fieldUsuario));
-		contentPane.add(editarNombreUsuario);
 		
 		editarContraseña = new JLabel("");
 		editarContraseña.addMouseListener(new MouseAdapter() {
