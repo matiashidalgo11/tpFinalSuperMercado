@@ -830,11 +830,11 @@ public class SubMenuModificarProducto extends JPanel {
 					if(chckbxActivarOferta.isEnabled())
 					{	
 							dato.setOferta(chckbxActivarOferta.isSelected());
-							txtPrecio.setEnabled(false);
+							chckbxActivarOferta.setEnabled(false);
 							
 					}else
 					{
-						txtPrecio.setEnabled(true);
+						chckbxActivarOferta.setEnabled(true);
 					}
 				
 			

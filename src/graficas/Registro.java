@@ -133,7 +133,7 @@ public class Registro extends JFrame {
 		});
 
 		// Cancelar boton
-		btnCancelar = new JButton("CANCELAR");
+		btnCancelar = new JButton("");
 		btnCancelar.setVisible(true);
 		btnCancelar.setOpaque(false);
 		btnCancelar.setBorder(null);

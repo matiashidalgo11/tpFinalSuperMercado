@@ -37,6 +37,7 @@ public class InicioSesion extends JFrame {
 	private JPasswordField txtPassword;
 	private JButton btnIniciar;
 	private Supermercado superAux;
+	private JButton btnCancelar;
 	
 	private static String ADMIN_NAME = "admin";
 	private static String ADMIN_PASSWORD = "1234";
@@ -94,7 +95,7 @@ public class InicioSesion extends JFrame {
 		Fondo = new JLabel("");
 		Fondo.setForeground(new Color(0, 0, 0));
 		Fondo.setFont(new Font("Tahoma", Font.PLAIN, 26));
-		Fondo.setIcon(new ImageIcon(Principal.class.getResource("/img/Inicio Sesion.png")));
+		Fondo.setIcon(new ImageIcon(Principal.class.getResource("/img/Inicio Sesion V2.png")));
 		Fondo.setBounds(0, 0, 1300, 750);
 		contentPane.add(Fondo);
 	}
@@ -123,7 +124,7 @@ public class InicioSesion extends JFrame {
 		txtPassword.setColumns(10);
 		txtPassword.setBorder(null);
 		txtPassword.setBackground(Color.WHITE);
-		txtPassword.setBounds(554, 336, 224, 35);
+		txtPassword.setBounds(554, 337, 224, 35);
 		contentPane.add(txtPassword);
 	}
 
@@ -151,8 +152,34 @@ public class InicioSesion extends JFrame {
 			}
 		});
 
-		btnIniciar.setBounds(509, 414, 159, 48);
+		btnIniciar.setBounds(619, 349, 159, 48);
 		contentPane.add(btnIniciar);
+		
+		
+		// Siguiente boton
+				btnCancelar = new JButton("");
+				btnCancelar.setVisible(true);
+				btnCancelar.setOpaque(false);
+				btnCancelar.setBorder(null);
+
+				// Totalmente Transparente
+				btnCancelar.setContentAreaFilled(false);
+				btnCancelar.setBorderPainted(false);
+
+				btnCancelar.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseEntered(MouseEvent e) {
+						btnCancelar.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+					}
+
+					@Override
+					public void mouseExited(MouseEvent e) {
+						btnCancelar.setBorder(null);
+					}
+				});
+
+				btnCancelar.setBounds(509, 499, 159, 48);
+				contentPane.add(btnCancelar);
 	}
 	
 	public void accionesBotones()
@@ -215,7 +242,13 @@ public class InicioSesion extends JFrame {
 		});
 		
 		
-		
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Principal nuevo = new Principal(superAux);
+				nuevo.setVisible(true);
+				dispose();
+			}
+		});
 		
 	}
 	
@@ -232,6 +265,4 @@ public class InicioSesion extends JFrame {
 		}
 		return resp;
 	}
-	
-	
 }

@@ -174,6 +174,12 @@ public class AdminMenuPrincipal extends JFrame {
 			}
 		});
 		
+		btnAdministrarOfertas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		btnCerrarSesion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				datos.cerrarSesion();

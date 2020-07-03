@@ -200,9 +200,73 @@ public class MenuAdminProductos extends JPanel {
 			});
 		
 		
-			
-	
+		listaP.itemAgregarStock.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				int seleccionTabla = listaP.table.getSelectedRow();
+				long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+				
+				if(datos.getListaCategorias().existeProducto(id))
+				{
+					Producto aux = datos.getListaCategorias().buscarProducto(id);
+					
+					try
+					{
+						String stockString = JOptionPane.showInputDialog("Introduzca Stock a sumar:");
+						long stockSuma = Long.parseLong(stockString);
+						
+						aux.sumarStock(stockSuma);
+						listaP.limpiarLista();
+						listaP.cargarLista(datos);
+						
+						
+						
+					}catch(NumberFormatException num)
+					{
+						JOptionPane.showMessageDialog(null,"Ingrese una cantidad para sumar al Stock","Datos Invalidos",JOptionPane.ERROR_MESSAGE);
+					}
+					
+					
+					
+				}
+				
+			}
+		});
 		
+		listaP.itemActivarOferta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				int seleccionTabla = listaP.table.getSelectedRow();
+				long id = (long) listaP.table.getValueAt(seleccionTabla, 0);
+
+				if (datos.getListaCategorias().existeProducto(id)) {
+					Producto aux = datos.getListaCategorias().buscarProducto(id);
+					if (aux.getPrecioOferta() == 0) {
+
+						try {
+
+							String precioOfertaString = JOptionPane.showInputDialog("Introduzca precio Oferta:");
+							Double precioOferta = Double.parseDouble(precioOfertaString);
+							aux.setPrecioOferta(precioOferta);
+							
+
+						} catch (NumberFormatException num) {
+							JOptionPane.showMessageDialog(null, "Ingrese una cantidad para sumar al Stock",
+									"Datos Invalidos", JOptionPane.ERROR_MESSAGE);
+						}
+
+					}else
+					{
+						JOptionPane.showMessageDialog(null, "Existe un Precio Oferta Cargado",
+								"Producto en Oferta", JOptionPane.INFORMATION_MESSAGE);
+					}
+					
+					aux.invertirActivo();
+					listaP.limpiarLista();
+					listaP.cargarLista(datos);
+				}
+			}
+		});
 	
 	
 	}

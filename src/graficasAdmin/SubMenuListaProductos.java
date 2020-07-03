@@ -30,6 +30,7 @@ public class SubMenuListaProductos extends JPanel {
 	private JScrollPane scrollPane;
 	public JTable table;
 	private JPopupMenu popupMenu;
+	public JMenuItem itemActivarOferta;
 	public JMenuItem itemEliminar;
 	public JMenuItem itemModificar;
 	public JMenuItem itemAgregarStock;
@@ -80,6 +81,7 @@ public class SubMenuListaProductos extends JPanel {
 		scrollPane.setViewportView(table);
 		
 		popupMenu = new JPopupMenu();
+		itemActivarOferta = new JMenuItem("Activar/Desactivar Oferta");
 		itemEliminar = new JMenuItem("Eliminar");
 		itemModificar = new JMenuItem("Modificar");
 		itemAgregarStock = new JMenuItem("Sumar Stock");
@@ -92,7 +94,7 @@ public class SubMenuListaProductos extends JPanel {
 	
 	public Object[] productoToObjecto(Producto p)
 	{
-		Object[] resp = new Object[] {p.getId(),p.getNombre(),p.getPrecio(),p.getMarca(),p.getStock(),p.getNombreCategoria(), p.isOferta()};
+		Object[] resp = new Object[] {p.getId(),p.getNombre(),p.getPrecioActual(),p.getMarca(),p.getStock(),p.getNombreCategoria(), p.isOferta()};
 		return resp;
 	}
 	

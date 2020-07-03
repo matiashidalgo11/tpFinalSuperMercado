@@ -258,6 +258,17 @@ public abstract class Producto implements Serializable, idInterface<Long>, JsonF
 		return precioActual;
 	}
 	
+	public void invertirActivo()
+	{
+		if(this.oferta == true)
+		{
+			this.oferta = false;
+		}else
+		{
+			this.oferta = true;
+		}
+	}
+	
 	public JSONObject toJson()
 	{
 		JSONObject objeto = new JSONObject();
