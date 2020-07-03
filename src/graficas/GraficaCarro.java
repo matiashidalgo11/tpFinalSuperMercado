@@ -58,6 +58,7 @@ public class GraficaCarro extends JFrame {
 	private JLabel labelCarritoVacio;
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
+	private JLabel lblNewLabel;
 
 //	/**
 //	 * Launch the application.
@@ -121,6 +122,11 @@ public class GraficaCarro extends JFrame {
 				botonCerrarSesion.setBorder(null);
 			}
 		});
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) Color.RED));
+		lblNewLabel.setBounds(650, 29, 387, 34);
+		contentPane.add(lblNewLabel);
 		botonCerrarSesion.setContentAreaFilled(false);
 		botonCerrarSesion.setBorderPainted(false);
 		botonCerrarSesion.setOpaque(false);
@@ -156,6 +162,13 @@ public class GraficaCarro extends JFrame {
 		contentPane.add(labelCarritoVacio);
 		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -170,15 +183,16 @@ public class GraficaCarro extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
-			}
 		});
 		
 		JButton botonInicio = new JButton("");
+		botonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
 		botonInicio.setContentAreaFilled(false);
 		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
@@ -194,12 +208,6 @@ public class GraficaCarro extends JFrame {
 			{
 				botonInicio.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Inicio(mercado).setVisible(true);
-			}
 		});
 		botonInicio.setBounds(48, 287, 196, 51);
 		contentPane.add(botonInicio);
@@ -209,6 +217,13 @@ public class GraficaCarro extends JFrame {
 		contentPane.add(botonHistorial);
 
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -223,12 +238,6 @@ public class GraficaCarro extends JFrame {
 			public void mouseExited(MouseEvent e) 
 			{
 				botonCuenta.setBorder(null);
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
@@ -307,9 +316,8 @@ public class GraficaCarro extends JFrame {
 		panel = new JPanel();
 		panel.setPreferredSize(new Dimension(1015, 620));
 		scrollPane.setViewportView(panel);
-		panel.setLayout(null);
-		
 		contentPane.add(scrollPane);
+		panel.setLayout(null);
 		
 		columnaProductos(arreglo, carrito, precioTotal);
 		scrollPane.getViewport().setViewPosition( new Point(0, 0) );
@@ -337,7 +345,7 @@ public class GraficaCarro extends JFrame {
 		
 		for(Producto aux : productos.getArreglo())
 		{
-			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecio());
+			arregloBotones[i] = new JButton(aux.getNombre() + "      $" + aux.getPrecioActual());
 			arregloBotones[i].setHorizontalAlignment(SwingConstants.LEFT);
 			arregloBotones[i].setFont(new Font("Calibri", Font.BOLD, 20));
 			arregloBotones[i].setForeground(new Color(51, 102, 153));

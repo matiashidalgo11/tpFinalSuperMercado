@@ -8,6 +8,7 @@ import Colecciones.ArregloProductos;
 import Colecciones.MapaCategoria;
 import Colecciones.MapaUsuario;
 import ColeccionesGenericas.MapaGenerico;
+import Excepciones.ProductoYaExiste;
 import Colecciones.MapaProductos;
 import Objetos.Carro;
 import Objetos.DetalleCompra;
@@ -75,15 +76,22 @@ public class testeoAlan {
 //		Producto palitos = new Snack("Palitos", 40, "Palitos", 1, 100, false, 0);	
 //		
 //		Producto leche = new Lacteo("Leche", 50, "LaSerenisima", 1, "Leche", false, 0);
-//		
+////		
 		Supermercado mercado = new Supermercado();
-//		mercado.agregarProducto(coca);
-//		mercado.agregarProducto(jugo);
-//		mercado.agregarProducto(cerveza);
-//		mercado.agregarProducto(agua);
-//		mercado.agregarProducto(papas);
-//		mercado.agregarProducto(palitos);
-//		mercado.agregarProducto(leche);
+//		
+//		try {
+//			mercado.agregarProducto(coca);
+//			mercado.agregarProducto(jugo);
+//			mercado.agregarProducto(cerveza);
+//			mercado.agregarProducto(agua);
+//			mercado.agregarProducto(papas);
+//			mercado.agregarProducto(palitos);
+//			mercado.agregarProducto(leche);
+//		} catch (ProductoYaExiste e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
 		
 //		mercado.guardarDatos();
 		mercado.cargarDatos();

@@ -136,6 +136,13 @@ public class GraficaHistorial extends JFrame {
 		
 
 		JButton botonInicio = new JButton("");
+		botonInicio.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Inicio(mercado).setVisible(true);
+			}
+		});
 		botonInicio.setContentAreaFilled(false);
 		botonInicio.setBorder(null);
 		botonInicio.setVisible(true);
@@ -151,18 +158,19 @@ public class GraficaHistorial extends JFrame {
 			{
 				botonInicio.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Inicio(mercado).setVisible(true);
-			}
 		});
 		contentPane.setLayout(null);
 		botonInicio.setBounds(52, 289, 196, 51);
 		contentPane.add(botonInicio);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -177,12 +185,6 @@ public class GraficaHistorial extends JFrame {
 			{
 				botonCarro.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
-			}
 		});
 		
 		botonCarro.setContentAreaFilled(false);
@@ -190,6 +192,13 @@ public class GraficaHistorial extends JFrame {
 		contentPane.add(botonCarro);
 
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -204,12 +213,6 @@ public class GraficaHistorial extends JFrame {
 			public void mouseExited(MouseEvent e) 
 			{
 				botonCuenta.setBorder(null);
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
 			}
 		});
 		botonCuenta.setContentAreaFilled(false);
@@ -245,7 +248,7 @@ public class GraficaHistorial extends JFrame {
 			arregloLabel[i].setBackground(new Color(0,0,0,0));
 			arregloLabel[i].setBounds(39, y, 838, 300);
 			panel.add(arregloLabel[i]);
-			y += 300;
+			y += 200;
 			i++;
 			
 			if(i >= 1)

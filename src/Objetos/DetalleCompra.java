@@ -74,7 +74,6 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 		
 		StringBuilder builder = new StringBuilder();
 		builder.append("\nDetalle Compra: \n");
-		builder.append(productos.listar());
 		builder.append("\nMonto Total: " + montoTotal + "\n");
 		builder.append("\nFecha y Hora: " + fechaYhora + "\n");
 		

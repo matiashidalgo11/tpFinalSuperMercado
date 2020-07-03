@@ -38,8 +38,6 @@ import java.awt.Font;
 public class Inicio extends JFrame {
 
 	private JPanel contentPane;
-	private int x;
-	private int y;
 	private JLabel labelPerfil;
 	private JButton botonCerrarSesion;
 
@@ -114,51 +112,14 @@ public class Inicio extends JFrame {
 		contentPane.add(labelPerfil);
 		
 		
-		JLabel labelMover = new JLabel("");
-		labelMover.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e) {
-				x = e.getX();
-				y = e.getY();
-			}
-		});
-		labelMover.addMouseMotionListener(new MouseMotionAdapter() {
-			@Override
-			public void mouseDragged(MouseEvent e) {
-				setLocation(getLocation().x + e.getX() - x, getLocation().y + e.getY() - y);
-			}
-		});
-		
-		JButton botonSalir = new JButton("X");
-		botonSalir.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		botonSalir.setBackground(new Color(192, 192, 192));
-		botonSalir.setForeground(new Color(0, 0, 0));
-		botonSalir.setBounds(1194, 14, 46, 26);
-		botonSalir.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseEntered(MouseEvent e) 
-			{
-				botonSalir.setBackground(Color.red);
-			}
-			@Override
-			public void mouseExited(MouseEvent e) 
-			{
-				botonSalir.setBackground(new Color(192, 192, 192));
-			}
-		});
-		botonSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) 
-			{
-				System.exit(0);
-			}
-		});
-		contentPane.add(botonSalir);
-		labelMover.setCursor(Cursor.getPredefinedCursor(Cursor.MOVE_CURSOR));
-		labelMover.setBounds(32, 11, 1233, 35);
-		contentPane.add(labelMover);
-		
-		
 		JButton botonHistorial = new JButton("");
+		botonHistorial.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaHistorial(mercado).setVisible(true);
+			}
+		});
 		botonHistorial.setVisible(true);
 		botonHistorial.setOpaque(false);
 		botonHistorial.setBorder(null);
@@ -173,12 +134,6 @@ public class Inicio extends JFrame {
 			{
 				botonHistorial.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaHistorial(mercado).setVisible(true);
-			}
 		});
 		
 		botonHistorial.setContentAreaFilled(false);
@@ -186,6 +141,13 @@ public class Inicio extends JFrame {
 		contentPane.add(botonHistorial);
 
 		JButton botonCuenta = new JButton("");
+		botonCuenta.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new Cuenta(mercado).setVisible(true);
+			}
+		});
 		botonCuenta.setVisible(true);
 		botonCuenta.setOpaque(false);
 		botonCuenta.setBorder(null);
@@ -201,18 +163,19 @@ public class Inicio extends JFrame {
 			{
 				botonCuenta.setBorder(null);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) 
-			{
-				dispose();
-				new Cuenta(mercado).setVisible(true);
-			}
 		});
 		botonCuenta.setContentAreaFilled(false);
 		botonCuenta.setBounds(50, 407, 196, 51);
 		contentPane.add(botonCuenta);
 		
 		JButton botonCarro = new JButton("");
+		botonCarro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) 
+			{
+				dispose();
+				new GraficaCarro(mercado).setVisible(true);
+			}
+		});
 		botonCarro.setVisible(true);
 		botonCarro.setOpaque(false);
 		botonCarro.setBorder(null);
@@ -226,12 +189,6 @@ public class Inicio extends JFrame {
 			public void mouseExited(MouseEvent e) 
 			{
 				botonCarro.setBorder(null);
-			}
-			@Override
-			public void mouseClicked(MouseEvent e) 
-			{
-				dispose();
-				new GraficaCarro(mercado).setVisible(true);
 			}
 		});
 		
