@@ -161,10 +161,10 @@ public class Bebida extends Producto{
 	public JSONObject toJson()
 	{
 		JSONObject objeto = super.toJson();
-		objeto.put("Gasificada", this.gasificada);
-		objeto.put("Litros", this.litros);
-		objeto.put("Gusto", this.gusto);
-		objeto.put("Alcohol", this.alcohol);
+		objeto.put(CLAVE_GASIFICADA, this.gasificada);
+		objeto.put(CLAVE_LITROS, this.litros);
+		objeto.put(CLAVE_GUSTO, this.gusto);
+		objeto.put(CLAVE_ALCOHOL, this.alcohol);
 		return objeto;
 	}
 }
