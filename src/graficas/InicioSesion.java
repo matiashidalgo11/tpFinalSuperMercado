@@ -124,7 +124,7 @@ public class InicioSesion extends JFrame {
 		txtPassword.setColumns(10);
 		txtPassword.setBorder(null);
 		txtPassword.setBackground(Color.WHITE);
-		txtPassword.setBounds(554, 337, 224, 35);
+		txtPassword.setBounds(554, 336, 224, 35);
 		contentPane.add(txtPassword);
 	}
 
@@ -152,7 +152,7 @@ public class InicioSesion extends JFrame {
 			}
 		});
 
-		btnIniciar.setBounds(619, 349, 159, 48);
+		btnIniciar.setBounds(509, 415, 159, 48);
 		contentPane.add(btnIniciar);
 		
 		

@@ -18,7 +18,11 @@ import Productos.Producto;
 import Colecciones.MapaCarro;
 import Colecciones.MapaCategoria;
 import Colecciones.MapaProductos;
-
+/**
+ * 
+ * Clase Principal del Programa, contiene los atributos necesarios para Cargarse a si misma(Archivos, Json). La informacion la carga en las Listas instanciadas.
+ *
+ */
 public class Supermercado {
 
 	private MapaUsuario listaUsuarios;
@@ -51,6 +55,12 @@ public class Supermercado {
 	
 	}
 	
+	/**
+	 * Metodo que inicializa sesionActiva, dependiendo si el id se encuentra en ListaUsuarios
+	 * 
+	 * @param id
+	 * @return True si se Inicio el atributo sesionActivo, en caso contrario retorna False
+	 */
 	public boolean iniciarSession(long id)
 	{
 		Usuario user;
@@ -80,6 +90,10 @@ public class Supermercado {
 		return inSession();
 	}
 	
+	/**
+	 * Metodo que indica si inSession se encuentra "Activo"
+	 * @return
+	 */
 	public boolean inSession()
 	{
 		boolean resp = false;
@@ -92,7 +106,7 @@ public class Supermercado {
 	}
 	
 	/*
-	 * Si se esta en Sesion, pasa a null el atributo y guarda todos los datos;
+	 * Si se esta en Sesion, pasa a null el atributo. Luego se guardan todos los datos;
 	 * 
 	 */
 	public void cerrarSesion()
@@ -105,6 +119,8 @@ public class Supermercado {
 		
 		this.guardarDatos();
 	}
+	
+	
 	
 	public void establecerOferta(Producto producto, double precioOferta)
 	{
@@ -127,6 +143,7 @@ public class Supermercado {
 		listaCategorias.quitarOfertaPorMarca(marca);
 	}
 	
+	
 	public boolean comprarProductos()
 	{
 		boolean resp = false;
@@ -136,7 +153,6 @@ public class Supermercado {
 			resp = sesionActiva.comprar();
 			
 		}
-		
 		
 		return resp;
 	}
@@ -284,13 +300,13 @@ public class Supermercado {
 	
 	
 	/**
-	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados). La idea es utilizarla solo al principio del programa.
+	 * La funcion cargara todos los mapas desde el archivo;(Los mapas deberian estar inicializados). La idea es utilizarla solo al PRINCIPIO del programa.
 	 */
 	public void cargarDatos()
 	{
 		if(listaUsuarios != null)
 		{
-			//this.listaUsuarios.vaciar(); limpiar el mapa si esta lleno pero puede borrar datos que no se guardaror
+
 			listaUsuarios.setMapa(archivoUsuario.cargar().getMapa());
 			System.out.println("\n EL ID MAS ALTO DE LISTAUSUARIOS ES: " + listaUsuarios.getIdMasAlto());
 			Usuario.generadorId = listaUsuarios.getIdMasAlto();//Busca el id mas alto, para cuando se cree un nuevo Usuario comience a partir del id Mas alto
@@ -327,7 +343,7 @@ public class Supermercado {
 	}
 	
 	/**
-	 * La funcion guardara todos los mapas en su estado actual a sus archivos correspondientes. La idea es utilizarla al final del Programa
+	 * La funcion guardara todos los mapas en su estado actual a sus archivos correspondientes. La idea es utilizarla al FINAL del Programa
 	 */
 	public void guardarDatos()
 	{
@@ -359,38 +375,6 @@ public class Supermercado {
 		}
 	}
 	
-	/**
-	 * Funcion que guarde dependiendo del dato una Unidad de Usuario, Producto o Carro. Es para que si el programa esta mucho tiempo abierto, se mantenga con el archivo lo mas actualizada posible sin tener que ir guardando y cargando todo de una
-	 */
-	/*
-	private void guardarUnidad(Object dato)
-	{
-		if(dato instanceof Usuario)
-		{
-			Usuario aux = (Usuario)dato;
-			//borrar
-			System.out.println("\nEL USUARIO QUE SE GUARDA EN EL ARCHIVO ES : " + aux);
-			archivoUsuario.guardarUnidad(aux);
-			System.out.println("\n Se guardo exitosamente \n");
-			
-		}else if(dato instanceof Producto)
-		{
-			//Error de Casteo no funciona
-			Producto aux = (Producto) dato;
-			archivoProducto.guardarUnidad((Producto)aux);
-			
-		}else if (dato instanceof Carro)
-		{
-			Carro aux = (Carro) dato;
-			archivoCarro.guardarUnidad(aux);
-		}else
-		{
-			System.out.println("EL Dato no corresponde a un Archivo disponible");
-		}
-		
-		
-	}
-	*/
 
 	/**
 	 * Funcion que inicializa todos los Archivos del Programa
@@ -446,55 +430,11 @@ public class Supermercado {
 		jsonObject.put(CLAVE_LISTAUSUARIOS, listaUsuarios.toJsonArray());
 		jsonObject.put(CLAVE_LISTACARRITOS, listaCarritos.toJsonArray());
 		jsonObject.put(CLAVE_LISTACATEGORIAS, listaCategorias.toJsonArray());
-		
-		//Agregabr el de Productos
-		
-		
+			
 		return jsonObject;
 	}
 	
-	//Funcion deberia estar en MapaProductos, recibier por parametro la listaCategoria
-	/*
-	public MapaProductos listaProductosToMap()
-	{
-		MapaProductos productos = new MapaProductos();
-		Iterator<Entry<Long, MapaProductos>> it = listaCategorias.getIterator(); //Obtengo el iterator del mapa de categorias cargado actualmente
-		
-		while(it.hasNext())
-		{
-			Entry<Long, MapaProductos> entrada = it.next();
-			Iterator<Entry<Long, Producto>> it2 = entrada.getValue().getIterator(); //Obtengo cada Mapa de Productos de cada categoria
-			
-			while(it2.hasNext()) //Obtengo el iterator de cada Mapa de Productos
-			{
-				Entry<Long, Producto> entrada2 = it2.next();
-				productos.agregar(entrada2.getKey(), entrada2.getValue()); //Guardando cada producto de todas las categorias en un unico Mapa de Productos
-			}
-		}
-		
-		return productos; //Retorno el Mapa con todos los Productos
-	}
-	*/
-	/*
-	public MapaCategoria mapaToListaProductos()
-	{
-		HashMap<Long, Producto> mapax = archivoProducto.cargar().getMapa(); //Obtengo el mapa con todos los productos del archivo
-		Set<Entry<Long, Producto>> set = mapax.entrySet();
-		Iterator<Entry<Long, Producto>> it = set.iterator(); //Obtengo el iterator del mapa
-		
-		MapaCategoria mapa = new MapaCategoria();
-		
-		while(it.hasNext())
-		{
-			Entry<Long, Producto> entrada = it.next();
-			Producto nuevo = entrada.getValue(); //Obtengo cada producto para tener su atributo de idCategoria.
-			agregarProducto(entrada.getValue()); //Guardo cada producto en la categoria que le corresponde
-		}
-		
-		return mapa;
-	}
 	
-	*/
 	
 	
 

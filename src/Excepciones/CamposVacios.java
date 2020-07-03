@@ -5,6 +5,11 @@ import java.io.PrintStream;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
+/**
+ * 
+ * Excepcion creada para lanzarce cuando algun campo de la Parte Grafica se encuentra Vacio y se debe de Llenar
+ *
+ */
 public class CamposVacios extends Exception {
 
 	String msg;

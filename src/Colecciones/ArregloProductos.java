@@ -8,7 +8,7 @@ import Productos.*;
 
 /**
  * 
- * @author Matias
+ * 
  * Clase en la cual contiene un arreglo de productos, donde si se quiere agregar el mismo Producto solo va a sumar el Stock;
  */
 public class ArregloProductos extends ArregloGenerico<Producto> {
@@ -18,6 +18,9 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		super();
 	}
 	
+	/**
+	 * Funcion que Recibe un Producto, si el Producto existe solo Suma el stock +1, si no existe EL PRODUCTO SE CLONA y se cambia el stock a 1;
+	 */
 	@Override
 	public boolean agregar(Producto dato) {
 		Producto aux;
@@ -47,7 +50,6 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		{
 			Producto  aux = this.buscar(id);
 			super.eliminar(aux);
-			//super.getArreglo().remove(aux);
 			resp = true;
 		}
 		
@@ -90,6 +92,10 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 		return resp;
 	}
 	
+	/**
+	 * Metodo que recorrer todo el Arreglo de Productos y acumula el precioActual (Varia si esta en oferta o no el Precio)
+	 * @return La suma total del Arreglo
+	 */
 	public double sumaTotal()
 	{
 		double resp = 0;
@@ -108,7 +114,7 @@ public class ArregloProductos extends ArregloGenerico<Producto> {
 	 * @param dato
 	 * @return
 	 */
-	public static  Producto clonarProductoCategoria(Producto dato)
+	private static  Producto clonarProductoCategoria(Producto dato)
 	{
 		Producto resp = null;
 		

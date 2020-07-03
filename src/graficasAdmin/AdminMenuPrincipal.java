@@ -25,6 +25,11 @@ import javax.swing.JScrollPane;
 import java.awt.CardLayout;
 import javax.swing.ImageIcon;
 
+/**
+ * 
+ * MenuPrinciapl del Administrador
+ *
+ */
 public class AdminMenuPrincipal extends JFrame {
 
 	private JPanel contentPane;

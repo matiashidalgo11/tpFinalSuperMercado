@@ -10,8 +10,8 @@ import Colecciones.ArregloProductos;
 import Interfaces.JsonFunciones;
 
 /**
- *	La Clase guarda en si misma Los productos que se compraron, el monto total y la fecha y hora en la que se creo. Es un registro de lo que se Compro 
- * @author Matias
+ *	La Clase guarda en si misma Los productos que se compraron, el monto total, la fecha y hora en la que se creo. Es un registro de lo que se Compro 
+ * 
  *
  */
 public class DetalleCompra implements Serializable, JsonFunciones{
@@ -80,9 +80,7 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 		return builder.toString();
 	}
 
-	/**
-	 * Falta Completar Convirtiendo el Arreglo en un JArray
-	 */
+	
 	@Override
 	public JSONObject toJson() {
 		JSONObject resp = new JSONObject();
@@ -91,7 +89,7 @@ public class DetalleCompra implements Serializable, JsonFunciones{
 		resp.put(CLAVE_MONTOTOTAL, this.getMontoTotal());
 		resp.put(CLAVE_PRODUCTOS, this.getProductos().toJsonArray());
 		
-		return null;
+		return resp;
 	}
 	
 }

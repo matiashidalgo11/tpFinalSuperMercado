@@ -3,7 +3,7 @@ package Objetos;
 import Productos.Producto;
 /**
  * Clase que une un Usuario con un Carro, dependiendo del dinero que tenga en la Cartera el Usuario podra comprar o no lo que se encuentra en el Carrito. 
- * @author Matias
+ * 
  *
  */
 public class Session {
@@ -11,15 +11,10 @@ public class Session {
 	private Usuario user;
 	private Carro carrito;
 	
-	/**
-	 * Desarrollar esta clase, guardar o no el carro una vez que se cierre sesion y tenga productos adentro del carro
-	 * 
-	 */
 	
 	/**
 	 * Si existiera un carro ya guardado en el sistema con su misma id lo agregaria a la Session del usuario
-	 * @param user
-	 * @param carrito
+	 * 
 	 */
 	public Session(Usuario user, Carro carrito) {
 		

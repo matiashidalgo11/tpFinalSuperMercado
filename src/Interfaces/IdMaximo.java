@@ -1,7 +1,7 @@
 package Interfaces;
 /**
  * Interface para las colecciones que contengan Objetos con Id
- * @author Matias
+ * 
  *
  */
 public interface IdMaximo {

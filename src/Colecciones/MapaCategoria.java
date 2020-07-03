@@ -231,7 +231,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 	
 	/**
 	 * Metodo que crea un Mapa unico con todos los Productos
-	 * @return
+	 * @return MapaProductos con todos los Productos del MapaCategoria
 	 */
 	public MapaProductos toMapaProductos()
 	{

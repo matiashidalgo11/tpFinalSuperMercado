@@ -13,8 +13,11 @@ import Productos.Producto;
 
 /**
  * 
- * @author Matias
- * Contiene un ArregloProductos, y el Id al cual pertence a un Usuario que lo este Utilizando.
+ * 
+ * Clase que contiene un ArregloProductos, y el Id al cual pertence a un Usuario que lo este Utilizando.
+ * 
+ * 
+ * 
  */
 public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	
@@ -23,7 +26,7 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	private long idCarro;
 	
 	/**
-	 * Identificador unico para saber que es una Clase Usuario
+	 * Identificador unico para saber que es una Clase Carro para el JsonObject
 	 */
 	public static String CLAVE_ID = "idCarro";
 	public static String CLAVE_ARREGLOPRODUCTOS = "arregloProductos";
@@ -43,6 +46,11 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 	}
 	
 
+	/**
+	 * 
+	 * Agrega un producto si el Stock de dicho Producto es mayor a 0, en caso contrario retorna False y no se agrega
+	 * 	 
+	 */
 	public boolean agregar(Producto p)
 	{
 		boolean rta = false;
@@ -81,6 +89,12 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		return arreglo.cantidad();
 	}
 
+	/**
+	 * La funcion crea un DetalleCompra basado en el arregloProducto, solo si el arreglo contiene algun Producto
+	 * 
+	 * @return una Objeto DetalleCompra
+	 * 
+	 */
 	public DetalleCompra generarDetllaCompra() throws NullPointerException
 	{
 		DetalleCompra resp = null;
@@ -97,6 +111,9 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		return resp;
 	}
 	
+	/**
+	 * Vacia el Arreglo y establece el total a 0
+	 */
 	public void limpiarCarrito()
 	{
 		this.total = 0;
@@ -248,9 +265,7 @@ public class Carro implements Serializable, idInterface<Long>, JsonFunciones{
 		return cantidad;
 	}
 
-	/**
-	 * falta pasar Arreglo a JSONARRAY
-	 */
+	
 	@Override
 	public JSONObject toJson() {
 		

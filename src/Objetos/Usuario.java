@@ -12,14 +12,10 @@ import Interfaces.JsonFunciones;
 import Interfaces.idInterface;
 
 /**
-
- * @author Matias
- * @version 0.0.1
  * 
+ * Clase Usuario
  * 
  */
-
-	
 public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	
 	/**
@@ -160,29 +156,6 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 	}
 
 
-
-	/**
-	 * BorrarFuncion
-	 * Funcion para que solo se modifique el password sabiendo el actual, solo se ingresa el password en el constructor
-	 * 
-	 * @param actual password actual ingresado por interface
-	 * @param nuevo password nuevo ingresado por interface
-	 * @return si se cambio correctamente
-	 
-	public boolean cambiarPassword(String actual, String nuevo)
-	{
-		boolean resp = false;
-		if(actual.equals(getPassword()))
-		{
-			setPassword(nuevo);
-			resp = true;
-		}
-		
-		return resp;
-	}
-
-	*/
-
 	public static long getGeneradorId() {
 		return generadorId;
 	}
@@ -322,9 +295,6 @@ public class Usuario implements idInterface<Long>, Serializable, JsonFunciones{
 
 
 
-	/**
-	 * Falta terminar con el Historial de compra
-	 */
 	@Override
 	public JSONObject toJson() {
 		

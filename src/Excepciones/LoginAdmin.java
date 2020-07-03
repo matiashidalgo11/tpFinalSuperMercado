@@ -1,5 +1,10 @@
 package Excepciones;
 
+/**
+ * 
+ * Excepcion que se lanza cuando se Inicie Sesion como Admin
+ *
+ */
 public class LoginAdmin extends Exception {
 	
 	public LoginAdmin() {

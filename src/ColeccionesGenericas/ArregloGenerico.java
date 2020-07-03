@@ -5,6 +5,12 @@ import java.util.ArrayList;
 
 import Interfaces.IColeccion;
 
+/**
+ * 
+ * Clase que contiene un Arreglo Generico, con los comportamientos estandares basados en la Interace IColeccion 
+ *
+ * 
+ */
 public class ArregloGenerico<T> implements IColeccion<T>, Serializable {
 
 	protected ArrayList<T> arreglo;

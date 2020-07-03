@@ -16,6 +16,11 @@ import Objetos.Carro;
 import Objetos.Usuario;
 import Productos.Producto;
 
+/**
+ * 
+ * Mapa de Carros, donde hereda de MapaGenerico con los datos definidos como Clave Long y Dato principal Carro, ademas extiende de la Interface IdMaximo, para encontrar el mayor Id
+ *
+ */
 public class MapaCarro extends MapaGenerico<Long, Carro> implements IdMaximo {
 
 	
@@ -23,6 +28,11 @@ public class MapaCarro extends MapaGenerico<Long, Carro> implements IdMaximo {
 		super();
 	}
 	
+	/**
+	 * Recorrer el Mapa y si encuentra un Carro que no tiene ningun Producto adentro, lo agrega a un arreglo para luego de recorrer el Mapa Eliminarlo...
+	 * 
+	 * @return La cantidad de Carros que se Borraron
+	 */
 	public int eliminarCarrosVacios()
 	{
 		int cant = 0;

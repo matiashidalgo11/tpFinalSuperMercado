@@ -7,6 +7,13 @@ import java.util.Set;
 
 import Interfaces.IColeccion;
 
+/**
+ * 
+ * Clase generica que contiene un Mapa, sus Metodos son los estandares para manejar una Coleccion
+ *
+ * 
+ * 
+ */
 public  class MapaGenerico<K,T>  {
 
 	private HashMap<K, T> mapa;

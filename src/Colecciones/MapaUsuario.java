@@ -13,6 +13,11 @@ import Interfaces.IdMaximo;
 import Objetos.Usuario;
 import Productos.Producto;
 
+/**
+ * 
+ * Clase que contiene un MapaGenerico ya establecido con Clave Long y Dato principal Usuario
+ *
+ */
 public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo{
 
 	
@@ -22,7 +27,7 @@ public class MapaUsuario extends MapaGenerico<Long, Usuario> implements IdMaximo
 	}
 	
 	/**
-	 * Esta funcion agregar al mapa solo si el Id y el userName son distintos
+	 * Esta funcion agregar al mapa SOLO si el Id y el userName son DISTINTOS
 	 * @param user
 	 * @return si se agrego (true) o no (false)
 	 */
