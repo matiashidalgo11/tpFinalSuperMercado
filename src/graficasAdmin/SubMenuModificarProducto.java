@@ -127,51 +127,51 @@ public class SubMenuModificarProducto extends JPanel {
 		
 		lblNewLabel = new JLabel("Nombre");
 		lblNewLabel.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel.setBounds(86, 11, 269, 50);
+		lblNewLabel.setBounds(86, 12, 269, 35);
 		panel.add(lblNewLabel);
 		
 		lblNewLabel_1 = new JLabel("Precio");
 		lblNewLabel_1.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_1.setBounds(86, 194, 269, 29);
+		lblNewLabel_1.setBounds(86, 168, 269, 29);
 		panel.add(lblNewLabel_1);
 		
 		lblNewLabel_16 = new JLabel("Activar Oferta");
 		lblNewLabel_16.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_16.setBounds(86, 234, 216, 29);
+		lblNewLabel_16.setBounds(86, 208, 216, 29);
 		panel.add(lblNewLabel_16);
 		
 		lblNewLabel_17 = new JLabel("PrecioOferta");
 		lblNewLabel_17.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_17.setBounds(86, 278, 269, 29);
+		lblNewLabel_17.setBounds(86, 261, 269, 29);
 		panel.add(lblNewLabel_17);
 		
 		txtPrecioOferta = new JTextField(""+ dato.getPrecioOferta());
 		txtPrecioOferta.setEnabled(false);
 		txtPrecioOferta.setFont(new Font("Calibri", Font.PLAIN, 23));
-		txtPrecioOferta.setBounds(365, 278, 139, 29);
+		txtPrecioOferta.setBounds(365, 261, 122, 29);
 		panel.add(txtPrecioOferta);
 		
 		chckbxActivarOferta = new JCheckBox();
 		chckbxActivarOferta.setEnabled(false);
 		chckbxActivarOferta.setSelected(dato.isOferta());
-		chckbxActivarOferta.setBounds(365, 240, 97, 23);
+		chckbxActivarOferta.setBounds(365, 208, 97, 23);
 		panel.add(chckbxActivarOferta);
 		
 		lblNewLabel_2 = new JLabel("Marca");
 		lblNewLabel_2.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_2.setBounds(86, 72, 269, 50);
+		lblNewLabel_2.setBounds(86, 65, 269, 35);
 		panel.add(lblNewLabel_2);
 		
 		lblNewLabel_3 = new JLabel("Stock Inicial");
 		lblNewLabel_3.setFont(new Font("Calibri", Font.BOLD, 23));
-		lblNewLabel_3.setBounds(86, 133, 269, 50);
+		lblNewLabel_3.setBounds(86, 122, 269, 35);
 		panel.add(lblNewLabel_3);
 		
 		
 		txtNombre = new JTextField(dato.getNombre());
 		txtNombre.setEnabled(false);
 		txtNombre.setFont(new Font("Calibri", Font.PLAIN, 23));
-		txtNombre.setBounds(365, 12, 269, 50);
+		txtNombre.setBounds(365, 12, 269, 35);
 		panel.add(txtNombre);
 		txtNombre.setColumns(10);
 		
@@ -180,14 +180,14 @@ public class SubMenuModificarProducto extends JPanel {
 		txtPrecio.setEnabled(false);
 		txtPrecio.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtPrecio.setColumns(10);
-		txtPrecio.setBounds(365, 191, 269, 29);
+		txtPrecio.setBounds(365, 168, 122, 29);
 		panel.add(txtPrecio);
 		
 		txtMarca = new JTextField(dato.getMarca());
 		txtMarca.setEnabled(false);
 		txtMarca.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtMarca.setColumns(10);
-		txtMarca.setBounds(365, 73, 269, 50);
+		txtMarca.setBounds(365, 65, 269, 35);
 		panel.add(txtMarca);
 		
 		txtStockInicial = new JTextField(""+dato.getStock());
@@ -195,10 +195,11 @@ public class SubMenuModificarProducto extends JPanel {
 		txtStockInicial.setEnabled(false);
 		txtStockInicial.setFont(new Font("Calibri", Font.PLAIN, 23));
 		txtStockInicial.setColumns(10);
-		txtStockInicial.setBounds(365, 130, 269, 50);
+		txtStockInicial.setBounds(365, 125, 122, 29);
 		panel.add(txtStockInicial);
 		
 		lblNewLabel_4 = new JLabel("Categoria");
+		lblNewLabel_4.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_4.setFont(new Font("Calibri", Font.BOLD, 23));
 		lblNewLabel_4.setBounds(86, 318, 269, 29);
 		panel.add(lblNewLabel_4);
@@ -411,32 +412,39 @@ public class SubMenuModificarProducto extends JPanel {
 		btnActualizar.setBounds(239, 534, 155, 23);
 		panel.add(btnActualizar);
 		
-		btnEditarNombre = new JButton("New button");
-		btnEditarNombre.setBounds(668, 25, 35, 23);
+		btnEditarNombre = new JButton("");
+		btnEditarNombre.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarNombre.setBounds(644, 12, 40, 33);
 		panel.add(btnEditarNombre);
 		
-		btnEditarMarca = new JButton("New button");
-		btnEditarMarca.setBounds(668, 86, 35, 23);
+		btnEditarMarca = new JButton("");
+		btnEditarMarca.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarMarca.setBounds(644, 65, 40, 33);
 		panel.add(btnEditarMarca);
 		
-		btnEditarStockInicial = new JButton("New button");
-		btnEditarStockInicial.setBounds(668, 133, 35, 23);
+		btnEditarStockInicial = new JButton("");
+		btnEditarStockInicial.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarStockInicial.setBounds(644, 122, 42, 35);
 		panel.add(btnEditarStockInicial);
 		
-		btnEditarPrecio = new JButton("New button");
-		btnEditarPrecio.setBounds(668, 191, 35, 23);
+		btnEditarPrecio = new JButton("");
+		btnEditarPrecio.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarPrecio.setBounds(644, 168, 40, 33);
 		panel.add(btnEditarPrecio);
 		
-		btnEditarOferta = new JButton("New button");
-		btnEditarOferta.setBounds(668, 237, 35, 23);
+		btnEditarOferta = new JButton("");
+		btnEditarOferta.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarOferta.setBounds(644, 208, 40, 33);
 		panel.add(btnEditarOferta);
 		
-		btnEditarPrecioOferta = new JButton("New button");
-		btnEditarPrecioOferta.setBounds(668, 281, 35, 23);
+		btnEditarPrecioOferta = new JButton("");
+		btnEditarPrecioOferta.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarPrecioOferta.setBounds(644, 261, 40, 33);
 		panel.add(btnEditarPrecioOferta);
 		
-		btnEditarAtributoCategoria = new JButton("New button");
-		btnEditarAtributoCategoria.setBounds(644, 359, 35, 23);
+		btnEditarAtributoCategoria = new JButton("");
+		btnEditarAtributoCategoria.setIcon(new ImageIcon(SubMenuModificarProducto.class.getResource("/img/Logo Editar.png")));
+		btnEditarAtributoCategoria.setBounds(644, 359, 40, 43);
 		panel.add(btnEditarAtributoCategoria);
 
 		

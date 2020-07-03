@@ -531,6 +531,7 @@ public class MapaCategoria extends MapaGenerico<Long, MapaProductos> implements 
 		Producto aux = null;
 		try
 		{
+			
 			if(objeto.has(Bebida.CLAVE_GUSTO))
 			{
 				aux = new Bebida(objeto);

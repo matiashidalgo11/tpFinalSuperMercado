@@ -77,8 +77,9 @@ public class MenuAdminProductos extends JPanel {
 		panel.setBounds(159, 90, 724, 588);
 		add(panel);
 		panel.setLayout(controlProductoMenu);
-		panel.add(agregarP,AGREGARPRODUCTO_REFERENCIA);
 		panel.add(listaP,LISTAPRODUCTOS_REFERENCIA);
+		panel.add(agregarP,AGREGARPRODUCTO_REFERENCIA);
+		
 		
 		
 		lblNewLabel = new JLabel("New label");

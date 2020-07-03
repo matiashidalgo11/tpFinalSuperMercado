@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
+import org.json.JSONObject;
+
 import Archivo.ArchivoGenerico;
 import Colecciones.ArregloProductos;
 import Colecciones.MapaCategoria;
@@ -84,12 +86,13 @@ public class testeoMati {
 		
 		mercado.guardarDatos();
 		
+	*/		
 		
 		
-*/
-		int porcentaje = 75;
-		double porciento = (double) porcentaje / 100;
-		System.out.println(porciento);
+		
+
+		
+		
 		
 	}
 	

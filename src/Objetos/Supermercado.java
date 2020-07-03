@@ -52,6 +52,8 @@ public class Supermercado {
 		System.out.println(listaUsuarios.listar());
 		System.out.println(listaCategorias.listar());
 		System.out.println(listaCarritos.listar());
+		
+		System.out.println(this.toJsonObject());
 	
 	}
 	
@@ -59,20 +61,46 @@ public class Supermercado {
 	public Supermercado(JSONObject objeto)
 	{
 		inicializarMapas();
+		JSONObject jsonAux;
 		if(objeto.has(CLAVE_LISTACARRITOS) && objeto.has(CLAVE_LISTACATEGORIAS) && objeto.has(CLAVE_LISTAUSUARIOS))
 		{
 			JSONArray arrayJUsuarios = objeto.getJSONArray(CLAVE_LISTAUSUARIOS);
-			
+			Usuario auxUsuario;
 			for(int i = 0; i < arrayJUsuarios.length(); i++)
 			{
-				Usuario aux = arrayJUsuarios.get(i); 
+				jsonAux = arrayJUsuarios.getJSONObject(i); 
+				auxUsuario = new Usuario(jsonAux);
+				listaUsuarios.agregarUsuario(auxUsuario);
 			}
 
 			JSONArray arrayJCarro = objeto.getJSONArray(CLAVE_LISTACARRITOS);
+			Carro auxCarro;
+			for(int i = 0; i < arrayJCarro.length(); i++)
+			{
+				jsonAux = arrayJCarro.getJSONObject(i);
+				auxCarro = new Carro(jsonAux);
+				listaCarritos.agregar(auxCarro.getId(), auxCarro);
+			}
 			
 			JSONArray arrayJProducto = objeto.getJSONArray(CLAVE_LISTACATEGORIAS);
+			Producto auxProducto;
+			for(int i = 0; i < arrayJProducto.length(); i++)
+			{
+				jsonAux = arrayJProducto.getJSONObject(i);
+				auxProducto = MapaCategoria.instanciarJson(jsonAux);
+				try {
+					listaCategorias.agregarProducto(auxProducto);
+				} catch (ProductoYaExiste e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			
 		}
+		
+		System.out.println(listaUsuarios.listar());
+		System.out.println(listaCategorias.listar());
+		System.out.println(listaCarritos.listar());
 	}
 	
 	/**
